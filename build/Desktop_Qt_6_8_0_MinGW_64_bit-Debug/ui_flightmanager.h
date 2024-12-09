@@ -316,13 +316,13 @@ public:
         newcustom->setObjectName("newcustom");
         newnolabel = new QLabel(newcustom);
         newnolabel->setObjectName("newnolabel");
-        newnolabel->setGeometry(QRect(210, 110, 61, 41));
+        newnolabel->setGeometry(QRect(190, 110, 81, 41));
         QFont font1;
         font1.setPointSize(14);
         newnolabel->setFont(font1);
         newnamelabel = new QLabel(newcustom);
         newnamelabel->setObjectName("newnamelabel");
-        newnamelabel->setGeometry(QRect(210, 160, 71, 41));
+        newnamelabel->setGeometry(QRect(190, 160, 91, 41));
         newnamelabel->setFont(font1);
         newnamedit = new QLineEdit(newcustom);
         newnamedit->setObjectName("newnamedit");
@@ -330,28 +330,28 @@ public:
         newnamedit->setFont(font);
         newtypelabel = new QLabel(newcustom);
         newtypelabel->setObjectName("newtypelabel");
-        newtypelabel->setGeometry(QRect(210, 210, 71, 41));
+        newtypelabel->setGeometry(QRect(190, 210, 91, 41));
         newtypelabel->setFont(font1);
         newtypeselect = new QComboBox(newcustom);
         newtypeselect->setObjectName("newtypeselect");
         newtypeselect->setGeometry(QRect(330, 220, 121, 24));
         newidlabel = new QLabel(newcustom);
         newidlabel->setObjectName("newidlabel");
-        newidlabel->setGeometry(QRect(210, 270, 71, 31));
+        newidlabel->setGeometry(QRect(190, 270, 91, 31));
         newidlabel->setFont(font1);
         newidedit = new QLineEdit(newcustom);
         newidedit->setObjectName("newidedit");
         newidedit->setGeometry(QRect(330, 270, 121, 24));
         newsexlabel = new QLabel(newcustom);
         newsexlabel->setObjectName("newsexlabel");
-        newsexlabel->setGeometry(QRect(210, 320, 61, 21));
+        newsexlabel->setGeometry(QRect(190, 320, 81, 21));
         newsexlabel->setFont(font1);
         newsexshow = new QComboBox(newcustom);
         newsexshow->setObjectName("newsexshow");
         newsexshow->setGeometry(QRect(330, 320, 121, 24));
         newphonelabel = new QLabel(newcustom);
         newphonelabel->setObjectName("newphonelabel");
-        newphonelabel->setGeometry(QRect(210, 360, 61, 31));
+        newphonelabel->setGeometry(QRect(190, 360, 81, 31));
         newphonelabel->setFont(font1);
         newphonedit = new QLineEdit(newcustom);
         newphonedit->setObjectName("newphonedit");
@@ -1070,7 +1070,7 @@ public:
 
         stackedWidget->setCurrentIndex(2);
         searchtoolbox->setCurrentIndex(0);
-        inserttab->setCurrentIndex(0);
+        inserttab->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(FlightManager);

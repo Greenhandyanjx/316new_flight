@@ -108,6 +108,8 @@ private slots:
 
     void on_newnoshow_linkActivated(const QString &link);
 
+    void UpdateNewNo();
+
 private:
     struct Customer
     {

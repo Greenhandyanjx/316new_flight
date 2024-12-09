@@ -139,7 +139,7 @@
           <item row="0" column="0">
            <widget class="QTabWidget" name="inserttab">
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="newcustom">
              <attribute name="title">
@@ -148,9 +148,9 @@
              <widget class="QLabel" name="newnolabel">
               <property name="geometry">
                <rect>
-                <x>210</x>
+                <x>190</x>
                 <y>110</y>
-                <width>61</width>
+                <width>81</width>
                 <height>41</height>
                </rect>
               </property>
@@ -166,9 +166,9 @@
              <widget class="QLabel" name="newnamelabel">
               <property name="geometry">
                <rect>
-                <x>210</x>
+                <x>190</x>
                 <y>160</y>
-                <width>71</width>
+                <width>91</width>
                 <height>41</height>
                </rect>
               </property>
@@ -199,9 +199,9 @@
              <widget class="QLabel" name="newtypelabel">
               <property name="geometry">
                <rect>
-                <x>210</x>
+                <x>190</x>
                 <y>210</y>
-                <width>71</width>
+                <width>91</width>
                 <height>41</height>
                </rect>
               </property>
@@ -227,9 +227,9 @@
              <widget class="QLabel" name="newidlabel">
               <property name="geometry">
                <rect>
-                <x>210</x>
+                <x>190</x>
                 <y>270</y>
-                <width>71</width>
+                <width>91</width>
                 <height>31</height>
                </rect>
               </property>
@@ -255,9 +255,9 @@
              <widget class="QLabel" name="newsexlabel">
               <property name="geometry">
                <rect>
-                <x>210</x>
+                <x>190</x>
                 <y>320</y>
-                <width>61</width>
+                <width>81</width>
                 <height>21</height>
                </rect>
               </property>
@@ -283,9 +283,9 @@
              <widget class="QLabel" name="newphonelabel">
               <property name="geometry">
                <rect>
-                <x>210</x>
+                <x>190</x>
                 <y>360</y>
-                <width>61</width>
+                <width>81</width>
                 <height>31</height>
                </rect>
               </property>

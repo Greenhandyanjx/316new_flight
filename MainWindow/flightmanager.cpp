@@ -186,6 +186,8 @@ void FlightManager::Init()
     SetCustomer(ui->chglinearrcom, m_City_Name);
     ValueChangeOnAirLine(ui->chglinenocom->currentIndex() );
 
+    UpdateNewNo();
+
     //删除页面上的退票
 
     //删除页面上退票项
@@ -740,6 +742,29 @@ void FlightManager::on_inserttab_tabBarClicked(int index)
             GetCustomerType();
         for (QString str : m_CustomerType)
             ui->newtypeselect->addItem(str);
+    }
+}
+
+void FlightManager::UpdateNewNo()
+{
+    // 查询 customer 表中最大的 no
+    QString sql = "SELECT MAX(no) FROM customer";
+    QSqlQuery query;
+
+    try {
+        if (!query.exec(sql)) {
+            throw std::runtime_error("Failed to query max no: " + query.lastError().text().toStdString());
+        }
+
+        int maxNo = 0;
+        if (query.next()) {
+            maxNo = query.value(0).toInt(); // 获取最大值
+        }
+
+        // 设置 newnoshow 的值为 maxNo + 1
+        ui->newnoshow->setText(QString::number(maxNo + 1));
+    } catch (const std::exception& e) {
+        QMessageBox::warning(this, "错误", QString("获取编号失败：%1").arg(e.what()), QMessageBox::Ok);
     }
 }
 
