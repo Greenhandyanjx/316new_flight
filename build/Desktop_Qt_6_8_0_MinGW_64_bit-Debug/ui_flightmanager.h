@@ -116,19 +116,19 @@ public:
     QGroupBox *airplanechange;
     QWidget *layoutWidget2;
     QGridLayout *chgplanelyo;
-    QLabel *chgplaneselabl;
-    QComboBox *chgplaneselcom;
+    QComboBox *chgplanelinecom;
+    QLabel *chgplanelineabl;
     QLabel *chgplanetype;
-    QLabel *chgplanedep;
+    QLabel *chgplanelinedep;
     QLabel *chgplanearr;
     QLabel *chgplanenotime;
-    QLabel *chgplanelineabl;
-    QComboBox *chgplanelinecom;
-    QLabel *chgplanelinedep;
+    QLabel *chgplaneselabl;
+    QComboBox *chgplaneselcom;
+    QLabel *chgplanedep;
     QLabel *chgplanelinearr;
     QLabel *chgplanelinetime;
-    QPushButton *chgplaneokbtn;
     QLabel *chgplanelinecpy;
+    QPushButton *chgplaneokbtn;
     QGroupBox *typechange;
     QWidget *layoutWidget3;
     QGridLayout *chgtyplyo;
@@ -153,8 +153,26 @@ public:
     QLabel *chgctmselabel;
     QComboBox *chgctmselcom;
     QPushButton *chgctmokbtn;
-    QGroupBox *airlinechange;
+    QGroupBox *ticketchange;
     QWidget *layoutWidget6;
+    QGridLayout *chgtktlyo;
+    QLabel *chgtktnoabl;
+    QComboBox *chgtktnocom;
+    QLabel *chgtktlineabl;
+    QLabel *chgtktdepabl;
+    QLabel *chgtktarrabl;
+    QLabel *chgtkttimeabl;
+    QLabel *chgtktlinechg;
+    QComboBox *chgtktlinecom;
+    QLabel *chgtktshipabl;
+    QLabel *chgtktdepature;
+    QLabel *chgtktarrive;
+    QLabel *chgtkttime;
+    QLabel *chgtktshipchg;
+    QComboBox *chgtktshipcom;
+    QPushButton *chgtktokbtn;
+    QGroupBox *airlinechange;
+    QWidget *layoutWidget7;
     QGridLayout *chglinelyo;
     QComboBox *chglinenocom;
     QCheckBox *chglinecmpcek;
@@ -175,24 +193,6 @@ public:
     QLineEdit *chglinedeledit;
     QPushButton *chglineokbtn;
     QLabel *chglinenoabl;
-    QGroupBox *ticketchange;
-    QWidget *layoutWidget7;
-    QGridLayout *chgtktlyo;
-    QLabel *chgtktnoabl;
-    QComboBox *chgtktnocom;
-    QLabel *chgtktlineabl;
-    QLabel *chgtktdepabl;
-    QLabel *chgtktarrabl;
-    QLabel *chgtkttimeabl;
-    QLabel *chgtktlinechg;
-    QComboBox *chgtktlinecom;
-    QLabel *chgtktshipabl;
-    QLabel *chgtktdepature;
-    QLabel *chgtktarrive;
-    QLabel *chgtkttime;
-    QLabel *chgtktshipchg;
-    QComboBox *chgtktshipcom;
-    QPushButton *chgtktokbtn;
     QWidget *deletepage;
     QWidget *layoutWidget8;
     QGridLayout *deletelayout;
@@ -233,7 +233,7 @@ public:
     {
         if (FlightManager->objectName().isEmpty())
             FlightManager->setObjectName("FlightManager");
-        FlightManager->resize(865, 602);
+        FlightManager->resize(865, 652);
         personsearch = new QAction(FlightManager);
         personsearch->setObjectName("personsearch");
         bookticketinsert = new QAction(FlightManager);
@@ -277,7 +277,7 @@ public:
         homepage->setObjectName("homepage");
         welcomelabel = new QLabel(homepage);
         welcomelabel->setObjectName("welcomelabel");
-        welcomelabel->setGeometry(QRect(90, 80, 231, 51));
+        welcomelabel->setGeometry(QRect(90, 80, 351, 51));
         QFont font;
         font.setPointSize(18);
         welcomelabel->setFont(font);
@@ -289,14 +289,14 @@ public:
         searchtoolbox->setGeometry(QRect(0, 0, 661, 561));
         searchairline = new QWidget();
         searchairline->setObjectName("searchairline");
-        searchairline->setGeometry(QRect(0, 0, 661, 503));
+        searchairline->setGeometry(QRect(0, 0, 661, 513));
         searchairlineshow = new QTableWidget(searchairline);
         searchairlineshow->setObjectName("searchairlineshow");
         searchairlineshow->setGeometry(QRect(0, 0, 661, 501));
         searchtoolbox->addItem(searchairline, QString::fromUtf8("Page 1"));
         searchcustomer = new QWidget();
         searchcustomer->setObjectName("searchcustomer");
-        searchcustomer->setGeometry(QRect(0, 0, 100, 30));
+        searchcustomer->setGeometry(QRect(0, 0, 661, 513));
         searchcustomershow = new QTableWidget(searchcustomer);
         searchcustomershow->setObjectName("searchcustomershow");
         searchcustomershow->setGeometry(QRect(0, 0, 661, 501));
@@ -528,31 +528,32 @@ public:
         updateLayout->setContentsMargins(0, 0, 0, 0);
         airplanechange = new QGroupBox(layoutWidget1);
         airplanechange->setObjectName("airplanechange");
+        airplanechange->setAutoFillBackground(false);
         layoutWidget2 = new QWidget(airplanechange);
         layoutWidget2->setObjectName("layoutWidget2");
-        layoutWidget2->setGeometry(QRect(12, 20, 321, 171));
+        layoutWidget2->setGeometry(QRect(2, 20, 311, 161));
         chgplanelyo = new QGridLayout(layoutWidget2);
         chgplanelyo->setObjectName("chgplanelyo");
         chgplanelyo->setContentsMargins(0, 0, 0, 0);
-        chgplaneselabl = new QLabel(layoutWidget2);
-        chgplaneselabl->setObjectName("chgplaneselabl");
+        chgplanelinecom = new QComboBox(layoutWidget2);
+        chgplanelinecom->setObjectName("chgplanelinecom");
 
-        chgplanelyo->addWidget(chgplaneselabl, 0, 0, 1, 1);
+        chgplanelyo->addWidget(chgplanelinecom, 2, 1, 1, 1);
 
-        chgplaneselcom = new QComboBox(layoutWidget2);
-        chgplaneselcom->setObjectName("chgplaneselcom");
+        chgplanelineabl = new QLabel(layoutWidget2);
+        chgplanelineabl->setObjectName("chgplanelineabl");
 
-        chgplanelyo->addWidget(chgplaneselcom, 0, 1, 1, 1);
+        chgplanelyo->addWidget(chgplanelineabl, 2, 0, 1, 1);
 
         chgplanetype = new QLabel(layoutWidget2);
         chgplanetype->setObjectName("chgplanetype");
 
         chgplanelyo->addWidget(chgplanetype, 0, 2, 1, 1);
 
-        chgplanedep = new QLabel(layoutWidget2);
-        chgplanedep->setObjectName("chgplanedep");
+        chgplanelinedep = new QLabel(layoutWidget2);
+        chgplanelinedep->setObjectName("chgplanelinedep");
 
-        chgplanelyo->addWidget(chgplanedep, 1, 0, 1, 1);
+        chgplanelyo->addWidget(chgplanelinedep, 3, 0, 1, 1);
 
         chgplanearr = new QLabel(layoutWidget2);
         chgplanearr->setObjectName("chgplanearr");
@@ -564,20 +565,20 @@ public:
 
         chgplanelyo->addWidget(chgplanenotime, 1, 2, 1, 1);
 
-        chgplanelineabl = new QLabel(layoutWidget2);
-        chgplanelineabl->setObjectName("chgplanelineabl");
+        chgplaneselabl = new QLabel(layoutWidget2);
+        chgplaneselabl->setObjectName("chgplaneselabl");
 
-        chgplanelyo->addWidget(chgplanelineabl, 2, 0, 1, 1);
+        chgplanelyo->addWidget(chgplaneselabl, 0, 0, 1, 1);
 
-        chgplanelinecom = new QComboBox(layoutWidget2);
-        chgplanelinecom->setObjectName("chgplanelinecom");
+        chgplaneselcom = new QComboBox(layoutWidget2);
+        chgplaneselcom->setObjectName("chgplaneselcom");
 
-        chgplanelyo->addWidget(chgplanelinecom, 2, 1, 1, 1);
+        chgplanelyo->addWidget(chgplaneselcom, 0, 1, 1, 1);
 
-        chgplanelinedep = new QLabel(layoutWidget2);
-        chgplanelinedep->setObjectName("chgplanelinedep");
+        chgplanedep = new QLabel(layoutWidget2);
+        chgplanedep->setObjectName("chgplanedep");
 
-        chgplanelyo->addWidget(chgplanelinedep, 3, 0, 1, 1);
+        chgplanelyo->addWidget(chgplanedep, 1, 0, 1, 1);
 
         chgplanelinearr = new QLabel(layoutWidget2);
         chgplanelinearr->setObjectName("chgplanelinearr");
@@ -589,15 +590,15 @@ public:
 
         chgplanelyo->addWidget(chgplanelinetime, 3, 2, 1, 1);
 
-        chgplaneokbtn = new QPushButton(layoutWidget2);
-        chgplaneokbtn->setObjectName("chgplaneokbtn");
-
-        chgplanelyo->addWidget(chgplaneokbtn, 4, 2, 1, 1);
-
         chgplanelinecpy = new QLabel(layoutWidget2);
         chgplanelinecpy->setObjectName("chgplanelinecpy");
 
         chgplanelyo->addWidget(chgplanelinecpy, 2, 2, 1, 1);
+
+        chgplaneokbtn = new QPushButton(layoutWidget2);
+        chgplaneokbtn->setObjectName("chgplaneokbtn");
+
+        chgplanelyo->addWidget(chgplaneokbtn, 4, 2, 1, 1);
 
 
         updateLayout->addWidget(airplanechange, 0, 1, 1, 1);
@@ -606,7 +607,7 @@ public:
         typechange->setObjectName("typechange");
         layoutWidget3 = new QWidget(typechange);
         layoutWidget3->setObjectName("layoutWidget3");
-        layoutWidget3->setGeometry(QRect(10, 20, 321, 171));
+        layoutWidget3->setGeometry(QRect(0, 10, 321, 171));
         chgtyplyo = new QGridLayout(layoutWidget3);
         chgtyplyo->setObjectName("chgtyplyo");
         chgtyplyo->setContentsMargins(0, 0, 0, 0);
@@ -642,7 +643,7 @@ public:
         customerchange->setObjectName("customerchange");
         layoutWidget4 = new QWidget(customerchange);
         layoutWidget4->setObjectName("layoutWidget4");
-        layoutWidget4->setGeometry(QRect(10, 60, 321, 121));
+        layoutWidget4->setGeometry(QRect(0, 50, 331, 141));
         chgctmlyo = new QGridLayout(layoutWidget4);
         chgctmlyo->setObjectName("chgctmlyo");
         chgctmlyo->setContentsMargins(0, 0, 0, 0);
@@ -678,6 +679,7 @@ public:
 
         chgctmsexchk = new QCheckBox(layoutWidget4);
         chgctmsexchk->setObjectName("chgctmsexchk");
+        chgctmsexchk->setEnabled(true);
 
         chgctmlyo->addWidget(chgctmsexchk, 0, 1, 1, 1);
 
@@ -688,12 +690,15 @@ public:
 
         layoutWidget5 = new QWidget(customerchange);
         layoutWidget5->setObjectName("layoutWidget5");
-        layoutWidget5->setGeometry(QRect(10, 30, 321, 29));
+        layoutWidget5->setGeometry(QRect(0, 20, 331, 31));
         chgctmoklyo = new QGridLayout(layoutWidget5);
         chgctmoklyo->setObjectName("chgctmoklyo");
         chgctmoklyo->setContentsMargins(0, 0, 0, 0);
         chgctmselabel = new QLabel(layoutWidget5);
         chgctmselabel->setObjectName("chgctmselabel");
+        chgctmselabel->setToolTipDuration(-1);
+        chgctmselabel->setTextFormat(Qt::TextFormat::MarkdownText);
+        chgctmselabel->setIndent(0);
 
         chgctmoklyo->addWidget(chgctmselabel, 0, 0, 1, 1);
 
@@ -710,197 +715,197 @@ public:
 
         updateLayout->addWidget(customerchange, 0, 0, 1, 1);
 
-        airlinechange = new QGroupBox(layoutWidget1);
-        airlinechange->setObjectName("airlinechange");
-        layoutWidget6 = new QWidget(airlinechange);
-        layoutWidget6->setObjectName("layoutWidget6");
-        layoutWidget6->setGeometry(QRect(40, 40, 241, 321));
-        chglinelyo = new QGridLayout(layoutWidget6);
-        chglinelyo->setObjectName("chglinelyo");
-        chglinelyo->setContentsMargins(0, 0, 0, 0);
-        chglinenocom = new QComboBox(layoutWidget6);
-        chglinenocom->setObjectName("chglinenocom");
-
-        chglinelyo->addWidget(chglinenocom, 0, 1, 1, 1);
-
-        chglinecmpcek = new QCheckBox(layoutWidget6);
-        chglinecmpcek->setObjectName("chglinecmpcek");
-
-        chglinelyo->addWidget(chglinecmpcek, 1, 0, 1, 1);
-
-        chglinecmpcom = new QComboBox(layoutWidget6);
-        chglinecmpcom->setObjectName("chglinecmpcom");
-
-        chglinelyo->addWidget(chglinecmpcom, 1, 1, 1, 1);
-
-        chglinedepcek = new QCheckBox(layoutWidget6);
-        chglinedepcek->setObjectName("chglinedepcek");
-
-        chglinelyo->addWidget(chglinedepcek, 2, 0, 1, 1);
-
-        chglinedepcom = new QComboBox(layoutWidget6);
-        chglinedepcom->setObjectName("chglinedepcom");
-
-        chglinelyo->addWidget(chglinedepcom, 2, 1, 1, 1);
-
-        chglinearrcek = new QCheckBox(layoutWidget6);
-        chglinearrcek->setObjectName("chglinearrcek");
-
-        chglinelyo->addWidget(chglinearrcek, 3, 0, 1, 1);
-
-        chglinearrcom = new QComboBox(layoutWidget6);
-        chglinearrcom->setObjectName("chglinearrcom");
-
-        chglinelyo->addWidget(chglinearrcom, 3, 1, 1, 1);
-
-        chglinedatecek = new QCheckBox(layoutWidget6);
-        chglinedatecek->setObjectName("chglinedatecek");
-
-        chglinelyo->addWidget(chglinedatecek, 4, 0, 1, 1);
-
-        chglinedatedit = new QDateEdit(layoutWidget6);
-        chglinedatedit->setObjectName("chglinedatedit");
-
-        chglinelyo->addWidget(chglinedatedit, 4, 1, 1, 1);
-
-        chglinetimecek = new QCheckBox(layoutWidget6);
-        chglinetimecek->setObjectName("chglinetimecek");
-
-        chglinelyo->addWidget(chglinetimecek, 5, 0, 1, 1);
-
-        chglinetimedit = new QTimeEdit(layoutWidget6);
-        chglinetimedit->setObjectName("chglinetimedit");
-
-        chglinelyo->addWidget(chglinetimedit, 5, 1, 1, 1);
-
-        chglineecocek = new QCheckBox(layoutWidget6);
-        chglineecocek->setObjectName("chglineecocek");
-
-        chglinelyo->addWidget(chglineecocek, 6, 0, 1, 1);
-
-        chglineecoedit = new QLineEdit(layoutWidget6);
-        chglineecoedit->setObjectName("chglineecoedit");
-
-        chglinelyo->addWidget(chglineecoedit, 6, 1, 1, 1);
-
-        chglinebuscek = new QCheckBox(layoutWidget6);
-        chglinebuscek->setObjectName("chglinebuscek");
-
-        chglinelyo->addWidget(chglinebuscek, 7, 0, 1, 1);
-
-        chglinebusedit = new QLineEdit(layoutWidget6);
-        chglinebusedit->setObjectName("chglinebusedit");
-
-        chglinelyo->addWidget(chglinebusedit, 7, 1, 1, 1);
-
-        chglinedelcek = new QCheckBox(layoutWidget6);
-        chglinedelcek->setObjectName("chglinedelcek");
-
-        chglinelyo->addWidget(chglinedelcek, 8, 0, 1, 1);
-
-        chglinedeledit = new QLineEdit(layoutWidget6);
-        chglinedeledit->setObjectName("chglinedeledit");
-
-        chglinelyo->addWidget(chglinedeledit, 8, 1, 1, 1);
-
-        chglineokbtn = new QPushButton(layoutWidget6);
-        chglineokbtn->setObjectName("chglineokbtn");
-
-        chglinelyo->addWidget(chglineokbtn, 9, 1, 1, 1);
-
-        chglinenoabl = new QLabel(layoutWidget6);
-        chglinenoabl->setObjectName("chglinenoabl");
-
-        chglinelyo->addWidget(chglinenoabl, 0, 0, 1, 1);
-
-
-        updateLayout->addWidget(airlinechange, 1, 0, 2, 1);
-
         ticketchange = new QGroupBox(layoutWidget1);
         ticketchange->setObjectName("ticketchange");
-        layoutWidget7 = new QWidget(ticketchange);
-        layoutWidget7->setObjectName("layoutWidget7");
-        layoutWidget7->setGeometry(QRect(10, 20, 321, 171));
-        chgtktlyo = new QGridLayout(layoutWidget7);
+        layoutWidget6 = new QWidget(ticketchange);
+        layoutWidget6->setObjectName("layoutWidget6");
+        layoutWidget6->setGeometry(QRect(0, 10, 321, 171));
+        chgtktlyo = new QGridLayout(layoutWidget6);
         chgtktlyo->setObjectName("chgtktlyo");
         chgtktlyo->setContentsMargins(0, 0, 0, 0);
-        chgtktnoabl = new QLabel(layoutWidget7);
+        chgtktnoabl = new QLabel(layoutWidget6);
         chgtktnoabl->setObjectName("chgtktnoabl");
 
         chgtktlyo->addWidget(chgtktnoabl, 0, 0, 1, 1);
 
-        chgtktnocom = new QComboBox(layoutWidget7);
+        chgtktnocom = new QComboBox(layoutWidget6);
         chgtktnocom->setObjectName("chgtktnocom");
 
         chgtktlyo->addWidget(chgtktnocom, 0, 1, 1, 1);
 
-        chgtktlineabl = new QLabel(layoutWidget7);
+        chgtktlineabl = new QLabel(layoutWidget6);
         chgtktlineabl->setObjectName("chgtktlineabl");
 
         chgtktlyo->addWidget(chgtktlineabl, 0, 2, 1, 1);
 
-        chgtktdepabl = new QLabel(layoutWidget7);
+        chgtktdepabl = new QLabel(layoutWidget6);
         chgtktdepabl->setObjectName("chgtktdepabl");
 
         chgtktlyo->addWidget(chgtktdepabl, 1, 0, 1, 1);
 
-        chgtktarrabl = new QLabel(layoutWidget7);
+        chgtktarrabl = new QLabel(layoutWidget6);
         chgtktarrabl->setObjectName("chgtktarrabl");
 
         chgtktlyo->addWidget(chgtktarrabl, 1, 1, 1, 1);
 
-        chgtkttimeabl = new QLabel(layoutWidget7);
+        chgtkttimeabl = new QLabel(layoutWidget6);
         chgtkttimeabl->setObjectName("chgtkttimeabl");
 
         chgtktlyo->addWidget(chgtkttimeabl, 1, 2, 1, 1);
 
-        chgtktlinechg = new QLabel(layoutWidget7);
+        chgtktlinechg = new QLabel(layoutWidget6);
         chgtktlinechg->setObjectName("chgtktlinechg");
 
         chgtktlyo->addWidget(chgtktlinechg, 2, 0, 1, 1);
 
-        chgtktlinecom = new QComboBox(layoutWidget7);
+        chgtktlinecom = new QComboBox(layoutWidget6);
         chgtktlinecom->setObjectName("chgtktlinecom");
 
         chgtktlyo->addWidget(chgtktlinecom, 2, 1, 1, 1);
 
-        chgtktshipabl = new QLabel(layoutWidget7);
+        chgtktshipabl = new QLabel(layoutWidget6);
         chgtktshipabl->setObjectName("chgtktshipabl");
 
         chgtktlyo->addWidget(chgtktshipabl, 2, 2, 1, 1);
 
-        chgtktdepature = new QLabel(layoutWidget7);
+        chgtktdepature = new QLabel(layoutWidget6);
         chgtktdepature->setObjectName("chgtktdepature");
 
         chgtktlyo->addWidget(chgtktdepature, 3, 0, 1, 1);
 
-        chgtktarrive = new QLabel(layoutWidget7);
+        chgtktarrive = new QLabel(layoutWidget6);
         chgtktarrive->setObjectName("chgtktarrive");
 
         chgtktlyo->addWidget(chgtktarrive, 3, 1, 1, 1);
 
-        chgtkttime = new QLabel(layoutWidget7);
+        chgtkttime = new QLabel(layoutWidget6);
         chgtkttime->setObjectName("chgtkttime");
 
         chgtktlyo->addWidget(chgtkttime, 3, 2, 1, 1);
 
-        chgtktshipchg = new QLabel(layoutWidget7);
+        chgtktshipchg = new QLabel(layoutWidget6);
         chgtktshipchg->setObjectName("chgtktshipchg");
 
         chgtktlyo->addWidget(chgtktshipchg, 4, 0, 1, 1);
 
-        chgtktshipcom = new QComboBox(layoutWidget7);
+        chgtktshipcom = new QComboBox(layoutWidget6);
         chgtktshipcom->setObjectName("chgtktshipcom");
 
         chgtktlyo->addWidget(chgtktshipcom, 4, 1, 1, 1);
 
-        chgtktokbtn = new QPushButton(layoutWidget7);
+        chgtktokbtn = new QPushButton(layoutWidget6);
         chgtktokbtn->setObjectName("chgtktokbtn");
 
         chgtktlyo->addWidget(chgtktokbtn, 4, 2, 1, 1);
 
 
         updateLayout->addWidget(ticketchange, 1, 1, 1, 1);
+
+        airlinechange = new QGroupBox(layoutWidget1);
+        airlinechange->setObjectName("airlinechange");
+        layoutWidget7 = new QWidget(airlinechange);
+        layoutWidget7->setObjectName("layoutWidget7");
+        layoutWidget7->setGeometry(QRect(20, 30, 281, 331));
+        chglinelyo = new QGridLayout(layoutWidget7);
+        chglinelyo->setObjectName("chglinelyo");
+        chglinelyo->setContentsMargins(0, 0, 0, 0);
+        chglinenocom = new QComboBox(layoutWidget7);
+        chglinenocom->setObjectName("chglinenocom");
+
+        chglinelyo->addWidget(chglinenocom, 0, 1, 1, 1);
+
+        chglinecmpcek = new QCheckBox(layoutWidget7);
+        chglinecmpcek->setObjectName("chglinecmpcek");
+
+        chglinelyo->addWidget(chglinecmpcek, 1, 0, 1, 1);
+
+        chglinecmpcom = new QComboBox(layoutWidget7);
+        chglinecmpcom->setObjectName("chglinecmpcom");
+
+        chglinelyo->addWidget(chglinecmpcom, 1, 1, 1, 1);
+
+        chglinedepcek = new QCheckBox(layoutWidget7);
+        chglinedepcek->setObjectName("chglinedepcek");
+
+        chglinelyo->addWidget(chglinedepcek, 2, 0, 1, 1);
+
+        chglinedepcom = new QComboBox(layoutWidget7);
+        chglinedepcom->setObjectName("chglinedepcom");
+
+        chglinelyo->addWidget(chglinedepcom, 2, 1, 1, 1);
+
+        chglinearrcek = new QCheckBox(layoutWidget7);
+        chglinearrcek->setObjectName("chglinearrcek");
+
+        chglinelyo->addWidget(chglinearrcek, 3, 0, 1, 1);
+
+        chglinearrcom = new QComboBox(layoutWidget7);
+        chglinearrcom->setObjectName("chglinearrcom");
+
+        chglinelyo->addWidget(chglinearrcom, 3, 1, 1, 1);
+
+        chglinedatecek = new QCheckBox(layoutWidget7);
+        chglinedatecek->setObjectName("chglinedatecek");
+
+        chglinelyo->addWidget(chglinedatecek, 4, 0, 1, 1);
+
+        chglinedatedit = new QDateEdit(layoutWidget7);
+        chglinedatedit->setObjectName("chglinedatedit");
+
+        chglinelyo->addWidget(chglinedatedit, 4, 1, 1, 1);
+
+        chglinetimecek = new QCheckBox(layoutWidget7);
+        chglinetimecek->setObjectName("chglinetimecek");
+
+        chglinelyo->addWidget(chglinetimecek, 5, 0, 1, 1);
+
+        chglinetimedit = new QTimeEdit(layoutWidget7);
+        chglinetimedit->setObjectName("chglinetimedit");
+
+        chglinelyo->addWidget(chglinetimedit, 5, 1, 1, 1);
+
+        chglineecocek = new QCheckBox(layoutWidget7);
+        chglineecocek->setObjectName("chglineecocek");
+
+        chglinelyo->addWidget(chglineecocek, 6, 0, 1, 1);
+
+        chglineecoedit = new QLineEdit(layoutWidget7);
+        chglineecoedit->setObjectName("chglineecoedit");
+
+        chglinelyo->addWidget(chglineecoedit, 6, 1, 1, 1);
+
+        chglinebuscek = new QCheckBox(layoutWidget7);
+        chglinebuscek->setObjectName("chglinebuscek");
+
+        chglinelyo->addWidget(chglinebuscek, 7, 0, 1, 1);
+
+        chglinebusedit = new QLineEdit(layoutWidget7);
+        chglinebusedit->setObjectName("chglinebusedit");
+
+        chglinelyo->addWidget(chglinebusedit, 7, 1, 1, 1);
+
+        chglinedelcek = new QCheckBox(layoutWidget7);
+        chglinedelcek->setObjectName("chglinedelcek");
+
+        chglinelyo->addWidget(chglinedelcek, 8, 0, 1, 1);
+
+        chglinedeledit = new QLineEdit(layoutWidget7);
+        chglinedeledit->setObjectName("chglinedeledit");
+
+        chglinelyo->addWidget(chglinedeledit, 8, 1, 1, 1);
+
+        chglineokbtn = new QPushButton(layoutWidget7);
+        chglineokbtn->setObjectName("chglineokbtn");
+
+        chglinelyo->addWidget(chglineokbtn, 9, 1, 1, 1);
+
+        chglinenoabl = new QLabel(layoutWidget7);
+        chglinenoabl->setObjectName("chglinenoabl");
+
+        chglinelyo->addWidget(chglinenoabl, 0, 0, 1, 1);
+
+
+        updateLayout->addWidget(airlinechange, 1, 0, 2, 1);
 
         stackedWidget->addWidget(updatepage);
         deletepage = new QWidget();
@@ -1036,7 +1041,7 @@ public:
         FlightManager->setCentralWidget(centralwidget);
         menubar = new QMenuBar(FlightManager);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 865, 21));
+        menubar->setGeometry(QRect(0, 0, 865, 18));
         searchmenu = new QMenu(menubar);
         searchmenu->setObjectName("searchmenu");
         insertmeun = new QMenu(menubar);
@@ -1063,9 +1068,9 @@ public:
         retranslateUi(FlightManager);
         QObject::connect(list, &QListWidget::currentRowChanged, stackedWidget, &QStackedWidget::setCurrentIndex);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(2);
         searchtoolbox->setCurrentIndex(0);
-        inserttab->setCurrentIndex(1);
+        inserttab->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(FlightManager);
@@ -1083,7 +1088,7 @@ public:
         deleteaction->setText(QCoreApplication::translate("FlightManager", "Delete Page", nullptr));
         quitacion->setText(QCoreApplication::translate("FlightManager", "Quit System", nullptr));
         quitaction->setText(QCoreApplication::translate("FlightManager", "Quit System", nullptr));
-        welcomelabel->setText(QCoreApplication::translate("FlightManager", "\346\254\242\350\277\216\344\275\277\347\224\250\350\210\252\347\251\272\344\277\241\346\201\257\347\256\241\347\220\206\347\263\273\347\273\237\357\274\201", nullptr));
+        welcomelabel->setText(QCoreApplication::translate("FlightManager", "\346\254\242\350\277\216\344\275\277\347\224\250316\350\210\252\347\251\272\344\277\241\346\201\257\347\256\241\347\220\206\347\263\273\347\273\237\357\274\201", nullptr));
         searchtoolbox->setItemText(searchtoolbox->indexOf(searchairline), QCoreApplication::translate("FlightManager", "Page 1", nullptr));
         searchtoolbox->setItemText(searchtoolbox->indexOf(searchcustomer), QCoreApplication::translate("FlightManager", "Page 2", nullptr));
         newnolabel->setText(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\347\274\226\345\217\267", nullptr));
@@ -1118,17 +1123,17 @@ public:
         bktktokbtn->setText(QCoreApplication::translate("FlightManager", "\347\241\256\345\256\232\350\264\255\347\245\250", nullptr));
         inserttab->setTabText(inserttab->indexOf(booktickettab), QCoreApplication::translate("FlightManager", "Tab 2", nullptr));
         airplanechange->setTitle(QCoreApplication::translate("FlightManager", "\345\256\242\346\234\272\346\233\264\346\226\260", nullptr));
-        chgplaneselabl->setText(QCoreApplication::translate("FlightManager", "\351\200\211\346\213\251\345\256\242\346\234\272", nullptr));
+        chgplanelineabl->setText(QCoreApplication::translate("FlightManager", "\351\200\211\346\213\251\346\233\264\346\224\271\347\232\204\350\210\252\347\272\277", nullptr));
         chgplanetype->setText(QCoreApplication::translate("FlightManager", "\345\256\242\346\234\272\347\261\273\345\236\213", nullptr));
-        chgplanedep->setText(QCoreApplication::translate("FlightManager", "\350\265\267\347\202\271", nullptr));
+        chgplanelinedep->setText(QCoreApplication::translate("FlightManager", "\350\265\267\347\202\271", nullptr));
         chgplanearr->setText(QCoreApplication::translate("FlightManager", "\347\273\210\347\202\271", nullptr));
         chgplanenotime->setText(QCoreApplication::translate("FlightManager", "\346\227\266\351\227\264", nullptr));
-        chgplanelineabl->setText(QCoreApplication::translate("FlightManager", "\351\200\211\346\213\251\346\233\264\346\224\271\347\232\204\350\210\252\347\272\277", nullptr));
-        chgplanelinedep->setText(QCoreApplication::translate("FlightManager", "\350\265\267\347\202\271", nullptr));
+        chgplaneselabl->setText(QCoreApplication::translate("FlightManager", "\351\200\211\346\213\251\345\256\242\346\234\272", nullptr));
+        chgplanedep->setText(QCoreApplication::translate("FlightManager", "\350\265\267\347\202\271", nullptr));
         chgplanelinearr->setText(QCoreApplication::translate("FlightManager", "\347\273\210\347\202\271", nullptr));
         chgplanelinetime->setText(QCoreApplication::translate("FlightManager", "\346\227\266\351\227\264", nullptr));
-        chgplaneokbtn->setText(QCoreApplication::translate("FlightManager", "\347\241\256\345\256\232\346\233\264\346\226\260", nullptr));
         chgplanelinecpy->setText(QCoreApplication::translate("FlightManager", "\350\210\252\347\251\272\345\205\254\345\217\270", nullptr));
+        chgplaneokbtn->setText(QCoreApplication::translate("FlightManager", "\347\241\256\345\256\232\346\233\264\346\226\260", nullptr));
         typechange->setTitle(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\347\261\273\345\236\213\344\274\230\346\203\240\346\233\264\346\226\260", nullptr));
         chgtypselabl->setText(QCoreApplication::translate("FlightManager", "\350\257\267\351\200\211\346\213\251\351\234\200\346\233\264\346\226\260\347\232\204\344\274\230\346\203\240\347\261\273\345\236\213", nullptr));
         chgtypinabl->setText(QCoreApplication::translate("FlightManager", "\350\257\267\350\276\223\345\205\245\346\233\264\346\224\271\347\232\204\346\225\260\345\200\274\357\274\2100-90\357\274\211", nullptr));
@@ -1140,17 +1145,6 @@ public:
         chgctmsexchk->setText(QCoreApplication::translate("FlightManager", "\346\200\247\345\210\253", nullptr));
         chgctmselabel->setText(QCoreApplication::translate("FlightManager", "\350\257\267\351\200\211\346\213\251\351\234\200\346\233\264\346\224\271\347\232\204\345\256\242\346\210\267", nullptr));
         chgctmokbtn->setText(QCoreApplication::translate("FlightManager", "\347\241\256\345\256\232\346\233\264\346\226\260", nullptr));
-        airlinechange->setTitle(QCoreApplication::translate("FlightManager", "\350\210\252\347\272\277\346\233\264\346\226\260", nullptr));
-        chglinecmpcek->setText(QCoreApplication::translate("FlightManager", "\350\210\252\347\251\272\345\205\254\345\217\270", nullptr));
-        chglinedepcek->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\345\237\216\345\270\202", nullptr));
-        chglinearrcek->setText(QCoreApplication::translate("FlightManager", "\345\210\260\350\276\276\345\237\216\345\270\202", nullptr));
-        chglinedatecek->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\346\227\245\346\234\237", nullptr));
-        chglinetimecek->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\346\227\266\351\227\264", nullptr));
-        chglineecocek->setText(QCoreApplication::translate("FlightManager", "\347\273\217\346\265\216\350\210\261\344\273\267\346\240\274", nullptr));
-        chglinebuscek->setText(QCoreApplication::translate("FlightManager", "\345\225\206\345\212\241\350\210\261\344\273\267\346\240\274", nullptr));
-        chglinedelcek->setText(QCoreApplication::translate("FlightManager", "\345\244\264\347\255\211\350\210\261\344\273\267\346\240\274", nullptr));
-        chglineokbtn->setText(QCoreApplication::translate("FlightManager", "\347\241\256\345\256\232\346\233\264\346\226\260", nullptr));
-        chglinenoabl->setText(QCoreApplication::translate("FlightManager", "     \350\210\252\347\272\277\347\274\226\345\217\267", nullptr));
         ticketchange->setTitle(QCoreApplication::translate("FlightManager", "\350\256\242\347\245\250\346\233\264\346\224\271", nullptr));
         chgtktnoabl->setText(QCoreApplication::translate("FlightManager", "\350\256\242\345\215\225\347\274\226\345\217\267", nullptr));
         chgtktlineabl->setText(QCoreApplication::translate("FlightManager", "\350\210\252\347\272\277\345\217\267", nullptr));
@@ -1164,6 +1158,17 @@ public:
         chgtkttime->setText(QCoreApplication::translate("FlightManager", "\346\227\266\351\227\264", nullptr));
         chgtktshipchg->setText(QCoreApplication::translate("FlightManager", "\346\233\264\346\224\271\350\210\261\344\275\215\347\255\211\347\272\247", nullptr));
         chgtktokbtn->setText(QCoreApplication::translate("FlightManager", "\347\241\256\345\256\232\346\233\264\346\226\260", nullptr));
+        airlinechange->setTitle(QCoreApplication::translate("FlightManager", "\350\210\252\347\272\277\346\233\264\346\226\260", nullptr));
+        chglinecmpcek->setText(QCoreApplication::translate("FlightManager", "\350\210\252\347\251\272\345\205\254\345\217\270", nullptr));
+        chglinedepcek->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\345\237\216\345\270\202", nullptr));
+        chglinearrcek->setText(QCoreApplication::translate("FlightManager", "\345\210\260\350\276\276\345\237\216\345\270\202", nullptr));
+        chglinedatecek->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\346\227\245\346\234\237", nullptr));
+        chglinetimecek->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\346\227\266\351\227\264", nullptr));
+        chglineecocek->setText(QCoreApplication::translate("FlightManager", "\347\273\217\346\265\216\350\210\261\344\273\267\346\240\274", nullptr));
+        chglinebuscek->setText(QCoreApplication::translate("FlightManager", "\345\225\206\345\212\241\350\210\261\344\273\267\346\240\274", nullptr));
+        chglinedelcek->setText(QCoreApplication::translate("FlightManager", "\345\244\264\347\255\211\350\210\261\344\273\267\346\240\274", nullptr));
+        chglineokbtn->setText(QCoreApplication::translate("FlightManager", "\347\241\256\345\256\232\346\233\264\346\226\260", nullptr));
+        chglinenoabl->setText(QCoreApplication::translate("FlightManager", "     \350\210\252\347\272\277\347\274\226\345\217\267", nullptr));
         delticket->setTitle(QCoreApplication::translate("FlightManager", "\351\200\200\347\245\250", nullptr));
         delticketnoabl->setText(QCoreApplication::translate("FlightManager", "\350\256\242\345\215\225\347\274\226\345\217\267", nullptr));
         delticketnameabl->setText(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\345\247\223\345\220\215", nullptr));

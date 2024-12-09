@@ -77,7 +77,10 @@ constexpr auto qt_meta_stringdata_CLASSFlightManagerENDCLASS = QtMocHelpers::str
     "on_bktktctmno_activated",
     "on_bktktdepcot_activated",
     "on_bktktarrcot_activated",
-    "on_bktktarrcy_currentIndexChanged"
+    "on_bktktarrcy_currentIndexChanged",
+    "on_bktktokbtn_clicked",
+    "on_newnoshow_linkActivated",
+    "link"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -90,7 +93,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSFlightManagerENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      40,   14, // methods
+      42,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -98,46 +101,48 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSFlightManagerENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  254,    2, 0x0a,    1 /* Public */,
-       3,    0,  255,    2, 0x08,    2 /* Private */,
-       4,    0,  256,    2, 0x08,    3 /* Private */,
-       5,    0,  257,    2, 0x08,    4 /* Private */,
-       6,    0,  258,    2, 0x08,    5 /* Private */,
-       7,    0,  259,    2, 0x08,    6 /* Private */,
-       8,    1,  260,    2, 0x08,    7 /* Private */,
-      10,    0,  263,    2, 0x08,    9 /* Private */,
-      11,    1,  264,    2, 0x08,   10 /* Private */,
-      12,    1,  267,    2, 0x08,   12 /* Private */,
-      14,    1,  270,    2, 0x08,   14 /* Private */,
-      15,    1,  273,    2, 0x08,   16 /* Private */,
-      16,    1,  276,    2, 0x08,   18 /* Private */,
-      17,    0,  279,    2, 0x08,   20 /* Private */,
-      18,    1,  280,    2, 0x08,   21 /* Private */,
-      18,    1,  283,    2, 0x08,   23 /* Private */,
-      19,    1,  286,    2, 0x08,   25 /* Private */,
-      20,    1,  289,    2, 0x08,   27 /* Private */,
-      21,    0,  292,    2, 0x08,   29 /* Private */,
-      22,    1,  293,    2, 0x08,   30 /* Private */,
-      23,    0,  296,    2, 0x08,   32 /* Private */,
-      24,    1,  297,    2, 0x08,   33 /* Private */,
-      25,    1,  300,    2, 0x08,   35 /* Private */,
-      26,    0,  303,    2, 0x08,   37 /* Private */,
-      27,    1,  304,    2, 0x08,   38 /* Private */,
-      28,    1,  307,    2, 0x08,   40 /* Private */,
-      29,    1,  310,    2, 0x08,   42 /* Private */,
-      30,    1,  313,    2, 0x08,   44 /* Private */,
-      31,    1,  316,    2, 0x08,   46 /* Private */,
-      32,    1,  319,    2, 0x08,   48 /* Private */,
-      33,    1,  322,    2, 0x08,   50 /* Private */,
-      34,    1,  325,    2, 0x08,   52 /* Private */,
-      35,    1,  328,    2, 0x08,   54 /* Private */,
-      36,    0,  331,    2, 0x08,   56 /* Private */,
-      37,    1,  332,    2, 0x08,   57 /* Private */,
-      38,    0,  335,    2, 0x08,   59 /* Private */,
-      39,    1,  336,    2, 0x08,   60 /* Private */,
-      40,    1,  339,    2, 0x08,   62 /* Private */,
-      41,    1,  342,    2, 0x08,   64 /* Private */,
-      42,    1,  345,    2, 0x08,   66 /* Private */,
+       1,    0,  266,    2, 0x0a,    1 /* Public */,
+       3,    0,  267,    2, 0x08,    2 /* Private */,
+       4,    0,  268,    2, 0x08,    3 /* Private */,
+       5,    0,  269,    2, 0x08,    4 /* Private */,
+       6,    0,  270,    2, 0x08,    5 /* Private */,
+       7,    0,  271,    2, 0x08,    6 /* Private */,
+       8,    1,  272,    2, 0x08,    7 /* Private */,
+      10,    0,  275,    2, 0x08,    9 /* Private */,
+      11,    1,  276,    2, 0x08,   10 /* Private */,
+      12,    1,  279,    2, 0x08,   12 /* Private */,
+      14,    1,  282,    2, 0x08,   14 /* Private */,
+      15,    1,  285,    2, 0x08,   16 /* Private */,
+      16,    1,  288,    2, 0x08,   18 /* Private */,
+      17,    0,  291,    2, 0x08,   20 /* Private */,
+      18,    1,  292,    2, 0x08,   21 /* Private */,
+      18,    1,  295,    2, 0x08,   23 /* Private */,
+      19,    1,  298,    2, 0x08,   25 /* Private */,
+      20,    1,  301,    2, 0x08,   27 /* Private */,
+      21,    0,  304,    2, 0x08,   29 /* Private */,
+      22,    1,  305,    2, 0x08,   30 /* Private */,
+      23,    0,  308,    2, 0x08,   32 /* Private */,
+      24,    1,  309,    2, 0x08,   33 /* Private */,
+      25,    1,  312,    2, 0x08,   35 /* Private */,
+      26,    0,  315,    2, 0x08,   37 /* Private */,
+      27,    1,  316,    2, 0x08,   38 /* Private */,
+      28,    1,  319,    2, 0x08,   40 /* Private */,
+      29,    1,  322,    2, 0x08,   42 /* Private */,
+      30,    1,  325,    2, 0x08,   44 /* Private */,
+      31,    1,  328,    2, 0x08,   46 /* Private */,
+      32,    1,  331,    2, 0x08,   48 /* Private */,
+      33,    1,  334,    2, 0x08,   50 /* Private */,
+      34,    1,  337,    2, 0x08,   52 /* Private */,
+      35,    1,  340,    2, 0x08,   54 /* Private */,
+      36,    0,  343,    2, 0x08,   56 /* Private */,
+      37,    1,  344,    2, 0x08,   57 /* Private */,
+      38,    0,  347,    2, 0x08,   59 /* Private */,
+      39,    1,  348,    2, 0x08,   60 /* Private */,
+      40,    1,  351,    2, 0x08,   62 /* Private */,
+      41,    1,  354,    2, 0x08,   64 /* Private */,
+      42,    1,  357,    2, 0x08,   66 /* Private */,
+      43,    0,  360,    2, 0x08,   68 /* Private */,
+      44,    1,  361,    2, 0x08,   69 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -180,6 +185,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSFlightManagerENDCLASS[] = {
     QMetaType::Void, QMetaType::QString,   13,
     QMetaType::Void, QMetaType::QString,   13,
     QMetaType::Void, QMetaType::QString,   13,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   45,
 
        0        // eod
 };
@@ -299,6 +306,11 @@ Q_CONSTINIT const QMetaObject FlightManager::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'on_bktktarrcy_currentIndexChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'on_bktktokbtn_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_newnoshow_linkActivated'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
     >,
     nullptr
@@ -350,6 +362,8 @@ void FlightManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 37: _t->on_bktktdepcot_activated((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 38: _t->on_bktktarrcot_activated((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 39: _t->on_bktktarrcy_currentIndexChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 40: _t->on_bktktokbtn_clicked(); break;
+        case 41: _t->on_newnoshow_linkActivated((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
         }
     }
@@ -374,13 +388,13 @@ int FlightManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 40)
+        if (_id < 42)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 40;
+        _id -= 42;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 40)
+        if (_id < 42)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 40;
+        _id -= 42;
     }
     return _id;
 }

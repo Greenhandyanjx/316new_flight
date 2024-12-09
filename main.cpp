@@ -2,9 +2,18 @@
 #include "flightmanager.h"
 #include <QApplication>
 #include <iostream>
+#include<QFile>
+QString loadQss(){
+    QFile qf(":/style.qss");
+    qf.open(QFile::ReadOnly);
+    QString style=qf.readAll();
+    qf.close();
+    return style;
+}
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    a.setStyleSheet(loadQss());
     auto db = ConnectDataBase::GetInstance();
     if (!db->OpenDataBase())
     {

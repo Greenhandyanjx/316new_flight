@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>865</width>
-    <height>602</height>
+    <height>652</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -42,7 +42,7 @@
      <item row="0" column="0">
       <widget class="QStackedWidget" name="stackedWidget">
        <property name="currentIndex">
-        <number>3</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="homepage">
         <widget class="QLabel" name="welcomelabel">
@@ -50,7 +50,7 @@
           <rect>
            <x>90</x>
            <y>80</y>
-           <width>231</width>
+           <width>351</width>
            <height>51</height>
           </rect>
          </property>
@@ -60,7 +60,7 @@
           </font>
          </property>
          <property name="text">
-          <string>欢迎使用航空信息管理系统！</string>
+          <string>欢迎使用316航空信息管理系统！</string>
          </property>
         </widget>
        </widget>
@@ -83,7 +83,7 @@
             <x>0</x>
             <y>0</y>
             <width>661</width>
-            <height>503</height>
+            <height>513</height>
            </rect>
           </property>
           <attribute name="label">
@@ -105,8 +105,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>100</width>
-            <height>30</height>
+            <width>661</width>
+            <height>513</height>
            </rect>
           </property>
           <attribute name="label">
@@ -139,7 +139,7 @@
           <item row="0" column="0">
            <widget class="QTabWidget" name="inserttab">
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="newcustom">
              <attribute name="title">
@@ -548,28 +548,31 @@
          <layout class="QGridLayout" name="updateLayout">
           <item row="0" column="1">
            <widget class="QGroupBox" name="airplanechange">
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
             <property name="title">
              <string>客机更新</string>
             </property>
             <widget class="QWidget" name="layoutWidget">
              <property name="geometry">
               <rect>
-               <x>12</x>
+               <x>2</x>
                <y>20</y>
-               <width>321</width>
-               <height>171</height>
+               <width>311</width>
+               <height>161</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="chgplanelyo">
-              <item row="0" column="0">
-               <widget class="QLabel" name="chgplaneselabl">
+              <item row="2" column="1">
+               <widget class="QComboBox" name="chgplanelinecom"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="chgplanelineabl">
                 <property name="text">
-                 <string>选择客机</string>
+                 <string>选择更改的航线</string>
                 </property>
                </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QComboBox" name="chgplaneselcom"/>
               </item>
               <item row="0" column="2">
                <widget class="QLabel" name="chgplanetype">
@@ -578,8 +581,8 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="chgplanedep">
+              <item row="3" column="0">
+               <widget class="QLabel" name="chgplanelinedep">
                 <property name="text">
                  <string>起点</string>
                 </property>
@@ -599,18 +602,18 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="chgplanelineabl">
+              <item row="0" column="0">
+               <widget class="QLabel" name="chgplaneselabl">
                 <property name="text">
-                 <string>选择更改的航线</string>
+                 <string>选择客机</string>
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
-               <widget class="QComboBox" name="chgplanelinecom"/>
+              <item row="0" column="1">
+               <widget class="QComboBox" name="chgplaneselcom"/>
               </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="chgplanelinedep">
+              <item row="1" column="0">
+               <widget class="QLabel" name="chgplanedep">
                 <property name="text">
                  <string>起点</string>
                 </property>
@@ -630,17 +633,17 @@
                 </property>
                </widget>
               </item>
-              <item row="4" column="2">
-               <widget class="QPushButton" name="chgplaneokbtn">
-                <property name="text">
-                 <string>确定更新</string>
-                </property>
-               </widget>
-              </item>
               <item row="2" column="2">
                <widget class="QLabel" name="chgplanelinecpy">
                 <property name="text">
                  <string>航空公司</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2">
+               <widget class="QPushButton" name="chgplaneokbtn">
+                <property name="text">
+                 <string>确定更新</string>
                 </property>
                </widget>
               </item>
@@ -656,8 +659,8 @@
             <widget class="QWidget" name="layoutWidget">
              <property name="geometry">
               <rect>
-               <x>10</x>
-               <y>20</y>
+               <x>0</x>
+               <y>10</y>
                <width>321</width>
                <height>171</height>
               </rect>
@@ -702,10 +705,10 @@
             <widget class="QWidget" name="layoutWidget">
              <property name="geometry">
               <rect>
-               <x>10</x>
-               <y>60</y>
-               <width>321</width>
-               <height>121</height>
+               <x>0</x>
+               <y>50</y>
+               <width>331</width>
+               <height>141</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="chgctmlyo">
@@ -741,6 +744,9 @@
               </item>
               <item row="0" column="1">
                <widget class="QCheckBox" name="chgctmsexchk">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
                 <property name="text">
                  <string>性别</string>
                 </property>
@@ -754,17 +760,26 @@
             <widget class="QWidget" name="layoutWidget">
              <property name="geometry">
               <rect>
-               <x>10</x>
-               <y>30</y>
-               <width>321</width>
-               <height>29</height>
+               <x>0</x>
+               <y>20</y>
+               <width>331</width>
+               <height>31</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="chgctmoklyo">
               <item row="0" column="0">
                <widget class="QLabel" name="chgctmselabel">
+                <property name="toolTipDuration">
+                 <number>-1</number>
+                </property>
                 <property name="text">
                  <string>请选择需更改的客户</string>
+                </property>
+                <property name="textFormat">
+                 <enum>Qt::TextFormat::MarkdownText</enum>
+                </property>
+                <property name="indent">
+                 <number>0</number>
                 </property>
                </widget>
               </item>
@@ -782,6 +797,118 @@
             </widget>
            </widget>
           </item>
+          <item row="1" column="1">
+           <widget class="QGroupBox" name="ticketchange">
+            <property name="title">
+             <string>订票更改</string>
+            </property>
+            <widget class="QWidget" name="layoutWidget">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>10</y>
+               <width>321</width>
+               <height>171</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="chgtktlyo">
+              <item row="0" column="0">
+               <widget class="QLabel" name="chgtktnoabl">
+                <property name="text">
+                 <string>订单编号</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QComboBox" name="chgtktnocom"/>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="chgtktlineabl">
+                <property name="text">
+                 <string>航线号</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="chgtktdepabl">
+                <property name="text">
+                 <string>起点</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="chgtktarrabl">
+                <property name="text">
+                 <string>终点</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="chgtkttimeabl">
+                <property name="text">
+                 <string>时间</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="chgtktlinechg">
+                <property name="text">
+                 <string>更改航线号</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QComboBox" name="chgtktlinecom"/>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLabel" name="chgtktshipabl">
+                <property name="text">
+                 <string>舱位等级</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="chgtktdepature">
+                <property name="text">
+                 <string>起点</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLabel" name="chgtktarrive">
+                <property name="text">
+                 <string>终点</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QLabel" name="chgtkttime">
+                <property name="text">
+                 <string>时间</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="chgtktshipchg">
+                <property name="text">
+                 <string>更改舱位等级</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QComboBox" name="chgtktshipcom"/>
+              </item>
+              <item row="4" column="2">
+               <widget class="QPushButton" name="chgtktokbtn">
+                <property name="text">
+                 <string>确定更新</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
           <item row="1" column="0" rowspan="2">
            <widget class="QGroupBox" name="airlinechange">
             <property name="title">
@@ -790,10 +917,10 @@
             <widget class="QWidget" name="layoutWidget">
              <property name="geometry">
               <rect>
-               <x>40</x>
-               <y>40</y>
-               <width>241</width>
-               <height>321</height>
+               <x>20</x>
+               <y>30</y>
+               <width>281</width>
+               <height>331</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="chglinelyo">
@@ -891,118 +1018,6 @@
                <widget class="QLabel" name="chglinenoabl">
                 <property name="text">
                  <string>     航线编号</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QGroupBox" name="ticketchange">
-            <property name="title">
-             <string>订票更改</string>
-            </property>
-            <widget class="QWidget" name="layoutWidget">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>20</y>
-               <width>321</width>
-               <height>171</height>
-              </rect>
-             </property>
-             <layout class="QGridLayout" name="chgtktlyo">
-              <item row="0" column="0">
-               <widget class="QLabel" name="chgtktnoabl">
-                <property name="text">
-                 <string>订单编号</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QComboBox" name="chgtktnocom"/>
-              </item>
-              <item row="0" column="2">
-               <widget class="QLabel" name="chgtktlineabl">
-                <property name="text">
-                 <string>航线号</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="chgtktdepabl">
-                <property name="text">
-                 <string>起点</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLabel" name="chgtktarrabl">
-                <property name="text">
-                 <string>终点</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="2">
-               <widget class="QLabel" name="chgtkttimeabl">
-                <property name="text">
-                 <string>时间</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="chgtktlinechg">
-                <property name="text">
-                 <string>更改航线号</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QComboBox" name="chgtktlinecom"/>
-              </item>
-              <item row="2" column="2">
-               <widget class="QLabel" name="chgtktshipabl">
-                <property name="text">
-                 <string>舱位等级</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="chgtktdepature">
-                <property name="text">
-                 <string>起点</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLabel" name="chgtktarrive">
-                <property name="text">
-                 <string>终点</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="2">
-               <widget class="QLabel" name="chgtkttime">
-                <property name="text">
-                 <string>时间</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="chgtktshipchg">
-                <property name="text">
-                 <string>更改舱位等级</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="1">
-               <widget class="QComboBox" name="chgtktshipcom"/>
-              </item>
-              <item row="4" column="2">
-               <widget class="QPushButton" name="chgtktokbtn">
-                <property name="text">
-                 <string>确定更新</string>
                 </property>
                </widget>
               </item>
@@ -1238,7 +1253,7 @@
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>21</height>
+     <height>18</height>
     </rect>
    </property>
    <widget class="QMenu" name="searchmenu">

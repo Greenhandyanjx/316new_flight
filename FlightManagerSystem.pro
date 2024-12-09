@@ -22,3 +22,8 @@ HEADERS +=  Login/login.h \
 
 FORMS    += $$PWD/Login/login.ui \
     MainWindow/flightmanager.ui
+
+RESOURCES += \
+    resourse.qrc
+
+DISTFILES +=

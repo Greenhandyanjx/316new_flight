@@ -746,7 +746,6 @@ void FlightManager::on_inserttab_tabBarClicked(int index)
 void FlightManager::on_newokbutton_clicked()
 {
     QVector<QString> insertstr;
-
     QString no = ui->newnoshow->text();
     insertstr.append(no);
     QString name = ui->newnamedit->text();
@@ -1231,3 +1230,15 @@ void FlightManager::on_bktktarrcy_currentIndexChanged(const QString &arg1)
         if (departure == airline.departure_city && arrive == airline.arrive_city)
             ui->bktktline->addItem(QString::number(airline.line_no));
 }
+
+void FlightManager::on_bktktokbtn_clicked()
+{
+
+}
+
+
+void FlightManager::on_newnoshow_linkActivated(const QString &link)
+{
+
+}
+

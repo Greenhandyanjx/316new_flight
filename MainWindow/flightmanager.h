@@ -104,6 +104,10 @@ private slots:
 
     void on_bktktarrcy_currentIndexChanged(const QString &arg1);
 
+    void on_bktktokbtn_clicked();
+
+    void on_newnoshow_linkActivated(const QString &link);
+
 private:
     struct Customer
     {

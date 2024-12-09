@@ -61,7 +61,7 @@ public:
         quitbutton->setFont(font);
         titlelabel = new QLabel(Login);
         titlelabel->setObjectName("titlelabel");
-        titlelabel->setGeometry(QRect(120, 10, 211, 81));
+        titlelabel->setGeometry(QRect(90, 10, 281, 81));
         QFont font1;
         font1.setPointSize(25);
         titlelabel->setFont(font1);
