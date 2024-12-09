@@ -20,9 +20,11 @@ Login::Login(QWidget *parent) :
     connect(this, SIGNAL(send()), this, SLOT(deleteLater()) );
 }
 
-Login::~Login()
-{
-    delete ui;
+Login::~Login() {
+    if (ui) {
+        delete ui;
+        ui = nullptr;
+    }
     cout << "delete Login" << endl;
 }
 
@@ -46,43 +48,33 @@ int Login::CheckWriting()
     return Success;
 }
 
-int Login::CheckAccount()
-{
+int Login::CheckAccount() {
     QString account = ui->accounttext->text();
     QString word = ui->passwordtext->text();
-    char* str = new char[word.size() + 1];
-    strcpy(str, word.toStdString().c_str());
-    unsigned int password = BKDRHash(str);
-    QString sql = "select password from account where account = '" + account + "'";
-    QSqlQuery* sqlquery = new QSqlQuery;
-    try
-    {
-        //返回的数据集停在第一条记录前，必须执行next或first后才能指向第一条记录
-        if (m_Connect->SelectResult(sqlquery, sql) )
-            sqlquery->next();
-        else
-            throw false;
-    }
-    catch (bool&)
-    {
+
+    QString sql = QString("SELECT password FROM account WHERE account = '%1'").arg(account);
+    QSqlQuery sqlquery;
+
+    try {
+        if (!sqlquery.exec(sql)) {
+            qDebug() << "Database query failed:" << sqlquery.lastError().text();
+            throw std::runtime_error("Database query execution failed.");
+        }
+
+        if (!sqlquery.next()) {
+            return AccountWrong; // No matching account
+        }
+
+        QString storedPassword = sqlquery.value("password").toString();
+        if (word != storedPassword) {
+            return PasswordWrong; // Password mismatch
+        }
+
+        return Success; // Login successful
+    } catch (const std::exception& e) {
+        qDebug() << "Exception caught:" << e.what();
         return WebError;
     }
-
-    bool flag;
-    if (!sqlquery->size() )
-        return AccountWrong;
-    else
-        flag = password == sqlquery->value("password").toUInt() ? true : false;
-
-    delete sqlquery;
-    sqlquery = NULL;
-    delete[] str;
-    str = NULL;
-
-    if (flag)
-        return Success;
-    else
-        return PasswordWrong;
 }
 
 unsigned int Login::BKDRHash(char* str)
@@ -96,20 +88,21 @@ unsigned int Login::BKDRHash(char* str)
     return (hash & 0x7FFFFFFF);
 }
 
-void Login::on_loginbutton_clicked()
-{
-    if (Success != CheckWriting() )
+void Login::on_loginbutton_clicked() {
+    if (Success != CheckWriting())
         return;
 
     int flag = CheckAccount();
-    if (Success == flag)
+    if (Success == flag) {
+        Loginflag = true;
         dosend();
-    else if (WebError == flag)
-        QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
-    else if (AccountWrong == flag)
-        QMessageBox(QMessageBox::Warning, "输入错误", "没有此账号，请确认后重新输入！", QMessageBox::Ok).exec();
-    else if (PasswordWrong == flag)
-        QMessageBox(QMessageBox::Warning, "输入错误", "密码错误，请检查密码是否正确后重新输入!", QMessageBox::Ok).exec();
+    } else if (WebError == flag) {
+        QMessageBox::warning(this, "查询失败", "数据库无法打开，请检查网络配置！", QMessageBox::Ok);
+    } else if (AccountWrong == flag) {
+        QMessageBox::warning(this, "输入错误", "没有此账号，请确认后重新输入！", QMessageBox::Ok);
+    } else if (PasswordWrong == flag) {
+        QMessageBox::warning(this, "输入错误", "密码错误，请检查密码是否正确后重新输入！", QMessageBox::Ok);
+    }
 }
 
 void Login::on_quitbutton_clicked()

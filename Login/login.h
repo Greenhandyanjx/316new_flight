@@ -19,7 +19,7 @@ class Login : public QDialog
 public:
     explicit Login(QWidget *parent = 0);
     ~Login();
-
+    bool Loginflag;
     void dosend();
 
 signals:

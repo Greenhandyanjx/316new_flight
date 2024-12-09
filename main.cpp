@@ -13,8 +13,9 @@ int main(int argc, char *argv[])
     }
     qDebug() << "Database connected successfully.";
     Login* l = new Login;
+
     l->show();
-    // QApplication::processEvents();
+    QApplication::processEvents();
     int result = 0;
     FlightManager* f = new FlightManager;
     if (!f)
@@ -22,8 +23,12 @@ int main(int argc, char *argv[])
         QMessageBox(QMessageBox::Critical, "错误", "无法初始化主界面", QMessageBox::Ok).exec();
         return EXIT_FAILURE;
     }
-    f->show();
-    QApplication::processEvents();
+    // f->show();
+    // QApplication::processEvents();
+    QObject::connect(l, &Login::send, [=]() {
+        f->show();   // 显示主界面
+        l->deleteLater(); // 销毁登录窗口
+    });
     /*
      * 将登录类与主界面的类通过信号绑定，当login类检查到登陆成功时则会发信号到flightmanager
      * flightmanger接收到信号则会打开主界面，而登陆界面则会销毁
