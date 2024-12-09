@@ -35,6 +35,8 @@ private slots:
     void on_quitbutton_clicked();//点击退出按钮所做出的反应
     void on_loginbutton_clicked();//点击登陆所做出的反应
 
+    void on_enrollbut_clicked();
+
 private:
     enum LoginType { Success, WebError, AccountBlank, AccountWrong, PasswordBlank, PasswordWrong, RepeatError };
 

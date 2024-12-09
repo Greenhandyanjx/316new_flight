@@ -28,6 +28,7 @@ public:
     QPushButton *loginbutton;
     QPushButton *quitbutton;
     QLabel *titlelabel;
+    QPushButton *enrollbut;
 
     void setupUi(QDialog *Login)
     {
@@ -64,7 +65,11 @@ public:
         QFont font1;
         font1.setPointSize(25);
         titlelabel->setFont(font1);
-        titlelabel->setTextFormat(Qt::RichText);
+        titlelabel->setTextFormat(Qt::TextFormat::RichText);
+        enrollbut = new QPushButton(Login);
+        enrollbut->setObjectName("enrollbut");
+        enrollbut->setGeometry(QRect(110, 260, 91, 41));
+        enrollbut->setFont(font);
 
         retranslateUi(Login);
 
@@ -79,6 +84,7 @@ public:
         loginbutton->setText(QCoreApplication::translate("Login", "\347\231\273\351\231\206", nullptr));
         quitbutton->setText(QCoreApplication::translate("Login", "\351\200\200\345\207\272", nullptr));
         titlelabel->setText(QCoreApplication::translate("Login", "\350\210\252\347\251\272\344\277\241\346\201\257\347\256\241\347\220\206\347\263\273\347\273\237", nullptr));
+        enrollbut->setText(QCoreApplication::translate("Login", "\346\263\250\345\206\214", nullptr));
     } // retranslateUi
 
 };

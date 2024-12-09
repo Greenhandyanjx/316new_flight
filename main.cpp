@@ -13,7 +13,6 @@ int main(int argc, char *argv[])
     }
     qDebug() << "Database connected successfully.";
     Login* l = new Login;
-
     l->show();
     QApplication::processEvents();
     int result = 0;

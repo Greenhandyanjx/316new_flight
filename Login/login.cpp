@@ -12,9 +12,7 @@ Login::Login(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle("航空信息管理系统登陆");
     ui->passwordtext->setEchoMode(QLineEdit::Password);
-
     m_Connect = ConnectDataBase::GetInstance();
-
     //当自定义信号发出时，关闭此对话框并销毁该对话框的内存
     connect(this, SIGNAL(send()), this, SLOT(close()) );
     connect(this, SIGNAL(send()), this, SLOT(deleteLater()) );
@@ -47,7 +45,6 @@ int Login::CheckWriting()
     }
     return Success;
 }
-
 int Login::CheckAccount() {
     QString account = ui->accounttext->text();
     QString word = ui->passwordtext->text();
@@ -76,7 +73,6 @@ int Login::CheckAccount() {
         return WebError;
     }
 }
-
 unsigned int Login::BKDRHash(char* str)
 {
     unsigned int seed = 131; // 31 131 1313 13131 131313 etc..
@@ -87,7 +83,6 @@ unsigned int Login::BKDRHash(char* str)
 
     return (hash & 0x7FFFFFFF);
 }
-
 void Login::on_loginbutton_clicked() {
     if (Success != CheckWriting())
         return;
@@ -104,7 +99,6 @@ void Login::on_loginbutton_clicked() {
         QMessageBox::warning(this, "输入错误", "密码错误，请检查密码是否正确后重新输入！", QMessageBox::Ok);
     }
 }
-
 void Login::on_quitbutton_clicked()
 {
     exit(0);
@@ -115,3 +109,20 @@ void Login::dosend()
 {
     emit send();
 }
+
+void Login::on_enrollbut_clicked()
+{
+    QString acc = ui->accounttext->text();
+    QString word = ui->passwordtext->text();
+    QSqlQuery q;
+    q.prepare("INSERT into account(account,password) VALUES(:account,:password)");
+    q.bindValue(":account",acc);
+    q.bindValue(":password",word);
+    q.exec();
+    if(q.lastError().isValid()){
+        qDebug()<<q.lastError().text();
+    }
+    else
+    qDebug()<<"insert successful";
+}
+
