@@ -112,6 +112,19 @@ private slots:
 
     void on_bktktdepcot_activated(int index);
 
+    void on_bktktdepcot_textActivated(const QString &arg1);
+
+    void on_bktktarrcot_textActivated(const QString &arg1);
+
+    void on_bktktarrcy_currentIndexChanged(int index);
+
+    void on_bktktarrcy_currentTextChanged(const QString &arg1);
+
+    void updateTicketPrice();
+    void on_bktktdepcy_currentTextChanged(const QString &arg1);
+
+    void on_bktktship_activated(int index);
+
 private:
     struct Customer
     {

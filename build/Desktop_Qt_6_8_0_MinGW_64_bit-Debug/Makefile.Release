@@ -15,7 +15,7 @@ CC            = gcc
 CXX           = g++
 DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DMINGW_HAS_SECURE_API=1 -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -fno-keep-inline-dllexport -O2 -Wall -Wextra -Wextra $(DEFINES)
-CXXFLAGS      = -fno-keep-inline-dllexport -O2 -Wall -Wextra -Wextra -fexceptions -mthreads $(DEFINES)
+CXXFLAGS      = -fno-keep-inline-dllexport -O2 -std=gnu++1z -Wall -Wextra -Wextra -fexceptions -mthreads $(DEFINES)
 INCPATH       = -I../../../FlightManagerSystem -I. -I../../../FlightManagerSystem -I../../Connect -I../../Login -I../../MainWindow -ID:/QT/6.8.0/mingw_64/include -ID:/QT/6.8.0/mingw_64/include/QtWidgets -ID:/QT/6.8.0/mingw_64/include/QtGui -ID:/QT/6.8.0/mingw_64/include/QtSql -ID:/QT/6.8.0/mingw_64/include/QtCore -Irelease -I. -I/include -ID:/QT/6.8.0/mingw_64/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
@@ -122,7 +122,7 @@ compiler_moc_predefs_make_all: release/moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) release\moc_predefs.h
 release/moc_predefs.h: D:/QT/6.8.0/mingw_64/mkspecs/features/data/dummy.cpp
-	g++ -fno-keep-inline-dllexport -O2 -Wall -Wextra -Wextra -dM -E -o release\moc_predefs.h D:\QT\6.8.0\mingw_64\mkspecs\features\data\dummy.cpp
+	g++ -fno-keep-inline-dllexport -O2 -std=gnu++1z -Wall -Wextra -Wextra -dM -E -o release\moc_predefs.h D:\QT\6.8.0\mingw_64\mkspecs\features\data\dummy.cpp
 
 compiler_moc_header_make_all: release/moc_login.cpp release/moc_flightmanager.cpp
 compiler_moc_header_clean:

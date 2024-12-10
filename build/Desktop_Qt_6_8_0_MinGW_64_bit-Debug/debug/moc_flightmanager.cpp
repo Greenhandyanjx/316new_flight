@@ -81,7 +81,13 @@ constexpr auto qt_meta_stringdata_CLASSFlightManagerENDCLASS = QtMocHelpers::str
     "on_bktktokbtn_clicked",
     "on_newnoshow_linkActivated",
     "link",
-    "UpdateNewNo"
+    "UpdateNewNo",
+    "on_bktktdepcot_textActivated",
+    "on_bktktarrcot_textActivated",
+    "on_bktktarrcy_currentTextChanged",
+    "updateTicketPrice",
+    "on_bktktdepcy_currentTextChanged",
+    "on_bktktship_activated"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -94,7 +100,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSFlightManagerENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      44,   14, // methods
+      51,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -102,50 +108,57 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSFlightManagerENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  278,    2, 0x0a,    1 /* Public */,
-       3,    0,  279,    2, 0x08,    2 /* Private */,
-       4,    0,  280,    2, 0x08,    3 /* Private */,
-       5,    0,  281,    2, 0x08,    4 /* Private */,
-       6,    0,  282,    2, 0x08,    5 /* Private */,
-       7,    0,  283,    2, 0x08,    6 /* Private */,
-       8,    1,  284,    2, 0x08,    7 /* Private */,
-      10,    0,  287,    2, 0x08,    9 /* Private */,
-      11,    1,  288,    2, 0x08,   10 /* Private */,
-      12,    1,  291,    2, 0x08,   12 /* Private */,
-      14,    1,  294,    2, 0x08,   14 /* Private */,
-      15,    1,  297,    2, 0x08,   16 /* Private */,
-      16,    1,  300,    2, 0x08,   18 /* Private */,
-      17,    0,  303,    2, 0x08,   20 /* Private */,
-      18,    1,  304,    2, 0x08,   21 /* Private */,
-      18,    1,  307,    2, 0x08,   23 /* Private */,
-      19,    1,  310,    2, 0x08,   25 /* Private */,
-      20,    1,  313,    2, 0x08,   27 /* Private */,
-      21,    0,  316,    2, 0x08,   29 /* Private */,
-      22,    1,  317,    2, 0x08,   30 /* Private */,
-      23,    0,  320,    2, 0x08,   32 /* Private */,
-      24,    1,  321,    2, 0x08,   33 /* Private */,
-      25,    1,  324,    2, 0x08,   35 /* Private */,
-      26,    0,  327,    2, 0x08,   37 /* Private */,
-      27,    1,  328,    2, 0x08,   38 /* Private */,
-      28,    1,  331,    2, 0x08,   40 /* Private */,
-      29,    1,  334,    2, 0x08,   42 /* Private */,
-      30,    1,  337,    2, 0x08,   44 /* Private */,
-      31,    1,  340,    2, 0x08,   46 /* Private */,
-      32,    1,  343,    2, 0x08,   48 /* Private */,
-      33,    1,  346,    2, 0x08,   50 /* Private */,
-      34,    1,  349,    2, 0x08,   52 /* Private */,
-      35,    1,  352,    2, 0x08,   54 /* Private */,
-      36,    0,  355,    2, 0x08,   56 /* Private */,
-      37,    1,  356,    2, 0x08,   57 /* Private */,
-      38,    0,  359,    2, 0x08,   59 /* Private */,
-      39,    1,  360,    2, 0x08,   60 /* Private */,
-      40,    1,  363,    2, 0x08,   62 /* Private */,
-      41,    1,  366,    2, 0x08,   64 /* Private */,
-      42,    1,  369,    2, 0x08,   66 /* Private */,
-      43,    0,  372,    2, 0x08,   68 /* Private */,
-      44,    1,  373,    2, 0x08,   69 /* Private */,
-      46,    0,  376,    2, 0x08,   71 /* Private */,
-      40,    1,  377,    2, 0x08,   72 /* Private */,
+       1,    0,  320,    2, 0x0a,    1 /* Public */,
+       3,    0,  321,    2, 0x08,    2 /* Private */,
+       4,    0,  322,    2, 0x08,    3 /* Private */,
+       5,    0,  323,    2, 0x08,    4 /* Private */,
+       6,    0,  324,    2, 0x08,    5 /* Private */,
+       7,    0,  325,    2, 0x08,    6 /* Private */,
+       8,    1,  326,    2, 0x08,    7 /* Private */,
+      10,    0,  329,    2, 0x08,    9 /* Private */,
+      11,    1,  330,    2, 0x08,   10 /* Private */,
+      12,    1,  333,    2, 0x08,   12 /* Private */,
+      14,    1,  336,    2, 0x08,   14 /* Private */,
+      15,    1,  339,    2, 0x08,   16 /* Private */,
+      16,    1,  342,    2, 0x08,   18 /* Private */,
+      17,    0,  345,    2, 0x08,   20 /* Private */,
+      18,    1,  346,    2, 0x08,   21 /* Private */,
+      18,    1,  349,    2, 0x08,   23 /* Private */,
+      19,    1,  352,    2, 0x08,   25 /* Private */,
+      20,    1,  355,    2, 0x08,   27 /* Private */,
+      21,    0,  358,    2, 0x08,   29 /* Private */,
+      22,    1,  359,    2, 0x08,   30 /* Private */,
+      23,    0,  362,    2, 0x08,   32 /* Private */,
+      24,    1,  363,    2, 0x08,   33 /* Private */,
+      25,    1,  366,    2, 0x08,   35 /* Private */,
+      26,    0,  369,    2, 0x08,   37 /* Private */,
+      27,    1,  370,    2, 0x08,   38 /* Private */,
+      28,    1,  373,    2, 0x08,   40 /* Private */,
+      29,    1,  376,    2, 0x08,   42 /* Private */,
+      30,    1,  379,    2, 0x08,   44 /* Private */,
+      31,    1,  382,    2, 0x08,   46 /* Private */,
+      32,    1,  385,    2, 0x08,   48 /* Private */,
+      33,    1,  388,    2, 0x08,   50 /* Private */,
+      34,    1,  391,    2, 0x08,   52 /* Private */,
+      35,    1,  394,    2, 0x08,   54 /* Private */,
+      36,    0,  397,    2, 0x08,   56 /* Private */,
+      37,    1,  398,    2, 0x08,   57 /* Private */,
+      38,    0,  401,    2, 0x08,   59 /* Private */,
+      39,    1,  402,    2, 0x08,   60 /* Private */,
+      40,    1,  405,    2, 0x08,   62 /* Private */,
+      41,    1,  408,    2, 0x08,   64 /* Private */,
+      42,    1,  411,    2, 0x08,   66 /* Private */,
+      43,    0,  414,    2, 0x08,   68 /* Private */,
+      44,    1,  415,    2, 0x08,   69 /* Private */,
+      46,    0,  418,    2, 0x08,   71 /* Private */,
+      40,    1,  419,    2, 0x08,   72 /* Private */,
+      47,    1,  422,    2, 0x08,   74 /* Private */,
+      48,    1,  425,    2, 0x08,   76 /* Private */,
+      42,    1,  428,    2, 0x08,   78 /* Private */,
+      49,    1,  431,    2, 0x08,   80 /* Private */,
+      50,    0,  434,    2, 0x08,   82 /* Private */,
+      51,    1,  435,    2, 0x08,   83 /* Private */,
+      52,    1,  438,    2, 0x08,   85 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -191,6 +204,13 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSFlightManagerENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,   45,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    9,
+    QMetaType::Void, QMetaType::QString,   13,
+    QMetaType::Void, QMetaType::QString,   13,
+    QMetaType::Void, QMetaType::Int,    9,
+    QMetaType::Void, QMetaType::QString,   13,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   13,
     QMetaType::Void, QMetaType::Int,    9,
 
        0        // eod
@@ -321,6 +341,26 @@ Q_CONSTINIT const QMetaObject FlightManager::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_bktktdepcot_activated'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_bktktdepcot_textActivated'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'on_bktktarrcot_textActivated'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'on_bktktarrcy_currentIndexChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_bktktarrcy_currentTextChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'updateTicketPrice'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_bktktdepcy_currentTextChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'on_bktktship_activated'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>
     >,
     nullptr
@@ -376,6 +416,13 @@ void FlightManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 41: _t->on_newnoshow_linkActivated((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 42: _t->UpdateNewNo(); break;
         case 43: _t->on_bktktdepcot_activated((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 44: _t->on_bktktdepcot_textActivated((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 45: _t->on_bktktarrcot_textActivated((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 46: _t->on_bktktarrcy_currentIndexChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 47: _t->on_bktktarrcy_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 48: _t->updateTicketPrice(); break;
+        case 49: _t->on_bktktdepcy_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 50: _t->on_bktktship_activated((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     }
@@ -400,13 +447,13 @@ int FlightManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 44)
+        if (_id < 51)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 44;
+        _id -= 51;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 44)
+        if (_id < 51)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 44;
+        _id -= 51;
     }
     return _id;
 }
