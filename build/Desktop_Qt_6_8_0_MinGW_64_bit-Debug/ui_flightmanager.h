@@ -289,14 +289,14 @@ public:
         searchtoolbox->setGeometry(QRect(0, 0, 661, 561));
         searchairline = new QWidget();
         searchairline->setObjectName("searchairline");
-        searchairline->setGeometry(QRect(0, 0, 661, 513));
+        searchairline->setGeometry(QRect(0, 0, 661, 503));
         searchairlineshow = new QTableWidget(searchairline);
         searchairlineshow->setObjectName("searchairlineshow");
         searchairlineshow->setGeometry(QRect(0, 0, 661, 501));
         searchtoolbox->addItem(searchairline, QString::fromUtf8("Page 1"));
         searchcustomer = new QWidget();
         searchcustomer->setObjectName("searchcustomer");
-        searchcustomer->setGeometry(QRect(0, 0, 661, 513));
+        searchcustomer->setGeometry(QRect(0, 0, 100, 30));
         searchcustomershow = new QTableWidget(searchcustomer);
         searchcustomershow->setObjectName("searchcustomershow");
         searchcustomershow->setGeometry(QRect(0, 0, 661, 501));
@@ -1041,7 +1041,7 @@ public:
         FlightManager->setCentralWidget(centralwidget);
         menubar = new QMenuBar(FlightManager);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 865, 18));
+        menubar->setGeometry(QRect(0, 0, 865, 21));
         searchmenu = new QMenu(menubar);
         searchmenu->setObjectName("searchmenu");
         insertmeun = new QMenu(menubar);

@@ -432,7 +432,6 @@ bool FlightManager::GetAirLineInfo()
 
     if (m_LineInfo.size())
         m_LineInfo.clear();
-
     while (sqlquery->next())
     {
         AirLine line;
@@ -457,7 +456,7 @@ bool FlightManager::GetAirLineInfo()
         line.deluxe_rest = line.deluxe_num - m_Connect->CallPro(QString("CALL pro_count_ticket(") + QString::number(line.line_no) + ", 2)");
         m_LineInfo.append(line);
     }
-
+    if(m_LineInfo.empty())return false;
     delete sqlquery;
     sqlquery = NULL;
 
@@ -600,14 +599,19 @@ void FlightManager::SetCustomerInfoOnBook(const int& index)
 
 void FlightManager::SetCityOnBook(QComboBox* combobox, const QString &index)
 {
-    combobox->clear();
+    combobox->clear(); // 清空之前的城市列表
     for (int i = 0; i < m_City.size(); ++i)
-        if (index == m_City[i].country_name)
-            if ("" == m_City[i].province)
+    {
+        if (index == m_City[i].country_name) // 只添加与国家匹配的城市
+        {
+            if (m_City[i].province.isEmpty())  // 如果省份为空，则只显示城市
                 combobox->addItem(m_City[i].city);
             else
                 combobox->addItem(m_City[i].city + ", " + m_City[i].province);
+        }
+    }
 }
+
 
 void FlightManager::ShowAirLineOnSearch()
 {
@@ -1228,41 +1232,44 @@ void FlightManager::on_bktktarrcy_currentIndexChanged(const QString &arg1)
     QStringList d = dep.split(",", Qt::SkipEmptyParts);
     QString dt[2];
     int i = 0;
-
     for (QString str : d)
     {
         dt[i] = str;
         ++i;
     }
-
     QString departure = dt[0];
 
     QStringList a = arg1.split(",", Qt::SkipEmptyParts);
     i = 0;
-
     for (QString str : a)
     {
         dt[i] = str;
         ++i;
     }
-
     QString arrive = dt[0];
 
+    // 确保航线信息已经加载
     GetAirLineInfo();
-    ui->bktktline->clear();
 
+    ui->bktktline->clear(); // 清空航线选择框
     for (AirLine airline : m_LineInfo)
+    {
+        // 只显示出发地和目的地匹配的航班
         if (departure == airline.departure_city && arrive == airline.arrive_city)
             ui->bktktline->addItem(QString::number(airline.line_no));
+    }
 }
+
 
 void FlightManager::on_bktktokbtn_clicked()
 {
 
 }
-
-
 void FlightManager::on_newnoshow_linkActivated(const QString &link)
+{
+
+}
+void FlightManager::on_bktktdepcot_activated(int index)
 {
 
 }

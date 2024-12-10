@@ -110,6 +110,8 @@ private slots:
 
     void UpdateNewNo();
 
+    void on_bktktdepcot_activated(int index);
+
 private:
     struct Customer
     {
