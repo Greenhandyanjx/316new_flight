@@ -2,30 +2,30 @@
 #include <mutex>
 #include <iostream>
 
-ConnectDataBase* ConnectDataBase::m_Instance = nullptr;
-std::mutex ConnectDataBase::m_Mutex;
+ ConnectDataBase* ConnectDataBase::m_Instance = nullptr;
+// std::mutex ConnectDataBase::m_Mutex;
 
 ConnectDataBase* ConnectDataBase::GetInstance()
 {
     if (m_Instance == nullptr)
     {
-        std::lock_guard<std::mutex> lock(m_Mutex); // 确保多线程安全
-        if (m_Instance == nullptr)
-        {
+        // std::lock_guard<std::mutex> lock(m_Mutex); // 确保多线程安全
+        // if (m_Instance == nullptr)
+        // {
             m_Instance = new ConnectDataBase();
-        }
+        // }
     }
     return m_Instance;
 }
 
 ConnectDataBase::ConnectDataBase()
 {
-    // 初始化数据库连接
     if (QSqlDatabase::isDriverAvailable("QODBC"))
     {
         m_DataBase = QSqlDatabase::addDatabase("QODBC");
         m_DataBase.setHostName("localhost");
         m_DataBase.setDatabaseName("airport");
+        m_DataBase.setPort(3306);
         m_DataBase.setUserName("root");
         m_DataBase.setPassword("87733593yjx");
     }
@@ -66,20 +66,17 @@ bool ConnectDataBase::OpenDataBase()
 
 bool ConnectDataBase::SelectResult(QSqlQuery* sqlquery, const QString& sql)
 {
-    try
-    {
-        if (!sqlquery->exec(sql))
-        {
-            throw false;
-            return false;
-        }
-        return true;
+    if (!m_DataBase.isOpen()) {
+        qDebug() << "Database is not open!";
+        return false;
     }
-    catch (bool&)
+
+    if (!sqlquery->exec(sql))
     {
-        std::cout << "数据库打开错误，将检查网络连接！" << std::endl;
-        std::cout << sqlquery->lastError().text().toStdString() << std::endl;
+        qDebug() << "SQL execution failed:" << sqlquery->lastError().text();
+        return false;
     }
+    return true;
 }
 
 QString ConnectDataBase::InsertValue(const QString& sql, const int& num, QVector<QString>& values)

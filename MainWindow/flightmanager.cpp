@@ -12,6 +12,12 @@ FlightManager::FlightManager(QWidget *parent) :
     ui(new Ui::FlightManager)
 {
     ui->setupUi(this);
+    if (m_LineInfo.isEmpty()) {
+        qDebug() << "Warning: Line info is empty during initialization!";
+    }
+    if (m_City.isEmpty()) {
+        qDebug() << "Warning: City info is empty during initialization!";
+    }
     setObjectName("FilghtManager");
     setWindowTitle("航天信息管理系统");
 
@@ -469,7 +475,7 @@ void FlightManager::LineChangeOnPlane(const int& index)
     ui->chgplanelinearr->setText(m_LineInfo[index].arrive_city);
     ui->chgplanelinetime->setText(m_LineInfo[index].departure_date + "\n" + m_LineInfo[index].departure_time);
 }
-
+//
 bool FlightManager::GetTicket()
 {
     QString date = QDate::currentDate().toString("yyyy-MM-dd");
@@ -512,7 +518,7 @@ bool FlightManager::GetTicket()
 
     return true;
 }
-
+//
 void FlightManager::TicketValueChangeOnUpdate(const int &index)
 {
     ui->chgtktlineabl->setText(QString::number(m_TicketInfo[index].airline_no) );
@@ -598,20 +604,28 @@ void FlightManager::SetCustomerInfoOnBook(const int& index)
 //
 void FlightManager::SetCityOnBook(QComboBox* combobox, const QString &index)
 {
-    combobox->clear(); // 清空现有的城市列表
+    combobox->clear();
+    if (m_City.isEmpty())
+    {
+        qDebug() << "No city data available.";
+        return;
+    }
+
+    bool found = false;
     for (int i = 0; i < m_City.size(); ++i)
     {
-        // 如果国家匹配，则添加城市
         if (index.compare(m_City[i].country_name) == 0)
         {
-            if (m_City[i].province.isEmpty())  // 如果省份为空，则只显示城市
+            found = true;
+            if (m_City[i].province.isEmpty())
                 combobox->addItem(m_City[i].city);
             else
-                combobox->addItem(m_City[i].province + "," + m_City[i].city); // 省份+城市
+                combobox->addItem(m_City[i].province + "," + m_City[i].city);
         }
     }
-    // Optional: 输出调试信息，检查是否正确匹配国家和城市
-    qDebug() << "Updated cities for country: " << index;
+
+    if (!found)
+        qDebug() << "No matching cities found for country: " << index;
 }
 
 //
@@ -873,10 +887,10 @@ void FlightManager::on_chgctmokbtn_clicked()
     int type = ui->chgctmtypcom->currentIndex() + 1;
 
     QString ctmno = ui->chgctmselcom->currentText();
-    QString udtname = QString("UPDATE customer SET customername = '") + name + QString("' WHERE customerno = ") + ctmno;
-    QString udtphe = QString("UPDATE customer SET phonenum = '") + phone + QString("' WHERE customerno = ") + ctmno;
-    QString udtsex = QString("UPDATE customer SET sex = '") + sex + QString("' WHERE customerno = ") + ctmno;
-    QString udttye = QString("UPDATE customer SET customertypeno = '") + QString::number(type) + QString("' WHERE customerno = ") + ctmno;
+    QString udtname = QString("UPDATE customer SET customername = '") + name + QString("' WHERE no = ") + ctmno;
+    QString udtphe = QString("UPDATE customer SET phonenum = '") + phone + QString("' WHERE no = ") + ctmno;
+    QString udtsex = QString("UPDATE customer SET sex = '") + sex + QString("' WHERE no = ") + ctmno;
+    QString udttye = QString("UPDATE customer SET customertypeno = '") + QString::number(type) + QString("' WHERE no = ") + ctmno;
 
     if (!chg_name)
         udtname = "";
@@ -949,8 +963,8 @@ void FlightManager::on_chgtypokbtn_clicked()
     }
     else
     {
-        QString sql = "UPDATE customertype SET discountpercent = " + QString::number(discount)
-                + " WHERE customertypename = '" + ui->chgtypselcom->currentText() + "'";
+        QString sql = "UPDATE customer_type SET discountpercent = " + QString::number(discount)
+                + " WHERE typename = '" + ui->chgtypselcom->currentText() + "'";
         QVector<QString> discount_sql;
         discount_sql.append(sql);
         QString rtn = m_Connect->UpdateValue(discount_sql);
@@ -1247,6 +1261,12 @@ void FlightManager::on_bktktarrcy_currentIndexChanged(const QString &arg1)
 
 void FlightManager::on_bktktokbtn_clicked()
 {
+    if(ui->bktktline->currentText().compare("")!=0){
+
+    }
+    else{
+        QMessageBox(QMessageBox::Warning,"请选择正确的航线","您未选择正确的航班或您目前的航班没有票,请重新选择",QMessageBox::Ok);
+    }
 }
 void FlightManager::on_newnoshow_linkActivated(const QString &link)
 {
@@ -1257,11 +1277,11 @@ void FlightManager::on_bktktdepcot_activated(int index)
 void FlightManager::on_bktktarrcy_currentIndexChanged(int index)
 {
 }
-
 void FlightManager::updateTicketPrice()
 {
-    QString linetext = ui->bktktline->currentText();  // 获取当前选择的航线文本
-    int classType = ui->bktktship->currentIndex();    // 获取当前选择的舱位等级索引
+    QString linetext = ui->bktktline->currentText();
+
+    int classType = ui->bktktship->currentIndex();
     qDebug() << linetext << classType;
 
     QStringList ql;
@@ -1272,38 +1292,32 @@ void FlightManager::updateTicketPrice()
         str = ql[0];
     }
     int lineIndex = str.toInt();
-
-    QString discount = ui->bktktdiscot->text();  // 获取折扣信息
-    double discot = (100 - discount.toInt()) * 0.01;    // 计算折扣比例
+    QString discount = ui->bktktdiscot->text();
+    double discot = (100 - discount.toInt()) * 0.01;
     qDebug() << discot<<discount.toInt()<<discount;
 
     if (lineIndex >= 0 && classType >= 0)
     {
-        AirLine selectedLine = m_LineInfo[lineIndex];  // 获取当前选择的航线
+        AirLine selectedLine = m_LineInfo[lineIndex];
         int price = 0;
-
-        // 根据舱位类型选择价格
         switch (classType)
         {
-        case 0:  // 经济舱
+        case 0:
             price = selectedLine.econemy_price;
             break;
-        case 1:  // 商务舱
+        case 1:
             price = selectedLine.bussiness_price;
             break;
-        case 2:  // 豪华舱
+        case 2:
             price = selectedLine.deluxe_price;
             break;
         default:
             break;
         }
-
-        double total = price * discot;  // 使用 double 计算总价
+        double total = price * discot;
         qDebug() << total;
-
-        // 更新界面上的价格显示
         ui->bktktprice->setText(QString::number(price));
-        ui->bktkttotal->setText(QString::number(total, 'f', 2));  // 格式化为两位小数
+        ui->bktkttotal->setText(QString::number(total, 'f', 2));
     }
 }
 
@@ -1328,7 +1342,7 @@ void FlightManager::on_bktktarrcy_currentTextChanged(const QString &arg1)
     }
     QString arrive = dt[1];
     GetAirLineInfo();
-    ui->bktktline->clear(); // 清空航线选择框
+    ui->bktktline->clear();
     for (int k=0;k< m_LineInfo.size();k++)
     {
         AirLine airline=m_LineInfo[k];
@@ -1362,7 +1376,7 @@ void FlightManager::on_bktktdepcy_currentTextChanged(const QString &arg1)
     }
     QString departure = dt[1];
     GetAirLineInfo();
-    ui->bktktline->clear(); // 清空航线选择框
+    ui->bktktline->clear();
     for (int k=0;k< m_LineInfo.size();k++)
     {
         AirLine airline=m_LineInfo[k];
