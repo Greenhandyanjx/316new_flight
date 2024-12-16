@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../../../316new_flight-main/MainWindow/flightmanager.h"
+#include "../../../MainWindow/flightmanager.h"
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>

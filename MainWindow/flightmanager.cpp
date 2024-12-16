@@ -1261,12 +1261,60 @@ void FlightManager::on_bktktarrcy_currentIndexChanged(const QString &arg1)
 
 void FlightManager::on_bktktokbtn_clicked()
 {
-    if(ui->bktktline->currentText().compare("")!=0){
-
-    }
-    else{
+    if (ui->bktktline->currentText().isEmpty())
+    {
         QMessageBox(QMessageBox::Warning,"请选择正确的航线","您未选择正确的航班或您目前的航班没有票,请重新选择",QMessageBox::Ok);
+        return;
     }
+
+    // 收集购票信息
+    QString orderId = QString::number(QDateTime::currentDateTime().toSecsSinceEpoch()); // 生成订单编号
+    QString customerId = ui->bktktctmno->currentText(); // 客户编号
+    QString customerName = ui->bktktctmname->text(); // 客户姓名
+    QString ctmType = ui->bktktctmtyp->text(); // kehu的类型
+    int discountRate = ui->bktktdiscot->text().toInt(); // 折扣比例
+    QString departureCountry = ui->bktktdepcot->currentText();
+    QString departureCity = ui->bktktdepcy->currentText();
+    QString arrivalCountry = ui->bktktarrcot->currentText();
+    QString arrivalCity = ui->bktktarrcy->currentText();
+    QString route = ui->bktktline->currentText();
+    QString grade = ui->bktktship->currentText(); // 等级
+    int ticketP = ui->bktktprice->text().toInt(); // 机票单价
+    double totalPrice = ticketP * (100-discountRate)*0.01; // 计算总价
+
+    // 插入到 ticket 表
+    QString sql = QString(
+        "INSERT INTO ticket (order_id, customer_id, customer_name, customer_type, discount_rate, "
+        "departure_country, departure_city, arrival_country, arrival_city, route, grade, ticket_price, total_price) "
+        "VALUES (:order_id, :customer_id, :customer_name, :customer_type, :discount_rate, "
+        ":departure_country, :departure_city, :arrival_country, :arrival_city, :route, :grade, :ticket_price, :total_price)"
+        );
+
+    QSqlQuery query;
+    query.prepare(sql);
+    query.bindValue(":order_id", orderId);
+    query.bindValue(":customer_id", customerId);
+    query.bindValue(":customer_name", customerName);
+    query.bindValue(":customer_type", ctmType);
+    query.bindValue(":discount_rate", discountRate);
+    query.bindValue(":departure_country", departureCountry);
+    query.bindValue(":departure_city", departureCity);
+    query.bindValue(":arrival_country", arrivalCountry);
+    query.bindValue(":arrival_city", arrivalCity);
+    query.bindValue(":route", route);
+    query.bindValue(":grade", grade);
+    query.bindValue(":ticket_price", ticketP);
+    query.bindValue(":total_price", totalPrice);
+
+    if (!query.exec())
+    {
+        QMessageBox::critical(this, "数据库错误", "购票失败！\n" + query.lastError().text());
+        return;
+    }
+
+    QMessageBox::information(this, "成功", "购票成功！");
+
+
 }
 void FlightManager::on_newnoshow_linkActivated(const QString &link)
 {

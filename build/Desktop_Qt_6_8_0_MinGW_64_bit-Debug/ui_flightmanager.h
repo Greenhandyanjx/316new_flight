@@ -82,33 +82,33 @@ public:
     QWidget *booktickettab;
     QWidget *layoutWidget;
     QGridLayout *gridLayout;
+    QLabel *bktktdepcotabl;
+    QComboBox *bktktctmno;
+    QComboBox *bktktline;
+    QLabel *bktktctmname;
     QLabel *bktktnoabl;
     QLabel *bktktno;
-    QLabel *bktktctmnoabl;
-    QComboBox *bktktctmno;
+    QComboBox *bktktarrcy;
     QLabel *bktktctmnameabl;
-    QLabel *bktktctmname;
-    QLabel *bktktctmtypabl;
+    QLabel *bktktprice;
     QLabel *bktktctmtyp;
     QLabel *bktktdiscotabl;
-    QLabel *bktktdiscot;
-    QLabel *bktktdepcotabl;
     QComboBox *bktktdepcot;
     QLabel *bktktdepcyabl;
-    QComboBox *bktktdepcy;
     QLabel *bktktarrcotabl;
-    QComboBox *bktktarrcot;
-    QLabel *bktktarrcyabl;
-    QComboBox *bktktarrcy;
-    QLabel *bktktlineabl;
-    QComboBox *bktktline;
-    QLabel *bktktshipabl;
-    QComboBox *bktktship;
+    QComboBox *bktktdepcy;
     QLabel *bktktpriceabl;
-    QLabel *bktktprice;
-    QLabel *bktkttotalabl;
-    QLabel *bktkttotal;
+    QLabel *bktktctmtypabl;
     QLabel *bktktrest;
+    QLabel *bktktdiscot;
+    QLabel *bktktlineabl;
+    QLabel *bktkttotal;
+    QComboBox *bktktship;
+    QLabel *bktktshipabl;
+    QLabel *bktktctmnoabl;
+    QLabel *bktktarrcyabl;
+    QComboBox *bktktarrcot;
+    QLabel *bktkttotalabl;
     QPushButton *bktktokbtn;
     QWidget *updatepage;
     QWidget *layoutWidget1;
@@ -289,7 +289,7 @@ public:
         searchtoolbox->setGeometry(QRect(0, 0, 661, 561));
         searchairline = new QWidget();
         searchairline->setObjectName("searchairline");
-        searchairline->setGeometry(QRect(0, 0, 661, 503));
+        searchairline->setGeometry(QRect(0, 0, 661, 513));
         searchairlineshow = new QTableWidget(searchairline);
         searchairlineshow->setObjectName("searchairlineshow");
         searchairlineshow->setGeometry(QRect(0, 0, 661, 501));
@@ -373,6 +373,26 @@ public:
         gridLayout = new QGridLayout(layoutWidget);
         gridLayout->setObjectName("gridLayout");
         gridLayout->setContentsMargins(0, 0, 0, 0);
+        bktktdepcotabl = new QLabel(layoutWidget);
+        bktktdepcotabl->setObjectName("bktktdepcotabl");
+
+        gridLayout->addWidget(bktktdepcotabl, 5, 0, 1, 1);
+
+        bktktctmno = new QComboBox(layoutWidget);
+        bktktctmno->setObjectName("bktktctmno");
+
+        gridLayout->addWidget(bktktctmno, 1, 1, 1, 1);
+
+        bktktline = new QComboBox(layoutWidget);
+        bktktline->setObjectName("bktktline");
+
+        gridLayout->addWidget(bktktline, 9, 1, 1, 1);
+
+        bktktctmname = new QLabel(layoutWidget);
+        bktktctmname->setObjectName("bktktctmname");
+
+        gridLayout->addWidget(bktktctmname, 2, 1, 1, 1);
+
         bktktnoabl = new QLabel(layoutWidget);
         bktktnoabl->setObjectName("bktktnoabl");
 
@@ -383,30 +403,20 @@ public:
 
         gridLayout->addWidget(bktktno, 0, 1, 1, 1);
 
-        bktktctmnoabl = new QLabel(layoutWidget);
-        bktktctmnoabl->setObjectName("bktktctmnoabl");
+        bktktarrcy = new QComboBox(layoutWidget);
+        bktktarrcy->setObjectName("bktktarrcy");
 
-        gridLayout->addWidget(bktktctmnoabl, 1, 0, 1, 1);
-
-        bktktctmno = new QComboBox(layoutWidget);
-        bktktctmno->setObjectName("bktktctmno");
-
-        gridLayout->addWidget(bktktctmno, 1, 1, 1, 1);
+        gridLayout->addWidget(bktktarrcy, 8, 1, 1, 1);
 
         bktktctmnameabl = new QLabel(layoutWidget);
         bktktctmnameabl->setObjectName("bktktctmnameabl");
 
         gridLayout->addWidget(bktktctmnameabl, 2, 0, 1, 1);
 
-        bktktctmname = new QLabel(layoutWidget);
-        bktktctmname->setObjectName("bktktctmname");
+        bktktprice = new QLabel(layoutWidget);
+        bktktprice->setObjectName("bktktprice");
 
-        gridLayout->addWidget(bktktctmname, 2, 1, 1, 1);
-
-        bktktctmtypabl = new QLabel(layoutWidget);
-        bktktctmtypabl->setObjectName("bktktctmtypabl");
-
-        gridLayout->addWidget(bktktctmtypabl, 3, 0, 1, 1);
+        gridLayout->addWidget(bktktprice, 11, 1, 1, 1);
 
         bktktctmtyp = new QLabel(layoutWidget);
         bktktctmtyp->setObjectName("bktktctmtyp");
@@ -418,16 +428,6 @@ public:
 
         gridLayout->addWidget(bktktdiscotabl, 4, 0, 1, 1);
 
-        bktktdiscot = new QLabel(layoutWidget);
-        bktktdiscot->setObjectName("bktktdiscot");
-
-        gridLayout->addWidget(bktktdiscot, 4, 1, 1, 1);
-
-        bktktdepcotabl = new QLabel(layoutWidget);
-        bktktdepcotabl->setObjectName("bktktdepcotabl");
-
-        gridLayout->addWidget(bktktdepcotabl, 5, 0, 1, 1);
-
         bktktdepcot = new QComboBox(layoutWidget);
         bktktdepcot->setObjectName("bktktdepcot");
 
@@ -438,81 +438,79 @@ public:
 
         gridLayout->addWidget(bktktdepcyabl, 6, 0, 1, 1);
 
-        bktktdepcy = new QComboBox(layoutWidget);
-        bktktdepcy->setObjectName("bktktdepcy");
-
-        gridLayout->addWidget(bktktdepcy, 6, 1, 1, 1);
-
         bktktarrcotabl = new QLabel(layoutWidget);
         bktktarrcotabl->setObjectName("bktktarrcotabl");
 
         gridLayout->addWidget(bktktarrcotabl, 7, 0, 1, 1);
 
-        bktktarrcot = new QComboBox(layoutWidget);
-        bktktarrcot->setObjectName("bktktarrcot");
+        bktktdepcy = new QComboBox(layoutWidget);
+        bktktdepcy->setObjectName("bktktdepcy");
 
-        gridLayout->addWidget(bktktarrcot, 7, 1, 1, 1);
-
-        bktktarrcyabl = new QLabel(layoutWidget);
-        bktktarrcyabl->setObjectName("bktktarrcyabl");
-
-        gridLayout->addWidget(bktktarrcyabl, 8, 0, 1, 1);
-
-        bktktarrcy = new QComboBox(layoutWidget);
-        bktktarrcy->setObjectName("bktktarrcy");
-
-        gridLayout->addWidget(bktktarrcy, 8, 1, 1, 1);
-
-        bktktlineabl = new QLabel(layoutWidget);
-        bktktlineabl->setObjectName("bktktlineabl");
-
-        gridLayout->addWidget(bktktlineabl, 9, 0, 1, 1);
-
-        bktktline = new QComboBox(layoutWidget);
-        bktktline->setObjectName("bktktline");
-
-        gridLayout->addWidget(bktktline, 9, 1, 1, 1);
-
-        bktktshipabl = new QLabel(layoutWidget);
-        bktktshipabl->setObjectName("bktktshipabl");
-
-        gridLayout->addWidget(bktktshipabl, 10, 0, 1, 1);
-
-        bktktship = new QComboBox(layoutWidget);
-        bktktship->setObjectName("bktktship");
-
-        gridLayout->addWidget(bktktship, 10, 1, 1, 1);
+        gridLayout->addWidget(bktktdepcy, 6, 1, 1, 1);
 
         bktktpriceabl = new QLabel(layoutWidget);
         bktktpriceabl->setObjectName("bktktpriceabl");
 
         gridLayout->addWidget(bktktpriceabl, 11, 0, 1, 1);
 
-        bktktprice = new QLabel(layoutWidget);
-        bktktprice->setObjectName("bktktprice");
+        bktktctmtypabl = new QLabel(layoutWidget);
+        bktktctmtypabl->setObjectName("bktktctmtypabl");
 
-        gridLayout->addWidget(bktktprice, 11, 1, 1, 1);
+        gridLayout->addWidget(bktktctmtypabl, 3, 0, 1, 1);
 
-        bktkttotalabl = new QLabel(layoutWidget);
-        bktkttotalabl->setObjectName("bktkttotalabl");
+        bktktrest = new QLabel(layoutWidget);
+        bktktrest->setObjectName("bktktrest");
 
-        gridLayout->addWidget(bktkttotalabl, 12, 0, 1, 1);
+        gridLayout->addWidget(bktktrest, 14, 0, 1, 1);
+
+        bktktdiscot = new QLabel(layoutWidget);
+        bktktdiscot->setObjectName("bktktdiscot");
+
+        gridLayout->addWidget(bktktdiscot, 4, 1, 1, 1);
+
+        bktktlineabl = new QLabel(layoutWidget);
+        bktktlineabl->setObjectName("bktktlineabl");
+
+        gridLayout->addWidget(bktktlineabl, 9, 0, 1, 1);
 
         bktkttotal = new QLabel(layoutWidget);
         bktkttotal->setObjectName("bktkttotal");
 
         gridLayout->addWidget(bktkttotal, 12, 1, 1, 1);
 
-        bktktrest = new QLabel(layoutWidget);
-        bktktrest->setObjectName("bktktrest");
+        bktktship = new QComboBox(layoutWidget);
+        bktktship->setObjectName("bktktship");
 
-        gridLayout->addWidget(bktktrest, 13, 0, 1, 1);
+        gridLayout->addWidget(bktktship, 10, 1, 1, 1);
 
-        bktktokbtn = new QPushButton(layoutWidget);
+        bktktshipabl = new QLabel(layoutWidget);
+        bktktshipabl->setObjectName("bktktshipabl");
+
+        gridLayout->addWidget(bktktshipabl, 10, 0, 1, 1);
+
+        bktktctmnoabl = new QLabel(layoutWidget);
+        bktktctmnoabl->setObjectName("bktktctmnoabl");
+
+        gridLayout->addWidget(bktktctmnoabl, 1, 0, 1, 1);
+
+        bktktarrcyabl = new QLabel(layoutWidget);
+        bktktarrcyabl->setObjectName("bktktarrcyabl");
+
+        gridLayout->addWidget(bktktarrcyabl, 8, 0, 1, 1);
+
+        bktktarrcot = new QComboBox(layoutWidget);
+        bktktarrcot->setObjectName("bktktarrcot");
+
+        gridLayout->addWidget(bktktarrcot, 7, 1, 1, 1);
+
+        bktkttotalabl = new QLabel(layoutWidget);
+        bktkttotalabl->setObjectName("bktkttotalabl");
+
+        gridLayout->addWidget(bktkttotalabl, 12, 0, 1, 1);
+
+        bktktokbtn = new QPushButton(booktickettab);
         bktktokbtn->setObjectName("bktktokbtn");
-
-        gridLayout->addWidget(bktktokbtn, 13, 1, 1, 1);
-
+        bktktokbtn->setGeometry(QRect(330, 510, 187, 18));
         inserttab->addTab(booktickettab, QString());
 
         insertlayout->addWidget(inserttab, 0, 0, 1, 1);
@@ -1041,7 +1039,7 @@ public:
         FlightManager->setCentralWidget(centralwidget);
         menubar = new QMenuBar(FlightManager);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 865, 21));
+        menubar->setGeometry(QRect(0, 0, 865, 18));
         searchmenu = new QMenu(menubar);
         searchmenu->setObjectName("searchmenu");
         insertmeun = new QMenu(menubar);
@@ -1068,7 +1066,7 @@ public:
         retranslateUi(FlightManager);
         QObject::connect(list, &QListWidget::currentRowChanged, stackedWidget, &QStackedWidget::setCurrentIndex);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(4);
         searchtoolbox->setCurrentIndex(0);
         inserttab->setCurrentIndex(1);
 
@@ -1100,26 +1098,26 @@ public:
         newokbutton->setText(QCoreApplication::translate("FlightManager", "\347\241\256\350\256\244", nullptr));
         newnoshow->setText(QCoreApplication::translate("FlightManager", "No.", nullptr));
         inserttab->setTabText(inserttab->indexOf(newcustom), QCoreApplication::translate("FlightManager", "Tab 1", nullptr));
+        bktktdepcotabl->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\345\233\275\345\256\266", nullptr));
+        bktktctmname->setText(QCoreApplication::translate("FlightManager", "Name", nullptr));
         bktktnoabl->setText(QCoreApplication::translate("FlightManager", "\350\256\242\345\215\225\347\274\226\345\217\267", nullptr));
         bktktno->setText(QCoreApplication::translate("FlightManager", "No.", nullptr));
-        bktktctmnoabl->setText(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\347\274\226\345\217\267", nullptr));
         bktktctmnameabl->setText(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\345\247\223\345\220\215", nullptr));
-        bktktctmname->setText(QCoreApplication::translate("FlightManager", "Name", nullptr));
-        bktktctmtypabl->setText(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\347\261\273\345\236\213", nullptr));
+        bktktprice->setText(QCoreApplication::translate("FlightManager", "Price", nullptr));
         bktktctmtyp->setText(QCoreApplication::translate("FlightManager", "Type", nullptr));
         bktktdiscotabl->setText(QCoreApplication::translate("FlightManager", "\346\212\230\346\211\243\346\257\224\344\276\213", nullptr));
-        bktktdiscot->setText(QCoreApplication::translate("FlightManager", "Discount", nullptr));
-        bktktdepcotabl->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\345\233\275\345\256\266", nullptr));
         bktktdepcyabl->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\345\237\216\345\270\202", nullptr));
         bktktarrcotabl->setText(QCoreApplication::translate("FlightManager", "\345\210\260\350\276\276\345\233\275\345\256\266", nullptr));
-        bktktarrcyabl->setText(QCoreApplication::translate("FlightManager", "\345\210\260\350\276\276\345\237\216\345\270\202", nullptr));
-        bktktlineabl->setText(QCoreApplication::translate("FlightManager", "\350\210\252\347\272\277\351\200\211\346\213\251", nullptr));
-        bktktshipabl->setText(QCoreApplication::translate("FlightManager", "\350\210\261\344\275\215\347\255\211\347\272\247", nullptr));
         bktktpriceabl->setText(QCoreApplication::translate("FlightManager", "\346\234\272\347\245\250\344\273\267\351\222\261", nullptr));
-        bktktprice->setText(QCoreApplication::translate("FlightManager", "Price", nullptr));
-        bktkttotalabl->setText(QCoreApplication::translate("FlightManager", "\346\234\272\347\245\250\346\200\273\344\273\267", nullptr));
-        bktkttotal->setText(QCoreApplication::translate("FlightManager", "Total", nullptr));
+        bktktctmtypabl->setText(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\347\261\273\345\236\213", nullptr));
         bktktrest->setText(QCoreApplication::translate("FlightManager", "\345\211\251\344\275\231\347\245\250\346\225\260", nullptr));
+        bktktdiscot->setText(QCoreApplication::translate("FlightManager", "Discount", nullptr));
+        bktktlineabl->setText(QCoreApplication::translate("FlightManager", "\350\210\252\347\272\277\351\200\211\346\213\251", nullptr));
+        bktkttotal->setText(QCoreApplication::translate("FlightManager", "Total", nullptr));
+        bktktshipabl->setText(QCoreApplication::translate("FlightManager", "\350\210\261\344\275\215\347\255\211\347\272\247", nullptr));
+        bktktctmnoabl->setText(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\347\274\226\345\217\267", nullptr));
+        bktktarrcyabl->setText(QCoreApplication::translate("FlightManager", "\345\210\260\350\276\276\345\237\216\345\270\202", nullptr));
+        bktkttotalabl->setText(QCoreApplication::translate("FlightManager", "\346\234\272\347\245\250\346\200\273\344\273\267", nullptr));
         bktktokbtn->setText(QCoreApplication::translate("FlightManager", "\347\241\256\345\256\232\350\264\255\347\245\250", nullptr));
         inserttab->setTabText(inserttab->indexOf(booktickettab), QCoreApplication::translate("FlightManager", "Tab 2", nullptr));
         airplanechange->setTitle(QCoreApplication::translate("FlightManager", "\345\256\242\346\234\272\346\233\264\346\226\260", nullptr));
