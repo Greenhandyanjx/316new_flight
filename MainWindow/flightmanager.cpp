@@ -1264,12 +1264,16 @@ void FlightManager::on_bktktarrcy_currentIndexChanged(const QString &arg1)
 
 void FlightManager::on_bktktokbtn_clicked()
 {
-    if (ui->bktktline->currentText().isEmpty())
+    if (ui->bktktline->currentText().size()==0)
     {
-        QMessageBox(QMessageBox::Warning,"请选择正确的航线","您未选择正确的航班或您目前的航班没有票,请重新选择",QMessageBox::Ok);
+        QMessageBox(QMessageBox::Warning,"请选择正确的航线","您未选择正确的航班或您目前的航班没有票,请重新选择",QMessageBox::Ok).exec();
         return;
     }
-
+    int ticketnum=ui->bktktnum->text().toInt();
+    if(ticketnum<=0){
+        QMessageBox(QMessageBox::Warning,"票数不足","请选择其他航班或者座位等级",QMessageBox::Ok).exec();
+        return;
+    }
     // 收集购票信息
     QString orderId = QString::number(QDateTime::currentDateTime().toSecsSinceEpoch()%100000); // 生成订单编号
     QString customerId = ui->bktktctmno->currentText(); // 客户编号
@@ -1342,6 +1346,7 @@ void FlightManager::updateTicketNum()
     }
     else{
         ui->bktktnum->setText(QString("未选择正确的航线"));
+        return;
     }
     int lineIndex = str.toInt();
     if (lineIndex >= 0 && classType >= 0)
@@ -1378,6 +1383,12 @@ void FlightManager::updateTicketPrice()
     {
         ql = linetext.split(",", Qt::SkipEmptyParts);
         str = ql[0];
+    }
+    else{
+        ui->bktktprice->setText(QString("未选择正确的航线"));
+        ui->bktkttotal->setText(QString("未选择正确的航线"));
+        ui->bktktnum->setText(QString("未选择正确的航线"));
+        return;
     }
     int lineIndex = str.toInt();
     QString discount = ui->bktktdiscot->text();

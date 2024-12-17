@@ -63,7 +63,7 @@ int Login::CheckAccount() {
         }
 
         QString storedPassword = sqlquery.value("password").toString();
-        if (word != storedPassword) {
+        if (word .compare( storedPassword)!=0) {
             return PasswordWrong; // Password mismatch
         }
 
