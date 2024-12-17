@@ -1274,6 +1274,50 @@ void FlightManager::on_bktktokbtn_clicked()
         QMessageBox(QMessageBox::Warning,"票数不足","请选择其他航班或者座位等级",QMessageBox::Ok).exec();
         return;
     }
+    QSqlQuery que;
+    QString columnnum;
+    QString linetext = ui->bktktline->currentText();
+    int classType = ui->bktktship->currentIndex();
+    QStringList ql;
+    QString str;
+    if (linetext.size() != 0)
+    {
+        ql = linetext.split(",", Qt::SkipEmptyParts);
+        str = ql[0];
+    }
+    else{
+        ui->bktktnum->setText(QString("未选择正确的航线"));
+        return;
+    }
+    int lineIndex = str.toInt();
+    if (lineIndex >= 0 && classType >= 0)
+    {
+        AirLine selectedLine = m_LineInfo[lineIndex];
+        switch (classType)
+        {
+        case 0:
+        {
+            columnnum = "economyclassnum";
+            m_LineInfo[lineIndex].econemy_num--;
+            qDebug()<<m_LineInfo[lineIndex].econemy_num<<"????";
+            break;
+        }
+        case 1:
+        {
+            columnnum ="businessclassnum";
+            m_LineInfo[lineIndex].bussiness_num--;
+            break;
+        }
+        case 2:
+        {
+            columnnum =  "deluxeclassnum";
+            m_LineInfo[lineIndex].deluxe_num--;
+            break;
+        }
+        default:
+            break;
+        }
+    }
     // 收集购票信息
     QString orderId = QString::number(QDateTime::currentDateTime().toSecsSinceEpoch()%100000); // 生成订单编号
     QString customerId = ui->bktktctmno->currentText(); // 客户编号
@@ -1312,13 +1356,20 @@ void FlightManager::on_bktktokbtn_clicked()
     query.bindValue(":grade", grade);
     query.bindValue(":ticket_price", ticketP);
     query.bindValue(":total_price", totalPrice);
-
     if (!query.exec())
     {
         QMessageBox::critical(this, "数据库错误", "购票失败！\n" + query.lastError().text());
         return;
     }
+    QString updateSql = QString("UPDATE airline SET %1 = %1 - 1 WHERE airlineno = :airlineno").arg(columnnum);
+    query.prepare(updateSql);
+    query.bindValue(":airlineno", str);
+    if (!query.exec()) {
+        QMessageBox::critical(this, "数据库错误", "购票成功,但是更新票数失败！\n" + query.lastError().text());
+        return;
+    }
 
+    updateTicketNum();
     QMessageBox::information(this, "成功", "购票成功！");
 
 
@@ -1447,7 +1498,7 @@ void FlightManager::on_bktktarrcy_currentTextChanged(const QString &arg1)
         AirLine airline=m_LineInfo[k];
         if (departure.compare(airline.departure_city) == 0 && arrive.compare(airline.arrive_city) == 0)
         {
-            ui->bktktline->addItem(QString::number(k)+","+airline.airway_short_name);
+            ui->bktktline->addItem(QString::number(k+1)+","+airline.airway_short_name);
         }
     }
     updateTicketPrice();
@@ -1482,7 +1533,7 @@ void FlightManager::on_bktktdepcy_currentTextChanged(const QString &arg1)
         AirLine airline=m_LineInfo[k];
         if (departure.compare(airline.departure_city) == 0 && arrive.compare(airline.arrive_city) == 0)
         {
-            ui->bktktline->addItem(QString::number(k)+","+airline.airway_short_name);
+            ui->bktktline->addItem(QString::number(k+1)+","+airline.airway_short_name);
         }
     }
     updateTicketPrice();
