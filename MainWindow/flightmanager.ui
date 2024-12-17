@@ -42,7 +42,7 @@
      <item row="0" column="0">
       <widget class="QStackedWidget" name="stackedWidget">
        <property name="currentIndex">
-        <number>2</number>
+        <number>4</number>
        </property>
        <widget class="QWidget" name="homepage">
         <widget class="QLabel" name="welcomelabel">
@@ -366,136 +366,6 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <widget class="QComboBox" name="bktktctmno"/>
-               </item>
-               <item row="9" column="1">
-                <widget class="QComboBox" name="bktktline"/>
-               </item>
-               <item row="2" column="1">
-                <widget class="QLabel" name="bktktctmname">
-                 <property name="text">
-                  <string>Name</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="0">
-                <widget class="QLabel" name="bktktnoabl">
-                 <property name="text">
-                  <string>订单编号</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QLabel" name="bktktno">
-                 <property name="text">
-                  <string>No.</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="8" column="1">
-                <widget class="QComboBox" name="bktktarrcy"/>
-               </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="bktktctmnameabl">
-                 <property name="text">
-                  <string>客户姓名</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="11" column="1">
-                <widget class="QLabel" name="bktktprice">
-                 <property name="text">
-                  <string>Price</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="1">
-                <widget class="QLabel" name="bktktctmtyp">
-                 <property name="text">
-                  <string>Type</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="0">
-                <widget class="QLabel" name="bktktdiscotabl">
-                 <property name="text">
-                  <string>折扣比例</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="5" column="1">
-                <widget class="QComboBox" name="bktktdepcot"/>
-               </item>
-               <item row="6" column="0">
-                <widget class="QLabel" name="bktktdepcyabl">
-                 <property name="text">
-                  <string>出发城市</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="7" column="0">
-                <widget class="QLabel" name="bktktarrcotabl">
-                 <property name="text">
-                  <string>到达国家</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="6" column="1">
-                <widget class="QComboBox" name="bktktdepcy"/>
-               </item>
-               <item row="11" column="0">
-                <widget class="QLabel" name="bktktpriceabl">
-                 <property name="text">
-                  <string>机票价钱</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <widget class="QLabel" name="bktktctmtypabl">
-                 <property name="text">
-                  <string>客户类型</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="14" column="0">
-                <widget class="QLabel" name="bktktrest">
-                 <property name="text">
-                  <string>剩余票数</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="1">
-                <widget class="QLabel" name="bktktdiscot">
-                 <property name="text">
-                  <string>Discount</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="9" column="0">
-                <widget class="QLabel" name="bktktlineabl">
-                 <property name="text">
-                  <string>航线选择</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="12" column="1">
-                <widget class="QLabel" name="bktkttotal">
-                 <property name="text">
-                  <string>Total</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="10" column="1">
-                <widget class="QComboBox" name="bktktship"/>
-               </item>
-               <item row="10" column="0">
-                <widget class="QLabel" name="bktktshipabl">
-                 <property name="text">
-                  <string>舱位等级</string>
-                 </property>
-                </widget>
-               </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="bktktctmnoabl">
                  <property name="text">
@@ -510,8 +380,57 @@
                  </property>
                 </widget>
                </item>
-               <item row="7" column="1">
-                <widget class="QComboBox" name="bktktarrcot"/>
+               <item row="2" column="0">
+                <widget class="QLabel" name="bktktctmnameabl">
+                 <property name="text">
+                  <string>客户姓名</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="bktktnoabl">
+                 <property name="text">
+                  <string>订单编号</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="bktktctmtypabl">
+                 <property name="text">
+                  <string>客户类型</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="12" column="1">
+                <widget class="QLabel" name="bktkttotal">
+                 <property name="text">
+                  <string>Total</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="11" column="1">
+                <widget class="QLabel" name="bktktprice">
+                 <property name="text">
+                  <string>Price</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="10" column="0">
+                <widget class="QLabel" name="bktktshipabl">
+                 <property name="text">
+                  <string>舱位等级</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <widget class="QComboBox" name="bktktdepcy"/>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="bktktctmtyp">
+                 <property name="text">
+                  <string>Type</string>
+                 </property>
+                </widget>
                </item>
                <item row="12" column="0">
                 <widget class="QLabel" name="bktkttotalabl">
@@ -520,10 +439,91 @@
                  </property>
                 </widget>
                </item>
+               <item row="7" column="1">
+                <widget class="QComboBox" name="bktktarrcot"/>
+               </item>
+               <item row="8" column="1">
+                <widget class="QComboBox" name="bktktarrcy"/>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="bktktctmname">
+                 <property name="text">
+                  <string>Name</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="1">
+                <widget class="QComboBox" name="bktktline"/>
+               </item>
+               <item row="9" column="0">
+                <widget class="QLabel" name="bktktlineabl">
+                 <property name="text">
+                  <string>航线选择</string>
+                 </property>
+                </widget>
+               </item>
                <item row="14" column="1">
                 <widget class="QLabel" name="bktktnum">
                  <property name="text">
                   <string>tktnum</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLabel" name="bktktno">
+                 <property name="text">
+                  <string>No.</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QComboBox" name="bktktdepcot"/>
+               </item>
+               <item row="11" column="0">
+                <widget class="QLabel" name="bktktpriceabl">
+                 <property name="text">
+                  <string>机票价钱</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="14" column="0">
+                <widget class="QLabel" name="bktktrest">
+                 <property name="text">
+                  <string>剩余票数</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="0">
+                <widget class="QLabel" name="bktktarrcotabl">
+                 <property name="text">
+                  <string>到达国家</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="bktktctmno"/>
+               </item>
+               <item row="6" column="0">
+                <widget class="QLabel" name="bktktdepcyabl">
+                 <property name="text">
+                  <string>出发城市</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="10" column="1">
+                <widget class="QComboBox" name="bktktship"/>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="bktktdiscotabl">
+                 <property name="text">
+                  <string>折扣比例</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QLabel" name="bktktdiscot">
+                 <property name="text">
+                  <string>Discount</string>
                  </property>
                 </widget>
                </item>

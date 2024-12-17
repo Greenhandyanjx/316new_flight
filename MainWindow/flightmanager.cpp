@@ -1289,7 +1289,7 @@ void FlightManager::on_bktktokbtn_clicked()
         ui->bktktnum->setText(QString("未选择正确的航线"));
         return;
     }
-    int lineIndex = str.toInt();
+    int lineIndex = str.toInt()-1;
     if (lineIndex >= 0 && classType >= 0)
     {
         AirLine selectedLine = m_LineInfo[lineIndex];
@@ -1370,6 +1370,7 @@ void FlightManager::on_bktktokbtn_clicked()
     }
 
     updateTicketNum();
+    GetTicket();
     QMessageBox::information(this, "成功", "购票成功！");
 
 
@@ -1399,7 +1400,7 @@ void FlightManager::updateTicketNum()
         ui->bktktnum->setText(QString("未选择正确的航线"));
         return;
     }
-    int lineIndex = str.toInt();
+    int lineIndex = str.toInt()-1;
     if (lineIndex >= 0 && classType >= 0)
     {
         AirLine selectedLine = m_LineInfo[lineIndex];
@@ -1441,7 +1442,7 @@ void FlightManager::updateTicketPrice()
         ui->bktktnum->setText(QString("未选择正确的航线"));
         return;
     }
-    int lineIndex = str.toInt();
+    int lineIndex = str.toInt()-1;
     QString discount = ui->bktktdiscot->text();
     double discot = (100 - ui->bktktdiscot->text().toInt()) * 0.01;
     qDebug() << discot<<discount.toInt()<<discount;
