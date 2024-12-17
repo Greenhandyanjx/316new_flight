@@ -30,6 +30,7 @@ FlightManager::FlightManager(QWidget *parent) :
     connect(ui->insertaction, SIGNAL(triggered(bool)), this, SLOT(turn2insert()) );
     connect(ui->updateaction, SIGNAL(triggered(bool)), this, SLOT(turn2update()) );
     connect(ui->deleteaction, SIGNAL(triggered(bool)), this, SLOT(turn2delete()) );
+
 }
 
 FlightManager::~FlightManager()
@@ -148,8 +149,8 @@ void FlightManager::Init()
     GetTicket();
     for (int i = 0; i < m_TicketInfo.size(); ++i)
     {
-        ui->chgtktnocom->addItem(QString::number(m_TicketInfo[i].book_num) );
-        ui->delticketno->addItem(QString::number(m_TicketInfo[i].book_num) );
+        ui->chgtktnocom->addItem(QString::number(m_TicketInfo[i].order_id) );
+        ui->delticketno->addItem(QString::number(m_TicketInfo[i].order_id) );
     }
     TicketValueChangeOnUpdate(0);
     if (!m_Ship.size())
@@ -501,7 +502,7 @@ bool FlightManager::GetTicket()
     while (sqlquery->next())
     {
         Ticket ticket;
-        ticket.book_num = sqlquery->value("booknum").toString().toInt();
+        ticket.order_id = sqlquery->value("order_id").toString().toInt();
         ticket.customer_name = sqlquery->value("customername").toString();
         ticket.airline_no = sqlquery->value("airlineno").toString().toInt();
         ticket.departure = sqlquery->value("departurecity").toString();
@@ -600,6 +601,8 @@ void FlightManager::SetCustomerInfoOnBook(const int& index)
     ui->bktktctmname->setText(m_CustomerInfo[index].name);
     ui->bktktctmtyp->setText(m_CustomerInfo[index].type_name);
     ui->bktktdiscot->setText(QString::number(m_CustomerInfo[index].discount) );
+    updateTicketPrice();
+    updateTicketNum();
 }
 //
 void FlightManager::SetCityOnBook(QComboBox* combobox, const QString &index)
@@ -1219,7 +1222,7 @@ void FlightManager::on_delticketno_activated(int index)
 void FlightManager::on_delticketokbtn_clicked()
 {
     QString ticket_no = ui->delticketno->currentText();
-    QString sql = "DELETE FROM bookticket WHERE booknum = " + ticket_no;
+    QString sql = "DELETE FROM ticket WHERE order_id = " + ticket_no;
 
     QString rtn = m_Connect->DeletValue(sql);
     if (rtn == "Success")
@@ -1268,7 +1271,7 @@ void FlightManager::on_bktktokbtn_clicked()
     }
 
     // 收集购票信息
-    QString orderId = QString::number(QDateTime::currentDateTime().toSecsSinceEpoch()); // 生成订单编号
+    QString orderId = QString::number(QDateTime::currentDateTime().toSecsSinceEpoch()%100000); // 生成订单编号
     QString customerId = ui->bktktctmno->currentText(); // 客户编号
     QString customerName = ui->bktktctmname->text(); // 客户姓名
     QString ctmType = ui->bktktctmtyp->text(); // kehu的类型
@@ -1325,6 +1328,43 @@ void FlightManager::on_bktktdepcot_activated(int index)
 void FlightManager::on_bktktarrcy_currentIndexChanged(int index)
 {
 }
+void FlightManager::updateTicketNum()
+{
+    QString linetext = ui->bktktline->currentText();
+    int classType = ui->bktktship->currentIndex();
+    qDebug() << linetext << classType;
+    QStringList ql;
+    QString str;
+    if (linetext.size() != 0)
+    {
+        ql = linetext.split(",", Qt::SkipEmptyParts);
+        str = ql[0];
+    }
+    else{
+        ui->bktktnum->setText(QString("未选择正确的航线"));
+    }
+    int lineIndex = str.toInt();
+    if (lineIndex >= 0 && classType >= 0)
+    {
+        AirLine selectedLine = m_LineInfo[lineIndex];
+        int ticket = 0;
+        switch (classType)
+        {
+        case 0:
+            ticket = selectedLine.econemy_num;
+            break;
+        case 1:
+            ticket = selectedLine.bussiness_num;
+            break;
+        case 2:
+            ticket = selectedLine.deluxe_num;
+            break;
+        default:
+            break;
+        }
+        ui->bktktnum->setText(QString::number(ticket));
+    }
+}
 void FlightManager::updateTicketPrice()
 {
     QString linetext = ui->bktktline->currentText();
@@ -1341,7 +1381,7 @@ void FlightManager::updateTicketPrice()
     }
     int lineIndex = str.toInt();
     QString discount = ui->bktktdiscot->text();
-    double discot = (100 - discount.toInt()) * 0.01;
+    double discot = (100 - ui->bktktdiscot->text().toInt()) * 0.01;
     qDebug() << discot<<discount.toInt()<<discount;
 
     if (lineIndex >= 0 && classType >= 0)
@@ -1400,6 +1440,7 @@ void FlightManager::on_bktktarrcy_currentTextChanged(const QString &arg1)
         }
     }
     updateTicketPrice();
+    updateTicketNum();
 }
 
 
@@ -1434,11 +1475,13 @@ void FlightManager::on_bktktdepcy_currentTextChanged(const QString &arg1)
         }
     }
     updateTicketPrice();
+    updateTicketNum();
 }
 
 
 void FlightManager::on_bktktship_activated(int index)
 {
     updateTicketPrice();
+    updateTicketNum();
 }
 

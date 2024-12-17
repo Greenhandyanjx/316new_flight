@@ -8,6 +8,7 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #include "connectdatabase.h"
+#include<windows.h>
 
 namespace Ui
 {
@@ -125,6 +126,8 @@ private slots:
 
     void on_bktktship_activated(int index);
 
+    void updateTicketNum();
+
 private:
     struct Customer
     {
@@ -174,7 +177,7 @@ private:
 
     struct Ticket
     {
-        int book_num;
+        int order_id;
         QString customer_name;
         int airline_no;
         QString departure;

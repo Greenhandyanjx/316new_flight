@@ -109,6 +109,7 @@ public:
     QLabel *bktktarrcyabl;
     QComboBox *bktktarrcot;
     QLabel *bktkttotalabl;
+    QLabel *bktktnum;
     QPushButton *bktktokbtn;
     QWidget *updatepage;
     QWidget *layoutWidget1;
@@ -289,7 +290,7 @@ public:
         searchtoolbox->setGeometry(QRect(0, 0, 661, 561));
         searchairline = new QWidget();
         searchairline->setObjectName("searchairline");
-        searchairline->setGeometry(QRect(0, 0, 661, 513));
+        searchairline->setGeometry(QRect(0, 0, 661, 503));
         searchairlineshow = new QTableWidget(searchairline);
         searchairlineshow->setObjectName("searchairlineshow");
         searchairlineshow->setGeometry(QRect(0, 0, 661, 501));
@@ -507,6 +508,11 @@ public:
         bktkttotalabl->setObjectName("bktkttotalabl");
 
         gridLayout->addWidget(bktkttotalabl, 12, 0, 1, 1);
+
+        bktktnum = new QLabel(layoutWidget);
+        bktktnum->setObjectName("bktktnum");
+
+        gridLayout->addWidget(bktktnum, 14, 1, 1, 1);
 
         bktktokbtn = new QPushButton(booktickettab);
         bktktokbtn->setObjectName("bktktokbtn");
@@ -1039,7 +1045,7 @@ public:
         FlightManager->setCentralWidget(centralwidget);
         menubar = new QMenuBar(FlightManager);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 865, 18));
+        menubar->setGeometry(QRect(0, 0, 865, 21));
         searchmenu = new QMenu(menubar);
         searchmenu->setObjectName("searchmenu");
         insertmeun = new QMenu(menubar);
@@ -1066,7 +1072,7 @@ public:
         retranslateUi(FlightManager);
         QObject::connect(list, &QListWidget::currentRowChanged, stackedWidget, &QStackedWidget::setCurrentIndex);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(2);
         searchtoolbox->setCurrentIndex(0);
         inserttab->setCurrentIndex(1);
 
@@ -1118,6 +1124,7 @@ public:
         bktktctmnoabl->setText(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\347\274\226\345\217\267", nullptr));
         bktktarrcyabl->setText(QCoreApplication::translate("FlightManager", "\345\210\260\350\276\276\345\237\216\345\270\202", nullptr));
         bktkttotalabl->setText(QCoreApplication::translate("FlightManager", "\346\234\272\347\245\250\346\200\273\344\273\267", nullptr));
+        bktktnum->setText(QCoreApplication::translate("FlightManager", "tktnum", nullptr));
         bktktokbtn->setText(QCoreApplication::translate("FlightManager", "\347\241\256\345\256\232\350\264\255\347\245\250", nullptr));
         inserttab->setTabText(inserttab->indexOf(booktickettab), QCoreApplication::translate("FlightManager", "Tab 2", nullptr));
         airplanechange->setTitle(QCoreApplication::translate("FlightManager", "\345\256\242\346\234\272\346\233\264\346\226\260", nullptr));
