@@ -215,14 +215,6 @@ public:
     QLabel *delticketshipabl;
     QLabel *delticketship;
     QPushButton *delticketokbtn;
-    QGroupBox *delairline;
-    QLabel *label_2;
-    QGroupBox *delairplane;
-    QLabel *label_3;
-    QGroupBox *delcustomer;
-    QLabel *label;
-    QGroupBox *delairway;
-    QLabel *label_4;
     QMenuBar *menubar;
     QMenu *searchmenu;
     QMenu *insertmeun;
@@ -323,40 +315,40 @@ public:
         newnolabel->setFont(font1);
         newnamelabel = new QLabel(newcustom);
         newnamelabel->setObjectName("newnamelabel");
-        newnamelabel->setGeometry(QRect(190, 160, 91, 41));
+        newnamelabel->setGeometry(QRect(190, 160, 101, 41));
         newnamelabel->setFont(font1);
         newnamedit = new QLineEdit(newcustom);
         newnamedit->setObjectName("newnamedit");
-        newnamedit->setGeometry(QRect(330, 160, 121, 31));
+        newnamedit->setGeometry(QRect(330, 170, 131, 31));
         newnamedit->setFont(font);
         newtypelabel = new QLabel(newcustom);
         newtypelabel->setObjectName("newtypelabel");
-        newtypelabel->setGeometry(QRect(190, 210, 91, 41));
+        newtypelabel->setGeometry(QRect(190, 210, 101, 41));
         newtypelabel->setFont(font1);
         newtypeselect = new QComboBox(newcustom);
         newtypeselect->setObjectName("newtypeselect");
-        newtypeselect->setGeometry(QRect(330, 220, 121, 24));
+        newtypeselect->setGeometry(QRect(330, 220, 131, 31));
         newidlabel = new QLabel(newcustom);
         newidlabel->setObjectName("newidlabel");
         newidlabel->setGeometry(QRect(190, 270, 91, 31));
         newidlabel->setFont(font1);
         newidedit = new QLineEdit(newcustom);
         newidedit->setObjectName("newidedit");
-        newidedit->setGeometry(QRect(330, 270, 121, 24));
+        newidedit->setGeometry(QRect(330, 270, 131, 31));
         newsexlabel = new QLabel(newcustom);
         newsexlabel->setObjectName("newsexlabel");
-        newsexlabel->setGeometry(QRect(190, 320, 81, 21));
+        newsexlabel->setGeometry(QRect(190, 320, 111, 21));
         newsexlabel->setFont(font1);
         newsexshow = new QComboBox(newcustom);
         newsexshow->setObjectName("newsexshow");
-        newsexshow->setGeometry(QRect(330, 320, 121, 24));
+        newsexshow->setGeometry(QRect(330, 320, 131, 31));
         newphonelabel = new QLabel(newcustom);
         newphonelabel->setObjectName("newphonelabel");
-        newphonelabel->setGeometry(QRect(190, 360, 81, 31));
+        newphonelabel->setGeometry(QRect(190, 370, 91, 31));
         newphonelabel->setFont(font1);
         newphonedit = new QLineEdit(newcustom);
         newphonedit->setObjectName("newphonedit");
-        newphonedit->setGeometry(QRect(330, 370, 121, 24));
+        newphonedit->setGeometry(QRect(330, 370, 131, 31));
         newokbutton = new QPushButton(newcustom);
         newokbutton->setObjectName("newokbutton");
         newokbutton->setGeometry(QRect(480, 450, 101, 41));
@@ -924,7 +916,7 @@ public:
         delticket->setObjectName("delticket");
         layoutWidget9 = new QWidget(delticket);
         layoutWidget9->setObjectName("layoutWidget9");
-        layoutWidget9->setGeometry(QRect(40, 40, 231, 321));
+        layoutWidget9->setGeometry(QRect(110, 50, 411, 471));
         delticketlyo = new QGridLayout(layoutWidget9);
         delticketlyo->setObjectName("delticketlyo");
         delticketlyo->setContentsMargins(0, 0, 0, 0);
@@ -1006,38 +998,6 @@ public:
 
         deletelayout->addWidget(delticket, 0, 0, 2, 1);
 
-        delairline = new QGroupBox(layoutWidget8);
-        delairline->setObjectName("delairline");
-        label_2 = new QLabel(delairline);
-        label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(60, 80, 221, 41));
-
-        deletelayout->addWidget(delairline, 0, 1, 1, 1);
-
-        delairplane = new QGroupBox(layoutWidget8);
-        delairplane->setObjectName("delairplane");
-        label_3 = new QLabel(delairplane);
-        label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(70, 90, 221, 41));
-
-        deletelayout->addWidget(delairplane, 1, 1, 1, 1);
-
-        delcustomer = new QGroupBox(layoutWidget8);
-        delcustomer->setObjectName("delcustomer");
-        label = new QLabel(delcustomer);
-        label->setObjectName("label");
-        label->setGeometry(QRect(60, 80, 221, 41));
-
-        deletelayout->addWidget(delcustomer, 2, 0, 1, 1);
-
-        delairway = new QGroupBox(layoutWidget8);
-        delairway->setObjectName("delairway");
-        label_4 = new QLabel(delairway);
-        label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(70, 80, 221, 41));
-
-        deletelayout->addWidget(delairway, 2, 1, 1, 1);
-
         stackedWidget->addWidget(deletepage);
 
         showlayout->addWidget(stackedWidget, 0, 0, 1, 1);
@@ -1072,9 +1032,9 @@ public:
         retranslateUi(FlightManager);
         QObject::connect(list, &QListWidget::currentRowChanged, stackedWidget, &QStackedWidget::setCurrentIndex);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(0);
         searchtoolbox->setCurrentIndex(0);
-        inserttab->setCurrentIndex(1);
+        inserttab->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(FlightManager);
@@ -1189,14 +1149,6 @@ public:
         delticketshipabl->setText(QCoreApplication::translate("FlightManager", "\350\210\261\344\275\215\347\255\211\347\272\247", nullptr));
         delticketship->setText(QCoreApplication::translate("FlightManager", "ship", nullptr));
         delticketokbtn->setText(QCoreApplication::translate("FlightManager", "\347\241\256\350\256\244\345\210\240\351\231\244", nullptr));
-        delairline->setTitle(QCoreApplication::translate("FlightManager", "\345\210\240\351\231\244\350\210\252\347\272\277\344\277\241\346\201\257", nullptr));
-        label_2->setText(QCoreApplication::translate("FlightManager", "\346\212\261\346\255\211\357\274\214\346\255\244\345\212\237\350\203\275\346\255\243\345\244\204\344\272\216\346\212\242\344\277\256\345\275\223\344\270\255\343\200\202\343\200\202\343\200\202", nullptr));
-        delairplane->setTitle(QCoreApplication::translate("FlightManager", "\345\210\240\351\231\244\345\256\242\346\234\272\344\277\241\346\201\257", nullptr));
-        label_3->setText(QCoreApplication::translate("FlightManager", "\346\212\261\346\255\211\357\274\214\346\255\244\345\212\237\350\203\275\346\255\243\345\244\204\344\272\216\346\212\242\344\277\256\345\275\223\344\270\255\343\200\202\343\200\202\343\200\202", nullptr));
-        delcustomer->setTitle(QCoreApplication::translate("FlightManager", "\345\210\240\351\231\244\345\256\242\346\210\267\344\277\241\346\201\257", nullptr));
-        label->setText(QCoreApplication::translate("FlightManager", "\346\212\261\346\255\211\357\274\214\346\255\244\345\212\237\350\203\275\346\255\243\345\244\204\344\272\216\346\212\242\344\277\256\345\275\223\344\270\255\343\200\202\343\200\202\343\200\202", nullptr));
-        delairway->setTitle(QCoreApplication::translate("FlightManager", "\345\210\240\351\231\244\350\210\252\347\251\272\345\205\254\345\217\270\344\277\241\346\201\257", nullptr));
-        label_4->setText(QCoreApplication::translate("FlightManager", "\346\212\261\346\255\211\357\274\214\346\255\244\345\212\237\350\203\275\346\255\243\345\244\204\344\272\216\346\212\242\344\277\256\345\275\223\344\270\255\343\200\202\343\200\202\343\200\202", nullptr));
         searchmenu->setTitle(QCoreApplication::translate("FlightManager", "\346\237\245\350\257\242", nullptr));
         insertmeun->setTitle(QCoreApplication::translate("FlightManager", "\346\267\273\345\212\240", nullptr));
         updatemenu->setTitle(QCoreApplication::translate("FlightManager", "\346\233\264\346\226\260", nullptr));
