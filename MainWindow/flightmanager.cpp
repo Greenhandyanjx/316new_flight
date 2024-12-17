@@ -150,6 +150,7 @@ void FlightManager::Init()
     for (int i = 0; i < m_TicketInfo.size(); ++i)
     {
         ui->chgtktnocom->addItem(QString::number(m_TicketInfo[i].order_id) );
+        //删除那个在这里!!!!!!
         ui->delticketno->addItem(QString::number(m_TicketInfo[i].order_id) );
     }
     TicketValueChangeOnUpdate(0);
@@ -476,7 +477,7 @@ void FlightManager::LineChangeOnPlane(const int& index)
     ui->chgplanelinearr->setText(m_LineInfo[index].arrive_city);
     ui->chgplanelinetime->setText(m_LineInfo[index].departure_date + "\n" + m_LineInfo[index].departure_time);
 }
-//
+//getticket 票票票
 bool FlightManager::GetTicket()
 {
     QString date = QDate::currentDate().toString("yyyy-MM-dd");
@@ -503,7 +504,7 @@ bool FlightManager::GetTicket()
     {
         Ticket ticket;
         ticket.order_id = sqlquery->value("order_id").toString().toInt();
-        ticket.customer_name = sqlquery->value("customername").toString();
+        ticket.customer_name = sqlquery->value("customer_name").toString();
         ticket.airline_no = sqlquery->value("airlineno").toString().toInt();
         ticket.departure = sqlquery->value("departurecity").toString();
         ticket.arrive = sqlquery->value("arrivecity").toString();
@@ -1225,6 +1226,8 @@ void FlightManager::on_delticketokbtn_clicked()
     QString sql = "DELETE FROM ticket WHERE order_id = " + ticket_no;
 
     QString rtn = m_Connect->DeletValue(sql);
+    GetTicket();
+    Getdelno();
     if (rtn == "Success")
         QMessageBox(QMessageBox::Information, "成功", "删除成功", QMessageBox::Ok).exec();
     else
@@ -1371,6 +1374,7 @@ void FlightManager::on_bktktokbtn_clicked()
 
     updateTicketNum();
     GetTicket();
+    Getdelno();
     QMessageBox::information(this, "成功", "购票成功！");
 
 
@@ -1442,6 +1446,7 @@ void FlightManager::updateTicketPrice()
         ui->bktktnum->setText(QString("未选择正确的航线"));
         return;
     }
+    //因为这个数组是从0开始存的所以要在那个框的第一个数字那里减一,下标从0开始.
     int lineIndex = str.toInt()-1;
     QString discount = ui->bktktdiscot->text();
     double discot = (100 - ui->bktktdiscot->text().toInt()) * 0.01;
@@ -1534,7 +1539,7 @@ void FlightManager::on_bktktdepcy_currentTextChanged(const QString &arg1)
         AirLine airline=m_LineInfo[k];
         if (departure.compare(airline.departure_city) == 0 && arrive.compare(airline.arrive_city) == 0)
         {
-            ui->bktktline->addItem(QString::number(k+1)+","+airline.airway_short_name);
+            ui->bktktline->addItem(QString::number(k+1)+","+airline.airway_short_name);//因为表中使用的是1-...所以使用从1开始的下标
         }
     }
     updateTicketPrice();
@@ -1546,5 +1551,10 @@ void FlightManager::on_bktktship_activated(int index)
 {
     updateTicketPrice();
     updateTicketNum();
+}
+void FlightManager::Getdelno(){
+    if(ui->delticketno->currentText().size()!=0)ui->delticketno->clear();
+    for(int i=0;i<m_TicketInfo.size();i++)
+    ui->delticketno->addItem(QString::number(m_TicketInfo[i].order_id) );
 }
 

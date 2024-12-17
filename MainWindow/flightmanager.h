@@ -128,6 +128,8 @@ private slots:
 
     void updateTicketNum();
 
+    void Getdelno();
+
 private:
     struct Customer
     {
