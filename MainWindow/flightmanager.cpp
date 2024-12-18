@@ -994,7 +994,7 @@ void FlightManager::on_chgtktokbtn_clicked()
     int book_num = ui->chgtktnocom->currentText().toInt();
     int line = ui->chgtktlinecom->currentText().toInt();
     int ship = ui->chgtktshipcom->currentIndex() + 1;
-
+    book_num -= 1001;
     bool chg_line = line != m_TicketInfo[book_num].airline_no ? true : false;
     bool chg_ship = ship != m_TicketInfo[book_num].ship_no ? true :false;
 
@@ -1005,7 +1005,7 @@ void FlightManager::on_chgtktokbtn_clicked()
     }
     else
     {
-        QString search_line_ship = "SELECT * FROM vi_line_4_ticketchange WHERE airlineno =" + QString::number(line);
+        QString search_line_ship = "SELECT * FROM vi_ticket_change WHERE airlineno =" + QString::number(line);
         QSqlQuery* sqlquery = new QSqlQuery;
         try
         {
