@@ -872,7 +872,7 @@ void FlightManager::on_chgctmtypchk_stateChanged(int arg1)
         ui->chgctmtypcom->setEnabled(false);
 }
 
-void FlightManager::on_chgctmokbtn_clicked()
+void FlightManager::on_chgctmokbtn_clicked()//更新用户信息
 {
     bool chg_name = ui->chgctmnamechk->isChecked();
     bool chg_phone = ui->chgctmphechk->isChecked();
@@ -891,11 +891,10 @@ void FlightManager::on_chgctmokbtn_clicked()
     int type = ui->chgctmtypcom->currentIndex() + 1;
 
     QString ctmno = ui->chgctmselcom->currentText();
-    QString udtname = QString("UPDATE customer SET customername = '") + name + QString("' WHERE no = ") + ctmno;
-    QString udtphe = QString("UPDATE customer SET phonenum = '") + phone + QString("' WHERE no = ") + ctmno;
+    QString udtname = QString("UPDATE customer SET name = '") + name + QString("' WHERE no = ") + ctmno;
+    QString udtphe = QString("UPDATE customer SET phone = '") + phone + QString("' WHERE no = ") + ctmno;
     QString udtsex = QString("UPDATE customer SET sex = '") + sex + QString("' WHERE no = ") + ctmno;
-    QString udttye = QString("UPDATE customer SET customertypeno = '") + QString::number(type) + QString("' WHERE no = ") + ctmno;
-
+    QString udttye = QString("UPDATE customer SET type = '") + QString::number(type) + QString("' WHERE no = ") + ctmno;
     if (!chg_name)
         udtname = "";
     if (!chg_phone)
@@ -904,6 +903,10 @@ void FlightManager::on_chgctmokbtn_clicked()
         udtsex = "";
     if (!chg_tye)
         udttye = "";
+    qDebug()<<"sqlname"<<udtname;
+    qDebug()<<"sqlphe"<<udtphe;
+    qDebug()<<"sqlsex"<<udtsex;
+    qDebug()<<"sqltype"<<udttye;
 
     QVector<QString> udtsql;
     udtsql.append(udtname);
@@ -941,7 +944,31 @@ void FlightManager::on_chgplaneokbtn_clicked()
 {
     QString plane_no = ui->chgplaneselcom->currentText();
     QString chg_line = ui->chgplanelinecom->currentText();
-    QString sql = "UPDATE airplane SET airlineno = " + chg_line + " WHERE airplaneno = " + plane_no;
+
+    QSqlQuery *qsql  = new QSqlQuery;
+    QString search_sql = "SELECT * FROM vi_airline_info WHERE airlineno = " + chg_line;
+    try
+    {
+        if (!m_Connect->SelectResult(qsql, search_sql))
+            throw false;
+    }
+    catch (bool&)
+    {
+        QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
+        return;
+    }
+    qsql->next();
+    QString depareture_city  = qsql->value("departurecity").toString();
+    QString arrival_city = qsql->value("arrivecity").toString();
+    QString departure_date = qsql ->value("departuredate").toString();
+    QString departure_time = qsql ->value("departuretime").toString();
+    QString sql = "UPDATE vi_plane_line_info SET airlineno = " + chg_line
+                  + " ,departurecity = '" + depareture_city
+                  + "' ,arrivecity = '" + arrival_city
+                  + "',departuredate = '" + departure_date
+                  + "',departuretime = '" + departure_time
+                  + "' WHERE airplaneno = " + plane_no;
+    qDebug()<<"sql:"<<sql;
 
     QVector<QString> plane_sql;
     plane_sql.append(sql);
@@ -960,7 +987,8 @@ void FlightManager::on_chgtypselcom_activated(const QString &arg1)
 void FlightManager::on_chgtypokbtn_clicked()
 {
     int discount = ui->chgtypinline->text().toInt();
-    if (discount < 0 || discount > 90)
+    qDebug()<<discount<<ui->chgtypselcom->currentText();
+    if (discount <= 0 || discount > 90)
     {
         QMessageBox(QMessageBox::Critical, "违法输入", "只可以输入0-90之间的数字", QMessageBox::Ok).exec();
         return;
@@ -969,6 +997,7 @@ void FlightManager::on_chgtypokbtn_clicked()
     {
         QString sql = "UPDATE customer_type SET discountpercent = " + QString::number(discount)
                 + " WHERE typename = '" + ui->chgtypselcom->currentText() + "'";
+        qDebug()<<sql;
         QVector<QString> discount_sql;
         discount_sql.append(sql);
         QString rtn = m_Connect->UpdateValue(discount_sql);
@@ -993,10 +1022,32 @@ void FlightManager::on_chgtktokbtn_clicked()
 {
     int book_num = ui->chgtktnocom->currentText().toInt();
     int line = ui->chgtktlinecom->currentText().toInt();
-    int ship = ui->chgtktshipcom->currentIndex() + 1;
-    book_num -= 1001;
-    bool chg_line = line != m_TicketInfo[book_num].airline_no ? true : false;
-    bool chg_ship = ship != m_TicketInfo[book_num].ship_no ? true :false;
+    int ship = ui->chgtktshipcom->currentIndex() ;
+    //chk if changed
+    //查询对饮班次信息，并且判定是否有进行更改，两个维度，ship 和 route
+    QString check_sql = "SELECT * FROM vi_ticket_change WHERE order_id = " + QString::number(book_num);
+    QSqlQuery *sqlq = new QSqlQuery;
+    try
+    {
+        if (!m_Connect->SelectResult(sqlq, check_sql))
+            throw false;
+    }
+    catch (bool&)
+    {
+        QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
+        return;
+    }
+    sqlq->next();
+    bool chg_line = (line != sqlq->value("airlineno").toInt()) ? true : false;
+    bool chg_ship = ((ship+567) != (sqlq->value("shipno").toInt())) ? true :false;
+    // qDebug()<<"line "<<line<< "line in database "<<sqlq->value("airlineno").toInt();
+    // qDebug()<<"ship"<<ship+567<<"ship in database "<<sqlq->value("shipno").toInt();
+    // //qDebug()<<"test current :"<<book_num<<" "<<line<<" "<<ship<<" "<<"in database"<<sqlq->value("airlineno").toInt()<<" "<<sqlq->value("shipno").toInt();
+    // qDebug()<<chg_line<<" "<<chg_ship;
+    // qDebug()<<"test Break";
+
+    delete sqlq;
+    sqlq = NULL;
 
     if (!chg_line && !chg_ship)
     {
@@ -1005,7 +1056,9 @@ void FlightManager::on_chgtktokbtn_clicked()
     }
     else
     {
-        QString search_line_ship = "SELECT * FROM vi_ticket_change WHERE airlineno =" + QString::number(line);
+        QString search_line_ship = "SELECT * FROM ticket WHERE order_id =" + QString::number(book_num);
+        qDebug()<<"search_line_ship"<<search_line_ship;
+
         QSqlQuery* sqlquery = new QSqlQuery;
         try
         {
@@ -1019,41 +1072,71 @@ void FlightManager::on_chgtktokbtn_clicked()
         }
 
         sqlquery->next();
-        int departure_country = sqlquery->value("departurecountry").toString().toInt();
-        QString departure_city = sqlquery->value("departurecity").toString();
-        int arrive_country = sqlquery->value("arrivecountry").toString().toInt();
-        QString arrive_city = sqlquery->value("arrivecity").toString();
-        int price = 0;
+        //int departure_country = sqlquery->value("departurecountry").toString().toInt();
+        QString departure_country = sqlquery->value("departure_country").toString();
+        QString departure_city = sqlquery->value("departure_city").toString();
+        //int arrive_country = sqlquery->value("arrivecountry").toString().toInt();
+        QString arrive_country = sqlquery->value("arrival_country").toString();
+        QString arrive_city = sqlquery->value("arrival_city").toString();
+        qDebug()<<"citys:d/a"<<departure_city<<" "<<arrive_city;
+
+        int price = sqlquery->value("total_price").toInt();
+
+        QSqlQuery *Psql = new QSqlQuery;
+        QString search_price_sql = "SELECT * FROM vi_airline_info WHERE airlineno = " + QString::number(line);
+        try
+        {
+            if (!m_Connect->SelectResult(Psql, search_price_sql))
+                throw false;
+        }
+        catch (bool&)
+        {
+            QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
+            return;
+        }
+        Psql->next();
+        int discountrate = sqlquery->value("discount_rate").toString().toInt();
         switch (ship)
         {
-        case 1: price = sqlquery->value("deluxeclassprice").toString().toInt(); break;
-        case 2: price = sqlquery->value("businessclassprice").toString().toInt(); break;
-        case 3: price = sqlquery->value("economyclassprice").toString().toInt(); break;
+        case 0: price = Psql->value("deluxeclassprice").toString().toInt(); break;
+        case 1: price = Psql->value("businessclassprice").toString().toInt(); break;
+        case 2: price = Psql->value("economyclassprice").toString().toInt(); break;
         }
 
-        delete sqlquery;
-        sqlquery = NULL;
+
+
 
         QVector<QString> vec_sql;
-
         if (!chg_line && chg_ship)
         {
-            QString ship_sql = "UPDATE bookticket SET shipno = " + QString::number(ship)
-                    + ", ticketprice = " + QString::number(price) + " WHERE booknum = "
+            QString ship_sql = "UPDATE ticket SET grade = " + QString::number(567+ship)
+                    + ", ticket_price = " + QString::number(price)
+                               + ", total_price = " + QString::number(price*(double)(100-discountrate)/100.0)
+                    + " WHERE order_id = "
                     + QString::number(book_num);
             vec_sql.append(ship_sql);
+            qDebug()<<"ship sql:"<<ship_sql;
         }
         else
         {
-            QString line_sql = "UPDATE bookticket SET airlineno = " + QString::number(line)
-                    + ", departurecountry = " + QString::number(departure_country)
-                    + ", departurecity = '" + departure_city
-                    + "', arrivecountry = " + QString::number(arrive_country)
-                    + ", arrivecity = '" + arrive_city
-                    + "', shipno = " + QString::number(ship)
-                    + ", ticketprice = " + QString::number(price)
-                    + " WHERE booknum = " + QString::number(book_num);
+            QString route = sqlquery->value("route").toString();
+            qDebug()<<"route"<<route;
+            QStringList parts = route.split(',');
+            //int airlineno = parts[0].toInt();
+            QString shipname  = parts[1];
+
+            QString line_sql = "UPDATE ticket SET route = '" + QString::number(line) + ","+shipname+"'"
+                    + ", departure_country = '" + departure_country//QString::number(departure_country)
+                    + "', departure_city = '" + departure_city
+                    + "', arrival_country = '" + arrive_country//QString::number(arrive_country)
+                    + "', arrival_city = '" + arrive_city
+                    + ", ticket_price = " + QString::number(price)
+                    + ", total_price = " + QString::number(price*(double)(100-discountrate)/100.0)
+                    //+ "', shipno = " + QString::number(ship)
+                    //+ ", ticketprice = " + QString::number(price)
+                    + "' WHERE order_id = " + QString::number(book_num);
             vec_sql.append(line_sql);
+            qDebug()<<"sql:"<<line_sql;
         }
 
         QString rtn = m_Connect->UpdateValue(vec_sql);
@@ -1061,7 +1144,10 @@ void FlightManager::on_chgtktokbtn_clicked()
             QMessageBox(QMessageBox::Information, "成功", "更新成功", QMessageBox::Ok).exec();
         else
             QMessageBox(QMessageBox::Critical, "更新错误", rtn, QMessageBox::Ok).exec();
+        delete sqlquery;
+        sqlquery = NULL;
     }
+
 }
 
 void FlightManager::on_chglinecmpcek_stateChanged(int arg1)
@@ -1168,8 +1254,9 @@ void FlightManager::on_chglineokbtn_clicked()
         indate[i] = dt;
         ++i;
     }
+    qDebug()<<"indate 0 "<<indate[0]<<"indate 1 "<<indate[1]<<"indate 2" <<indate[2];
 
-    QString date = QString("20") + indate[2] + "-" + indate[0] + "-" + indate[1];
+    QString date = indate[0] + "-" + indate[1] + "-" + indate[2];
 
     QString line_no = ui->chglinenocom->currentText();
     QString udtway = QString("UPDATE airline SET airwayshortname = '") + way + "' WHERE airlineno = " + line_no;
