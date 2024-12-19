@@ -1130,7 +1130,7 @@ void FlightManager::on_chgtktokbtn_clicked()
                     + "', departure_city = '" + departure_city
                     + "', arrival_country = '" + arrive_country//QString::number(arrive_country)
                     + "', arrival_city = '" + arrive_city
-                    + ", ticket_price = " + QString::number(price)
+                    + "', ticket_price = " + QString::number(price)
                     + ", total_price = " + QString::number(price*(double)(100-discountrate)/100.0)
                     //+ "', shipno = " + QString::number(ship)
                     //+ ", ticketprice = " + QString::number(price)
