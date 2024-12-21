@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -30,6 +31,8 @@ public:
     QPushButton *quitbutton;
     QLabel *titlelabel;
     QPushButton *enrollbut;
+    QCheckBox *ckbuser;
+    QCheckBox *ckbmanager;
 
     void setupUi(QDialog *Login)
     {
@@ -79,6 +82,12 @@ public:
         enrollbut->setObjectName("enrollbut");
         enrollbut->setGeometry(QRect(110, 260, 91, 41));
         enrollbut->setFont(font1);
+        ckbuser = new QCheckBox(Login);
+        ckbuser->setObjectName("ckbuser");
+        ckbuser->setGeometry(QRect(140, 230, 60, 16));
+        ckbmanager = new QCheckBox(Login);
+        ckbmanager->setObjectName("ckbmanager");
+        ckbmanager->setGeometry(QRect(260, 230, 60, 16));
 
         retranslateUi(Login);
 
@@ -94,6 +103,8 @@ public:
         quitbutton->setText(QCoreApplication::translate("Login", "\351\200\200\345\207\272", nullptr));
         titlelabel->setText(QCoreApplication::translate("Login", "\350\210\252\347\251\272\344\277\241\346\201\257\347\256\241\347\220\206\347\263\273\347\273\237", nullptr));
         enrollbut->setText(QCoreApplication::translate("Login", "\346\263\250\345\206\214", nullptr));
+        ckbuser->setText(QCoreApplication::translate("Login", "user", nullptr));
+        ckbmanager->setText(QCoreApplication::translate("Login", "manager", nullptr));
     } // retranslateUi
 
 };

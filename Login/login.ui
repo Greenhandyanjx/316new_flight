@@ -19,7 +19,7 @@
    <string>316航空登陆界面</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../resourse.qrc">
+   <iconset>
     <normaloff>:/images/images/airplane.png</normaloff>:/images/images/airplane.png</iconset>
   </property>
   <widget class="QLabel" name="accountlabel">
@@ -159,10 +159,34 @@
     <string>注册</string>
    </property>
   </widget>
+  <widget class="QCheckBox" name="ckbuser">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>230</y>
+     <width>60</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>user</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="ckbmanager">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>230</y>
+     <width>60</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>manager</string>
+   </property>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="../resourse.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
