@@ -19,7 +19,7 @@ FlightManager::FlightManager(QWidget *parent) :
         qDebug() << "Warning: City info is empty during initialization!";
     }
     setObjectName("FilghtManager");
-    setWindowTitle("航天信息管理系统");
+    setWindowTitle("316航天信息管理系统");
 
     m_Connect = ConnectDataBase::GetInstance();
 
@@ -30,7 +30,7 @@ FlightManager::FlightManager(QWidget *parent) :
     connect(ui->insertaction, SIGNAL(triggered(bool)), this, SLOT(turn2insert()) );
     connect(ui->updateaction, SIGNAL(triggered(bool)), this, SLOT(turn2update()) );
     connect(ui->deleteaction, SIGNAL(triggered(bool)), this, SLOT(turn2delete()) );
-
+    connect(ui->quitacion,SIGNAL(triggered(bool)),this,SLOT(turn2quit()));
 }
 
 FlightManager::~FlightManager()
@@ -418,7 +418,6 @@ void FlightManager::PlaneValueChange(const int& index)
     ui->chgplanearr->setText(m_PlaneInfo[index].arrive);
     ui->chgplanenotime->setText(m_PlaneInfo[index].date + "\n" + m_PlaneInfo[index].time);
 }
-
 bool FlightManager::GetAirLineInfo()
 {
     QString date = QDate::currentDate().toString("yyyy-MM-dd");
@@ -633,7 +632,7 @@ void FlightManager::SetCityOnBook(QComboBox* combobox, const QString &index)
 }
 
 //
-
+//查询修改
 void FlightManager::ShowAirLineOnSearch()
 {
     ui->searchairlineshow->setRowCount(m_LineInfo.size());
@@ -660,6 +659,7 @@ void FlightManager::ShowAirLineOnSearch()
         ui->searchairlineshow->setItem(i, 18, new QTableWidgetItem(QString::number(m_LineInfo[i].deluxe_rest)) );
     }
 }
+//
 
 void FlightManager::ShowCustomerOnSearch()
 {

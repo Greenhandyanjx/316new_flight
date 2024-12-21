@@ -10,7 +10,7 @@ Login::Login(QWidget *parent) :
     ui(new Ui::Login)
 {
     ui->setupUi(this);
-    setWindowTitle("航空信息管理系统登陆");
+    setWindowTitle("316航空信息管理系统登陆");
     ui->passwordtext->setEchoMode(QLineEdit::Password);
     m_Connect = ConnectDataBase::GetInstance();
     //当自定义信号发出时，关闭此对话框并销毁该对话框的内存

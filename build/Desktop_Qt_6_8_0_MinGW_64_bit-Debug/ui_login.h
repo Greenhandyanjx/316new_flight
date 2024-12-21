@@ -10,6 +10,7 @@
 #define UI_LOGIN_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
@@ -35,16 +36,23 @@ public:
         if (Login->objectName().isEmpty())
             Login->setObjectName("Login");
         Login->resize(440, 342);
+        QFont font;
+        font.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        Login->setFont(font);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/images/images/airplane.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        Login->setWindowIcon(icon);
         accountlabel = new QLabel(Login);
         accountlabel->setObjectName("accountlabel");
-        accountlabel->setGeometry(QRect(90, 120, 51, 31));
-        QFont font;
-        font.setPointSize(17);
-        accountlabel->setFont(font);
+        accountlabel->setGeometry(QRect(80, 120, 61, 31));
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font1.setPointSize(17);
+        accountlabel->setFont(font1);
         passwordlabel = new QLabel(Login);
         passwordlabel->setObjectName("passwordlabel");
-        passwordlabel->setGeometry(QRect(90, 170, 41, 41));
-        passwordlabel->setFont(font);
+        passwordlabel->setGeometry(QRect(80, 170, 51, 41));
+        passwordlabel->setFont(font1);
         accounttext = new QLineEdit(Login);
         accounttext->setObjectName("accounttext");
         accounttext->setGeometry(QRect(150, 120, 151, 24));
@@ -54,22 +62,23 @@ public:
         loginbutton = new QPushButton(Login);
         loginbutton->setObjectName("loginbutton");
         loginbutton->setGeometry(QRect(220, 260, 91, 41));
-        loginbutton->setFont(font);
+        loginbutton->setFont(font1);
         quitbutton = new QPushButton(Login);
         quitbutton->setObjectName("quitbutton");
         quitbutton->setGeometry(QRect(330, 260, 91, 41));
-        quitbutton->setFont(font);
+        quitbutton->setFont(font1);
         titlelabel = new QLabel(Login);
         titlelabel->setObjectName("titlelabel");
         titlelabel->setGeometry(QRect(90, 10, 281, 81));
-        QFont font1;
-        font1.setPointSize(25);
-        titlelabel->setFont(font1);
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font2.setPointSize(25);
+        titlelabel->setFont(font2);
         titlelabel->setTextFormat(Qt::TextFormat::RichText);
         enrollbut = new QPushButton(Login);
         enrollbut->setObjectName("enrollbut");
         enrollbut->setGeometry(QRect(110, 260, 91, 41));
-        enrollbut->setFont(font);
+        enrollbut->setFont(font1);
 
         retranslateUi(Login);
 
@@ -78,7 +87,7 @@ public:
 
     void retranslateUi(QDialog *Login)
     {
-        Login->setWindowTitle(QCoreApplication::translate("Login", "Login", nullptr));
+        Login->setWindowTitle(QCoreApplication::translate("Login", "316\350\210\252\347\251\272\347\231\273\351\231\206\347\225\214\351\235\242", nullptr));
         accountlabel->setText(QCoreApplication::translate("Login", "\350\264\246\345\217\267", nullptr));
         passwordlabel->setText(QCoreApplication::translate("Login", "\345\257\206\347\240\201", nullptr));
         loginbutton->setText(QCoreApplication::translate("Login", "\347\231\273\351\231\206", nullptr));

@@ -11,12 +11,15 @@
 
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCalendarWidget>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -30,6 +33,7 @@
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTimeEdit>
 #include <QtWidgets/QToolBox>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -58,6 +62,25 @@ public:
     QWidget *searchpage;
     QToolBox *searchtoolbox;
     QWidget *searchairline;
+    QStackedWidget *searchairWG;
+    QWidget *page_5;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout_3;
+    QVBoxLayout *verticalLayout_4;
+    QLabel *label_4;
+    QVBoxLayout *verticalLayout_3;
+    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_3;
+    QComboBox *comboBox_2;
+    QHBoxLayout *horizontalLayout;
+    QLabel *label_2;
+    QComboBox *comboBox;
+    QPushButton *pushButton;
+    QVBoxLayout *verticalLayout;
+    QLabel *label;
+    QCalendarWidget *calendarWidget;
+    QWidget *page_6;
     QTableWidget *searchairlineshow;
     QWidget *searchcustomer;
     QTableWidget *searchcustomershow;
@@ -227,6 +250,9 @@ public:
         if (FlightManager->objectName().isEmpty())
             FlightManager->setObjectName("FlightManager");
         FlightManager->resize(865, 652);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/images/images/airplane.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        FlightManager->setWindowIcon(icon);
         personsearch = new QAction(FlightManager);
         personsearch->setObjectName("personsearch");
         bookticketinsert = new QAction(FlightManager);
@@ -277,19 +303,340 @@ public:
         stackedWidget->addWidget(homepage);
         searchpage = new QWidget();
         searchpage->setObjectName("searchpage");
+        searchpage->setStyleSheet(QString::fromUtf8("#searchairline{\n"
+"\n"
+"border-image:url(:/images/images/background1.jpg);\n"
+"\n"
+"}\n"
+"QComboBox {\n"
+"    border: 1px solid gray;\n"
+"    border-radius: 3px;\n"
+"    padding: 1px 18px 1px 3px;\n"
+"    min-width: 6em;\n"
+"}\n"
+"\n"
+"QComboBox:editable {\n"
+"    background: white;\n"
+"}\n"
+"\n"
+"QComboBox:!editable, QComboBox::drop-down:editable {\n"
+"     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                 stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,\n"
+"                                 stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);\n"
+"}\n"
+"\n"
+"/* QComboBox gets the \"on\" state when the popup is open */\n"
+"QComboBox:!editable:on, QComboBox::drop-down:editable:on {\n"
+"    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                stop: 0 #D3D3D3, stop: 0.4 #D8D8D8,\n"
+"                                stop: 0.5 #DDDDDD, stop: 1.0 #E1E1E1);\n"
+"}\n"
+"\n"
+"QComboBox:on { /* shift the text when the popup opens */\n"
+"    padding-top: 3px;\n"
+"    pa"
+                        "dding-left: 4px;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    subcontrol-origin: padding;\n"
+"    subcontrol-position: top right;\n"
+"    width: 15px;\n"
+"\n"
+"    border-left-width: 1px;\n"
+"    border-left-color: darkgray;\n"
+"    border-left-style: solid; /* just a single line */\n"
+"    border-top-right-radius: 3px; /* same radius as the QComboBox */\n"
+"    border-bottom-right-radius: 3px;\n"
+"}\n"
+"\n"
+"/*QComboBox::down-arrow {\n"
+"    image: url(:/images/SVG/chevron-down.svg);\n"
+"}*/\n"
+"\n"
+"QComboBox::down-arrow:on { /* shift the arrow when popup is open */\n"
+"    top: 1px;\n"
+"    left: 1px;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {\n"
+"    border: 2px solid darkgray;\n"
+"    selection-background-color: lightgray;\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,\n"
+"                                      stop:0 #616161, stop: 0.5 #505050,\n"
+"                                      stop: 0.6 #434343, stop:1 #656565);\n"
+"    color: white;\n"
+""
+                        "    padding-left: 4px;\n"
+"    border: 1px solid #6c6c6c;\n"
+"}\n"
+"\n"
+"QHeaderView::section:checked\n"
+"{\n"
+"    background-color: rgb(0, 132, 255);\n"
+"}\n"
+"\n"
+"/* style the sort indicator */\n"
+"/*QHeaderView::down-arrow {\n"
+"    image: url(down_arrow.png);\n"
+"}\n"
+"\n"
+"QHeaderView::up-arrow {\n"
+"    image: url(up_arrow.png);\n"
+"}*/\n"
+"\n"
+"QLineEdit {\n"
+"    border: 1px solid gray;\n"
+"    border-radius: 4px;\n"
+"    padding: 0 8px;\n"
+"    background: rgb(234, 234, 234);\n"
+"    selection-background-color: darkgray;\n"
+"}\n"
+"\n"
+"QLineEdit[echoMode=\"2\"] {\n"
+"    lineedit-password-character: 42;\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"QMenuBar {\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,\n"
+"                                      stop:0 rgb(84, 209, 255), stop:1 rgb(0, 170, 255));\n"
+"    spacing: 3px; /* spacing between menu bar items */\n"
+"}\n"
+"\n"
+"QMenuBar::item {\n"
+"    padding: 1px 4px;\n"
+"    background: transparent;\n"
+"    border-radius: 3px;\n"
+"}\n"
+""
+                        "\n"
+"QMenuBar::item:selected { /* when selected using mouse or keyboard */\n"
+"    background: rgb(2, 242, 255);\n"
+"}\n"
+"\n"
+"QMenuBar::item:pressed {\n"
+"    background: rgb(255, 255, 255);\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"    border: 2px solid #8f8f91;\n"
+"    border-radius: 4px;\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"    min-width: 80px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
+"}\n"
+"\n"
+"QPushButton:flat {\n"
+"    border: none; /* no border for a flat push button */\n"
+"}\n"
+"\n"
+"QCalendarWidget\n"
+"{\n"
+"	background-color: grey; \n"
+"	selection-background-color: rgb(64, 64, 64); \n"
+"	selection-color: rgb(0, 255, 0); \n"
+"}\n"
+"\n"
+"QPushButton:default {\n"
+"    border-color: navy; /* make the default button prominent */\n"
+"}\n"
+"\n"
+"QPushButton{"
+                        "\n"
+"\n"
+"color:rgb(0, 0, 0)\n"
+"}\n"
+"\n"
+"QInputDialog{\n"
+"\n"
+"color:rgb(0, 0, 0);\n"
+"\n"
+"}\n"
+"\n"
+"QMenu {\n"
+"    background-color: rgb(160, 242, 255); /* sets background of the menu */\n"
+"    border: 1px solid black;\n"
+"}\n"
+"\n"
+"QMenu::item {\n"
+"    /* sets background of menu item. set this to something non-transparent\n"
+"        if you want menu color and menu item color to be different */\n"
+"    background-color: transparent;\n"
+"}\n"
+"\n"
+"QMenu::item:selected { /* when user selects item using mouse or keyboard */\n"
+"    background-color: rgb(28, 176, 255);\n"
+"}\n"
+"QLable{\n"
+"	color:rgb(255, 255, 255);\n"
+"}\n"
+""));
         searchtoolbox = new QToolBox(searchpage);
         searchtoolbox->setObjectName("searchtoolbox");
         searchtoolbox->setGeometry(QRect(0, 0, 661, 561));
         searchairline = new QWidget();
         searchairline->setObjectName("searchairline");
         searchairline->setGeometry(QRect(0, 0, 661, 503));
+        searchairWG = new QStackedWidget(searchairline);
+        searchairWG->setObjectName("searchairWG");
+        searchairWG->setGeometry(QRect(0, 0, 661, 231));
+        searchairWG->setStyleSheet(QString::fromUtf8("#searchairWG{\n"
+"	font: 11pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
+"\n"
+"background:rgba(36, 36, 36,50);\n"
+"border-radius:8px;\n"
+"\n"
+"}"));
+        page_5 = new QWidget();
+        page_5->setObjectName("page_5");
+        widget = new QWidget(page_5);
+        widget->setObjectName("widget");
+        widget->setGeometry(QRect(20, 10, 641, 210));
+        horizontalLayout_3 = new QHBoxLayout(widget);
+        horizontalLayout_3->setObjectName("horizontalLayout_3");
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setObjectName("verticalLayout_4");
+        label_4 = new QLabel(widget);
+        label_4->setObjectName("label_4");
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font1.setPointSize(11);
+        label_4->setFont(font1);
+        label_4->setStyleSheet(QString::fromUtf8("#label_4 {\n"
+"\n"
+"color:rgb(255, 255, 255);\n"
+"\n"
+"}"));
+
+        verticalLayout_4->addWidget(label_4);
+
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setObjectName("verticalLayout_3");
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName("verticalLayout_2");
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        label_3 = new QLabel(widget);
+        label_3->setObjectName("label_3");
+        label_3->setFont(font1);
+        label_3->setStyleSheet(QString::fromUtf8("#label_3 {\n"
+"\n"
+"color:rgb(255, 255, 255);\n"
+"\n"
+"}"));
+
+        horizontalLayout_2->addWidget(label_3);
+
+        comboBox_2 = new QComboBox(widget);
+        comboBox_2->setObjectName("comboBox_2");
+
+        horizontalLayout_2->addWidget(comboBox_2);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_2);
+
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName("horizontalLayout");
+        label_2 = new QLabel(widget);
+        label_2->setObjectName("label_2");
+        label_2->setFont(font1);
+        label_2->setStyleSheet(QString::fromUtf8("#label_2 {\n"
+"\n"
+"color:rgb(255, 255, 255);\n"
+"\n"
+"}"));
+
+        horizontalLayout->addWidget(label_2);
+
+        comboBox = new QComboBox(widget);
+        comboBox->setObjectName("comboBox");
+
+        horizontalLayout->addWidget(comboBox);
+
+
+        verticalLayout_2->addLayout(horizontalLayout);
+
+
+        verticalLayout_3->addLayout(verticalLayout_2);
+
+
+        verticalLayout_4->addLayout(verticalLayout_3);
+
+        pushButton = new QPushButton(widget);
+        pushButton->setObjectName("pushButton");
+        pushButton->setFont(font1);
+
+        verticalLayout_4->addWidget(pushButton);
+
+
+        horizontalLayout_3->addLayout(verticalLayout_4);
+
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName("verticalLayout");
+        label = new QLabel(widget);
+        label->setObjectName("label");
+        label->setFont(font1);
+        label->setStyleSheet(QString::fromUtf8("#label {\n"
+"\n"
+"color:rgb(255, 255, 255);\n"
+"\n"
+"}"));
+
+        verticalLayout->addWidget(label);
+
+        calendarWidget = new QCalendarWidget(widget);
+        calendarWidget->setObjectName("calendarWidget");
+        calendarWidget->setStyleSheet(QString::fromUtf8("#calendarWidget {\n"
+"\n"
+"background:rgb(42, 42, 42);\n"
+"\n"
+"}"));
+
+        verticalLayout->addWidget(calendarWidget);
+
+
+        horizontalLayout_3->addLayout(verticalLayout);
+
+        searchairWG->addWidget(page_5);
+        page_6 = new QWidget();
+        page_6->setObjectName("page_6");
+        searchairWG->addWidget(page_6);
         searchairlineshow = new QTableWidget(searchairline);
         searchairlineshow->setObjectName("searchairlineshow");
-        searchairlineshow->setGeometry(QRect(0, 0, 661, 501));
+        searchairlineshow->setGeometry(QRect(0, 230, 661, 281));
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font2.setPointSize(11);
+        font2.setBold(false);
+        font2.setItalic(false);
+        searchairlineshow->setFont(font2);
+        searchairlineshow->setStyleSheet(QString::fromUtf8("#searchairlineshow{\n"
+"\n"
+"background:rgba(36, 36, 36,50);\n"
+"border-radius:8px;\n"
+"	font: 11pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
+"	\n"
+"	color: rgb(255, 255, 255);\n"
+"}"));
         searchtoolbox->addItem(searchairline, QString::fromUtf8("Page 1"));
         searchcustomer = new QWidget();
         searchcustomer->setObjectName("searchcustomer");
-        searchcustomer->setGeometry(QRect(0, 0, 100, 30));
+        searchcustomer->setGeometry(QRect(0, 0, 661, 503));
         searchcustomershow = new QTableWidget(searchcustomer);
         searchcustomershow->setObjectName("searchcustomershow");
         searchcustomershow->setGeometry(QRect(0, 0, 661, 501));
@@ -310,13 +657,13 @@ public:
         newnolabel = new QLabel(newcustom);
         newnolabel->setObjectName("newnolabel");
         newnolabel->setGeometry(QRect(190, 110, 81, 41));
-        QFont font1;
-        font1.setPointSize(14);
-        newnolabel->setFont(font1);
+        QFont font3;
+        font3.setPointSize(14);
+        newnolabel->setFont(font3);
         newnamelabel = new QLabel(newcustom);
         newnamelabel->setObjectName("newnamelabel");
         newnamelabel->setGeometry(QRect(190, 160, 101, 41));
-        newnamelabel->setFont(font1);
+        newnamelabel->setFont(font3);
         newnamedit = new QLineEdit(newcustom);
         newnamedit->setObjectName("newnamedit");
         newnamedit->setGeometry(QRect(330, 170, 131, 31));
@@ -324,35 +671,35 @@ public:
         newtypelabel = new QLabel(newcustom);
         newtypelabel->setObjectName("newtypelabel");
         newtypelabel->setGeometry(QRect(190, 210, 101, 41));
-        newtypelabel->setFont(font1);
+        newtypelabel->setFont(font3);
         newtypeselect = new QComboBox(newcustom);
         newtypeselect->setObjectName("newtypeselect");
         newtypeselect->setGeometry(QRect(330, 220, 131, 31));
         newidlabel = new QLabel(newcustom);
         newidlabel->setObjectName("newidlabel");
         newidlabel->setGeometry(QRect(190, 270, 91, 31));
-        newidlabel->setFont(font1);
+        newidlabel->setFont(font3);
         newidedit = new QLineEdit(newcustom);
         newidedit->setObjectName("newidedit");
         newidedit->setGeometry(QRect(330, 270, 131, 31));
         newsexlabel = new QLabel(newcustom);
         newsexlabel->setObjectName("newsexlabel");
         newsexlabel->setGeometry(QRect(190, 320, 111, 21));
-        newsexlabel->setFont(font1);
+        newsexlabel->setFont(font3);
         newsexshow = new QComboBox(newcustom);
         newsexshow->setObjectName("newsexshow");
         newsexshow->setGeometry(QRect(330, 320, 131, 31));
         newphonelabel = new QLabel(newcustom);
         newphonelabel->setObjectName("newphonelabel");
         newphonelabel->setGeometry(QRect(190, 370, 91, 31));
-        newphonelabel->setFont(font1);
+        newphonelabel->setFont(font3);
         newphonedit = new QLineEdit(newcustom);
         newphonedit->setObjectName("newphonedit");
         newphonedit->setGeometry(QRect(330, 370, 131, 31));
         newokbutton = new QPushButton(newcustom);
         newokbutton->setObjectName("newokbutton");
         newokbutton->setGeometry(QRect(480, 450, 101, 41));
-        newokbutton->setFont(font1);
+        newokbutton->setFont(font3);
         newnoshow = new QLabel(newcustom);
         newnoshow->setObjectName("newnoshow");
         newnoshow->setGeometry(QRect(330, 120, 121, 21));
@@ -1032,7 +1379,7 @@ public:
         retranslateUi(FlightManager);
         QObject::connect(list, &QListWidget::currentRowChanged, stackedWidget, &QStackedWidget::setCurrentIndex);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
         searchtoolbox->setCurrentIndex(0);
         inserttab->setCurrentIndex(0);
 
@@ -1042,7 +1389,7 @@ public:
 
     void retranslateUi(QMainWindow *FlightManager)
     {
-        FlightManager->setWindowTitle(QCoreApplication::translate("FlightManager", "MainWindow", nullptr));
+        FlightManager->setWindowTitle(QCoreApplication::translate("FlightManager", "316\350\210\252\347\251\272\345\205\254\345\217\270", nullptr));
         personsearch->setText(QCoreApplication::translate("FlightManager", "Person", nullptr));
         bookticketinsert->setText(QCoreApplication::translate("FlightManager", "Book Ticket", nullptr));
         ticketsearch->setText(QCoreApplication::translate("FlightManager", "Ticket", nullptr));
@@ -1053,6 +1400,11 @@ public:
         quitacion->setText(QCoreApplication::translate("FlightManager", "Quit System", nullptr));
         quitaction->setText(QCoreApplication::translate("FlightManager", "Quit System", nullptr));
         welcomelabel->setText(QCoreApplication::translate("FlightManager", "\346\254\242\350\277\216\344\275\277\347\224\250316\350\210\252\347\251\272\344\277\241\346\201\257\347\256\241\347\220\206\347\263\273\347\273\237\357\274\201", nullptr));
+        label_4->setText(QCoreApplication::translate("FlightManager", "316\350\210\252\347\251\272\345\205\254\345\217\270\344\270\272\346\202\250\346\234\215\345\212\241", nullptr));
+        label_3->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\345\234\260", nullptr));
+        label_2->setText(QCoreApplication::translate("FlightManager", "\347\233\256\347\232\204\345\234\260", nullptr));
+        pushButton->setText(QCoreApplication::translate("FlightManager", "\346\237\245\350\257\242", nullptr));
+        label->setText(QCoreApplication::translate("FlightManager", "\346\227\245\346\234\237", nullptr));
         searchtoolbox->setItemText(searchtoolbox->indexOf(searchairline), QCoreApplication::translate("FlightManager", "Page 1", nullptr));
         searchtoolbox->setItemText(searchtoolbox->indexOf(searchcustomer), QCoreApplication::translate("FlightManager", "Page 2", nullptr));
         newnolabel->setText(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\347\274\226\345\217\267", nullptr));
