@@ -296,6 +296,49 @@ public:
         listlayout->setContentsMargins(0, 0, 0, 0);
         list = new QListWidget(gridLayoutWidget);
         list->setObjectName("list");
+        QFont font;
+        font.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font.setPointSize(15);
+        list->setFont(font);
+        list->setStyleSheet(QString::fromUtf8("QListWidget\n"
+"{\n"
+"    border: 1px solid gray;   /* \350\276\271\347\225\214\347\272\277:\345\256\275\345\272\246\343\200\201\351\242\234\350\211\262 */\n"
+"    outline: none;\n"
+"    color: black;            /* \345\211\215\346\231\257\350\211\262:\346\226\207\345\255\227\351\242\234\350\211\262 */\n"
+"}\n"
+"\n"
+"QListWidget::item\n"
+"{\n"
+"    padding: 20px 67px;         /* \345\210\235\345\247\213\344\270\212\344\270\213\345\206\205\350\276\271\350\267\235\350\256\276\347\275\256\344\270\27210px */\n"
+"	font: 15px \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
+"    /*text-align: center;*/      /* \346\226\207\345\255\227\345\261\205\344\270\255\345\257\271\351\275\220 */\n"
+"    /*transition: all 0.5s ease;*/ /* \346\267\273\345\212\240\345\271\263\346\273\221\350\277\207\346\270\241\346\225\210\346\236\234 */\n"
+"}\n"
+"\n"
+"QListWidget::item:hover\n"
+"{\n"
+"    background: skyblue;\n"
+"    padding: 20px 67px;        /* \351\274\240\346\240\207\346\202\254\345\201\234\345\220\216\357\274\214\344"
+                        "\270\212\344\270\213\345\206\205\350\276\271\350\267\235\345\242\236\345\212\240 */\n"
+"}\n"
+"\n"
+"QListWidget::item:selected\n"
+"{\n"
+"    border: 0px;\n"
+"	background: lightgreen;\n"
+"\n"
+"	color:rgb(0, 0, 255);\n"
+"    padding: 20px 67px;         /* \344\277\235\346\214\201\346\226\207\345\255\227\345\234\250\344\270\255\351\227\264 */\n"
+"	margin:0px;\n"
+"}\n"
+"\n"
+"QListWidget::item:selected:!active\n"
+"{\n"
+"    border-width: 0px;\n"
+"    background: lightgreen;\n"
+"    padding: 20px 67px;         /* \344\277\235\346\214\201\346\226\207\345\255\227\345\234\250\344\270\255\351\227\264 */\n"
+"}\n"
+""));
 
         listlayout->addWidget(list, 0, 0, 1, 1);
 
@@ -317,10 +360,10 @@ public:
         welcomelabel = new QLabel(homepage);
         welcomelabel->setObjectName("welcomelabel");
         welcomelabel->setGeometry(QRect(150, 110, 381, 51));
-        QFont font;
-        font.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
-        font.setPointSize(20);
-        welcomelabel->setFont(font);
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font1.setPointSize(20);
+        welcomelabel->setFont(font1);
         stackedWidget->addWidget(homepage);
         searchpage = new QWidget();
         searchpage->setObjectName("searchpage");
@@ -534,10 +577,10 @@ public:
         verticalLayout_4->setObjectName("verticalLayout_4");
         label_4 = new QLabel(widget);
         label_4->setObjectName("label_4");
-        QFont font1;
-        font1.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
-        font1.setPointSize(11);
-        label_4->setFont(font1);
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font2.setPointSize(11);
+        label_4->setFont(font2);
         label_4->setStyleSheet(QString::fromUtf8("#label_4 {\n"
 "\n"
 "color:rgb(255, 255, 255);\n"
@@ -554,7 +597,7 @@ public:
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         label_3 = new QLabel(widget);
         label_3->setObjectName("label_3");
-        label_3->setFont(font1);
+        label_3->setFont(font2);
         label_3->setStyleSheet(QString::fromUtf8("#label_3 {\n"
 "\n"
 "color:rgb(255, 255, 255);\n"
@@ -575,7 +618,7 @@ public:
         horizontalLayout->setObjectName("horizontalLayout");
         label_2 = new QLabel(widget);
         label_2->setObjectName("label_2");
-        label_2->setFont(font1);
+        label_2->setFont(font2);
         label_2->setStyleSheet(QString::fromUtf8("#label_2 {\n"
 "\n"
 "color:rgb(255, 255, 255);\n"
@@ -600,7 +643,7 @@ public:
 
         pushButton = new QPushButton(widget);
         pushButton->setObjectName("pushButton");
-        pushButton->setFont(font1);
+        pushButton->setFont(font2);
 
         verticalLayout_4->addWidget(pushButton);
 
@@ -611,7 +654,7 @@ public:
         verticalLayout->setObjectName("verticalLayout");
         label = new QLabel(widget);
         label->setObjectName("label");
-        label->setFont(font1);
+        label->setFont(font2);
         label->setStyleSheet(QString::fromUtf8("#label {\n"
 "\n"
 "color:rgb(255, 255, 255);\n"
@@ -640,12 +683,12 @@ public:
         searchairlineshow = new QTableWidget(searchairline);
         searchairlineshow->setObjectName("searchairlineshow");
         searchairlineshow->setGeometry(QRect(0, 230, 661, 281));
-        QFont font2;
-        font2.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
-        font2.setPointSize(11);
-        font2.setBold(false);
-        font2.setItalic(false);
-        searchairlineshow->setFont(font2);
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font3.setPointSize(11);
+        font3.setBold(false);
+        font3.setItalic(false);
+        searchairlineshow->setFont(font3);
         searchairlineshow->setStyleSheet(QString::fromUtf8("#searchairlineshow{\n"
 "\n"
 "background:rgba(36, 36, 36,50);\n"
@@ -678,55 +721,55 @@ public:
         newnolabel = new QLabel(newcustom);
         newnolabel->setObjectName("newnolabel");
         newnolabel->setGeometry(QRect(190, 110, 81, 41));
-        QFont font3;
-        font3.setPointSize(14);
-        newnolabel->setFont(font3);
+        QFont font4;
+        font4.setPointSize(14);
+        newnolabel->setFont(font4);
         newnamelabel = new QLabel(newcustom);
         newnamelabel->setObjectName("newnamelabel");
         newnamelabel->setGeometry(QRect(190, 160, 101, 41));
-        newnamelabel->setFont(font3);
+        newnamelabel->setFont(font4);
         newnamedit = new QLineEdit(newcustom);
         newnamedit->setObjectName("newnamedit");
         newnamedit->setGeometry(QRect(330, 170, 131, 31));
-        QFont font4;
-        font4.setPointSize(18);
-        newnamedit->setFont(font4);
+        QFont font5;
+        font5.setPointSize(18);
+        newnamedit->setFont(font5);
         newtypelabel = new QLabel(newcustom);
         newtypelabel->setObjectName("newtypelabel");
         newtypelabel->setGeometry(QRect(190, 210, 101, 41));
-        newtypelabel->setFont(font3);
+        newtypelabel->setFont(font4);
         newtypeselect = new QComboBox(newcustom);
         newtypeselect->setObjectName("newtypeselect");
         newtypeselect->setGeometry(QRect(330, 220, 131, 31));
         newidlabel = new QLabel(newcustom);
         newidlabel->setObjectName("newidlabel");
         newidlabel->setGeometry(QRect(190, 270, 91, 31));
-        newidlabel->setFont(font3);
+        newidlabel->setFont(font4);
         newidedit = new QLineEdit(newcustom);
         newidedit->setObjectName("newidedit");
         newidedit->setGeometry(QRect(330, 270, 131, 31));
         newsexlabel = new QLabel(newcustom);
         newsexlabel->setObjectName("newsexlabel");
         newsexlabel->setGeometry(QRect(190, 320, 111, 21));
-        newsexlabel->setFont(font3);
+        newsexlabel->setFont(font4);
         newsexshow = new QComboBox(newcustom);
         newsexshow->setObjectName("newsexshow");
         newsexshow->setGeometry(QRect(330, 320, 131, 31));
         newphonelabel = new QLabel(newcustom);
         newphonelabel->setObjectName("newphonelabel");
         newphonelabel->setGeometry(QRect(190, 370, 91, 31));
-        newphonelabel->setFont(font3);
+        newphonelabel->setFont(font4);
         newphonedit = new QLineEdit(newcustom);
         newphonedit->setObjectName("newphonedit");
         newphonedit->setGeometry(QRect(330, 370, 131, 31));
         newokbutton = new QPushButton(newcustom);
         newokbutton->setObjectName("newokbutton");
         newokbutton->setGeometry(QRect(480, 450, 101, 41));
-        newokbutton->setFont(font3);
+        newokbutton->setFont(font4);
         newnoshow = new QLabel(newcustom);
         newnoshow->setObjectName("newnoshow");
         newnoshow->setGeometry(QRect(330, 120, 121, 21));
-        newnoshow->setFont(font4);
+        newnoshow->setFont(font5);
         inserttab->addTab(newcustom, QString());
         booktickettab = new QWidget();
         booktickettab->setObjectName("booktickettab");

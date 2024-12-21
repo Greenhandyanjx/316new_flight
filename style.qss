@@ -170,41 +170,7 @@ QTextBrowser{border: 2px solid #87B2D5;
 border-radius :5px;
 background-color: rgba(255,255,255,80%);
 }
-QListWidget
-{
-    border:1px solid gray;   /*边界线:宽度、颜色*/
-    /*background:gray;*/
-    outline:none;
-    color:black;        /*前景色：文字颜色*/
-    margin:5px,5px,0px,50px;
-}
 
-QListWidget::item
-{
-    padding-top:24px;
-    padding-bottom:4px;
-}
-
-QListWidget::item:hover
-{
-    show-decoration-selected:5;
-    background:skyblue;
-}
-
-QListWidget::item:selected
-{
-    border:0px;
-    background:lightgray;
-    padding:0px;
-    margin:0px;
-    color:red;
-}
-
-QListWidget::item:selected:!active
-{
-    border-width:0px;
-    background:lightgreen;
-}
 
 
 

@@ -36,7 +36,54 @@
     </property>
     <layout class="QGridLayout" name="listlayout">
      <item row="0" column="0">
-      <widget class="QListWidget" name="list"/>
+      <widget class="QListWidget" name="list">
+       <property name="font">
+        <font>
+         <family>华文楷体</family>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QListWidget
+{
+    border: 1px solid gray;   /* 边界线:宽度、颜色 */
+    outline: none;
+    color: black;            /* 前景色:文字颜色 */
+}
+
+QListWidget::item
+{
+    padding: 20px 67px;         /* 初始上下内边距设置为10px */
+	font: 15px &quot;华文楷体&quot;;
+    /*text-align: center;*/      /* 文字居中对齐 */
+    /*transition: all 0.5s ease;*/ /* 添加平滑过渡效果 */
+}
+
+QListWidget::item:hover
+{
+    background: skyblue;
+    padding: 20px 67px;        /* 鼠标悬停后，上下内边距增加 */
+}
+
+QListWidget::item:selected
+{
+    border: 0px;
+	background: lightgreen;
+
+	color:rgb(0, 0, 255);
+    padding: 20px 67px;         /* 保持文字在中间 */
+	margin:0px;
+}
+
+QListWidget::item:selected:!active
+{
+    border-width: 0px;
+    background: lightgreen;
+    padding: 20px 67px;         /* 保持文字在中间 */
+}
+</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -324,7 +371,7 @@ border-radius:8px;
                   <property name="font">
                    <font>
                     <family>华文楷体</family>
-                    <pointsize>11</pointsize>
+                    <pointsize>14</pointsize>
                    </font>
                   </property>
                   <property name="styleSheet">

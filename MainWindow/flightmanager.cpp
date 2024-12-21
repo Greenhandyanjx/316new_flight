@@ -43,7 +43,7 @@ void FlightManager::Init()
 {
     m_Sex.append("男");
     m_Sex.append("女");
-
+    ui->list->setFont(QFont("华文楷体", 15));
     ui->list->insertItem(0, "欢迎");
     ui->list->insertItem(1, "查询");
     ui->list->insertItem(2, "添加");
