@@ -56,6 +56,13 @@ public:
         accounttext = new QLineEdit(Login);
         accounttext->setObjectName("accounttext");
         accounttext->setGeometry(QRect(150, 120, 151, 24));
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Microsoft YaHei UI")});
+        font2.setPointSize(12);
+        font2.setBold(false);
+        font2.setItalic(false);
+        accounttext->setFont(font2);
+        accounttext->setStyleSheet(QString::fromUtf8(""));
         passwordtext = new QLineEdit(Login);
         passwordtext->setObjectName("passwordtext");
         passwordtext->setGeometry(QRect(150, 180, 151, 24));
@@ -70,10 +77,10 @@ public:
         titlelabel = new QLabel(Login);
         titlelabel->setObjectName("titlelabel");
         titlelabel->setGeometry(QRect(90, 10, 281, 81));
-        QFont font2;
-        font2.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
-        font2.setPointSize(25);
-        titlelabel->setFont(font2);
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font3.setPointSize(25);
+        titlelabel->setFont(font3);
         titlelabel->setTextFormat(Qt::TextFormat::RichText);
         enrollbut = new QPushButton(Login);
         enrollbut->setObjectName("enrollbut");

@@ -253,6 +253,11 @@ public:
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/images/images/airplane.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         FlightManager->setWindowIcon(icon);
+        FlightManager->setStyleSheet(QString::fromUtf8("QLable{\n"
+"	font: 9pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
+"	rgb(255, 255, 255);\n"
+"}\n"
+""));
         personsearch = new QAction(FlightManager);
         personsearch->setObjectName("personsearch");
         bookticketinsert = new QAction(FlightManager);
@@ -261,16 +266,26 @@ public:
         ticketsearch->setObjectName("ticketsearch");
         searchaction = new QAction(FlightManager);
         searchaction->setObjectName("searchaction");
+        QIcon icon1(QIcon::fromTheme(QIcon::ThemeIcon::EditFind));
+        searchaction->setIcon(icon1);
         insertaction = new QAction(FlightManager);
         insertaction->setObjectName("insertaction");
+        QIcon icon2(QIcon::fromTheme(QIcon::ThemeIcon::FolderNew));
+        insertaction->setIcon(icon2);
         updateaction = new QAction(FlightManager);
         updateaction->setObjectName("updateaction");
+        QIcon icon3(QIcon::fromTheme(QIcon::ThemeIcon::SyncSynchronizing));
+        updateaction->setIcon(icon3);
         deleteaction = new QAction(FlightManager);
         deleteaction->setObjectName("deleteaction");
+        QIcon icon4(QIcon::fromTheme(QIcon::ThemeIcon::ListRemove));
+        deleteaction->setIcon(icon4);
         quitacion = new QAction(FlightManager);
         quitacion->setObjectName("quitacion");
         quitaction = new QAction(FlightManager);
         quitaction->setObjectName("quitaction");
+        QIcon icon5(QIcon::fromTheme(QIcon::ThemeIcon::EditClear));
+        quitaction->setIcon(icon5);
         centralwidget = new QWidget(FlightManager);
         centralwidget->setObjectName("centralwidget");
         gridLayoutWidget = new QWidget(centralwidget);
@@ -292,13 +307,19 @@ public:
         showlayout->setContentsMargins(0, 0, 0, 0);
         stackedWidget = new QStackedWidget(gridLayoutWidget_2);
         stackedWidget->setObjectName("stackedWidget");
+        stackedWidget->setStyleSheet(QString::fromUtf8("#homepage{\n"
+"\n"
+"border-image:url(:/images/images/background1.jpg);\n"
+"\n"
+"}"));
         homepage = new QWidget();
         homepage->setObjectName("homepage");
         welcomelabel = new QLabel(homepage);
         welcomelabel->setObjectName("welcomelabel");
-        welcomelabel->setGeometry(QRect(90, 80, 351, 51));
+        welcomelabel->setGeometry(QRect(150, 110, 381, 51));
         QFont font;
-        font.setPointSize(18);
+        font.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font.setPointSize(20);
         welcomelabel->setFont(font);
         stackedWidget->addWidget(homepage);
         searchpage = new QWidget();
@@ -667,7 +688,9 @@ public:
         newnamedit = new QLineEdit(newcustom);
         newnamedit->setObjectName("newnamedit");
         newnamedit->setGeometry(QRect(330, 170, 131, 31));
-        newnamedit->setFont(font);
+        QFont font4;
+        font4.setPointSize(18);
+        newnamedit->setFont(font4);
         newtypelabel = new QLabel(newcustom);
         newtypelabel->setObjectName("newtypelabel");
         newtypelabel->setGeometry(QRect(190, 210, 101, 41));
@@ -703,7 +726,7 @@ public:
         newnoshow = new QLabel(newcustom);
         newnoshow->setObjectName("newnoshow");
         newnoshow->setGeometry(QRect(330, 120, 121, 21));
-        newnoshow->setFont(font);
+        newnoshow->setFont(font4);
         inserttab->addTab(newcustom, QString());
         booktickettab = new QWidget();
         booktickettab->setObjectName("booktickettab");
@@ -1352,7 +1375,24 @@ public:
         FlightManager->setCentralWidget(centralwidget);
         menubar = new QMenuBar(FlightManager);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 865, 21));
+        menubar->setGeometry(QRect(0, 0, 865, 30));
+        menubar->setStyleSheet(QString::fromUtf8("QMenuBar {\n"
+"    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,\n"
+"                                      stop:0 rgb(84, 209, 255), stop:1 rgb(0, 170, 255));\n"
+"    spacing: 3px; /* spacing between menu bar items */\n"
+"}\n"
+"QMenuBar::item {\n"
+"    padding: 7px 20px;\n"
+"    background: transparent;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"QMenuBar::item:selected { /* when selected using mouse or keyboard */\n"
+"    background: rgb(2, 242, 255);\n"
+"}\n"
+"\n"
+"QMenuBar::item:pressed {\n"
+"    background: rgb(2, 242, 255);\n"
+"}"));
         searchmenu = new QMenu(menubar);
         searchmenu->setObjectName("searchmenu");
         insertmeun = new QMenu(menubar);

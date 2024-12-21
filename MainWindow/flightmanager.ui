@@ -17,6 +17,13 @@
    <iconset resource="../resourse.qrc">
     <normaloff>:/images/images/airplane.png</normaloff>:/images/images/airplane.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QLable{
+	font: 9pt &quot;华文楷体&quot;;
+	rgb(255, 255, 255);
+}
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
@@ -45,6 +52,13 @@
     <layout class="QGridLayout" name="showlayout">
      <item row="0" column="0">
       <widget class="QStackedWidget" name="stackedWidget">
+       <property name="styleSheet">
+        <string notr="true">#homepage{
+
+border-image:url(:/images/images/background1.jpg);
+
+}</string>
+       </property>
        <property name="currentIndex">
         <number>1</number>
        </property>
@@ -52,15 +66,16 @@
         <widget class="QLabel" name="welcomelabel">
          <property name="geometry">
           <rect>
-           <x>90</x>
-           <y>80</y>
-           <width>351</width>
+           <x>150</x>
+           <y>110</y>
+           <width>381</width>
            <height>51</height>
           </rect>
          </property>
          <property name="font">
           <font>
-           <pointsize>18</pointsize>
+           <family>华文楷体</family>
+           <pointsize>20</pointsize>
           </font>
          </property>
          <property name="text">
@@ -1556,8 +1571,27 @@ border-radius:8px;
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>21</height>
+     <height>30</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QMenuBar {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 rgb(84, 209, 255), stop:1 rgb(0, 170, 255));
+    spacing: 3px; /* spacing between menu bar items */
+}
+QMenuBar::item {
+    padding: 7px 20px;
+    background: transparent;
+    border-radius: 5px;
+}
+QMenuBar::item:selected { /* when selected using mouse or keyboard */
+    background: rgb(2, 242, 255);
+}
+
+QMenuBar::item:pressed {
+    background: rgb(2, 242, 255);
+}</string>
    </property>
    <widget class="QMenu" name="searchmenu">
     <property name="title">
@@ -1611,21 +1645,33 @@ border-radius:8px;
    </property>
   </action>
   <action name="searchaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::EditFind"/>
+   </property>
    <property name="text">
     <string>Search Page</string>
    </property>
   </action>
   <action name="insertaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::FolderNew"/>
+   </property>
    <property name="text">
     <string>Add Page</string>
    </property>
   </action>
   <action name="updateaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::SyncSynchronizing"/>
+   </property>
    <property name="text">
     <string>Update Page</string>
    </property>
   </action>
   <action name="deleteaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::ListRemove"/>
+   </property>
    <property name="text">
     <string>Delete Page</string>
    </property>
@@ -1636,6 +1682,9 @@ border-radius:8px;
    </property>
   </action>
   <action name="quitaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::EditClear"/>
+   </property>
    <property name="text">
     <string>Quit System</string>
    </property>
