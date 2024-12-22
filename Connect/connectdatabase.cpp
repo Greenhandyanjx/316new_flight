@@ -25,7 +25,6 @@ ConnectDataBase::ConnectDataBase()
         m_DataBase.setHostName("localhost");
         m_DataBase.setDatabaseName("airport");
         m_DataBase.setPort(3306);
-
     }
     else
     {
