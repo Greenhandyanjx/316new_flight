@@ -767,7 +767,7 @@ void FlightManager::turn2update()
     // 检查账号类型是否为管理者，如果不是则直接返回
     int accountType = ReturnAccountType(customer_Name);
     if (accountType != 0) {
-        qDebug() << "当前客户不是管理者，无法执行更新操作";
+        QMessageBox::warning(this, "您不是管理员", "只有管理员可以更新！", QMessageBox::Ok);
         return;
     }
     ui->list->setCurrentRow(3);
@@ -779,7 +779,7 @@ void FlightManager::turn2delete()
     // 检查账号类型是否为管理者，如果不是则直接返回
     int accountType = ReturnAccountType(customer_Name);
     if (accountType != 0) {
-        qDebug() << "当前客户不是管理者，无法执行更新操作";
+        QMessageBox::warning(this, "您不是管理员", "只有管理员可以删除！", QMessageBox::Ok);
         return;
     }
     ui->list->setCurrentRow(4);
