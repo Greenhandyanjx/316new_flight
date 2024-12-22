@@ -533,13 +533,8 @@ border-radius:8px;
            <rect>
             <x>0</x>
             <y>0</y>
-<<<<<<< HEAD
             <width>100</width>
             <height>30</height>
-=======
-            <width>661</width>
-            <height>513</height>
->>>>>>> 06c3d61167999590c2828419a44e9847a37d43d2
            </rect>
           </property>
           <attribute name="label">

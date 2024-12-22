@@ -732,16 +732,13 @@ int FlightManager::ReturnAccountType(const QString &customerName) {
     QSqlQuery query;
     QString queryString = "SELECT account.type "
                           "FROM account "
-                          "INNER JOIN customer ON account.account = customer.account "
-                          "WHERE customer.name = :customerName";
+                          "WHERE account.account = '"+customerName+"'";
     query.prepare(queryString);
-    query.bindValue(":customerName", customerName);
-    // customer_Name=customerName;
+    qDebug()<<queryString;
     if (query.exec()) {
-        if (query.next()) {
-            int accountType = query.value(0).toInt(); // 直接转换为整数类型
+        query.next();
+        int accountType = query.value("type").toInt(); // 直接转换为整数类型
             return accountType;
-        }
     } else {
         qDebug() << "Error executing query: " << query.lastError().text();
     }
@@ -766,8 +763,9 @@ void FlightManager::turn2update()
 {
     // 检查账号类型是否为管理者，如果不是则直接返回
     int accountType = ReturnAccountType(customer_Name);
+    qDebug()<<accountType;
     if (accountType != 0) {
-        QMessageBox::warning(this, "您不是管理员", "只有管理员可以更新！", QMessageBox::Ok);
+        QMessageBox::warning(this, "您不是管理员", "只有管理可以更新！", QMessageBox::Ok);
         return;
     }
     ui->list->setCurrentRow(3);
@@ -779,7 +777,7 @@ void FlightManager::turn2delete()
     // 检查账号类型是否为管理者，如果不是则直接返回
     int accountType = ReturnAccountType(customer_Name);
     if (accountType != 0) {
-        QMessageBox::warning(this, "您不是管理员", "只有管理员可以删除！", QMessageBox::Ok);
+        QMessageBox::warning(this, "您不是管理员", "只有管理可以删除", QMessageBox::Ok);
         return;
     }
     ui->list->setCurrentRow(4);
