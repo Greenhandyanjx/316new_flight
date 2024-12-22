@@ -325,7 +325,7 @@ QLable{
             <x>0</x>
             <y>0</y>
             <width>661</width>
-            <height>503</height>
+            <height>513</height>
            </rect>
           </property>
           <attribute name="label">
@@ -533,8 +533,13 @@ border-radius:8px;
            <rect>
             <x>0</x>
             <y>0</y>
+<<<<<<< HEAD
             <width>100</width>
             <height>30</height>
+=======
+            <width>661</width>
+            <height>513</height>
+>>>>>>> 06c3d61167999590c2828419a44e9847a37d43d2
            </rect>
           </property>
           <attribute name="label">
@@ -617,7 +622,7 @@ border-image:url(:/images/images/dark.jpg);
              <string notr="true"/>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="newcustom">
              <property name="styleSheet">
@@ -1686,7 +1691,7 @@ padding-left:10px;
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>30</height>
+     <height>27</height>
     </rect>
    </property>
    <property name="styleSheet">

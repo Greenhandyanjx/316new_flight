@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>440</width>
+    <width>433</width>
     <height>342</height>
    </rect>
   </property>
@@ -170,7 +170,7 @@
     <string>注册</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -208,6 +208,15 @@
     </item>
    </layout>
   </widget>
+  <zorder>enrollbut</zorder>
+  <zorder>accountlabel</zorder>
+  <zorder>passwordlabel</zorder>
+  <zorder>accounttext</zorder>
+  <zorder>passwordtext</zorder>
+  <zorder>loginbutton</zorder>
+  <zorder>quitbutton</zorder>
+  <zorder>titlelabel</zorder>
+  <zorder>layoutWidget</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
