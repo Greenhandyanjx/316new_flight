@@ -1,0 +1,61 @@
+CREATE VIEW vi_customer_info AS
+SELECT
+    c.no AS customerno,
+    c.name AS customername,
+    c.type AS customertypeno,
+    ct.typename AS customertypename,
+    ct.discountpercent AS discountpercent,
+    c.id AS identifynum,
+    c.sex AS sex,
+    c.phone AS phonenum
+FROM
+    customer c
+LEFT JOIN
+    customer_type ct
+ON
+    c.type = ct.typeno;
+CREATE VIEW vi_country_city AS
+SELECT 
+    city.cityno, 
+    city.cityname, 
+    city.provincename, 
+    
+    country.countryname
+FROM city
+INNER JOIN country ON city.countryno = country.countryno;
+CREATE VIEW vi_airline_info AS
+SELECT 
+    airline.airlineno, 
+    airline.airwayshortname,
+airline.airplanetype,
+    airline.departurecountry, 
+    airline.departurecity, 
+    airline.arrivecountry, 
+    airline.arrivecity, 
+    airline.departuredate,
+    airline.arrivetime, 
+    airline.departuretime, 
+    airline.economyclassprice,
+    airline.economyclassnum,  
+    airline.businessclassprice, 
+    airline.businessclassnum, 
+    airline.deluxeclassprice,
+    airline.deluxeclassnum
+FROM airline;
+CREATE OR REPLACE VIEW viticket_change AS
+SELECT
+    t.order_id,                                   -- 改为 booknum
+    t.customer_name,
+    SUBSTRING_INDEX(t.route, ',', 1) AS airlineno, -- route 的前半部分
+    t.departure_city AS departurecity,
+    t.arrival_city AS arrivecity,
+    a.departuredate,
+    a.departuretime,
+    t.grade AS shipno,                             -- ticket 表中的 grade
+    SUBSTRING_INDEX(t.route, ',', -1) AS shipname -- route 的后半部分
+FROM
+    ticket t
+JOIN
+    airline a
+    ON SUBSTRING_INDEX(t.route, ',', 1) = a.airlineno; -- 利用 route 前半部分匹配 airline 表
+
