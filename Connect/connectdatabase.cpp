@@ -25,8 +25,7 @@ ConnectDataBase::ConnectDataBase()
         m_DataBase.setHostName("localhost");
         m_DataBase.setDatabaseName("airport");
         m_DataBase.setPort(3306);
-        m_DataBase.setUserName("root");
-        m_DataBase.setPassword("87733593yjx");
+
     }
     else
     {

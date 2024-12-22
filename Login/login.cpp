@@ -10,12 +10,18 @@ Login::Login(QWidget *parent) :
     ui(new Ui::Login)
 {
     ui->setupUi(this);
-    setWindowTitle("316航空信息管理系统登陆");
+    type=0;
+    setWindowTitle("航空信息管理系统登陆");
     ui->passwordtext->setEchoMode(QLineEdit::Password);
     m_Connect = ConnectDataBase::GetInstance();
     //当自定义信号发出时，关闭此对话框并销毁该对话框的内存
     connect(this, SIGNAL(send()), this, SLOT(close()) );
     connect(this, SIGNAL(send()), this, SLOT(deleteLater()) );
+
+    connect(ui->ckbuser, &QCheckBox::toggled, this, &Login::on_userckb_toggled);
+    connect(ui->ckbmanager, &QCheckBox::toggled, this, &Login::on_userckb_toggled);
+    connect(ui->ckbuser, &QCheckBox::stateChanged, this, &Login::on_ckbuser_stateChanged);
+    ui->ckbmanager->setChecked(true);//默认manager
 }
 
 Login::~Login() {
@@ -45,11 +51,21 @@ int Login::CheckWriting()
     }
     return Success;
 }
+//判断选择用户（1）or管理（0）
+void Login::on_ckbuser_stateChanged(int arg1)
+{
+    if (arg1 == Qt::Checked) {
+        type=1;
+    }else{
+        type=0;
+    }
+}
 int Login::CheckAccount() {
     QString account = ui->accounttext->text();
     QString word = ui->passwordtext->text();
 
-    QString sql = QString("SELECT password FROM account WHERE account = '%1'").arg(account);
+
+    QString sql = QString("SELECT password FROM account WHERE account = '%1' and type = '%2'").arg(account).arg(type);
     QSqlQuery sqlquery;
 
     try {
@@ -63,7 +79,7 @@ int Login::CheckAccount() {
         }
 
         QString storedPassword = sqlquery.value("password").toString();
-        if (word .compare( storedPassword)!=0) {
+        if (word != storedPassword) {
             return PasswordWrong; // Password mismatch
         }
 
@@ -115,14 +131,25 @@ void Login::on_enrollbut_clicked()
     QString acc = ui->accounttext->text();
     QString word = ui->passwordtext->text();
     QSqlQuery q;
-    q.prepare("INSERT into account(account,password) VALUES(:account,:password)");
+    q.prepare("INSERT into account(account,password,type) VALUES(:account,:password,:type)");
     q.bindValue(":account",acc);
     q.bindValue(":password",word);
+    q.bindValue(":type", type);
     q.exec();
     if(q.lastError().isValid()){
         qDebug()<<q.lastError().text();
     }
     else
-    qDebug()<<"insert successful";
+        qDebug()<<"insert successful";
 }
 
+//用户/管理选择身份登录，两个选项只能选其一
+void Login::on_userckb_toggled(bool checked) {
+    QCheckBox *senderCheckbox = qobject_cast<QCheckBox*>(sender());
+
+    if (senderCheckbox == ui->ckbuser && checked) {
+        ui->ckbmanager->setChecked(false);
+    } else if (senderCheckbox == ui->ckbmanager && checked) {
+        ui->ckbuser->setChecked(false);
+    }
+}
