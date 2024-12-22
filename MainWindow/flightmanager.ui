@@ -17,6 +17,13 @@
    <iconset resource="../resourse.qrc">
     <normaloff>:/images/images/airplane.png</normaloff>:/images/images/airplane.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QLable{
+	font: 9pt &quot;华文楷体&quot;;
+	rgb(255, 255, 255);
+}
+</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
@@ -29,7 +36,54 @@
     </property>
     <layout class="QGridLayout" name="listlayout">
      <item row="0" column="0">
-      <widget class="QListWidget" name="list"/>
+      <widget class="QListWidget" name="list">
+       <property name="font">
+        <font>
+         <family>华文楷体</family>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QListWidget
+{
+    border: 1px solid gray;   /* 边界线:宽度、颜色 */
+    outline: none;
+    color: black;            /* 前景色:文字颜色 */
+}
+
+QListWidget::item
+{
+    padding: 20px 67px;         /* 初始上下内边距设置为10px */
+	font: 15px &quot;华文楷体&quot;;
+    /*text-align: center;*/      /* 文字居中对齐 */
+    /*transition: all 0.5s ease;*/ /* 添加平滑过渡效果 */
+}
+
+QListWidget::item:hover
+{
+    background: skyblue;
+    padding: 20px 67px;        /* 鼠标悬停后，上下内边距增加 */
+}
+
+QListWidget::item:selected
+{
+    border: 0px;
+	background: lightgreen;
+
+	color:rgb(0, 0, 255);
+    padding: 20px 67px;         /* 保持文字在中间 */
+	margin:0px;
+}
+
+QListWidget::item:selected:!active
+{
+    border-width: 0px;
+    background: lightgreen;
+    padding: 20px 67px;         /* 保持文字在中间 */
+}
+</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -45,22 +99,30 @@
     <layout class="QGridLayout" name="showlayout">
      <item row="0" column="0">
       <widget class="QStackedWidget" name="stackedWidget">
+       <property name="styleSheet">
+        <string notr="true">#homepage{
+
+border-image:url(:/images/images/background1.jpg);
+
+}</string>
+       </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="homepage">
         <widget class="QLabel" name="welcomelabel">
          <property name="geometry">
           <rect>
-           <x>90</x>
-           <y>80</y>
-           <width>351</width>
+           <x>150</x>
+           <y>110</y>
+           <width>381</width>
            <height>51</height>
           </rect>
          </property>
          <property name="font">
           <font>
-           <pointsize>18</pointsize>
+           <family>华文楷体</family>
+           <pointsize>20</pointsize>
           </font>
          </property>
          <property name="text">
@@ -292,7 +354,7 @@ border-radius:8px;
 }</string>
            </property>
            <widget class="QWidget" name="page_5">
-            <widget class="QWidget" name="">
+            <widget class="QWidget" name="layoutWidget">
              <property name="geometry">
               <rect>
                <x>20</x>
@@ -309,7 +371,7 @@ border-radius:8px;
                   <property name="font">
                    <font>
                     <family>华文楷体</family>
-                    <pointsize>11</pointsize>
+                    <pointsize>14</pointsize>
                    </font>
                   </property>
                   <property name="styleSheet">
@@ -496,6 +558,42 @@ border-radius:8px;
         </widget>
        </widget>
        <widget class="QWidget" name="insertpage">
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+    background-color: rgb(220,220,220);/* 设置背景颜色 */
+    border: 1px solid rgb(200,200,200); /* 设置边框 */
+    border-radius: 10px;
+    min-height: 25px;
+    color: #000000; /* 设置文字颜色 */
+    padding:4px 20px;
+    margin:4px 4px;
+}
+
+/* 鼠标悬停状态 */
+QPushButton:hover {
+    background-color: rgb(55,144,250); /* 设置悬停时的背景颜色 */
+    color: #ffffff; /* 设置悬停时的文字颜色 */
+}
+
+/* 按下状态 */
+QPushButton:pressed {
+    background-color: rgb(44,133,240); /* 设置按下时的背景颜色 */
+    color: #ffffff; /* 设置按下时的文字颜色 */
+}
+
+/* 复选框选中状态 */
+QPushButton:checked {
+    background-color: rgb(55,144,250);  /* 设置选中时的背景颜色 */
+    color: #ffffff; /* 设置选中时的文字颜色 */
+}
+
+/* 按钮被选中状态 */
+QPushButton:pressed:checked {
+    background-color: rgb(44,133,240); /* 设置按钮被选中时的背景颜色 */
+    color: #ffffff; /* 设置按钮被选中时的文字颜色 */
+}
+</string>
+        </property>
         <widget class="QWidget" name="gridLayoutWidget_3">
          <property name="geometry">
           <rect>
@@ -508,10 +606,21 @@ border-radius:8px;
          <layout class="QGridLayout" name="insertlayout">
           <item row="0" column="0">
            <widget class="QTabWidget" name="inserttab">
+            <property name="font">
+             <font>
+              <family>华文楷体</family>
+             </font>
+            </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="newcustom">
+             <property name="styleSheet">
+              <string notr="true">QLabel{
+	font: 15pt &quot;华文楷体&quot;;
+	color:rgb(0, 0, 0);
+}</string>
+             </property>
              <attribute name="title">
               <string>Tab 1</string>
              </attribute>
@@ -526,7 +635,10 @@ border-radius:8px;
               </property>
               <property name="font">
                <font>
-                <pointsize>14</pointsize>
+                <family>华文楷体</family>
+                <pointsize>15</pointsize>
+                <italic>false</italic>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
@@ -544,7 +656,10 @@ border-radius:8px;
               </property>
               <property name="font">
                <font>
-                <pointsize>14</pointsize>
+                <family>华文楷体</family>
+                <pointsize>15</pointsize>
+                <italic>false</italic>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
@@ -577,7 +692,10 @@ border-radius:8px;
               </property>
               <property name="font">
                <font>
-                <pointsize>14</pointsize>
+                <family>华文楷体</family>
+                <pointsize>15</pointsize>
+                <italic>false</italic>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
@@ -605,7 +723,10 @@ border-radius:8px;
               </property>
               <property name="font">
                <font>
-                <pointsize>14</pointsize>
+                <family>华文楷体</family>
+                <pointsize>15</pointsize>
+                <italic>false</italic>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
@@ -633,7 +754,10 @@ border-radius:8px;
               </property>
               <property name="font">
                <font>
-                <pointsize>14</pointsize>
+                <family>华文楷体</family>
+                <pointsize>15</pointsize>
+                <italic>false</italic>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
@@ -661,7 +785,10 @@ border-radius:8px;
               </property>
               <property name="font">
                <font>
-                <pointsize>14</pointsize>
+                <family>华文楷体</family>
+                <pointsize>15</pointsize>
+                <italic>false</italic>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
@@ -684,7 +811,7 @@ border-radius:8px;
                 <x>480</x>
                 <y>450</y>
                 <width>101</width>
-                <height>41</height>
+                <height>43</height>
                </rect>
               </property>
               <property name="font">
@@ -707,7 +834,10 @@ border-radius:8px;
               </property>
               <property name="font">
                <font>
-                <pointsize>18</pointsize>
+                <family>华文楷体</family>
+                <pointsize>15</pointsize>
+                <italic>false</italic>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
@@ -716,44 +846,62 @@ border-radius:8px;
              </widget>
             </widget>
             <widget class="QWidget" name="booktickettab">
+             <property name="styleSheet">
+              <string notr="true">QLabel{
+	font: 12pt &quot;华文楷体&quot;;
+	color:rgb(0, 0, 0);
+}</string>
+             </property>
              <attribute name="title">
               <string>Tab 2</string>
              </attribute>
              <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
-                <x>140</x>
-                <y>20</y>
-                <width>381</width>
-                <height>491</height>
+                <x>130</x>
+                <y>0</y>
+                <width>391</width>
+                <height>511</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout">
-               <item row="5" column="0">
-                <widget class="QLabel" name="bktktdepcotabl">
+               <item row="10" column="0">
+                <widget class="QLabel" name="bktktshipabl">
                  <property name="text">
-                  <string>出发国家</string>
+                  <string>舱位等级</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="bktktctmnoabl">
+               <item row="7" column="1">
+                <widget class="QComboBox" name="bktktarrcot"/>
+               </item>
+               <item row="6" column="0">
+                <widget class="QLabel" name="bktktdepcyabl">
                  <property name="text">
-                  <string>客户编号</string>
+                  <string>出发城市</string>
                  </property>
                 </widget>
                </item>
                <item row="8" column="0">
                 <widget class="QLabel" name="bktktarrcyabl">
+                 <property name="styleSheet">
+                  <string notr="true">QLabel{
+	font: 11pt &quot;华文楷体&quot;;
+	color:rgb(0, 0, 0);
+}</string>
+                 </property>
                  <property name="text">
                   <string>到达城市</string>
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="bktktctmnameabl">
+               <item row="8" column="1">
+                <widget class="QComboBox" name="bktktarrcy"/>
+               </item>
+               <item row="9" column="0">
+                <widget class="QLabel" name="bktktlineabl">
                  <property name="text">
-                  <string>客户姓名</string>
+                  <string>航线选择</string>
                  </property>
                 </widget>
                </item>
@@ -764,12 +912,22 @@ border-radius:8px;
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0">
-                <widget class="QLabel" name="bktktctmtypabl">
+               <item row="3" column="1">
+                <widget class="QLabel" name="bktktctmtyp">
                  <property name="text">
-                  <string>客户类型</string>
+                  <string>Type</string>
                  </property>
                 </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="bktktdiscotabl">
+                 <property name="text">
+                  <string>折扣比例</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QComboBox" name="bktktdepcot"/>
                </item>
                <item row="12" column="1">
                 <widget class="QLabel" name="bktkttotal">
@@ -778,27 +936,13 @@ border-radius:8px;
                  </property>
                 </widget>
                </item>
-               <item row="11" column="1">
-                <widget class="QLabel" name="bktktprice">
-                 <property name="text">
-                  <string>Price</string>
-                 </property>
-                </widget>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="bktktctmno"/>
                </item>
-               <item row="10" column="0">
-                <widget class="QLabel" name="bktktshipabl">
+               <item row="1" column="0">
+                <widget class="QLabel" name="bktktctmnoabl">
                  <property name="text">
-                  <string>舱位等级</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="6" column="1">
-                <widget class="QComboBox" name="bktktdepcy"/>
-               </item>
-               <item row="3" column="1">
-                <widget class="QLabel" name="bktktctmtyp">
-                 <property name="text">
-                  <string>Type</string>
+                  <string>客户编号</string>
                  </property>
                 </widget>
                </item>
@@ -809,33 +953,10 @@ border-radius:8px;
                  </property>
                 </widget>
                </item>
-               <item row="7" column="1">
-                <widget class="QComboBox" name="bktktarrcot"/>
-               </item>
-               <item row="8" column="1">
-                <widget class="QComboBox" name="bktktarrcy"/>
-               </item>
-               <item row="2" column="1">
-                <widget class="QLabel" name="bktktctmname">
+               <item row="5" column="0">
+                <widget class="QLabel" name="bktktdepcotabl">
                  <property name="text">
-                  <string>Name</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="9" column="1">
-                <widget class="QComboBox" name="bktktline"/>
-               </item>
-               <item row="9" column="0">
-                <widget class="QLabel" name="bktktlineabl">
-                 <property name="text">
-                  <string>航线选择</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="14" column="1">
-                <widget class="QLabel" name="bktktnum">
-                 <property name="text">
-                  <string>tktnum</string>
+                  <string>出发国家</string>
                  </property>
                 </widget>
                </item>
@@ -846,13 +967,17 @@ border-radius:8px;
                  </property>
                 </widget>
                </item>
-               <item row="5" column="1">
-                <widget class="QComboBox" name="bktktdepcot"/>
-               </item>
-               <item row="11" column="0">
-                <widget class="QLabel" name="bktktpriceabl">
+               <item row="2" column="1">
+                <widget class="QLabel" name="bktktctmname">
                  <property name="text">
-                  <string>机票价钱</string>
+                  <string>Name</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="14" column="1">
+                <widget class="QLabel" name="bktktnum">
+                 <property name="text">
+                  <string>tktnum</string>
                  </property>
                 </widget>
                </item>
@@ -870,25 +995,8 @@ border-radius:8px;
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <widget class="QComboBox" name="bktktctmno"/>
-               </item>
-               <item row="6" column="0">
-                <widget class="QLabel" name="bktktdepcyabl">
-                 <property name="text">
-                  <string>出发城市</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="10" column="1">
-                <widget class="QComboBox" name="bktktship"/>
-               </item>
-               <item row="4" column="0">
-                <widget class="QLabel" name="bktktdiscotabl">
-                 <property name="text">
-                  <string>折扣比例</string>
-                 </property>
-                </widget>
+               <item row="6" column="1">
+                <widget class="QComboBox" name="bktktdepcy"/>
                </item>
                <item row="4" column="1">
                 <widget class="QLabel" name="bktktdiscot">
@@ -897,20 +1005,63 @@ border-radius:8px;
                  </property>
                 </widget>
                </item>
+               <item row="9" column="1">
+                <widget class="QComboBox" name="bktktline"/>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="bktktctmtypabl">
+                 <property name="text">
+                  <string>客户类型</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="11" column="0">
+                <widget class="QLabel" name="bktktpriceabl">
+                 <property name="text">
+                  <string>机票价钱</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="10" column="1">
+                <widget class="QComboBox" name="bktktship"/>
+               </item>
+               <item row="11" column="1">
+                <widget class="QLabel" name="bktktprice">
+                 <property name="text">
+                  <string>Price</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="16" column="1">
+                <widget class="QPushButton" name="bktktokbtn">
+                 <property name="text">
+                  <string>确定购票</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="bktktctmnameabl">
+                 <property name="text">
+                  <string>客户姓名</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="15" column="0">
+                <widget class="QLabel" name="bkttimeLabel">
+                 <property name="text">
+                  <string>起飞时间
+落地时间</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="15" column="1">
+                <widget class="QLabel" name="bkttime">
+                 <property name="text">
+                  <string>time</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
-             </widget>
-             <widget class="QPushButton" name="bktktokbtn">
-              <property name="geometry">
-               <rect>
-                <x>330</x>
-                <y>510</y>
-                <width>187</width>
-                <height>18</height>
-               </rect>
-              </property>
-              <property name="text">
-               <string>确定购票</string>
-              </property>
              </widget>
             </widget>
            </widget>
@@ -1556,8 +1707,27 @@ border-radius:8px;
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>21</height>
+     <height>30</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QMenuBar {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 rgb(84, 209, 255), stop:1 rgb(0, 170, 255));
+    spacing: 3px; /* spacing between menu bar items */
+}
+QMenuBar::item {
+    padding: 7px 20px;
+    background: transparent;
+    border-radius: 5px;
+}
+QMenuBar::item:selected { /* when selected using mouse or keyboard */
+    background: rgb(2, 242, 255);
+}
+
+QMenuBar::item:pressed {
+    background: rgb(2, 242, 255);
+}</string>
    </property>
    <widget class="QMenu" name="searchmenu">
     <property name="title">
@@ -1611,21 +1781,33 @@ border-radius:8px;
    </property>
   </action>
   <action name="searchaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::EditFind"/>
+   </property>
    <property name="text">
     <string>Search Page</string>
    </property>
   </action>
   <action name="insertaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::FolderNew"/>
+   </property>
    <property name="text">
     <string>Add Page</string>
    </property>
   </action>
   <action name="updateaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::SyncSynchronizing"/>
+   </property>
    <property name="text">
     <string>Update Page</string>
    </property>
   </action>
   <action name="deleteaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::ListRemove"/>
+   </property>
    <property name="text">
     <string>Delete Page</string>
    </property>
@@ -1636,6 +1818,9 @@ border-radius:8px;
    </property>
   </action>
   <action name="quitaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::EditClear"/>
+   </property>
    <property name="text">
     <string>Quit System</string>
    </property>
