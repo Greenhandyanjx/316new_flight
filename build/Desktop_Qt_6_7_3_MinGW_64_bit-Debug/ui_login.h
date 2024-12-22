@@ -14,9 +14,11 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -31,6 +33,8 @@ public:
     QPushButton *quitbutton;
     QLabel *titlelabel;
     QPushButton *enrollbut;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout;
     QCheckBox *ckbuser;
     QCheckBox *ckbmanager;
 
@@ -59,6 +63,13 @@ public:
         accounttext = new QLineEdit(Login);
         accounttext->setObjectName("accounttext");
         accounttext->setGeometry(QRect(150, 120, 151, 24));
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Microsoft YaHei UI")});
+        font2.setPointSize(12);
+        font2.setBold(false);
+        font2.setItalic(false);
+        accounttext->setFont(font2);
+        accounttext->setStyleSheet(QString::fromUtf8(""));
         passwordtext = new QLineEdit(Login);
         passwordtext->setObjectName("passwordtext");
         passwordtext->setGeometry(QRect(150, 180, 151, 24));
@@ -73,21 +84,38 @@ public:
         titlelabel = new QLabel(Login);
         titlelabel->setObjectName("titlelabel");
         titlelabel->setGeometry(QRect(90, 10, 281, 81));
-        QFont font2;
-        font2.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
-        font2.setPointSize(25);
-        titlelabel->setFont(font2);
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font3.setPointSize(25);
+        titlelabel->setFont(font3);
         titlelabel->setTextFormat(Qt::TextFormat::RichText);
         enrollbut = new QPushButton(Login);
         enrollbut->setObjectName("enrollbut");
         enrollbut->setGeometry(QRect(110, 260, 91, 41));
         enrollbut->setFont(font1);
-        ckbuser = new QCheckBox(Login);
+        widget = new QWidget(Login);
+        widget->setObjectName("widget");
+        widget->setGeometry(QRect(150, 226, 151, 28));
+        horizontalLayout = new QHBoxLayout(widget);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName("horizontalLayout");
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        ckbuser = new QCheckBox(widget);
         ckbuser->setObjectName("ckbuser");
-        ckbuser->setGeometry(QRect(140, 230, 60, 16));
-        ckbmanager = new QCheckBox(Login);
+        QFont font4;
+        font4.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font4.setPointSize(15);
+        ckbuser->setFont(font4);
+
+        horizontalLayout->addWidget(ckbuser);
+
+        ckbmanager = new QCheckBox(widget);
         ckbmanager->setObjectName("ckbmanager");
-        ckbmanager->setGeometry(QRect(260, 230, 60, 16));
+        ckbmanager->setFont(font4);
+
+        horizontalLayout->addWidget(ckbmanager);
+
 
         retranslateUi(Login);
 

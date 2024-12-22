@@ -43,7 +43,7 @@ void FlightManager::Init()
 {
     m_Sex.append("男");
     m_Sex.append("女");
-
+    ui->list->setFont(QFont("华文楷体", 15));
     ui->list->insertItem(0, "欢迎");
     ui->list->insertItem(1, "查询");
     ui->list->insertItem(2, "添加");
@@ -1531,6 +1531,7 @@ void FlightManager::updateTicketPrice()
         ui->bktktprice->setText(QString("未选择正确的航线"));
         ui->bktkttotal->setText(QString("未选择正确的航线"));
         ui->bktktnum->setText(QString("未选择正确的航线"));
+        ui->bkttime->setText(QString("未选择正确的航线"));
         return;
     }
     //因为这个数组是从0开始存的所以要在那个框的第一个数字那里减一,下标从0开始.
@@ -1561,6 +1562,32 @@ void FlightManager::updateTicketPrice()
         qDebug() << total;
         ui->bktktprice->setText(QString::number(price));
         ui->bktkttotal->setText(QString::number(total, 'f', 2));
+        QString temp;
+        if(selectedLine.arrive_time<selectedLine.departure_time){
+            QStringList l;
+            l=selectedLine.departure_date.split('-',Qt::SkipEmptyParts);
+            int y=l[0].toInt(),d=0;
+            int m=l[1].toInt();
+            int day=l[2].toInt();
+            switch(m)
+            {
+            case 2:{d = 28;
+                if ((y % 4 == 0 && y % 100 != 0) || y % 400 == 0)d++; break;}
+            case 4:
+            case 6:
+            case 9:
+            case 11:d = 30; break;
+            default:d = 31; break;
+            }
+            day++;
+            if (day > d) {
+                day = 1; m++;
+                if (m > 12){m = 1; y++;}
+            }
+            temp=QString::number(y)+"-"+QString::number(m)+"-"+QString::number(day);
+        }
+        else temp=selectedLine.departure_date;
+        ui->bkttime->setText(selectedLine.departure_date+" "+selectedLine.departure_time+"\n"+temp+" "+selectedLine.arrive_time);
     }
 }
 
