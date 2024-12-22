@@ -22,6 +22,7 @@ class FlightManager : public QMainWindow
 public:
     explicit FlightManager(QWidget *parent = 0);
     ~FlightManager();
+    static QString customer_Name;
 
 public slots:
     void receive();
@@ -53,6 +54,7 @@ protected:
     void SetCityOnBook(QComboBox* combobox, const QString& index);//在订票页面中显示城市
     void ShowAirLineOnSearch();//在查询机票页面中显示航班信息
     void ShowCustomerOnSearch();//在查询客户信息页面中显示客户信息
+    int ReturnAccountType(const QString &customerName);//一个账号对应一个客户，用于返回此客户是管理者还是普通用户
 
 private slots:
     void turn2search();//查询菜单动作
@@ -215,6 +217,7 @@ private:
     QVector<AirLine> m_LineInfo;//存放更改页面客机信息中的航线信息
     QVector<Ticket> m_TicketInfo;//存放更改页面订票信息
     QVector<City> m_City;//存放城市、州、省、国家信息
+
 };
 
 #endif // FLIGHTMANAGER_H

@@ -1,10 +1,10 @@
 #include "login.h"
 #include "ui_login.h"
-
+#include "flightmanager.h"
+#include <cstdlib>
 #include <iostream>
 using std::cout;
 using std::endl;
-
 Login::Login(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Login)
@@ -106,6 +106,7 @@ void Login::on_loginbutton_clicked() {
     int flag = CheckAccount();
     if (Success == flag) {
         Loginflag = true;
+        FlightManager::customer_Name=ui->accounttext->text();
         dosend();
     } else if (WebError == flag) {
         QMessageBox::warning(this, "查询失败", "数据库无法打开，请检查网络配置！", QMessageBox::Ok);

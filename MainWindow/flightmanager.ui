@@ -107,7 +107,7 @@ border-image:url(:/images/images/background1.jpg);
 }</string>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="homepage">
         <widget class="QLabel" name="welcomelabel">
@@ -329,7 +329,7 @@ QLable{
             <x>0</x>
             <y>0</y>
             <width>661</width>
-            <height>503</height>
+            <height>513</height>
            </rect>
           </property>
           <attribute name="label">
@@ -538,7 +538,7 @@ border-radius:8px;
             <x>0</x>
             <y>0</y>
             <width>661</width>
-            <height>503</height>
+            <height>513</height>
            </rect>
           </property>
           <attribute name="label">
@@ -612,7 +612,7 @@ QPushButton:pressed:checked {
              </font>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="newcustom">
              <property name="styleSheet">
@@ -1707,7 +1707,7 @@ QPushButton:pressed:checked {
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>30</height>
+     <height>27</height>
     </rect>
    </property>
    <property name="styleSheet">

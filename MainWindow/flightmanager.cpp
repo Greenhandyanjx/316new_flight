@@ -6,7 +6,7 @@
 #include <iostream>
 using std::cout;
 using std::endl;
-
+QString FlightManager::customer_Name="";
 FlightManager::FlightManager(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::FlightManager)
@@ -727,6 +727,28 @@ void FlightManager::receive()
     show();
 }
 
+//返回此客户的账号是管理者还是普通用户
+int FlightManager::ReturnAccountType(const QString &customerName) {
+    QSqlQuery query;
+    QString queryString = "SELECT account.type "
+                          "FROM account "
+                          "INNER JOIN customer ON account.account = customer.account "
+                          "WHERE customer.name = :customerName";
+    query.prepare(queryString);
+    query.bindValue(":customerName", customerName);
+    // customer_Name=customerName;
+    if (query.exec()) {
+        if (query.next()) {
+            int accountType = query.value(0).toInt(); // 直接转换为整数类型
+            return accountType;
+        }
+    } else {
+        qDebug() << "Error executing query: " << query.lastError().text();
+    }
+    // 默认情况下，如果没有找到匹配的账号类型，返回-1
+    return -1;
+}
+
 //菜单栏动作
 void FlightManager::turn2search()
 {
@@ -742,12 +764,24 @@ void FlightManager::turn2insert()
 
 void FlightManager::turn2update()
 {
+    // 检查账号类型是否为管理者，如果不是则直接返回
+    int accountType = ReturnAccountType(customer_Name);
+    if (accountType != 0) {
+        qDebug() << "当前客户不是管理者，无法执行更新操作";
+        return;
+    }
     ui->list->setCurrentRow(3);
     ui->stackedWidget->setCurrentIndex(3);
 }
 
 void FlightManager::turn2delete()
 {
+    // 检查账号类型是否为管理者，如果不是则直接返回
+    int accountType = ReturnAccountType(customer_Name);
+    if (accountType != 0) {
+        qDebug() << "当前客户不是管理者，无法执行更新操作";
+        return;
+    }
     ui->list->setCurrentRow(4);
     ui->stackedWidget->setCurrentIndex(4);
 }
