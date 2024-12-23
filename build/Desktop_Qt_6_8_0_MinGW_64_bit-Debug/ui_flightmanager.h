@@ -50,8 +50,8 @@ public:
     QAction *deleteaction;
     QAction *quitacion;
     QAction *quitaction;
+    QAction *introduction;
     QAction *exitaction;
-    QAction *introdution;
     QWidget *centralwidget;
     QWidget *gridLayoutWidget;
     QGridLayout *listlayout;
@@ -295,10 +295,14 @@ public:
         quitaction->setObjectName("quitaction");
         QIcon icon5(QIcon::fromTheme(QIcon::ThemeIcon::EditClear));
         quitaction->setIcon(icon5);
+        introduction = new QAction(FlightManager);
+        introduction->setObjectName("introduction");
+        QIcon icon6(QIcon::fromTheme(QIcon::ThemeIcon::AddressBookNew));
+        introduction->setIcon(icon6);
         exitaction = new QAction(FlightManager);
         exitaction->setObjectName("exitaction");
-        introdution = new QAction(FlightManager);
-        introdution->setObjectName("introdution");
+        QIcon icon7(QIcon::fromTheme(QIcon::ThemeIcon::GoHome));
+        exitaction->setIcon(icon7);
         centralwidget = new QWidget(FlightManager);
         centralwidget->setObjectName("centralwidget");
         gridLayoutWidget = new QWidget(centralwidget);
@@ -1581,13 +1585,16 @@ public:
         FlightManager->setCentralWidget(centralwidget);
         menubar = new QMenuBar(FlightManager);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 865, 30));
+        menubar->setGeometry(QRect(0, 0, 865, 33));
         menubar->setStyleSheet(QString::fromUtf8("QMenuBar {\n"
+"	\n"
+"	font: 12pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
 "    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,\n"
 "                                      stop:0 rgb(84, 209, 255), stop:1 rgb(0, 170, 255));\n"
 "    spacing: 3px; /* spacing between menu bar items */\n"
 "}\n"
 "QMenuBar::item {\n"
+"\n"
 "    padding: 7px 20px;\n"
 "    background: transparent;\n"
 "    border-radius: 5px;\n"
@@ -1598,6 +1605,17 @@ public:
 "\n"
 "QMenuBar::item:pressed {\n"
 "    background: rgb(2, 242, 255);\n"
+"}\n"
+"QMenu::item {\n"
+"        padding: 4px 6px; /* \345\233\276\346\240\207\345\222\214\346\226\207\346\234\254\344\271\213\351\227\264\347\232\204\351\227\264*/\n"
+"    }\n"
+"QMenu::icon {\n"
+"        padding-left: 6px; /* \345\233\276\346\240\207\345\206\205\350\276\271\350\267\235 */\n"
+"    }\n"
+"QMenu {\n"
+"        icon-size: 16px,16px; /* \345\233\276\346\240\207\345\244\247\345\260\217 *"
+                        "/	\n"
+"		font: 12pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
 "}"));
         searchmenu = new QMenu(menubar);
         searchmenu->setObjectName("searchmenu");
@@ -1607,11 +1625,15 @@ public:
         updatemenu->setObjectName("updatemenu");
         deletemenu = new QMenu(menubar);
         deletemenu->setObjectName("deletemenu");
+        deletemenu->setSeparatorsCollapsible(true);
+        deletemenu->setToolTipsVisible(true);
         quitmenu = new QMenu(menubar);
         quitmenu->setObjectName("quitmenu");
         quitmenu->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         usermenu = new QMenu(menubar);
         usermenu->setObjectName("usermenu");
+        usermenu->setStyleSheet(QString::fromUtf8(""));
+        usermenu->setTearOffEnabled(false);
         FlightManager->setMenuBar(menubar);
 
         menubar->addAction(searchmenu->menuAction());
@@ -1625,8 +1647,8 @@ public:
         updatemenu->addAction(updateaction);
         deletemenu->addAction(deleteaction);
         quitmenu->addAction(quitaction);
+        usermenu->addAction(introduction);
         usermenu->addAction(exitaction);
-        usermenu->addAction(introdution);
 
         retranslateUi(FlightManager);
         QObject::connect(list, &QListWidget::currentRowChanged, stackedWidget, &QStackedWidget::setCurrentIndex);
@@ -1645,14 +1667,14 @@ public:
         personsearch->setText(QCoreApplication::translate("FlightManager", "Person", nullptr));
         bookticketinsert->setText(QCoreApplication::translate("FlightManager", "Book Ticket", nullptr));
         ticketsearch->setText(QCoreApplication::translate("FlightManager", "Ticket", nullptr));
-        searchaction->setText(QCoreApplication::translate("FlightManager", "Search Page", nullptr));
-        insertaction->setText(QCoreApplication::translate("FlightManager", "Add Page", nullptr));
-        updateaction->setText(QCoreApplication::translate("FlightManager", "Update Page", nullptr));
-        deleteaction->setText(QCoreApplication::translate("FlightManager", "Delete Page", nullptr));
+        searchaction->setText(QCoreApplication::translate("FlightManager", "\346\237\245\350\257\242\347\225\214\351\235\242", nullptr));
+        insertaction->setText(QCoreApplication::translate("FlightManager", "\346\267\273\345\212\240\347\225\214\351\235\242", nullptr));
+        updateaction->setText(QCoreApplication::translate("FlightManager", "\346\233\264\346\226\260\347\225\214\351\235\242", nullptr));
+        deleteaction->setText(QCoreApplication::translate("FlightManager", "\345\210\240\351\231\244\347\225\214\351\235\242", nullptr));
         quitacion->setText(QCoreApplication::translate("FlightManager", "Quit System", nullptr));
-        quitaction->setText(QCoreApplication::translate("FlightManager", "Quit System", nullptr));
-        exitaction->setText(QCoreApplication::translate("FlightManager", "\347\224\250\346\210\267\344\277\241\346\201\257", nullptr));
-        introdution->setText(QCoreApplication::translate("FlightManager", "\351\200\200\345\207\272\347\231\273\345\275\225", nullptr));
+        quitaction->setText(QCoreApplication::translate("FlightManager", "\351\200\200\345\207\272\347\263\273\347\273\237", nullptr));
+        introduction->setText(QCoreApplication::translate("FlightManager", "\347\224\250\346\210\267\344\277\241\346\201\257", nullptr));
+        exitaction->setText(QCoreApplication::translate("FlightManager", "\351\200\200\345\207\272\347\231\273\345\275\225", nullptr));
         welcomelabel->setText(QCoreApplication::translate("FlightManager", "\346\254\242\350\277\216\344\275\277\347\224\250316\350\210\252\347\251\272\344\277\241\346\201\257\347\256\241\347\220\206\347\263\273\347\273\237\357\274\201", nullptr));
         label_4->setText(QCoreApplication::translate("FlightManager", "316\350\210\252\347\251\272\345\205\254\345\217\270\344\270\272\346\202\250\346\234\215\345\212\241", nullptr));
         label_3->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\345\234\260", nullptr));

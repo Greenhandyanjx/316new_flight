@@ -1686,16 +1686,19 @@ padding-left:10px;
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>30</height>
+     <height>33</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">QMenuBar {
+	
+	font: 12pt &quot;华文楷体&quot;;
     background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
                                       stop:0 rgb(84, 209, 255), stop:1 rgb(0, 170, 255));
     spacing: 3px; /* spacing between menu bar items */
 }
 QMenuBar::item {
+
     padding: 7px 20px;
     background: transparent;
     border-radius: 5px;
@@ -1706,6 +1709,16 @@ QMenuBar::item:selected { /* when selected using mouse or keyboard */
 
 QMenuBar::item:pressed {
     background: rgb(2, 242, 255);
+}
+QMenu::item {
+        padding: 4px 6px; /* 图标和文本之间的间*/
+    }
+QMenu::icon {
+        padding-left: 6px; /* 图标内边距 */
+    }
+QMenu {
+        icon-size: 16px,16px; /* 图标大小 */	
+		font: 12pt &quot;华文楷体&quot;;
 }</string>
    </property>
    <widget class="QMenu" name="searchmenu">
@@ -1730,6 +1743,12 @@ QMenuBar::item:pressed {
     <property name="title">
      <string>删除</string>
     </property>
+    <property name="separatorsCollapsible">
+     <bool>true</bool>
+    </property>
+    <property name="toolTipsVisible">
+     <bool>true</bool>
+    </property>
     <addaction name="deleteaction"/>
    </widget>
    <widget class="QMenu" name="quitmenu">
@@ -1742,11 +1761,17 @@ QMenuBar::item:pressed {
     <addaction name="quitaction"/>
    </widget>
    <widget class="QMenu" name="usermenu">
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="tearOffEnabled">
+     <bool>false</bool>
+    </property>
     <property name="title">
      <string>usermenu</string>
     </property>
+    <addaction name="introduction"/>
     <addaction name="exitaction"/>
-    <addaction name="introdution"/>
    </widget>
    <addaction name="searchmenu"/>
    <addaction name="insertmeun"/>
@@ -1775,7 +1800,7 @@ QMenuBar::item:pressed {
     <iconset theme="QIcon::ThemeIcon::EditFind"/>
    </property>
    <property name="text">
-    <string>Search Page</string>
+    <string>查询界面</string>
    </property>
   </action>
   <action name="insertaction">
@@ -1783,7 +1808,7 @@ QMenuBar::item:pressed {
     <iconset theme="QIcon::ThemeIcon::FolderNew"/>
    </property>
    <property name="text">
-    <string>Add Page</string>
+    <string>添加界面</string>
    </property>
   </action>
   <action name="updateaction">
@@ -1791,7 +1816,7 @@ QMenuBar::item:pressed {
     <iconset theme="QIcon::ThemeIcon::SyncSynchronizing"/>
    </property>
    <property name="text">
-    <string>Update Page</string>
+    <string>更新界面</string>
    </property>
   </action>
   <action name="deleteaction">
@@ -1799,7 +1824,7 @@ QMenuBar::item:pressed {
     <iconset theme="QIcon::ThemeIcon::ListRemove"/>
    </property>
    <property name="text">
-    <string>Delete Page</string>
+    <string>删除界面</string>
    </property>
   </action>
   <action name="quitacion">
@@ -1812,15 +1837,21 @@ QMenuBar::item:pressed {
     <iconset theme="QIcon::ThemeIcon::EditClear"/>
    </property>
    <property name="text">
-    <string>Quit System</string>
+    <string>退出系统</string>
    </property>
   </action>
-  <action name="exitaction">
+  <action name="introduction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::AddressBookNew"/>
+   </property>
    <property name="text">
     <string>用户信息</string>
    </property>
   </action>
-  <action name="introdution">
+  <action name="exitaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::GoHome"/>
+   </property>
    <property name="text">
     <string>退出登录</string>
    </property>

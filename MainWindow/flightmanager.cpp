@@ -30,7 +30,8 @@ FlightManager::FlightManager(QWidget *parent) :
     connect(ui->insertaction, SIGNAL(triggered(bool)), this, SLOT(turn2insert()) );
     connect(ui->updateaction, SIGNAL(triggered(bool)), this, SLOT(turn2update()) );
     connect(ui->deleteaction, SIGNAL(triggered(bool)), this, SLOT(turn2delete()) );
-    connect(ui->quitacion,SIGNAL(triggered(bool)),this,SLOT(turn2quit()));
+    connect(ui->quitaction, &QAction::triggered, this, &FlightManager::turn2quit);
+
 }
 
 FlightManager::~FlightManager()
@@ -39,10 +40,23 @@ FlightManager::~FlightManager()
     cout << "delete FlightManger" << endl;
 }
 
+void FlightManager::getuser(){
+    // ui->usermenu->setIcon(QIcon(":/SVG/SVG/user.svg"));
+    // QFile file(":/SVG/SVG/user.svg");
+    // if (!file.exists()) {
+    //     qDebug() << "图标文件不存在: " << file.fileName();
+    // }
+    if(ReturnAccountType(customer_Name)==1)
+    ui->usermenu->setTitle("用户: "+customer_Name+" ,欢迎回来!");
+    else{
+        ui->usermenu->setTitle("管理员: "+customer_Name+" ,欢迎回来!");
+    }
+}
 void FlightManager::Init()
 {
     m_Sex.append("男");
     m_Sex.append("女");
+    qDebug()<<customer_Name<<"!!!";
     ui->usermenu->setTitle(customer_Name);
     ui->list->setFont(QFont("华文楷体", 15));
     ui->list->insertItem(0, "欢迎");
@@ -733,16 +747,13 @@ int FlightManager::ReturnAccountType(const QString &customerName) {
     QSqlQuery query;
     QString queryString = "SELECT account.type "
                           "FROM account "
-                          "INNER JOIN customer ON account.account = customer.account "
-                          "WHERE customer.name = :customerName";
+                          "WHERE account.account = '"+customerName+"'";
     query.prepare(queryString);
-    query.bindValue(":customerName", customerName);
-    // customer_Name=customerName;
+    qDebug()<<queryString;
     if (query.exec()) {
-        if (query.next()) {
-            int accountType = query.value(0).toInt(); // 直接转换为整数类型
+        query.next();
+        int accountType = query.value("type").toInt(); // 直接转换为整数类型
             return accountType;
-        }
     } else {
         qDebug() << "Error executing query: " << query.lastError().text();
     }
@@ -767,8 +778,9 @@ void FlightManager::turn2update()
 {
     // 检查账号类型是否为管理者，如果不是则直接返回
     int accountType = ReturnAccountType(customer_Name);
+    qDebug()<<accountType;
     if (accountType != 0) {
-        QMessageBox::warning(this, "您不是管理员", "只有管理员可以更新！", QMessageBox::Ok);
+        QMessageBox::warning(this, "您不是管理员", "只有管理可以更新！", QMessageBox::Ok);
         return;
     }
     ui->list->setCurrentRow(3);
@@ -780,7 +792,7 @@ void FlightManager::turn2delete()
     // 检查账号类型是否为管理者，如果不是则直接返回
     int accountType = ReturnAccountType(customer_Name);
     if (accountType != 0) {
-        QMessageBox::warning(this, "您不是管理员", "只有管理员可以删除！", QMessageBox::Ok);
+        QMessageBox::warning(this, "您不是管理员", "只有管理可以删除", QMessageBox::Ok);
         return;
     }
     ui->list->setCurrentRow(4);
@@ -789,7 +801,8 @@ void FlightManager::turn2delete()
 
 void FlightManager::turn2quit()
 {
-    exit(0);
+    qDebug() << "Exiting application...";
+    QCoreApplication::quit();
 }
 
 void FlightManager::on_inserttab_tabBarClicked(int index)

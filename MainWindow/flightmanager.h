@@ -22,6 +22,7 @@ class FlightManager : public QMainWindow
 public:
     explicit FlightManager(QWidget *parent = 0);
     ~FlightManager();
+    void getuser();
     static QString customer_Name;
 
 public slots:
@@ -131,6 +132,8 @@ private slots:
     void updateTicketNum();
 
     void Getdelno();
+
+
 
 private:
     struct Customer

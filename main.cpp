@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
     // QApplication::processEvents();
     QObject::connect(l, &Login::send, [=]() {
         f->show();   // 显示主界面
+        f->getuser();
         l->deleteLater(); // 销毁登录窗口
     });
     /*
