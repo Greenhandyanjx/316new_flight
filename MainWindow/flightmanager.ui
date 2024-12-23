@@ -325,7 +325,7 @@ QLable{
             <x>0</x>
             <y>0</y>
             <width>661</width>
-            <height>503</height>
+            <height>493</height>
            </rect>
           </property>
           <attribute name="label">
@@ -356,7 +356,7 @@ border-radius:8px;
                <x>10</x>
                <y>0</y>
                <width>641</width>
-               <height>212</height>
+               <height>218</height>
               </rect>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -558,7 +558,7 @@ border-radius:8px;
             <x>0</x>
             <y>0</y>
             <width>661</width>
-            <height>503</height>
+            <height>493</height>
            </rect>
           </property>
           <attribute name="label">
@@ -862,7 +862,7 @@ border-image:url(:/images/images/dark.jpg);
                 <x>130</x>
                 <y>0</y>
                 <width>391</width>
-                <height>511</height>
+                <height>553</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout">
@@ -1457,7 +1457,7 @@ padding-left:10px;
                <x>20</x>
                <y>30</y>
                <width>281</width>
-               <height>331</height>
+               <height>332</height>
               </rect>
              </property>
              <layout class="QGridLayout" name="chglinelyo">
@@ -1710,7 +1710,7 @@ padding-left:10px;
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>33</height>
+     <height>36</height>
     </rect>
    </property>
    <property name="styleSheet">
