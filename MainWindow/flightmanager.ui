@@ -325,7 +325,7 @@ QLable{
             <x>0</x>
             <y>0</y>
             <width>661</width>
-            <height>513</height>
+            <height>503</height>
            </rect>
           </property>
           <attribute name="label">
@@ -533,13 +533,8 @@ border-radius:8px;
            <rect>
             <x>0</x>
             <y>0</y>
-<<<<<<< HEAD
             <width>100</width>
             <height>30</height>
-=======
-            <width>661</width>
-            <height>513</height>
->>>>>>> 06c3d61167999590c2828419a44e9847a37d43d2
            </rect>
           </property>
           <attribute name="label">
@@ -652,7 +647,7 @@ border-image:url(:/images/images/dark.jpg);
                <string>确认</string>
               </property>
              </widget>
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
                 <x>190</x>
@@ -1691,7 +1686,7 @@ padding-left:10px;
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>27</height>
+     <height>30</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -1738,16 +1733,27 @@ QMenuBar::item:pressed {
     <addaction name="deleteaction"/>
    </widget>
    <widget class="QMenu" name="quitmenu">
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
     <property name="title">
      <string>退出系统</string>
     </property>
     <addaction name="quitaction"/>
+   </widget>
+   <widget class="QMenu" name="usermenu">
+    <property name="title">
+     <string>usermenu</string>
+    </property>
+    <addaction name="exitaction"/>
+    <addaction name="introdution"/>
    </widget>
    <addaction name="searchmenu"/>
    <addaction name="insertmeun"/>
    <addaction name="updatemenu"/>
    <addaction name="deletemenu"/>
    <addaction name="quitmenu"/>
+   <addaction name="usermenu"/>
   </widget>
   <action name="personsearch">
    <property name="text">
@@ -1807,6 +1813,16 @@ QMenuBar::item:pressed {
    </property>
    <property name="text">
     <string>Quit System</string>
+   </property>
+  </action>
+  <action name="exitaction">
+   <property name="text">
+    <string>用户信息</string>
+   </property>
+  </action>
+  <action name="introdution">
+   <property name="text">
+    <string>退出登录</string>
    </property>
   </action>
  </widget>
