@@ -966,6 +966,71 @@ void FlightManager::on_chgctmokbtn_clicked()//更新用户信息
         QMessageBox(QMessageBox::Information, "成功", "更新成功", QMessageBox::Ok).exec();
     else
         QMessageBox(QMessageBox::Critical, "更新错误", rtn, QMessageBox::Ok).exec();
+
+    QSqlQuery *qsql = new QSqlQuery();
+    QString chk_sql = "SELECT * FROM ticket where customer_id = "+ctmno;
+    try
+    {
+        if(!m_Connect->SelectResult(qsql,chk_sql))
+            throw false;
+    }
+    catch(bool&)
+    {
+        QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
+        return;
+    }
+    while(qsql->next())
+    {
+        QString orderno  = qsql->value("order_id").toString();
+        QVector<QString> update;
+        QString update_name = "UPDATE ticket SET customer_name = '"+ name +"' WHERE order_id = "+orderno;
+
+        QString customer_type;
+        if(type == 1)
+            customer_type = "普通用户";
+        else if(type == 2)
+            customer_type = "会员";
+        else if(type == 3)
+            customer_type = "VIP";
+        QString update_type = "UPDATE ticket SET customer_type = '"+customer_type + "' WHERE order_id = "+orderno;
+        //获得优惠-type对应
+
+        QSqlQuery *qs = new QSqlQuery();
+        QString chk = "SELECT * FROM vi_type_discount WHERE customertypename = '"+customer_type+"'";
+        try
+        {
+            if (!m_Connect->SelectResult(qs, chk))
+                throw false;
+        }
+        catch (bool&)
+        {
+            QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
+            return;
+        }
+        qs->next();
+        //更新正确价格
+        int discountpercent = qs->value("discountpercent").toInt();
+        QString update_discountpercent = "UPDATE ticket SET discount_rate = "+QString::number(discountpercent)+" WHERE order_id = "+orderno;
+        int oriprice = qsql->value("ticket_price").toInt();
+
+        double new_price = (double)oriprice*(discountpercent)/100.0;
+        QString update_total_price = "UPDATE ticket SET total_price = " + QString::number(new_price) + " WHERE order_id = "+orderno;
+        update.append(update_name);
+        update.append(update_type);
+        update.append(update_discountpercent);
+        update.append(update_total_price);
+        QString rtn = m_Connect->UpdateValue(update);
+        // if (rtn == "Success")
+        //     QMessageBox(QMessageBox::Information, "成功", "更新成功", QMessageBox::Ok).exec();
+        // else
+        //     QMessageBox(QMessageBox::Critical, "更新错误", rtn, QMessageBox::Ok).exec();
+    }
+
+
+
+
+
+
 }
 
 void FlightManager::on_chgctmselcom_activated(int index)
@@ -1048,11 +1113,43 @@ void FlightManager::on_chgtypokbtn_clicked()
         qDebug()<<sql;
         QVector<QString> discount_sql;
         discount_sql.append(sql);
+        QString type_name = ui->chgtypselcom->currentText();
+        QString sqlq = "UPDATE vi_type_discount SET discountpercent = " + QString::number(100-discount)
+                       +" WHERE customertypename = '" +ui->chgtypselcom->currentText() +"'";
         QString rtn = m_Connect->UpdateValue(discount_sql);
         if (rtn == "Success")
             QMessageBox(QMessageBox::Information, "成功", "更新成功", QMessageBox::Ok).exec();
         else
             QMessageBox(QMessageBox::Critical, "更新错误", rtn, QMessageBox::Ok).exec();
+        QSqlQuery *qsql = new QSqlQuery();
+        QString chk = "SELECT * FROM ticket WHERE customer_type = '" + type_name + "'";
+        try
+        {
+            if (!m_Connect->SelectResult(qsql, chk))
+                throw false;
+        }
+        catch (bool&)
+        {
+            QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
+            return;
+        }
+        while(qsql->next())
+        {
+            QVector<QString> update;
+            QString orderno = qsql->value("order_id").toString();
+            QString update_discountpercent = "UPDATE ticket SET discount_rate = "+QString::number(100-discount)+" WHERE order_id = "+orderno;
+            int oriprice = qsql->value("ticket_price").toInt();
+
+            double new_price = (double)oriprice*(100-discount)/100.0;
+            QString update_total_price = "UPDATE ticket SET total_price = " + QString::number(new_price) + " WHERE order_id = "+orderno;
+            update.append(update_discountpercent);
+            update.append(update_total_price);
+            QString rtn = m_Connect->UpdateValue(update);
+            // if (rtn == "Success")
+            //     QMessageBox(QMessageBox::Information, "成功", "更新成功", QMessageBox::Ok).exec();
+            // else
+            //     QMessageBox(QMessageBox::Critical, "更新错误", rtn, QMessageBox::Ok).exec();
+        }
     }
 }
 
