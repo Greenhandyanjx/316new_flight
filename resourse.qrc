@@ -204,6 +204,8 @@
         <file>SVG/wrong.svg</file>
         <file>SVG/zoom-in.svg</file>
         <file>SVG/zoom-out.svg</file>
+        <file>SVG/dire.svg</file>
+        <file>SVG/mplane.svg</file>
     </qresource>
     <qresource prefix="/images">
         <file>images/airplane.png</file>

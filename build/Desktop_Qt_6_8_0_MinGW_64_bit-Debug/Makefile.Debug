@@ -161,6 +161,7 @@ debug/qrc_resourse.cpp: ../../resourse.qrc \
 		../../SVG/view-list.svg \
 		../../SVG/checkmark.svg \
 		../../SVG/document-new.svg \
+		../../SVG/dire.svg \
 		../../SVG/warning.svg \
 		../../SVG/crop.svg \
 		../../SVG/arrow-right.svg \
@@ -183,6 +184,7 @@ debug/qrc_resourse.cpp: ../../resourse.qrc \
 		../../SVG/pin.svg \
 		../../SVG/paperclip.svg \
 		../../SVG/wrong.svg \
+		../../SVG/mplane.svg \
 		../../SVG/crosshair.svg \
 		../../SVG/brightness-low.svg \
 		../../SVG/experiment.svg \
@@ -904,6 +906,21 @@ debug/moc_flightmanager.cpp: ../../MainWindow/flightmanager.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qmessagebox.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qdialog.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QWidget \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QLabel \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlabel.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qframe.h \
+		D:/QT/6.8.0/mingw_64/include/QtGui/qpicture.h \
+		D:/QT/6.8.0/mingw_64/include/QtGui/qtextdocument.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QVBoxLayout \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qboxlayout.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlayout.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlayoutitem.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qgridlayout.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QHBoxLayout \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QPushButton \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qpushbutton.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qabstractbutton.h \
 		../../Connect/connectdatabase.h \
 		D:/QT/6.8.0/mingw_64/include/QtSql/QtSql \
 		D:/QT/6.8.0/mingw_64/include/QtSql/QtSqlDepends \
@@ -1057,7 +1074,6 @@ debug/moc_flightmanager.cpp: ../../MainWindow/flightmanager.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qstyle.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qtabbar.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qrubberband.h \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/qframe.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlistview.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qabstractitemview.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
@@ -1470,6 +1486,20 @@ debug/main.o: ../../main.cpp ../../Login/login.h \
 		D:/QT/6.8.0/mingw_64/include/QtCore/QVector \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QMainWindow \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qmainwindow.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QWidget \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QLabel \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlabel.h \
+		D:/QT/6.8.0/mingw_64/include/QtGui/qpicture.h \
+		D:/QT/6.8.0/mingw_64/include/QtGui/qtextdocument.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QVBoxLayout \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qboxlayout.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlayout.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlayoutitem.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qgridlayout.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QHBoxLayout \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QPushButton \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qpushbutton.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qabstractbutton.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QApplication \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qapplication.h \
 		D:/QT/6.8.0/mingw_64/include/QtCore/QFile
@@ -1863,7 +1893,14 @@ debug/login.o: ../../Login/login.cpp ../../Login/login.h \
 		D:/QT/6.8.0/mingw_64/include/QtGui/qtextoption.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QPushButton \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qpushbutton.h \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/QWidget
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QWidget \
+		../../MainWindow/flightmanager.h \
+		D:/QT/6.8.0/mingw_64/include/QtCore/QDate \
+		D:/QT/6.8.0/mingw_64/include/QtCore/QTime \
+		D:/QT/6.8.0/mingw_64/include/QtCore/QVector \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QMainWindow \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qmainwindow.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QVBoxLayout
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\login.o ..\..\Login\login.cpp
 
 debug/connectdatabase.o: ../../Connect/connectdatabase.cpp ../../Connect/connectdatabase.h \
@@ -2429,6 +2466,21 @@ debug/flightmanager.o: ../../MainWindow/flightmanager.cpp ../../MainWindow/fligh
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qmessagebox.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qdialog.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QWidget \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QLabel \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlabel.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qframe.h \
+		D:/QT/6.8.0/mingw_64/include/QtGui/qpicture.h \
+		D:/QT/6.8.0/mingw_64/include/QtGui/qtextdocument.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QVBoxLayout \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qboxlayout.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlayout.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlayoutitem.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qgridlayout.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QHBoxLayout \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QPushButton \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qpushbutton.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qabstractbutton.h \
 		../../Connect/connectdatabase.h \
 		D:/QT/6.8.0/mingw_64/include/QtSql/QtSql \
 		D:/QT/6.8.0/mingw_64/include/QtSql/QtSqlDepends \
@@ -2582,7 +2634,6 @@ debug/flightmanager.o: ../../MainWindow/flightmanager.cpp ../../MainWindow/fligh
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qstyle.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qtabbar.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qrubberband.h \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/qframe.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlistview.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qabstractitemview.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
@@ -2603,24 +2654,14 @@ debug/flightmanager.o: ../../MainWindow/flightmanager.cpp ../../MainWindow/fligh
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qcalendarwidget.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QCheckBox \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qcheckbox.h \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/qabstractbutton.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QComboBox \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QDateEdit \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qdatetimeedit.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QGridLayout \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/qgridlayout.h \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlayout.h \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlayoutitem.h \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/qboxlayout.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QGroupBox \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qgroupbox.h \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/QHBoxLayout \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QHeaderView \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qheaderview.h \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/QLabel \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlabel.h \
-		D:/QT/6.8.0/mingw_64/include/QtGui/qpicture.h \
-		D:/QT/6.8.0/mingw_64/include/QtGui/qtextdocument.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QLineEdit \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlineedit.h \
 		D:/QT/6.8.0/mingw_64/include/QtGui/qtextcursor.h \
@@ -2633,8 +2674,6 @@ debug/flightmanager.o: ../../MainWindow/flightmanager.cpp ../../MainWindow/fligh
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qmenu.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QMenuBar \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qmenubar.h \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/QPushButton \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/qpushbutton.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QStackedWidget \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qstackedwidget.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QTabWidget \
@@ -2643,9 +2682,7 @@ debug/flightmanager.o: ../../MainWindow/flightmanager.cpp ../../MainWindow/fligh
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qtableview.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QTimeEdit \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QToolBox \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/qtoolbox.h \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/QVBoxLayout \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/QWidget
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qtoolbox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\flightmanager.o ..\..\MainWindow\flightmanager.cpp
 
 debug/qrc_resourse.o: debug/qrc_resourse.cpp 
