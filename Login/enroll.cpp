@@ -1,16 +1,14 @@
 #include "enroll.h"
-#include "flightmanager.h"
-#include "login.h"
-#include <cstdlib>
+#include "ui_enroll.h"
 #include <iostream>
+#include "login.h"
 using std::cout;
 using std::endl;
 enroll::enroll(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::enroll)
 {
-    QDialog(parent), ui(new Ui::enroll)
-    {
-        uisetupUi(this);
-    }
+    ui->setupUi(this);
 }
 
 enroll::~enroll()
@@ -19,5 +17,11 @@ enroll::~enroll()
         delete ui;
         ui = nullptr;
     }
-    cout << "delete enroll" << endl;
+    cout << "delete enroll" << endl;}
+
+void enroll::on_newcustomer_clicked()
+{
+    enrolldone();
+    this->close();
 }
+

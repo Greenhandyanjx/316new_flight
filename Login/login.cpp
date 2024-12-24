@@ -142,8 +142,10 @@ void Login::on_enrollbut_clicked()
     if(q.lastError().isValid()){
         qDebug()<<q.lastError().text();
     }
-    else
+    else{
         qDebug()<<"insert successful";
+        openenroll();//发送注册信号
+    }
 }
 
 //用户/管理选择身份登录，两个选项只能选其一

@@ -21,9 +21,13 @@ public:
     ~Login();
     bool Loginflag;
     void dosend();
+    void openRegistration() {
+        emit openenroll(); // 发送信号通知需要打开注册界面
+    }
 
 signals:
     void send();
+    void openenroll();
 
 protected:
     int CheckWriting();//查看账号密码栏是否为空

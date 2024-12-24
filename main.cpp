@@ -23,7 +23,18 @@ int main(int argc, char *argv[])
     }
     qDebug() << "Database connected successfully.";
     Login* l = new Login;
+    enroll* e = new enroll;
     l->show();
+    QObject::connect(l, &Login::openenroll, [=]() {
+        // 打开注册界面,销毁旧登录界面
+        e->show();
+        l->hide();
+    });
+    QObject::connect(e, &enroll::done, [=]() {
+
+        l->show();
+        e->close();
+    });
     QApplication::processEvents();
     int result = 0;
     FlightManager* f = new FlightManager;
