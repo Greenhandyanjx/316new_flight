@@ -1799,8 +1799,8 @@ public:
         retranslateUi(FlightManager);
         QObject::connect(list, &QListWidget::currentRowChanged, stackedWidget, &QStackedWidget::setCurrentIndex);
 
-        stackedWidget->setCurrentIndex(2);
-        searchtoolbox->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
+        searchtoolbox->setCurrentIndex(1);
         inserttab->setCurrentIndex(0);
 
 

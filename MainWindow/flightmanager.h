@@ -129,7 +129,7 @@ public:
     explicit FlightManager(QWidget *parent = 0);
     ~FlightManager();
     void getuser();
-    static QString customer_Name;
+    static QString customer_acc;
 
 public slots:
     void receive();

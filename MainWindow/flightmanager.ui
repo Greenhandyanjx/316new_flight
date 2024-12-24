@@ -103,7 +103,7 @@ border-image:url(:/images/images/background1.jpg);
 }</string>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="homepage">
         <widget class="QLabel" name="welcomelabel">
@@ -310,7 +310,7 @@ QLable{
           </rect>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="searchairline">
           <property name="geometry">

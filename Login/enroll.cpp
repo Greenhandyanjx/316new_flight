@@ -59,8 +59,9 @@ void enroll::on_newcustomer_clicked()
     QString phone = ui->newphonedit->text();
     insertstr.append(phone);
 
-    QString sql = "INSERT INTO customer VALUES (?, ?, ?, ?, ?, ?)";
-    QString rtn = m_Connect->InsertValue(sql, 6, insertstr);
+    insertstr.append(FlightManager::customer_acc);
+    QString sql = "INSERT INTO customer VALUES (?, ?, ?, ?, ?, ?, ?)";
+    QString rtn = m_Connect->InsertValue(sql, 7, insertstr);
     try
     {
         if ("Success" != rtn)
@@ -77,6 +78,6 @@ void enroll::on_newcustomer_clicked()
     {
         QMessageBox(QMessageBox::Warning, "插入失败", rtn, QMessageBox::Ok).exec();
     }
-    this->close();
+    this->hide();
 }
 
