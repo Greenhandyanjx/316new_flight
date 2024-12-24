@@ -30,7 +30,8 @@ FlightManager::FlightManager(QWidget *parent) :
     connect(ui->insertaction, SIGNAL(triggered(bool)), this, SLOT(turn2insert()) );
     connect(ui->updateaction, SIGNAL(triggered(bool)), this, SLOT(turn2update()) );
     connect(ui->deleteaction, SIGNAL(triggered(bool)), this, SLOT(turn2delete()) );
-    connect(ui->quitacion,SIGNAL(triggered(bool)),this,SLOT(turn2quit()));
+    connect(ui->quitaction, &QAction::triggered, this, &FlightManager::turn2quit);
+
 }
 
 FlightManager::~FlightManager()
@@ -39,10 +40,24 @@ FlightManager::~FlightManager()
     cout << "delete FlightManger" << endl;
 }
 
+void FlightManager::getuser(){
+    // ui->usermenu->setIcon(QIcon(":/SVG/SVG/user.svg"));
+    // QFile file(":/SVG/SVG/user.svg");
+    // if (!file.exists()) {
+    //     qDebug() << "图标文件不存在: " << file.fileName();
+    // }
+    if(ReturnAccountType(customer_Name)==1)
+    ui->usermenu->setTitle("用户: "+customer_Name+" ,欢迎回来!");
+    else{
+        ui->usermenu->setTitle("管理员: "+customer_Name+" ,欢迎回来!");
+    }
+}
 void FlightManager::Init()
 {
     m_Sex.append("男");
     m_Sex.append("女");
+    qDebug()<<customer_Name<<"!!!";
+    ui->usermenu->setTitle(customer_Name);
     ui->list->setFont(QFont("华文楷体", 15));
     ui->list->insertItem(0, "欢迎");
     ui->list->insertItem(1, "查询");
@@ -786,7 +801,8 @@ void FlightManager::turn2delete()
 
 void FlightManager::turn2quit()
 {
-    exit(0);
+    qDebug() << "Exiting application...";
+    QCoreApplication::quit();
 }
 
 void FlightManager::on_inserttab_tabBarClicked(int index)
@@ -950,6 +966,71 @@ void FlightManager::on_chgctmokbtn_clicked()//更新用户信息
         QMessageBox(QMessageBox::Information, "成功", "更新成功", QMessageBox::Ok).exec();
     else
         QMessageBox(QMessageBox::Critical, "更新错误", rtn, QMessageBox::Ok).exec();
+
+    QSqlQuery *qsql = new QSqlQuery();
+    QString chk_sql = "SELECT * FROM ticket where customer_id = "+ctmno;
+    try
+    {
+        if(!m_Connect->SelectResult(qsql,chk_sql))
+            throw false;
+    }
+    catch(bool&)
+    {
+        QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
+        return;
+    }
+    while(qsql->next())
+    {
+        QString orderno  = qsql->value("order_id").toString();
+        QVector<QString> update;
+        QString update_name = "UPDATE ticket SET customer_name = '"+ name +"' WHERE order_id = "+orderno;
+
+        QString customer_type;
+        if(type == 1)
+            customer_type = "普通用户";
+        else if(type == 2)
+            customer_type = "会员";
+        else if(type == 3)
+            customer_type = "VIP";
+        QString update_type = "UPDATE ticket SET customer_type = '"+customer_type + "' WHERE order_id = "+orderno;
+        //获得优惠-type对应
+
+        QSqlQuery *qs = new QSqlQuery();
+        QString chk = "SELECT * FROM vi_type_discount WHERE customertypename = '"+customer_type+"'";
+        try
+        {
+            if (!m_Connect->SelectResult(qs, chk))
+                throw false;
+        }
+        catch (bool&)
+        {
+            QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
+            return;
+        }
+        qs->next();
+        //更新正确价格
+        int discountpercent = qs->value("discountpercent").toInt();
+        QString update_discountpercent = "UPDATE ticket SET discount_rate = "+QString::number(discountpercent)+" WHERE order_id = "+orderno;
+        int oriprice = qsql->value("ticket_price").toInt();
+
+        double new_price = (double)oriprice*(discountpercent)/100.0;
+        QString update_total_price = "UPDATE ticket SET total_price = " + QString::number(new_price) + " WHERE order_id = "+orderno;
+        update.append(update_name);
+        update.append(update_type);
+        update.append(update_discountpercent);
+        update.append(update_total_price);
+        QString rtn = m_Connect->UpdateValue(update);
+        // if (rtn == "Success")
+        //     QMessageBox(QMessageBox::Information, "成功", "更新成功", QMessageBox::Ok).exec();
+        // else
+        //     QMessageBox(QMessageBox::Critical, "更新错误", rtn, QMessageBox::Ok).exec();
+    }
+
+
+
+
+
+
 }
 
 void FlightManager::on_chgctmselcom_activated(int index)
@@ -1032,11 +1113,43 @@ void FlightManager::on_chgtypokbtn_clicked()
         qDebug()<<sql;
         QVector<QString> discount_sql;
         discount_sql.append(sql);
+        QString type_name = ui->chgtypselcom->currentText();
+        QString sqlq = "UPDATE vi_type_discount SET discountpercent = " + QString::number(100-discount)
+                       +" WHERE customertypename = '" +ui->chgtypselcom->currentText() +"'";
         QString rtn = m_Connect->UpdateValue(discount_sql);
         if (rtn == "Success")
             QMessageBox(QMessageBox::Information, "成功", "更新成功", QMessageBox::Ok).exec();
         else
             QMessageBox(QMessageBox::Critical, "更新错误", rtn, QMessageBox::Ok).exec();
+        QSqlQuery *qsql = new QSqlQuery();
+        QString chk = "SELECT * FROM ticket WHERE customer_type = '" + type_name + "'";
+        try
+        {
+            if (!m_Connect->SelectResult(qsql, chk))
+                throw false;
+        }
+        catch (bool&)
+        {
+            QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
+            return;
+        }
+        while(qsql->next())
+        {
+            QVector<QString> update;
+            QString orderno = qsql->value("order_id").toString();
+            QString update_discountpercent = "UPDATE ticket SET discount_rate = "+QString::number(100-discount)+" WHERE order_id = "+orderno;
+            int oriprice = qsql->value("ticket_price").toInt();
+
+            double new_price = (double)oriprice*(100-discount)/100.0;
+            QString update_total_price = "UPDATE ticket SET total_price = " + QString::number(new_price) + " WHERE order_id = "+orderno;
+            update.append(update_discountpercent);
+            update.append(update_total_price);
+            QString rtn = m_Connect->UpdateValue(update);
+            // if (rtn == "Success")
+            //     QMessageBox(QMessageBox::Information, "成功", "更新成功", QMessageBox::Ok).exec();
+            // else
+            //     QMessageBox(QMessageBox::Critical, "更新错误", rtn, QMessageBox::Ok).exec();
+        }
     }
 }
 
@@ -1792,3 +1905,79 @@ void FlightManager::Getdelno(){
     ui->delticketno->addItem(QString::number(m_TicketInfo[i].order_id) );
 }
 
+
+void FlightManager::on_pushButton_clicked()
+{
+    QString departure = ui->lineEdit->text();
+    QString arrive = ui->lineEdit_2->text();
+    QString date = ui->calendarWidget->selectedDate().toString("yyyy-MM-dd");
+    qDebug()<<"dbg"<<date;
+    if (departure =="" and arrive == "")
+    {
+        ShowAirLineOnSearch();
+        return;
+    }
+    //qDebug()<<"test"<<departure<<" "<<arrive;
+    QSqlQuery *qsql = new QSqlQuery;
+    QString chk_sql = "SELECT * FROM airline WHERE departurecity = '"+departure+"'and arrivecity = '"+arrive+"'and departuredate = '"+date+"'";
+    try
+    {
+        if (!m_Connect->SelectResult(qsql, chk_sql))
+            throw false;
+    }
+    catch (bool&)
+    {
+        QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
+        return;
+    }
+    QVector<AirLine> recieve;
+    while(qsql->next())
+    {
+        qDebug()<<qsql->value("airlineno").toString();
+        AirLine temp;
+        temp.line_no = qsql->value("airlineno").toString().toInt();
+        temp.airway_short_name = qsql->value("airwayshortname").toString();
+        temp.airplane_type = qsql->value("airplanetype").toString();
+        temp.departure_country = qsql->value("departurecountry").toString();
+        temp.departure_city = qsql->value("departurecity").toString();
+        temp.arrive_country = qsql->value("arrivecountry").toString();
+        temp.arrive_city = qsql->value("arrivecity").toString();
+        temp.departure_date = qsql->value("departuredate").toString();
+        temp.departure_time = qsql->value("departuretime").toString();
+        temp.arrive_time = qsql->value("arrivetime").toString();
+        temp.econemy_price = qsql->value("economyclassprice").toString().toInt();
+        temp.econemy_num = qsql->value("economyclassnum").toString().toInt();
+        temp.econemy_rest = temp.econemy_num;
+        temp.bussiness_price = qsql->value("businessclassprice").toString().toInt();
+        temp.bussiness_num = qsql->value("businessclassnum").toString().toInt();
+        temp.bussiness_rest = temp.bussiness_num;
+        temp.deluxe_price = qsql->value("deluxeclassprice").toString().toInt();
+        temp.deluxe_num = qsql->value("deluxeclassnum").toString().toInt();
+        temp.deluxe_rest = temp.deluxe_num;
+        recieve.push_back(temp);
+    }
+    ui->searchairlineshow->setRowCount(recieve.size());
+    for (int i = 0; i < recieve.size(); ++i)
+    {
+        ui->searchairlineshow->setItem(i, 0, new QTableWidgetItem(QString::number(recieve[i].line_no)) );
+        ui->searchairlineshow->setItem(i, 1, new QTableWidgetItem(recieve[i].airway_short_name) );
+        ui->searchairlineshow->setItem(i, 2, new QTableWidgetItem(recieve[i].airplane_type) );
+        ui->searchairlineshow->setItem(i, 3, new QTableWidgetItem(recieve[i].departure_country) );
+        ui->searchairlineshow->setItem(i, 4, new QTableWidgetItem(recieve[i].departure_city) );
+        ui->searchairlineshow->setItem(i, 5, new QTableWidgetItem(recieve[i].arrive_country) );
+        ui->searchairlineshow->setItem(i, 6, new QTableWidgetItem(recieve[i].arrive_city) );
+        ui->searchairlineshow->setItem(i, 7, new QTableWidgetItem(recieve[i].departure_date) );
+        ui->searchairlineshow->setItem(i, 8, new QTableWidgetItem(recieve[i].departure_time) );
+        ui->searchairlineshow->setItem(i, 9, new QTableWidgetItem(recieve[i].arrive_time) );
+        ui->searchairlineshow->setItem(i, 10, new QTableWidgetItem(QString::number(recieve[i].econemy_price)) );
+        ui->searchairlineshow->setItem(i, 11, new QTableWidgetItem(QString::number(recieve[i].econemy_num)) );
+        ui->searchairlineshow->setItem(i, 12, new QTableWidgetItem(QString::number(recieve[i].econemy_rest)) );
+        ui->searchairlineshow->setItem(i, 13, new QTableWidgetItem(QString::number(recieve[i].bussiness_price)) );
+        ui->searchairlineshow->setItem(i, 14, new QTableWidgetItem(QString::number(recieve[i].bussiness_num)) );
+        ui->searchairlineshow->setItem(i, 15, new QTableWidgetItem(QString::number(recieve[i].bussiness_rest)) );
+        ui->searchairlineshow->setItem(i, 16, new QTableWidgetItem(QString::number(recieve[i].deluxe_price)) );
+        ui->searchairlineshow->setItem(i, 17, new QTableWidgetItem(QString::number(recieve[i].deluxe_num)) );
+        ui->searchairlineshow->setItem(i, 18, new QTableWidgetItem(QString::number(recieve[i].deluxe_rest)) );
+    }
+
+}

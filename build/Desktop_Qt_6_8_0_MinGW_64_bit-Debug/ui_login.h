@@ -33,7 +33,7 @@ public:
     QPushButton *quitbutton;
     QLabel *titlelabel;
     QPushButton *enrollbut;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QCheckBox *ckbuser;
     QCheckBox *ckbmanager;
@@ -42,7 +42,7 @@ public:
     {
         if (Login->objectName().isEmpty())
             Login->setObjectName("Login");
-        Login->resize(440, 342);
+        Login->resize(433, 342);
         QFont font;
         font.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
         Login->setFont(font);
@@ -93,15 +93,15 @@ public:
         enrollbut->setObjectName("enrollbut");
         enrollbut->setGeometry(QRect(110, 260, 91, 41));
         enrollbut->setFont(font1);
-        widget = new QWidget(Login);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(150, 226, 151, 28));
-        horizontalLayout = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(Login);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(150, 226, 151, 28));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        ckbuser = new QCheckBox(widget);
+        ckbuser = new QCheckBox(layoutWidget);
         ckbuser->setObjectName("ckbuser");
         QFont font4;
         font4.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
@@ -110,12 +110,21 @@ public:
 
         horizontalLayout->addWidget(ckbuser);
 
-        ckbmanager = new QCheckBox(widget);
+        ckbmanager = new QCheckBox(layoutWidget);
         ckbmanager->setObjectName("ckbmanager");
         ckbmanager->setFont(font4);
 
         horizontalLayout->addWidget(ckbmanager);
 
+        enrollbut->raise();
+        accountlabel->raise();
+        passwordlabel->raise();
+        accounttext->raise();
+        passwordtext->raise();
+        loginbutton->raise();
+        quitbutton->raise();
+        titlelabel->raise();
+        layoutWidget->raise();
 
         retranslateUi(Login);
 

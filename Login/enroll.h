@@ -1,37 +1,21 @@
 #ifndef ENROLL_H
 #define ENROLL_H
 
-#include <QDate>
-#include <QDialog>
-#include <QMainWindow>
-#include <QMap>
-#include <QMessageBox>
-#include <QTime>
-#include <QVector>
-#include "connectdatabase.h"
-#include <windows.h>
+#include <QObject>
+#include <QWidget>
 
 namespace Ui {
-class Register;
+class enroll;
 }
-
-class Register : public QWidget
+class enroll : public QWidget
 {
     Q_OBJECT
-
 public:
-    explicit Register(QWidget *parent);
-    ~Register();
-
-signals:
-    void registered(); // 注册成功信号
-
-private slots:
-    //void on_registerButton_clicked(); // 点击注册按钮的槽函数
+    explicit enroll(QWidget *parent = 0);
+    ~enroll();
 
 private:
-    Ui::Register *ui;
-    ConnectDataBase *m_Connect;
+    Ui::enroll *ui;
 };
 
 #endif // ENROLL_H

@@ -1,17 +1,23 @@
 #include "enroll.h"
+#include "flightmanager.h"
+#include "login.h"
 #include <cstdlib>
 #include <iostream>
-#include "ui_enroll.h"
-#include "flightmanager.h"
 using std::cout;
 using std::endl;
-Register::Register(QWidget *parent){
-    QWidget(parent);
-    ui(new Ui::Widget){
-        ui->setupUi(this);
+enroll::enroll(QWidget *parent)
+{
+    QDialog(parent), ui(new Ui::enroll)
+    {
+        uisetupUi(this);
     }
 }
 
-Register::~Register() {
-    delete ui;
+enroll::~enroll()
+{
+    if (ui) {
+        delete ui;
+        ui = nullptr;
+    }
+    cout << "delete enroll" << endl;
 }

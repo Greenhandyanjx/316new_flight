@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QMessageBox>
 #include "connectdatabase.h"
-
+#include "enroll.h"
 #include <cstdlib>
 
 namespace Ui
