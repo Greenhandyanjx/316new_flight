@@ -3,6 +3,7 @@
 #include "flightmanager.h"
 #include <cstdlib>
 #include <iostream>
+#include "enroll.h"
 using std::cout;
 using std::endl;
 Login::Login(QWidget *parent) :
@@ -142,6 +143,8 @@ void Login::on_enrollbut_clicked()
     }
     else
         qDebug()<<"insert successful";
+    Register* r = new Register;
+    r->show();
 }
 
 //用户/管理选择身份登录，两个选项只能选其一

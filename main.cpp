@@ -1,5 +1,6 @@
 #include "login.h"
 #include "flightmanager.h"
+#include "enroll.h"
 #include <QApplication>
 #include <iostream>
 #include<QFile>

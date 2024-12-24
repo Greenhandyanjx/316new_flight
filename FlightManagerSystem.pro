@@ -12,15 +12,18 @@ INCLUDEPATH +=  . \
                 ./MainWindow
 
 SOURCES +=  main.cpp \
+            Login/enroll.cpp \
             Login/login.cpp \
             Connect/connectdatabase.cpp \
             MainWindow/flightmanager.cpp
 
 HEADERS +=  Login/login.h \
             Connect/connectdatabase.h \
+            Login/enroll.h \
             MainWindow/flightmanager.h
 
 FORMS    += $$PWD/Login/login.ui \
+    Login/enroll.ui \
     MainWindow/flightmanager.ui
 
 RESOURCES += \

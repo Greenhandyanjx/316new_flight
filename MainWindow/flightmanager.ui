@@ -647,7 +647,7 @@ border-image:url(:/images/images/dark.jpg);
                <string>确认</string>
               </property>
              </widget>
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
                 <x>190</x>
