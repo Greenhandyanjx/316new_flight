@@ -1978,14 +1978,15 @@ void FlightManager::on_pushButton_clicked()
         ui->arrive->setText("未输入");
     ui->depatime->setText("出发日期 | "+date);
     qDebug()<<"dbg"<<date;
-    if (departure =="" and arrive == "")
-    {
-        ShowAirLineOnSearch();
-        return;
-    }
-    //qDebug()<<"test"<<departure<<" "<<arrive;
     QSqlQuery *qsql = new QSqlQuery;
     QString chk_sql = "SELECT * FROM airline WHERE departurecity = '"+departure+"'and arrivecity = '"+arrive+"'and departuredate = '"+date+"'";
+    if (departure =="" and arrive == "")
+    {
+        chk_sql = "SELECT * FROM airline WHERE departuredate = '"+date+"'";
+        qDebug()<<chk_sql;
+    }
+    //qDebug()<<"test"<<departure<<" "<<arrive;
+
     try
     {
         if (!m_Connect->SelectResult(qsql, chk_sql))

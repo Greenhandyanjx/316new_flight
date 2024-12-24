@@ -103,7 +103,7 @@ border-image:url(:/images/images/background1.jpg);
 }</string>
        </property>
        <property name="currentIndex">
-        <number>2</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="homepage">
         <widget class="QLabel" name="welcomelabel">
@@ -310,7 +310,7 @@ QLable{
           </rect>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="searchairline">
           <property name="geometry">
@@ -318,7 +318,7 @@ QLable{
             <x>0</x>
             <y>0</y>
             <width>661</width>
-            <height>513</height>
+            <height>493</height>
            </rect>
           </property>
           <attribute name="label">
@@ -763,7 +763,7 @@ color:rgb(0, 0, 255)
             <x>0</x>
             <y>0</y>
             <width>661</width>
-            <height>503</height>
+            <height>493</height>
            </rect>
           </property>
           <attribute name="label">
@@ -846,7 +846,7 @@ border-image:url(:/images/images/dark.jpg);
              <string notr="true"/>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="newcustom">
              <property name="styleSheet">
@@ -1915,7 +1915,7 @@ padding-left:10px;
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>33</height>
+     <height>36</height>
     </rect>
    </property>
    <property name="styleSheet">
