@@ -151,6 +151,8 @@ void Login::setAcc(){
 }
 void Login::on_enrollbut_clicked()
 {
+    QString acc = ui->accounttext->text();
+    if(acc.size()==0){QMessageBox(QMessageBox::Warning,"警告","注册用户不能为空!",QMessageBox::Ok).exec();return;}
     FlightManager::customer_acc=ui->accounttext->text();
     openenroll();//发送注册信号
 }

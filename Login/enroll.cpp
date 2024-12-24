@@ -44,7 +44,6 @@ enroll::~enroll()
 
 void enroll::on_newcustomer_clicked()
 {
-    enrolldone();
     QVector<QString> insertstr;
     QString no = ui->newnoshow->text();
     insertstr.append(no);
@@ -58,10 +57,13 @@ void enroll::on_newcustomer_clicked()
     insertstr.append(sex);
     QString phone = ui->newphonedit->text();
     insertstr.append(phone);
-
+    if(name.size()==0){QMessageBox(QMessageBox::Warning,"警告","用户姓名不能为空!",QMessageBox::Ok).exec();return;}
+    if(id.size()==0){QMessageBox(QMessageBox::Warning,"警告","用户身份证号码不能为空!",QMessageBox::Ok).exec();return;}
+    if(phone.size()==0){QMessageBox(QMessageBox::Warning,"警告","用户手机号码不能为空!",QMessageBox::Ok).exec();return;}
     insertstr.append(FlightManager::customer_acc);
     QString sql = "INSERT INTO customer VALUES (?, ?, ?, ?, ?, ?, ?)";
     QString rtn = m_Connect->InsertValue(sql, 7, insertstr);
+    enrolldone();
     try
     {
         if ("Success" != rtn)
