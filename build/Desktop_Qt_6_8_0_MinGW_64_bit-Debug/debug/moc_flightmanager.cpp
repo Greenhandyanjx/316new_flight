@@ -7,6 +7,7 @@
 *****************************************************************************/
 
 #include "../../../MainWindow/flightmanager.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -30,6 +31,73 @@
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 QT_WARNING_DISABLE_GCC("-Wuseless-cast")
+namespace {
+
+#ifdef QT_MOC_HAS_STRINGDATA
+struct qt_meta_stringdata_CLASSFlightItemWidgetENDCLASS_t {};
+constexpr auto qt_meta_stringdata_CLASSFlightItemWidgetENDCLASS = QtMocHelpers::stringData(
+    "FlightItemWidget"
+);
+#else  // !QT_MOC_HAS_STRINGDATA
+#error "qtmochelpers.h not found or too old."
+#endif // !QT_MOC_HAS_STRINGDATA
+} // unnamed namespace
+
+Q_CONSTINIT static const uint qt_meta_data_CLASSFlightItemWidgetENDCLASS[] = {
+
+ // content:
+      12,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       0,    0, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+       0        // eod
+};
+
+Q_CONSTINIT const QMetaObject FlightItemWidget::staticMetaObject = { {
+    QMetaObject::SuperData::link<QWidget::staticMetaObject>(),
+    qt_meta_stringdata_CLASSFlightItemWidgetENDCLASS.offsetsAndSizes,
+    qt_meta_data_CLASSFlightItemWidgetENDCLASS,
+    qt_static_metacall,
+    nullptr,
+    qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSFlightItemWidgetENDCLASS_t,
+        // Q_OBJECT / Q_GADGET
+        QtPrivate::TypeAndForceComplete<FlightItemWidget, std::true_type>
+    >,
+    nullptr
+} };
+
+void FlightItemWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+{
+    (void)_o;
+    (void)_id;
+    (void)_c;
+    (void)_a;
+}
+
+const QMetaObject *FlightItemWidget::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
+}
+
+void *FlightItemWidget::qt_metacast(const char *_clname)
+{
+    if (!_clname) return nullptr;
+    if (!strcmp(_clname, qt_meta_stringdata_CLASSFlightItemWidgetENDCLASS.stringdata0))
+        return static_cast<void*>(this);
+    return QWidget::qt_metacast(_clname);
+}
+
+int FlightItemWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = QWidget::qt_metacall(_c, _id, _a);
+    return _id;
+}
 namespace {
 
 #ifdef QT_MOC_HAS_STRINGDATA
@@ -89,7 +157,8 @@ constexpr auto qt_meta_stringdata_CLASSFlightManagerENDCLASS = QtMocHelpers::str
     "on_bktktdepcy_currentTextChanged",
     "on_bktktship_activated",
     "updateTicketNum",
-    "Getdelno"
+    "Getdelno",
+    "on_pushButton_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -102,7 +171,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSFlightManagerENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      53,   14, // methods
+      54,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -110,59 +179,60 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSFlightManagerENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  332,    2, 0x0a,    1 /* Public */,
-       3,    0,  333,    2, 0x08,    2 /* Private */,
-       4,    0,  334,    2, 0x08,    3 /* Private */,
-       5,    0,  335,    2, 0x08,    4 /* Private */,
-       6,    0,  336,    2, 0x08,    5 /* Private */,
-       7,    0,  337,    2, 0x08,    6 /* Private */,
-       8,    1,  338,    2, 0x08,    7 /* Private */,
-      10,    0,  341,    2, 0x08,    9 /* Private */,
-      11,    1,  342,    2, 0x08,   10 /* Private */,
-      12,    1,  345,    2, 0x08,   12 /* Private */,
-      14,    1,  348,    2, 0x08,   14 /* Private */,
-      15,    1,  351,    2, 0x08,   16 /* Private */,
-      16,    1,  354,    2, 0x08,   18 /* Private */,
-      17,    0,  357,    2, 0x08,   20 /* Private */,
-      18,    1,  358,    2, 0x08,   21 /* Private */,
-      18,    1,  361,    2, 0x08,   23 /* Private */,
-      19,    1,  364,    2, 0x08,   25 /* Private */,
-      20,    1,  367,    2, 0x08,   27 /* Private */,
-      21,    0,  370,    2, 0x08,   29 /* Private */,
-      22,    1,  371,    2, 0x08,   30 /* Private */,
-      23,    0,  374,    2, 0x08,   32 /* Private */,
-      24,    1,  375,    2, 0x08,   33 /* Private */,
-      25,    1,  378,    2, 0x08,   35 /* Private */,
-      26,    0,  381,    2, 0x08,   37 /* Private */,
-      27,    1,  382,    2, 0x08,   38 /* Private */,
-      28,    1,  385,    2, 0x08,   40 /* Private */,
-      29,    1,  388,    2, 0x08,   42 /* Private */,
-      30,    1,  391,    2, 0x08,   44 /* Private */,
-      31,    1,  394,    2, 0x08,   46 /* Private */,
-      32,    1,  397,    2, 0x08,   48 /* Private */,
-      33,    1,  400,    2, 0x08,   50 /* Private */,
-      34,    1,  403,    2, 0x08,   52 /* Private */,
-      35,    1,  406,    2, 0x08,   54 /* Private */,
-      36,    0,  409,    2, 0x08,   56 /* Private */,
-      37,    1,  410,    2, 0x08,   57 /* Private */,
-      38,    0,  413,    2, 0x08,   59 /* Private */,
-      39,    1,  414,    2, 0x08,   60 /* Private */,
-      40,    1,  417,    2, 0x08,   62 /* Private */,
-      41,    1,  420,    2, 0x08,   64 /* Private */,
-      42,    1,  423,    2, 0x08,   66 /* Private */,
-      43,    0,  426,    2, 0x08,   68 /* Private */,
-      44,    1,  427,    2, 0x08,   69 /* Private */,
-      46,    0,  430,    2, 0x08,   71 /* Private */,
-      40,    1,  431,    2, 0x08,   72 /* Private */,
-      47,    1,  434,    2, 0x08,   74 /* Private */,
-      48,    1,  437,    2, 0x08,   76 /* Private */,
-      42,    1,  440,    2, 0x08,   78 /* Private */,
-      49,    1,  443,    2, 0x08,   80 /* Private */,
-      50,    0,  446,    2, 0x08,   82 /* Private */,
-      51,    1,  447,    2, 0x08,   83 /* Private */,
-      52,    1,  450,    2, 0x08,   85 /* Private */,
-      53,    0,  453,    2, 0x08,   87 /* Private */,
-      54,    0,  454,    2, 0x08,   88 /* Private */,
+       1,    0,  338,    2, 0x0a,    1 /* Public */,
+       3,    0,  339,    2, 0x08,    2 /* Private */,
+       4,    0,  340,    2, 0x08,    3 /* Private */,
+       5,    0,  341,    2, 0x08,    4 /* Private */,
+       6,    0,  342,    2, 0x08,    5 /* Private */,
+       7,    0,  343,    2, 0x08,    6 /* Private */,
+       8,    1,  344,    2, 0x08,    7 /* Private */,
+      10,    0,  347,    2, 0x08,    9 /* Private */,
+      11,    1,  348,    2, 0x08,   10 /* Private */,
+      12,    1,  351,    2, 0x08,   12 /* Private */,
+      14,    1,  354,    2, 0x08,   14 /* Private */,
+      15,    1,  357,    2, 0x08,   16 /* Private */,
+      16,    1,  360,    2, 0x08,   18 /* Private */,
+      17,    0,  363,    2, 0x08,   20 /* Private */,
+      18,    1,  364,    2, 0x08,   21 /* Private */,
+      18,    1,  367,    2, 0x08,   23 /* Private */,
+      19,    1,  370,    2, 0x08,   25 /* Private */,
+      20,    1,  373,    2, 0x08,   27 /* Private */,
+      21,    0,  376,    2, 0x08,   29 /* Private */,
+      22,    1,  377,    2, 0x08,   30 /* Private */,
+      23,    0,  380,    2, 0x08,   32 /* Private */,
+      24,    1,  381,    2, 0x08,   33 /* Private */,
+      25,    1,  384,    2, 0x08,   35 /* Private */,
+      26,    0,  387,    2, 0x08,   37 /* Private */,
+      27,    1,  388,    2, 0x08,   38 /* Private */,
+      28,    1,  391,    2, 0x08,   40 /* Private */,
+      29,    1,  394,    2, 0x08,   42 /* Private */,
+      30,    1,  397,    2, 0x08,   44 /* Private */,
+      31,    1,  400,    2, 0x08,   46 /* Private */,
+      32,    1,  403,    2, 0x08,   48 /* Private */,
+      33,    1,  406,    2, 0x08,   50 /* Private */,
+      34,    1,  409,    2, 0x08,   52 /* Private */,
+      35,    1,  412,    2, 0x08,   54 /* Private */,
+      36,    0,  415,    2, 0x08,   56 /* Private */,
+      37,    1,  416,    2, 0x08,   57 /* Private */,
+      38,    0,  419,    2, 0x08,   59 /* Private */,
+      39,    1,  420,    2, 0x08,   60 /* Private */,
+      40,    1,  423,    2, 0x08,   62 /* Private */,
+      41,    1,  426,    2, 0x08,   64 /* Private */,
+      42,    1,  429,    2, 0x08,   66 /* Private */,
+      43,    0,  432,    2, 0x08,   68 /* Private */,
+      44,    1,  433,    2, 0x08,   69 /* Private */,
+      46,    0,  436,    2, 0x08,   71 /* Private */,
+      40,    1,  437,    2, 0x08,   72 /* Private */,
+      47,    1,  440,    2, 0x08,   74 /* Private */,
+      48,    1,  443,    2, 0x08,   76 /* Private */,
+      42,    1,  446,    2, 0x08,   78 /* Private */,
+      49,    1,  449,    2, 0x08,   80 /* Private */,
+      50,    0,  452,    2, 0x08,   82 /* Private */,
+      51,    1,  453,    2, 0x08,   83 /* Private */,
+      52,    1,  456,    2, 0x08,   85 /* Private */,
+      53,    0,  459,    2, 0x08,   87 /* Private */,
+      54,    0,  460,    2, 0x08,   88 /* Private */,
+      55,    0,  461,    2, 0x08,   89 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -216,6 +286,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSFlightManagerENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,   13,
     QMetaType::Void, QMetaType::Int,    9,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -371,6 +442,8 @@ Q_CONSTINIT const QMetaObject FlightManager::staticMetaObject = { {
         // method 'updateTicketNum'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'Getdelno'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -435,6 +508,7 @@ void FlightManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 50: _t->on_bktktship_activated((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 51: _t->updateTicketNum(); break;
         case 52: _t->Getdelno(); break;
+        case 53: _t->on_pushButton_clicked(); break;
         default: ;
         }
     }
@@ -459,13 +533,13 @@ int FlightManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 53)
+        if (_id < 54)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 53;
+        _id -= 54;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 53)
+        if (_id < 54)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 53;
+        _id -= 54;
     }
     return _id;
 }

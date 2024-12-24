@@ -7,6 +7,11 @@
 #include <QVector>
 #include <QMainWindow>
 #include <QMessageBox>
+#include <QWidget>
+#include <QLabel>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QPushButton>
 #include "connectdatabase.h"
 #include<windows.h>
 
@@ -14,7 +19,108 @@ namespace Ui
 {
 class FlightManager;
 }
+struct FlightData {
+    QString airlineName;        // 航空公司名称
+    QString flightNo;           // 航班号
+    QString airplaneType;       // 飞机类型
+    QString departureTime;      // 出发时间
+    QString departureAirport;
+    QString arriveTime;         // 到达时间
+    QString arriveAirport;
+    QString duration;           // 飞行时长
+    double price;               // 价格
+};
+class FlightItemWidget : public QWidget {
+    Q_OBJECT
+public:
+    explicit FlightItemWidget(QWidget *parent = nullptr) : QWidget(parent) {
+        QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
+        // 航空公司和航班号
+        QHBoxLayout *airlineLayout = new QHBoxLayout;
+        airlineLogo = new QLabel;
+        airlineLogo->setPixmap(QPixmap(":/SVG/SVG/mplane.svg").scaled(15, 15)); // 默认 logo
+        flightInfo = new QLabel;
+        flightInfo->setFixedWidth(120);
+        airlineLayout->addWidget(airlineLogo);
+        airlineLayout->addWidget(flightInfo);
+        // airlineLayout->addStretch();
+
+        // 出发和到达时间、机场
+        departureInfo = new QLabel;
+        arriveInfo = new QLabel;
+        durationInfo = new QLabel;
+        durationInfo->setStyleSheet("color: rgb(85, 170, 255);");
+         departureInfo->setFixedWidth(100);
+        departureInfo->setAlignment(Qt::AlignRight);
+        arriveInfo->setFixedWidth(100);
+        // 设置对齐
+        airlineLayout->addWidget(departureInfo);
+        QLabel *arrowIcon = new QLabel;
+        arrowIcon->setPixmap(QPixmap(":/SVG/SVG/dire.svg").scaled(30, 30, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        airlineLayout->addWidget(arrowIcon);
+        airlineLayout->addWidget(arriveInfo);
+        airlineLayout->addWidget(durationInfo);
+
+        // 设置对齐方式
+        airlineLayout->setAlignment(departureInfo, Qt::AlignVCenter); // 垂直居中对齐
+        airlineLayout->setAlignment(arriveInfo, Qt::AlignVCenter);
+        airlineLayout->setAlignment(durationInfo, Qt::AlignVCenter);
+
+        // 价格和按钮
+        QWidget *priceAndButtonWidget = new QWidget;
+        QHBoxLayout *priceAndButtonLayout = new QHBoxLayout(priceAndButtonWidget);
+        priceLabel = new QLabel;
+        bookButton = new QPushButton("订票");
+        bookButton->setStyleSheet("background-color: qlineargradient(spread:pad, x1:0.122, y1:0.829409, x2:0, y2:0.995, stop:0 rgba(255, 110, 0, 255), stop:1 rgba(255, 255, 255, 255));"
+                                  "border: 1px solid rgb(200,200,200);"
+                                  "color:white;"
+                                  "border-radius: 3px;"
+                                  "padding:4px 4px;");
+        bookButton->setFixedSize(15, 10);
+        airlineLayout->addStretch();
+        priceAndButtonLayout->addWidget(priceLabel);
+        priceAndButtonLayout->addWidget(bookButton);
+        priceAndButtonLayout->setSpacing(10);
+        priceAndButtonLayout->setContentsMargins(0, 0, 0, 0);
+        priceAndButtonLayout->setAlignment(bookButton, Qt::AlignVCenter | Qt::AlignRight);
+        priceAndButtonLayout->addStretch();
+        airlineLayout->addWidget(priceAndButtonWidget);
+
+        mainLayout->addLayout(airlineLayout);
+        this->setLayout(mainLayout);
+    }
+
+    // 设置航班数据
+    void setFlightData(const FlightData &data) {
+        flightInfo->setText(QString("航线编号:%2<br><span style='color:blue;'>%1 %3</span>").arg(data.airlineName, data.flightNo, data.airplaneType));
+        departureInfo->setText(
+            QString("<span style='font-size:24px;'>%1</span><br>%2")
+                .arg(data.departureTime)
+                .arg(data.departureAirport)
+            );
+        arriveInfo->setText(
+            QString("<span style='font-size:24px;'>%1</span><br>%2")
+                .arg(data.arriveTime)
+                .arg(data.arriveAirport)
+            );
+        durationInfo->setText(data.duration);
+        priceLabel->setText(
+            QString("<span style='font-size:18px; color: orange;'>¥%1</span>起")
+                .arg(data.price)
+            );
+        // priceLabel->setText(QString("¥%1").arg(data.price)); // 保留两位小数
+    }
+
+private:
+    QLabel *airlineLogo;   // 航空公司 logo
+    QLabel *flightInfo;    // 航班信息
+    QLabel *departureInfo; // 出发信息
+    QLabel *arriveInfo;    // 到达信息
+    QLabel *durationInfo;  // 飞行时长
+    QLabel *priceLabel;    // 价格
+    QPushButton *bookButton; // 订票按钮
+};
 class FlightManager : public QMainWindow
 {
     Q_OBJECT

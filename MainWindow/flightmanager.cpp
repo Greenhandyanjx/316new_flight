@@ -20,7 +20,14 @@ FlightManager::FlightManager(QWidget *parent) :
     }
     setObjectName("FilghtManager");
     setWindowTitle("316航天信息管理系统");
-
+    ui->searchairWG->setVisible(false);
+    ui->lineEdit->setPlaceholderText("请输入出发地城市");
+    ui->lineEdit_2->setPlaceholderText("请输入目的地城市");
+    ui->arrive->setText("未输入");
+    ui->departure->setText("未输入");
+    QString date = ui->calendarWidget->selectedDate().toString("yyyy-MM-dd");
+    ui->depatime->setText("出发日期 | "+date);
+    ui->direct->setPixmap(QPixmap(":/SVG/SVG/dire.svg").scaled(60, 30, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     m_Connect = ConnectDataBase::GetInstance();
 
     Init();
@@ -31,7 +38,15 @@ FlightManager::FlightManager(QWidget *parent) :
     connect(ui->updateaction, SIGNAL(triggered(bool)), this, SLOT(turn2update()) );
     connect(ui->deleteaction, SIGNAL(triggered(bool)), this, SLOT(turn2delete()) );
     connect(ui->quitaction, &QAction::triggered, this, &FlightManager::turn2quit);
-
+    connect(ui->departure,&QPushButton::clicked,[=](){
+        ui->searchairWG->setVisible(true);
+    });
+    connect(ui->arrive,&QPushButton::clicked,[=](){
+        ui->searchairWG->setVisible(true);
+    });
+    connect(ui->depatime,&QPushButton::clicked,[=](){
+        ui->searchairWG->setVisible(true);
+    });
 }
 
 FlightManager::~FlightManager()
@@ -69,15 +84,15 @@ void FlightManager::Init()
     ui->stackedWidget->setCurrentIndex(0);
 
     //查询页面中的航班查询标签页
-    ui->searchairlineshow->setColumnCount(19);
-    ui->searchairlineshow->verticalHeader()->setVisible(false);
-    ui->searchairlineshow->setHorizontalHeaderLabels(QStringList() << "航班号" << "航空公司"
-                                                     << "客机类型" << "出发国家" << "出发城市"
-                                                     << "到达国家" << "到达城市" << "出发日期"
-                                                     << "出发时间" << "到达时间" << "经济舱价格"
-                                                     << "经济舱座位" << "剩余经济舱票数" << "商务舱票价"
-                                                     << "商务舱座位" << "剩余商务舱票数" << "头等舱票价"
-                                                     << "头等舱座位" << "剩余头等舱票数");
+    // ui->searchairlineshow->setColumnCount(19);
+    // ui->searchairlineshow->verticalHeader()->setVisible(false);
+    // ui->searchairlineshow->setHorizontalHeaderLabels(QStringList() << "航班号" << "航空公司"
+    //                                                  << "客机类型" << "出发国家" << "出发城市"
+    //                                                  << "到达国家" << "到达城市" << "出发日期"
+    //                                                  << "出发时间" << "到达时间" << "经济舱价格"
+    //                                                  << "经济舱座位" << "剩余经济舱票数" << "商务舱票价"
+    //                                                  << "商务舱座位" << "剩余商务舱票数" << "头等舱票价"
+    //                                                  << "头等舱座位" << "剩余头等舱票数");
     GetAirLineInfo();
     ShowAirLineOnSearch();
     ui->searchtoolbox->setItemText(0, "查询航班信息");
@@ -648,30 +663,71 @@ void FlightManager::SetCityOnBook(QComboBox* combobox, const QString &index)
 //tag1
 //
 //查询修改
-void FlightManager::ShowAirLineOnSearch()
-{
-    ui->searchairlineshow->setRowCount(m_LineInfo.size());
-    for (int i = 0; i < m_LineInfo.size(); ++i)
-    {
-        ui->searchairlineshow->setItem(i, 0, new QTableWidgetItem(QString::number(m_LineInfo[i].line_no)) );
-        ui->searchairlineshow->setItem(i, 1, new QTableWidgetItem(m_LineInfo[i].airway_short_name) );
-        ui->searchairlineshow->setItem(i, 2, new QTableWidgetItem(m_LineInfo[i].airplane_type) );
-        ui->searchairlineshow->setItem(i, 3, new QTableWidgetItem(m_LineInfo[i].departure_country) );
-        ui->searchairlineshow->setItem(i, 4, new QTableWidgetItem(m_LineInfo[i].departure_city) );
-        ui->searchairlineshow->setItem(i, 5, new QTableWidgetItem(m_LineInfo[i].arrive_country) );
-        ui->searchairlineshow->setItem(i, 6, new QTableWidgetItem(m_LineInfo[i].arrive_city) );
-        ui->searchairlineshow->setItem(i, 7, new QTableWidgetItem(m_LineInfo[i].departure_date) );
-        ui->searchairlineshow->setItem(i, 8, new QTableWidgetItem(m_LineInfo[i].departure_time) );
-        ui->searchairlineshow->setItem(i, 9, new QTableWidgetItem(m_LineInfo[i].arrive_time) );
-        ui->searchairlineshow->setItem(i, 10, new QTableWidgetItem(QString::number(m_LineInfo[i].econemy_price)) );
-        ui->searchairlineshow->setItem(i, 11, new QTableWidgetItem(QString::number(m_LineInfo[i].econemy_num)) );
-        ui->searchairlineshow->setItem(i, 12, new QTableWidgetItem(QString::number(m_LineInfo[i].econemy_rest)) );
-        ui->searchairlineshow->setItem(i, 13, new QTableWidgetItem(QString::number(m_LineInfo[i].bussiness_price)) );
-        ui->searchairlineshow->setItem(i, 14, new QTableWidgetItem(QString::number(m_LineInfo[i].bussiness_num)) );
-        ui->searchairlineshow->setItem(i, 15, new QTableWidgetItem(QString::number(m_LineInfo[i].bussiness_rest)) );
-        ui->searchairlineshow->setItem(i, 16, new QTableWidgetItem(QString::number(m_LineInfo[i].deluxe_price)) );
-        ui->searchairlineshow->setItem(i, 17, new QTableWidgetItem(QString::number(m_LineInfo[i].deluxe_num)) );
-        ui->searchairlineshow->setItem(i, 18, new QTableWidgetItem(QString::number(m_LineInfo[i].deluxe_rest)) );
+// void FlightManager::ShowAirLineOnSearch()
+// {
+//     ui->searchairlineshow->setRowCount(m_LineInfo.size());
+//     for (int i = 0; i < m_LineInfo.size(); ++i)
+//     {
+//         ui->searchairlineshow->setItem(i, 0, new QTableWidgetItem(QString::number(m_LineInfo[i].line_no)) );
+//         ui->searchairlineshow->setItem(i, 1, new QTableWidgetItem(m_LineInfo[i].airway_short_name) );
+//         ui->searchairlineshow->setItem(i, 2, new QTableWidgetItem(m_LineInfo[i].airplane_type) );
+//         ui->searchairlineshow->setItem(i, 3, new QTableWidgetItem(m_LineInfo[i].departure_country) );
+//         ui->searchairlineshow->setItem(i, 4, new QTableWidgetItem(m_LineInfo[i].departure_city) );
+//         ui->searchairlineshow->setItem(i, 5, new QTableWidgetItem(m_LineInfo[i].arrive_country) );
+//         ui->searchairlineshow->setItem(i, 6, new QTableWidgetItem(m_LineInfo[i].arrive_city) );
+//         ui->searchairlineshow->setItem(i, 7, new QTableWidgetItem(m_LineInfo[i].departure_date) );
+//         ui->searchairlineshow->setItem(i, 8, new QTableWidgetItem(m_LineInfo[i].departure_time) );
+//         ui->searchairlineshow->setItem(i, 9, new QTableWidgetItem(m_LineInfo[i].arrive_time) );
+//         ui->searchairlineshow->setItem(i, 10, new QTableWidgetItem(QString::number(m_LineInfo[i].econemy_price)) );
+//         ui->searchairlineshow->setItem(i, 11, new QTableWidgetItem(QString::number(m_LineInfo[i].econemy_num)) );
+//         ui->searchairlineshow->setItem(i, 12, new QTableWidgetItem(QString::number(m_LineInfo[i].econemy_rest)) );
+//         ui->searchairlineshow->setItem(i, 13, new QTableWidgetItem(QString::number(m_LineInfo[i].bussiness_price)) );
+//         ui->searchairlineshow->setItem(i, 14, new QTableWidgetItem(QString::number(m_LineInfo[i].bussiness_num)) );
+//         ui->searchairlineshow->setItem(i, 15, new QTableWidgetItem(QString::number(m_LineInfo[i].bussiness_rest)) );
+//         ui->searchairlineshow->setItem(i, 16, new QTableWidgetItem(QString::number(m_LineInfo[i].deluxe_price)) );
+//         ui->searchairlineshow->setItem(i, 17, new QTableWidgetItem(QString::number(m_LineInfo[i].deluxe_num)) );
+//         ui->searchairlineshow->setItem(i, 18, new QTableWidgetItem(QString::number(m_LineInfo[i].deluxe_rest)) );
+//     }
+// }
+void FlightManager::ShowAirLineOnSearch() {
+    ui->searchairlineshow->clear(); // 清空列表
+    // ui->searchairlineshow->setStyleSheet("");
+    for (const auto &line : m_LineInfo) {
+        QListWidgetItem *item = new QListWidgetItem(ui->searchairlineshow);
+        // 创建航班数据结构
+        FlightData data;
+        data.airlineName = line.airway_short_name;
+        data.flightNo = QString::number(line.line_no);
+        data.airplaneType = line.airplane_type;
+        QStringList ql1,ql2;
+        QString time1,time2;
+        ql1=line.departure_time.split(':',Qt::SkipEmptyParts);
+        time1=ql1[0]+":"+ql1[1];
+        data.departureTime = time1;
+        data.departureAirport = line.departure_country+" "+line.departure_city;
+        ql2=line.arrive_time.split(':',Qt::SkipEmptyParts);
+        time2=ql2[0]+":"+ql2[1];
+        data.arriveTime = time2;
+        data.arriveAirport =line.arrive_country+" "+ line.arrive_city;
+        int a1=ql1[0].toInt(),a2=ql2[0].toInt();
+        if(a2<a1)a2+=24;
+        int b1=ql1[1].toInt(),b2=ql2[1].toInt();
+        if(b2<b1){
+            a2-=1;
+            b2+=60;
+        }
+        if(b2!=b1)
+        data.duration = QString::number(a2-a1)+"小时"+QString::number(b2-b1)+"分"; // 可以根据起飞和到达时间计算
+        else data.duration = QString::number(a2-a1)+"小时";
+        data.price = line.econemy_price;
+
+        // 创建并填充自定义小部件
+        FlightItemWidget *flightWidget = new FlightItemWidget;
+        flightWidget->setFlightData(data);
+
+        item->setSizeHint(flightWidget->sizeHint()); // 调整项大小
+        ui->searchairlineshow->addItem(item);
+        ui->searchairlineshow->setItemWidget(item, flightWidget);
     }
 }
 //
@@ -1908,9 +1964,19 @@ void FlightManager::Getdelno(){
 
 void FlightManager::on_pushButton_clicked()
 {
+    ui->searchairWG->setVisible(false);
     QString departure = ui->lineEdit->text();
     QString arrive = ui->lineEdit_2->text();
     QString date = ui->calendarWidget->selectedDate().toString("yyyy-MM-dd");
+    if(departure.size()!=0)
+    ui->departure->setText(departure);
+    else
+        ui->departure->setText("未输入");
+    if(arrive.size()!=0)
+    ui->arrive->setText(arrive);
+    else
+        ui->arrive->setText("未输入");
+    ui->depatime->setText("出发日期 | "+date);
     qDebug()<<"dbg"<<date;
     if (departure =="" and arrive == "")
     {
@@ -1956,28 +2022,66 @@ void FlightManager::on_pushButton_clicked()
         temp.deluxe_rest = temp.deluxe_num;
         recieve.push_back(temp);
     }
-    ui->searchairlineshow->setRowCount(recieve.size());
-    for (int i = 0; i < recieve.size(); ++i)
-    {
-        ui->searchairlineshow->setItem(i, 0, new QTableWidgetItem(QString::number(recieve[i].line_no)) );
-        ui->searchairlineshow->setItem(i, 1, new QTableWidgetItem(recieve[i].airway_short_name) );
-        ui->searchairlineshow->setItem(i, 2, new QTableWidgetItem(recieve[i].airplane_type) );
-        ui->searchairlineshow->setItem(i, 3, new QTableWidgetItem(recieve[i].departure_country) );
-        ui->searchairlineshow->setItem(i, 4, new QTableWidgetItem(recieve[i].departure_city) );
-        ui->searchairlineshow->setItem(i, 5, new QTableWidgetItem(recieve[i].arrive_country) );
-        ui->searchairlineshow->setItem(i, 6, new QTableWidgetItem(recieve[i].arrive_city) );
-        ui->searchairlineshow->setItem(i, 7, new QTableWidgetItem(recieve[i].departure_date) );
-        ui->searchairlineshow->setItem(i, 8, new QTableWidgetItem(recieve[i].departure_time) );
-        ui->searchairlineshow->setItem(i, 9, new QTableWidgetItem(recieve[i].arrive_time) );
-        ui->searchairlineshow->setItem(i, 10, new QTableWidgetItem(QString::number(recieve[i].econemy_price)) );
-        ui->searchairlineshow->setItem(i, 11, new QTableWidgetItem(QString::number(recieve[i].econemy_num)) );
-        ui->searchairlineshow->setItem(i, 12, new QTableWidgetItem(QString::number(recieve[i].econemy_rest)) );
-        ui->searchairlineshow->setItem(i, 13, new QTableWidgetItem(QString::number(recieve[i].bussiness_price)) );
-        ui->searchairlineshow->setItem(i, 14, new QTableWidgetItem(QString::number(recieve[i].bussiness_num)) );
-        ui->searchairlineshow->setItem(i, 15, new QTableWidgetItem(QString::number(recieve[i].bussiness_rest)) );
-        ui->searchairlineshow->setItem(i, 16, new QTableWidgetItem(QString::number(recieve[i].deluxe_price)) );
-        ui->searchairlineshow->setItem(i, 17, new QTableWidgetItem(QString::number(recieve[i].deluxe_num)) );
-        ui->searchairlineshow->setItem(i, 18, new QTableWidgetItem(QString::number(recieve[i].deluxe_rest)) );
+    ui->searchairlineshow->clear();
+    for (const auto &line : recieve) {
+        QListWidgetItem *item = new QListWidgetItem(ui->searchairlineshow);
+        // 创建航班数据结构
+        FlightData data;
+        data.airlineName = line.airway_short_name;
+        data.flightNo = QString::number(line.line_no);
+        data.airplaneType = line.airplane_type;
+        QStringList ql1,ql2;
+        QString time1,time2;
+        ql1=line.departure_time.split(':',Qt::SkipEmptyParts);
+        time1=ql1[0]+":"+ql1[1];
+        data.departureTime = time1;
+        data.departureAirport = line.departure_country+" "+line.departure_city;
+        ql2=line.arrive_time.split(':',Qt::SkipEmptyParts);
+        time2=ql2[0]+":"+ql2[1];
+        data.arriveTime = time2;
+        data.arriveAirport =line.arrive_country+" "+ line.arrive_city;
+        int a1=ql1[0].toInt(),a2=ql2[0].toInt();
+        if(a2<a1)a2+=24;
+        int b1=ql1[1].toInt(),b2=ql2[1].toInt();
+        if(b2<b1){
+            a2-=1;
+            b2+=60;
+        }
+        if(b2!=b1)
+            data.duration = QString::number(a2-a1)+"小时"+QString::number(b2-b1)+"分"; // 可以根据起飞和到达时间计算
+        else data.duration = QString::number(a2-a1)+"小时";
+        data.price = line.econemy_price;
+
+        // 创建并填充自定义小部件
+        FlightItemWidget *flightWidget = new FlightItemWidget;
+        flightWidget->setFlightData(data);
+
+        item->setSizeHint(flightWidget->sizeHint()); // 调整项大小
+        ui->searchairlineshow->addItem(item);
+        ui->searchairlineshow->setItemWidget(item, flightWidget);
     }
+    // ui->searchairlineshow->setRowCount(recieve.size());
+    // for (int i = 0; i < recieve.size(); ++i)
+    // {
+    //     ui->searchairlineshow->setItem(i, 0, new QTableWidgetItem(QString::number(recieve[i].line_no)) );
+    //     ui->searchairlineshow->setItem(i, 1, new QTableWidgetItem(recieve[i].airway_short_name) );
+    //     ui->searchairlineshow->setItem(i, 2, new QTableWidgetItem(recieve[i].airplane_type) );
+    //     ui->searchairlineshow->setItem(i, 3, new QTableWidgetItem(recieve[i].departure_country) );
+    //     ui->searchairlineshow->setItem(i, 4, new QTableWidgetItem(recieve[i].departure_city) );
+    //     ui->searchairlineshow->setItem(i, 5, new QTableWidgetItem(recieve[i].arrive_country) );
+    //     ui->searchairlineshow->setItem(i, 6, new QTableWidgetItem(recieve[i].arrive_city) );
+    //     ui->searchairlineshow->setItem(i, 7, new QTableWidgetItem(recieve[i].departure_date) );
+    //     ui->searchairlineshow->setItem(i, 8, new QTableWidgetItem(recieve[i].departure_time) );
+    //     ui->searchairlineshow->setItem(i, 9, new QTableWidgetItem(recieve[i].arrive_time) );
+    //     ui->searchairlineshow->setItem(i, 10, new QTableWidgetItem(QString::number(recieve[i].econemy_price)) );
+    //     ui->searchairlineshow->setItem(i, 11, new QTableWidgetItem(QString::number(recieve[i].econemy_num)) );
+    //     ui->searchairlineshow->setItem(i, 12, new QTableWidgetItem(QString::number(recieve[i].econemy_rest)) );
+    //     ui->searchairlineshow->setItem(i, 13, new QTableWidgetItem(QString::number(recieve[i].bussiness_price)) );
+    //     ui->searchairlineshow->setItem(i, 14, new QTableWidgetItem(QString::number(recieve[i].bussiness_num)) );
+    //     ui->searchairlineshow->setItem(i, 15, new QTableWidgetItem(QString::number(recieve[i].bussiness_rest)) );
+    //     ui->searchairlineshow->setItem(i, 16, new QTableWidgetItem(QString::number(recieve[i].deluxe_price)) );
+    //     ui->searchairlineshow->setItem(i, 17, new QTableWidgetItem(QString::number(recieve[i].deluxe_num)) );
+    //     ui->searchairlineshow->setItem(i, 18, new QTableWidgetItem(QString::number(recieve[i].deluxe_rest)) );
+    // }
 
 }
