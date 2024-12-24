@@ -20,7 +20,7 @@ FlightManager::FlightManager(QWidget *parent) :
     }
     setObjectName("FilghtManager");
     setWindowTitle("316航天信息管理系统");
-
+    ui->searchairWG->setVisible(false);
     m_Connect = ConnectDataBase::GetInstance();
 
     Init();
@@ -1808,3 +1808,79 @@ void FlightManager::Getdelno(){
     ui->delticketno->addItem(QString::number(m_TicketInfo[i].order_id) );
 }
 
+
+void FlightManager::on_pushButton_clicked()
+{
+    QString departure = ui->lineEdit->text();
+    QString arrive = ui->lineEdit_2->text();
+    QString date = ui->calendarWidget->selectedDate().toString("yyyy-MM-dd");
+    qDebug()<<"dbg"<<date;
+    if (departure =="" and arrive == "")
+    {
+        ShowAirLineOnSearch();
+        return;
+    }
+    //qDebug()<<"test"<<departure<<" "<<arrive;
+    QSqlQuery *qsql = new QSqlQuery;
+    QString chk_sql = "SELECT * FROM airline WHERE departurecity = '"+departure+"'and arrivecity = '"+arrive+"'and departuredate = '"+date+"'";
+    try
+    {
+        if (!m_Connect->SelectResult(qsql, chk_sql))
+            throw false;
+    }
+    catch (bool&)
+    {
+        QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
+        return;
+    }
+    QVector<AirLine> recieve;
+    while(qsql->next())
+    {
+        qDebug()<<qsql->value("airlineno").toString();
+        AirLine temp;
+        temp.line_no = qsql->value("airlineno").toString().toInt();
+        temp.airway_short_name = qsql->value("airwayshortname").toString();
+        temp.airplane_type = qsql->value("airplanetype").toString();
+        temp.departure_country = qsql->value("departurecountry").toString();
+        temp.departure_city = qsql->value("departurecity").toString();
+        temp.arrive_country = qsql->value("arrivecountry").toString();
+        temp.arrive_city = qsql->value("arrivecity").toString();
+        temp.departure_date = qsql->value("departuredate").toString();
+        temp.departure_time = qsql->value("departuretime").toString();
+        temp.arrive_time = qsql->value("arrivetime").toString();
+        temp.econemy_price = qsql->value("economyclassprice").toString().toInt();
+        temp.econemy_num = qsql->value("economyclassnum").toString().toInt();
+        temp.econemy_rest = temp.econemy_num;
+        temp.bussiness_price = qsql->value("businessclassprice").toString().toInt();
+        temp.bussiness_num = qsql->value("businessclassnum").toString().toInt();
+        temp.bussiness_rest = temp.bussiness_num;
+        temp.deluxe_price = qsql->value("deluxeclassprice").toString().toInt();
+        temp.deluxe_num = qsql->value("deluxeclassnum").toString().toInt();
+        temp.deluxe_rest = temp.deluxe_num;
+        recieve.push_back(temp);
+    }
+    ui->searchairlineshow->setRowCount(recieve.size());
+    for (int i = 0; i < recieve.size(); ++i)
+    {
+        ui->searchairlineshow->setItem(i, 0, new QTableWidgetItem(QString::number(recieve[i].line_no)) );
+        ui->searchairlineshow->setItem(i, 1, new QTableWidgetItem(recieve[i].airway_short_name) );
+        ui->searchairlineshow->setItem(i, 2, new QTableWidgetItem(recieve[i].airplane_type) );
+        ui->searchairlineshow->setItem(i, 3, new QTableWidgetItem(recieve[i].departure_country) );
+        ui->searchairlineshow->setItem(i, 4, new QTableWidgetItem(recieve[i].departure_city) );
+        ui->searchairlineshow->setItem(i, 5, new QTableWidgetItem(recieve[i].arrive_country) );
+        ui->searchairlineshow->setItem(i, 6, new QTableWidgetItem(recieve[i].arrive_city) );
+        ui->searchairlineshow->setItem(i, 7, new QTableWidgetItem(recieve[i].departure_date) );
+        ui->searchairlineshow->setItem(i, 8, new QTableWidgetItem(recieve[i].departure_time) );
+        ui->searchairlineshow->setItem(i, 9, new QTableWidgetItem(recieve[i].arrive_time) );
+        ui->searchairlineshow->setItem(i, 10, new QTableWidgetItem(QString::number(recieve[i].econemy_price)) );
+        ui->searchairlineshow->setItem(i, 11, new QTableWidgetItem(QString::number(recieve[i].econemy_num)) );
+        ui->searchairlineshow->setItem(i, 12, new QTableWidgetItem(QString::number(recieve[i].econemy_rest)) );
+        ui->searchairlineshow->setItem(i, 13, new QTableWidgetItem(QString::number(recieve[i].bussiness_price)) );
+        ui->searchairlineshow->setItem(i, 14, new QTableWidgetItem(QString::number(recieve[i].bussiness_num)) );
+        ui->searchairlineshow->setItem(i, 15, new QTableWidgetItem(QString::number(recieve[i].bussiness_rest)) );
+        ui->searchairlineshow->setItem(i, 16, new QTableWidgetItem(QString::number(recieve[i].deluxe_price)) );
+        ui->searchairlineshow->setItem(i, 17, new QTableWidgetItem(QString::number(recieve[i].deluxe_num)) );
+        ui->searchairlineshow->setItem(i, 18, new QTableWidgetItem(QString::number(recieve[i].deluxe_rest)) );
+    }
+
+}

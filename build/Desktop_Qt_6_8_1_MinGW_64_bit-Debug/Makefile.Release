@@ -117,6 +117,7 @@ release/qrc_resourse.cpp: ../../resourse.qrc \
 		../../sqlfile.zip \
 		../../style.qss \
 		../../images/flightImage.jpg \
+		../../images/dark.jpg \
 		../../images/background1.jpg \
 		../../images/server.png \
 		../../images/plane.png \
@@ -1839,8 +1840,17 @@ release/login.o: ../../Login/login.cpp ../../Login/login.h \
 		C:/Qt/6.8.1/mingw_64/include/QtSql/QSqlError \
 		C:/Qt/6.8.1/mingw_64/include/QtSql/QSqlDatabase \
 		ui_login.h \
+		C:/Qt/6.8.1/mingw_64/include/QtGui/QIcon \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QApplication \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QCheckBox \
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qcheckbox.h \
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QHBoxLayout \
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qboxlayout.h \
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qlayout.h \
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qgridlayout.h \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QLabel \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qlabel.h \
 		C:/Qt/6.8.1/mingw_64/include/QtGui/qpicture.h \
@@ -1853,7 +1863,13 @@ release/login.o: ../../Login/login.cpp ../../Login/login.h \
 		C:/Qt/6.8.1/mingw_64/include/QtGui/qtextoption.h \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QPushButton \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qpushbutton.h \
-		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qabstractbutton.h
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QWidget \
+		../../MainWindow/flightmanager.h \
+		C:/Qt/6.8.1/mingw_64/include/QtCore/QDate \
+		C:/Qt/6.8.1/mingw_64/include/QtCore/QTime \
+		C:/Qt/6.8.1/mingw_64/include/QtCore/QVector \
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QMainWindow \
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qmainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\login.o ..\..\Login\login.cpp
 
 release/connectdatabase.o: ../../Connect/connectdatabase.cpp ../../Connect/connectdatabase.h \
@@ -2586,8 +2602,11 @@ release/flightmanager.o: ../../MainWindow/flightmanager.cpp ../../MainWindow/fli
 		C:/Qt/6.8.1/mingw_64/include/QtSql/QSqlDatabase \
 		ui_flightmanager.h \
 		C:/Qt/6.8.1/mingw_64/include/QtGui/QAction \
+		C:/Qt/6.8.1/mingw_64/include/QtGui/QIcon \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QApplication \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qapplication.h \
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QCalendarWidget \
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qcalendarwidget.h \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QCheckBox \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qcheckbox.h \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qabstractbutton.h \
@@ -2601,6 +2620,7 @@ release/flightmanager.o: ../../MainWindow/flightmanager.cpp ../../MainWindow/fli
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qboxlayout.h \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QGroupBox \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qgroupbox.h \
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QHBoxLayout \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QHeaderView \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qheaderview.h \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QLabel \
@@ -2630,6 +2650,7 @@ release/flightmanager.o: ../../MainWindow/flightmanager.cpp ../../MainWindow/fli
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QTimeEdit \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QToolBox \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/qtoolbox.h \
+		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QVBoxLayout \
 		C:/Qt/6.8.1/mingw_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\flightmanager.o ..\..\MainWindow\flightmanager.cpp
 

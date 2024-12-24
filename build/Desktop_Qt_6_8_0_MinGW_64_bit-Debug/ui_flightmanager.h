@@ -70,14 +70,12 @@ public:
     QHBoxLayout *horizontalLayout_3;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_4;
-    QVBoxLayout *verticalLayout_3;
-    QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_3;
-    QComboBox *comboBox_2;
+    QLineEdit *lineEdit;
     QHBoxLayout *horizontalLayout;
     QLabel *label_2;
-    QComboBox *comboBox;
+    QLineEdit *lineEdit_2;
     QPushButton *pushButton;
     QVBoxLayout *verticalLayout;
     QLabel *label;
@@ -586,7 +584,7 @@ public:
         page_5->setObjectName("page_5");
         layoutWidget = new QWidget(page_5);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(20, 10, 641, 210));
+        layoutWidget->setGeometry(QRect(10, 0, 641, 218));
         horizontalLayout_3 = new QHBoxLayout(layoutWidget);
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
@@ -606,14 +604,11 @@ public:
 
         verticalLayout_4->addWidget(label_4);
 
-        verticalLayout_3 = new QVBoxLayout();
-        verticalLayout_3->setObjectName("verticalLayout_3");
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setObjectName("verticalLayout_2");
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         label_3 = new QLabel(layoutWidget);
         label_3->setObjectName("label_3");
+        label_3->setMaximumSize(QSize(100, 16777215));
         QFont font3;
         font3.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
         font3.setPointSize(11);
@@ -626,18 +621,20 @@ public:
 
         horizontalLayout_2->addWidget(label_3);
 
-        comboBox_2 = new QComboBox(layoutWidget);
-        comboBox_2->setObjectName("comboBox_2");
+        lineEdit = new QLineEdit(layoutWidget);
+        lineEdit->setObjectName("lineEdit");
+        lineEdit->setMaximumSize(QSize(100, 16777215));
 
-        horizontalLayout_2->addWidget(comboBox_2);
+        horizontalLayout_2->addWidget(lineEdit);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_2);
+        verticalLayout_4->addLayout(horizontalLayout_2);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
         label_2 = new QLabel(layoutWidget);
         label_2->setObjectName("label_2");
+        label_2->setMaximumSize(QSize(100, 16777215));
         label_2->setFont(font3);
         label_2->setStyleSheet(QString::fromUtf8("#label_2 {\n"
 "\n"
@@ -647,19 +644,14 @@ public:
 
         horizontalLayout->addWidget(label_2);
 
-        comboBox = new QComboBox(layoutWidget);
-        comboBox->setObjectName("comboBox");
+        lineEdit_2 = new QLineEdit(layoutWidget);
+        lineEdit_2->setObjectName("lineEdit_2");
+        lineEdit_2->setMaximumSize(QSize(100, 20));
 
-        horizontalLayout->addWidget(comboBox);
-
-
-        verticalLayout_2->addLayout(horizontalLayout);
+        horizontalLayout->addWidget(lineEdit_2);
 
 
-        verticalLayout_3->addLayout(verticalLayout_2);
-
-
-        verticalLayout_4->addLayout(verticalLayout_3);
+        verticalLayout_4->addLayout(horizontalLayout);
 
         pushButton = new QPushButton(layoutWidget);
         pushButton->setObjectName("pushButton");
@@ -671,7 +663,9 @@ public:
         horizontalLayout_3->addLayout(verticalLayout_4);
 
         verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(6);
         verticalLayout->setObjectName("verticalLayout");
+        verticalLayout->setContentsMargins(0, -1, -1, -1);
         label = new QLabel(layoutWidget);
         label->setObjectName("label");
         label->setFont(font3);
@@ -720,7 +714,7 @@ public:
         searchtoolbox->addItem(searchairline, QString::fromUtf8("Page 1"));
         searchcustomer = new QWidget();
         searchcustomer->setObjectName("searchcustomer");
-        searchcustomer->setGeometry(QRect(0, 0, 100, 30));
+        searchcustomer->setGeometry(QRect(0, 0, 661, 503));
         searchcustomershow = new QTableWidget(searchcustomer);
         searchcustomershow->setObjectName("searchcustomershow");
         searchcustomershow->setGeometry(QRect(0, 0, 661, 501));
@@ -926,7 +920,7 @@ public:
 "}"));
         layoutWidget2 = new QWidget(booktickettab);
         layoutWidget2->setObjectName("layoutWidget2");
-        layoutWidget2->setGeometry(QRect(130, 0, 391, 511));
+        layoutWidget2->setGeometry(QRect(130, 0, 391, 553));
         gridLayout = new QGridLayout(layoutWidget2);
         gridLayout->setObjectName("gridLayout");
         gridLayout->setContentsMargins(0, 0, 0, 0);
@@ -1381,7 +1375,7 @@ public:
         airlinechange->setObjectName("airlinechange");
         layoutWidget9 = new QWidget(airlinechange);
         layoutWidget9->setObjectName("layoutWidget9");
-        layoutWidget9->setGeometry(QRect(20, 30, 281, 331));
+        layoutWidget9->setGeometry(QRect(20, 30, 281, 332));
         chglinelyo = new QGridLayout(layoutWidget9);
         chglinelyo->setObjectName("chglinelyo");
         chglinelyo->setContentsMargins(0, 0, 0, 0);
@@ -1653,9 +1647,9 @@ public:
         retranslateUi(FlightManager);
         QObject::connect(list, &QListWidget::currentRowChanged, stackedWidget, &QStackedWidget::setCurrentIndex);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(1);
         searchtoolbox->setCurrentIndex(0);
-        inserttab->setCurrentIndex(0);
+        inserttab->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(FlightManager);
