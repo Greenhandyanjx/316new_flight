@@ -140,7 +140,7 @@ void Login::on_enrollbut_clicked()
     q.bindValue(":type", type);
     q.exec();
     if(q.lastError().isValid()){
-        qDebug()<<q.lastError().text();
+        QMessageBox(QMessageBox::Warning,"警告","当前用户已经存在,无法重复注册",QMessageBox::Ok);
     }
     else{
         qDebug()<<"insert successful";

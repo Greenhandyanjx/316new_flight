@@ -564,7 +564,7 @@ public:
         searchtoolbox->setGeometry(QRect(0, 0, 661, 561));
         searchairline = new QWidget();
         searchairline->setObjectName("searchairline");
-        searchairline->setGeometry(QRect(0, 0, 661, 503));
+        searchairline->setGeometry(QRect(0, 0, 661, 513));
         searchairlineshow = new QListWidget(searchairline);
         searchairlineshow->setObjectName("searchairlineshow");
         searchairlineshow->setGeometry(QRect(0, 60, 661, 451));
@@ -1799,7 +1799,7 @@ public:
         retranslateUi(FlightManager);
         QObject::connect(list, &QListWidget::currentRowChanged, stackedWidget, &QStackedWidget::setCurrentIndex);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(2);
         searchtoolbox->setCurrentIndex(0);
         inserttab->setCurrentIndex(1);
 
