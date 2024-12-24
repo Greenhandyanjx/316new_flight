@@ -254,6 +254,7 @@ private:
         QString id;
         QString sex;
         QString phone;
+        QString account;
     };
 
     struct AirPlane

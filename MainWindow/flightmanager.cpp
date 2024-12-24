@@ -383,6 +383,7 @@ bool FlightManager::GetCustomerInfo()
         ctm.id = sqlquery->value("identifynum").toString();
         ctm.sex = sqlquery->value("sex").toString();
         ctm.phone = sqlquery->value("phonenum").toString();
+        ctm.account=sqlquery->value("account").toString();
         m_CustomerInfo.append(ctm);
     }
 

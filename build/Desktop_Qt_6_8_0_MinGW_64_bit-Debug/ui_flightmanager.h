@@ -564,7 +564,7 @@ public:
         searchtoolbox->setGeometry(QRect(0, 0, 661, 561));
         searchairline = new QWidget();
         searchairline->setObjectName("searchairline");
-        searchairline->setGeometry(QRect(0, 0, 661, 513));
+        searchairline->setGeometry(QRect(0, 0, 661, 503));
         searchairlineshow = new QListWidget(searchairline);
         searchairlineshow->setObjectName("searchairlineshow");
         searchairlineshow->setGeometry(QRect(0, 60, 661, 451));
@@ -1801,7 +1801,7 @@ public:
 
         stackedWidget->setCurrentIndex(2);
         searchtoolbox->setCurrentIndex(0);
-        inserttab->setCurrentIndex(1);
+        inserttab->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(FlightManager);

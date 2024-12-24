@@ -1,6 +1,6 @@
 #ifndef ENROLL_H
 #define ENROLL_H
-
+#include"connectdatabase.h"
 #include <QWidget>
 
 namespace Ui {
@@ -28,6 +28,7 @@ private slots:
 
 private:
     Ui::enroll *ui;
+    ConnectDataBase* m_Connect;
 };
 
 #endif // ENROLL_H
