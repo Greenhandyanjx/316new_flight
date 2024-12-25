@@ -33,6 +33,7 @@ struct FlightData {
 class FlightItemWidget : public QWidget {
     Q_OBJECT
 public:
+    QPushButton *bookButton;
     explicit FlightItemWidget(QWidget *parent = nullptr) : QWidget(parent) {
         QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
@@ -72,12 +73,26 @@ public:
         QHBoxLayout *priceAndButtonLayout = new QHBoxLayout(priceAndButtonWidget);
         priceLabel = new QLabel;
         bookButton = new QPushButton("订票");
-        bookButton->setStyleSheet("background-color: qlineargradient(spread:pad, x1:0.122, y1:0.829409, x2:0, y2:0.995, stop:0 rgba(255, 110, 0, 255), stop:1 rgba(255, 255, 255, 255));"
-                                  "border: 1px solid rgb(200,200,200);"
-                                  "color:white;"
-                                  "border-radius: 3px;"
-                                  "padding:4px 4px;");
+        bookButton->setStyleSheet(
+            "QPushButton {"
+            "    background-color: qlineargradient(spread:pad, x1:0.122, y1:0.829409, x2:0, y2:0.995, stop:0 rgba(255, 110, 0, 255), stop:1 rgba(255, 255, 255, 255));"
+            "    border: 1px solid rgb(200,200,200);"
+            "    color: white;"
+            "    border-radius: 3px;"
+            "    padding: 4px 4px;"
+            "}"
+            "QPushButton:hover {"
+            "    background-color: qlineargradient(spread:pad, x1:0.122, y1:0.829409, x2:0, y2:0.995, stop:0 rgba(230, 100, 0, 255), stop:1 rgba(230, 230, 230, 255));"
+            "}"
+            "QPushButton:pressed {"
+            "    background-color: qlineargradient(spread:pad, x1:0.122, y1:0.829409, x2:0, y2:0.995, stop:0 rgba(200, 80, 0, 255), stop:1 rgba(200, 200, 200, 255));"
+            "    border: 1px solid rgb(150,150,150);"
+            "}"
+            );
         bookButton->setFixedSize(15, 10);
+        // connect(bookButton,&QPushButton::clicked,[=]{
+
+        // });
         airlineLayout->addStretch();
         priceAndButtonLayout->addWidget(priceLabel);
         priceAndButtonLayout->addWidget(bookButton);
@@ -119,7 +134,7 @@ private:
     QLabel *arriveInfo;    // 到达信息
     QLabel *durationInfo;  // 飞行时长
     QLabel *priceLabel;    // 价格
-    QPushButton *bookButton; // 订票按钮
+ // 订票按钮
 };
 class FlightManager : public QMainWindow
 {
@@ -169,6 +184,7 @@ private slots:
     void turn2update();//更新菜单动作
     void turn2delete();//删除菜单动作
     void turn2quit();//退出菜单动作
+    void turn2userinfo();
 
     void on_inserttab_tabBarClicked(int index);//点击插入面板上的标签触发的动作
     void on_newokbutton_clicked();//点击新建用户的确定按钮
