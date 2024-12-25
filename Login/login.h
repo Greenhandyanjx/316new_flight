@@ -24,7 +24,9 @@ public:
     void openRegistration() {
         emit openenroll(); // 发送信号通知需要打开注册界面
     }
-
+    void setAcc();
+    bool enrollClosed = false;
+    enroll* e;
 signals:
     void send();
     void openenroll();
@@ -34,6 +36,7 @@ protected:
     int CheckAccount();//查看账号密码是否正确
     unsigned int BKDRHash(char* str);//利用哈希函数将密码加密
     int type;
+
     //槽
 private slots:
     void on_quitbutton_clicked();//点击退出按钮所做出的反应

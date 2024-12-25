@@ -12,6 +12,7 @@ Login::Login(QWidget *parent) :
     ui(new Ui::Login)
 {
     ui->setupUi(this);
+    e = new enroll;
     type=0;
     setWindowTitle("航空信息管理系统登陆");
     ui->passwordtext->setEchoMode(QLineEdit::Password);
@@ -19,7 +20,9 @@ Login::Login(QWidget *parent) :
     //当自定义信号发出时，关闭此对话框并销毁该对话框的内存
     connect(this, SIGNAL(send()), this, SLOT(close()) );
     connect(this, SIGNAL(send()), this, SLOT(deleteLater()) );
-
+    QObject::connect(e, &enroll::closed, [=]() {
+        enrollClosed = true; // 窗口被关闭
+    });
     connect(ui->ckbuser, &QCheckBox::toggled, this, &Login::on_userckb_toggled);
     connect(ui->ckbmanager, &QCheckBox::toggled, this, &Login::on_userckb_toggled);
     connect(ui->ckbuser, &QCheckBox::stateChanged, this, &Login::on_ckbuser_stateChanged);
@@ -108,7 +111,7 @@ void Login::on_loginbutton_clicked() {
     int flag = CheckAccount();
     if (Success == flag) {
         Loginflag = true;
-        FlightManager::customer_Name=ui->accounttext->text();
+        FlightManager::customer_acc=ui->accounttext->text();
         dosend();
     } else if (WebError == flag) {
         QMessageBox::warning(this, "查询失败", "数据库无法打开，请检查网络配置！", QMessageBox::Ok);
@@ -129,8 +132,7 @@ void Login::dosend()
     emit send();
 }
 
-void Login::on_enrollbut_clicked()
-{
+void Login::setAcc(){
     QString acc = ui->accounttext->text();
     QString word = ui->passwordtext->text();
     QSqlQuery q;
@@ -140,12 +142,19 @@ void Login::on_enrollbut_clicked()
     q.bindValue(":type", type);
     q.exec();
     if(q.lastError().isValid()){
-        QMessageBox(QMessageBox::Warning,"警告","当前用户已经存在,无法重复注册",QMessageBox::Ok);
+        QMessageBox(QMessageBox::Warning,"警告","当前用户已经存在,无法重复注册",QMessageBox::Ok).exec();
+        return;
     }
     else{
         qDebug()<<"insert successful";
-        openenroll();//发送注册信号
     }
+}
+void Login::on_enrollbut_clicked()
+{
+    QString acc = ui->accounttext->text();
+    if(acc.size()==0){QMessageBox(QMessageBox::Warning,"警告","注册用户不能为空!",QMessageBox::Ok).exec();return;}
+    FlightManager::customer_acc=ui->accounttext->text();
+    openenroll();//发送注册信号
 }
 
 //用户/管理选择身份登录，两个选项只能选其一

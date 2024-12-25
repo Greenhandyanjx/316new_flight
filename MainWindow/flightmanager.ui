@@ -103,7 +103,7 @@ border-image:url(:/images/images/background1.jpg);
 }</string>
        </property>
        <property name="currentIndex">
-        <number>5</number>
+        <number>4</number>
        </property>
        <widget class="QWidget" name="homepage">
         <widget class="QLabel" name="welcomelabel">

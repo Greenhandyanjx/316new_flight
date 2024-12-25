@@ -23,19 +23,6 @@ int main(int argc, char *argv[])
     }
     qDebug() << "Database connected successfully.";
     Login* l = new Login;
-    enroll* e = new enroll;
-    l->show();
-    QObject::connect(l, &Login::openenroll, [=]() {
-        // 打开注册界面,销毁旧登录界面
-        e->show();
-        l->hide();
-    });
-    QObject::connect(e, &enroll::done, [=]() {
-
-        l->show();
-        e->close();
-    });
-    QApplication::processEvents();
     int result = 0;
     FlightManager* f = new FlightManager;
     if (!f)
@@ -43,11 +30,29 @@ int main(int argc, char *argv[])
         QMessageBox(QMessageBox::Critical, "错误", "无法初始化主界面", QMessageBox::Ok).exec();
         return EXIT_FAILURE;
     }
+    l->show();
+    QObject::connect(l, &Login::openenroll, [=]() {
+        // 打开注册界面,销毁旧登录界面
+        l->e->show();
+        l->hide();
+    });
+    QObject::connect(l->e, &enroll::closed, [=]() {
+        l->enrollClosed = true; // 窗口被关闭
+        QMessageBox(QMessageBox::Warning,"警告","当前用户信息未填写完成,注册失败!",QMessageBox::Ok).exec();
+        l->show();
+    });
+    QObject::connect(l->e, &enroll::done, [=]() {
+        l->show();
+        l->setAcc();
+        l->e->hide();
+    });
+    QApplication::processEvents();
     // f->show();
     // QApplication::processEvents();
     QObject::connect(l, &Login::send, [=]() {
         f->show();   // 显示主界面
         f->getuser();
+        l->e->deleteLater();
         l->deleteLater(); // 销毁登录窗口
     });
     /*

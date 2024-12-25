@@ -6,7 +6,7 @@
 #include <iostream>
 using std::cout;
 using std::endl;
-QString FlightManager::customer_Name="";
+QString FlightManager::customer_acc="";
 FlightManager::FlightManager(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::FlightManager)
@@ -61,18 +61,18 @@ void FlightManager::getuser(){
     // if (!file.exists()) {
     //     qDebug() << "图标文件不存在: " << file.fileName();
     // }
-    if(ReturnAccountType(customer_Name)==1)
-    ui->usermenu->setTitle("用户: "+customer_Name+" ,欢迎回来!");
+    if(ReturnAccountType(customer_acc)==1)
+    {ui->usermenu->setTitle("用户: "+customer_acc+" ,欢迎回来!");
+    ui->searchcustomer->setVisible(false);}
     else{
-        ui->usermenu->setTitle("管理员: "+customer_Name+" ,欢迎回来!");
+        ui->usermenu->setTitle("管理员: "+customer_acc+" ,欢迎回来!");
     }
 }
 void FlightManager::Init()
 {
     m_Sex.append("男");
     m_Sex.append("女");
-    qDebug()<<customer_Name<<"!!!";
-    ui->usermenu->setTitle(customer_Name);
+    ui->usermenu->setTitle(customer_acc);
     ui->list->setFont(QFont("华文楷体", 15));
     ui->list->insertItem(0, "欢迎");
     ui->list->insertItem(1, "查询");
@@ -105,7 +105,6 @@ void FlightManager::Init()
                                                       << "身份证号码" << "性别" << "联系方式");
     GetCustomerInfo();
     ShowCustomerOnSearch();
-
     ui->searchtoolbox->setItemText(1, "查询客户信息");
     ui->searchtoolbox->setCurrentIndex(0);
 
@@ -116,7 +115,7 @@ void FlightManager::Init()
         GetCustomerType();
     SetCustomer(ui->newtypeselect, m_CustomerType);
     SetCustomer(ui->newsexshow, m_Sex);
-    ui->inserttab->setTabText(0, "创建客户信息");
+    ui->inserttab->setTabText(0, "当前账号客户信息");
 
     //添加页面中的订票信息标签页
     JudgeReturnValue(ui->bktktno, GetMaxNum("SELECT * FROM vi_ticket_max") );
@@ -383,6 +382,7 @@ bool FlightManager::GetCustomerInfo()
         ctm.id = sqlquery->value("identifynum").toString();
         ctm.sex = sqlquery->value("sex").toString();
         ctm.phone = sqlquery->value("phonenum").toString();
+        ctm.account=sqlquery->value("account").toString();
         m_CustomerInfo.append(ctm);
     }
 
@@ -799,11 +799,11 @@ void FlightManager::receive()
 }
 
 //返回此客户的账号是管理者还是普通用户
-int FlightManager::ReturnAccountType(const QString &customerName) {
+int FlightManager::ReturnAccountType(const QString &customeracc) {
     QSqlQuery query;
     QString queryString = "SELECT account.type "
                           "FROM account "
-                          "WHERE account.account = '"+customerName+"'";
+                          "WHERE account.account = '"+customeracc+"'";
     query.prepare(queryString);
     qDebug()<<queryString;
     if (query.exec()) {
@@ -833,7 +833,7 @@ void FlightManager::turn2insert()
 void FlightManager::turn2update()
 {
     // 检查账号类型是否为管理者，如果不是则直接返回
-    int accountType = ReturnAccountType(customer_Name);
+    int accountType = ReturnAccountType(customer_acc);
     qDebug()<<accountType;
     if (accountType != 0) {
         QMessageBox::warning(this, "您不是管理员", "只有管理可以更新！", QMessageBox::Ok);
@@ -846,7 +846,7 @@ void FlightManager::turn2update()
 void FlightManager::turn2delete()
 {
     // 检查账号类型是否为管理者，如果不是则直接返回
-    int accountType = ReturnAccountType(customer_Name);
+    int accountType = ReturnAccountType(customer_acc);
     if (accountType != 0) {
         QMessageBox::warning(this, "您不是管理员", "只有管理可以删除", QMessageBox::Ok);
         return;
