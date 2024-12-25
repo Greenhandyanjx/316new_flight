@@ -1731,7 +1731,7 @@ public:
         FlightManager->setCentralWidget(centralwidget);
         menubar = new QMenuBar(FlightManager);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 865, 36));
+        menubar->setGeometry(QRect(0, 0, 865, 37));
         menubar->setStyleSheet(QString::fromUtf8("QMenuBar {\n"
 "	\n"
 "	font: 12pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
@@ -1800,8 +1800,8 @@ public:
         QObject::connect(list, &QListWidget::currentRowChanged, stackedWidget, &QStackedWidget::setCurrentIndex);
 
         stackedWidget->setCurrentIndex(2);
-        searchtoolbox->setCurrentIndex(0);
-        inserttab->setCurrentIndex(1);
+        searchtoolbox->setCurrentIndex(1);
+        inserttab->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(FlightManager);
