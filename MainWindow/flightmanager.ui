@@ -318,11 +318,9 @@ QLable{
             <x>0</x>
             <y>0</y>
             <width>661</width>
-<<<<<<< HEAD
-            <height>493</height>
-=======
+
+
             <height>513</height>
->>>>>>> 2e57caca06c9cb840ebe56ed87d81ca20f511567
            </rect>
           </property>
           <attribute name="label">
@@ -767,11 +765,7 @@ color:rgb(0, 0, 255)
             <x>0</x>
             <y>0</y>
             <width>661</width>
-<<<<<<< HEAD
-            <height>493</height>
-=======
             <height>513</height>
->>>>>>> 2e57caca06c9cb840ebe56ed87d81ca20f511567
            </rect>
           </property>
           <attribute name="label">
@@ -2078,11 +2072,7 @@ padding-left:10px;
      <x>0</x>
      <y>0</y>
      <width>865</width>
-<<<<<<< HEAD
-     <height>37</height>
-=======
      <height>29</height>
->>>>>>> 2e57caca06c9cb840ebe56ed87d81ca20f511567
     </rect>
    </property>
    <property name="styleSheet">
