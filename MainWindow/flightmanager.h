@@ -15,6 +15,8 @@
 #include "connectdatabase.h"
 #include<windows.h>
 #include<algorithm>
+#include <QListWidget>
+#include <QListWidgetItem>
 
 namespace Ui
 {
@@ -192,8 +194,10 @@ private slots:
     void turn2update();//更新菜单动作
     void turn2delete();//删除菜单动作
     void turn2quit();//退出菜单动作
+    void turn2welcome();
     void turn2userinfo();
 
+    void on_ItemClicked(QListWidgetItem *item);
     void on_inserttab_tabBarClicked(int index);//点击插入面板上的标签触发的动作
     void on_newokbutton_clicked();//点击新建用户的确定按钮
     //插入面板上面标签，类似于做翻页动作
