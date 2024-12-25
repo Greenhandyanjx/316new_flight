@@ -37,6 +37,7 @@ FlightManager::FlightManager(QWidget *parent) :
     connect(ui->insertaction, SIGNAL(triggered(bool)), this, SLOT(turn2insert()) );
     connect(ui->updateaction, SIGNAL(triggered(bool)), this, SLOT(turn2update()) );
     connect(ui->deleteaction, SIGNAL(triggered(bool)), this, SLOT(turn2delete()) );
+    connect(ui->introduction,&QAction::triggered,this,&FlightManager::turn2userinfo);
     connect(ui->quitaction, &QAction::triggered, this, &FlightManager::turn2quit);
     connect(ui->departure,&QPushButton::clicked,[=](){
         ui->searchairWG->setVisible(true);
@@ -67,6 +68,41 @@ void FlightManager::getuser(){
     else{
         ui->usermenu->setTitle("管理员: "+customer_acc+" ,欢迎回来!");
     }
+    QSqlQuery* qsql=new QSqlQuery;
+    QString q="SELECT * FROM customer WHERE account = '"+customer_acc+"'";
+    qDebug()<<q;
+    try
+    {
+        if (!m_Connect->SelectResult(qsql, q))
+            throw false;
+    }
+    catch (bool&)
+    {
+        QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
+        return;
+    }
+    if(qsql->next()){
+        ui->useracc->setText(customer_acc);
+        ui->username->setText(qsql->value("name").toString());
+        int a=qsql->value("type").toInt();
+        switch(a){
+        case 1:{
+            ui->usertype->setText("普通用户");
+            break;
+        }
+        case 2:{
+            ui->usertype->setText("普通会员");
+            break;
+        }
+        case 3:{
+            ui->usertype->setText("至尊VIP");
+            break;
+        }
+        }
+        ui->userid->setText(qsql->value("id").toString());
+        ui->usersex->setText(qsql->value("sex").toString());
+        ui->userphone->setText(qsql->value("phone").toString());
+    }
 }
 void FlightManager::Init()
 {
@@ -79,6 +115,7 @@ void FlightManager::Init()
     ui->list->insertItem(2, "添加");
     ui->list->insertItem(3, "更新");
     ui->list->insertItem(4, "删除");
+    ui->list->insertItem(5,"用户信息");
 
     ui->list->setCurrentRow(0);
     ui->stackedWidget->setCurrentIndex(0);
@@ -131,7 +168,10 @@ void FlightManager::Init()
     SetCityOnBook(ui->bktktarrcy, ui->bktktarrcot->currentText());
     if (!m_Ship.size())
         GetShip();
-    SetCustomer(ui->bktktship, m_Ship);
+    // SetCustomer(ui->bktktship, m_Ship);
+    ui->bktktship->addItem("经济舱");
+    ui->bktktship->addItem("商务舱");
+    ui->bktktship->addItem("头等舱");
 
     ui->inserttab->setTabText(1, "订票");
     ui->inserttab->setCurrentIndex(0);
@@ -724,6 +764,10 @@ void FlightManager::ShowAirLineOnSearch() {
 
         // 创建并填充自定义小部件
         FlightItemWidget *flightWidget = new FlightItemWidget;
+        connect(flightWidget->bookButton,&QPushButton::clicked,[=]{
+            ui->stackedWidget->setCurrentIndex(2);
+            ui->inserttab->setCurrentIndex(1);
+        });
         flightWidget->setFlightData(data);
 
         item->setSizeHint(flightWidget->sizeHint()); // 调整项大小
@@ -862,6 +906,9 @@ void FlightManager::turn2quit()
     QCoreApplication::quit();
 }
 
+void FlightManager::turn2userinfo(){
+    ui->stackedWidget->setCurrentIndex(5);
+}
 void FlightManager::on_inserttab_tabBarClicked(int index)
 {
     if (0 == index)
