@@ -369,7 +369,7 @@ bool FlightManager::GetCity()
     while (sqlquery->next())
     {
         City city;
-        city.country_no = sqlquery->value("countryno").toString().toInt();
+        city.country_no = sqlquery->value("cityno").toString().toInt();
         city.country_name = sqlquery->value("countryname").toString();
         if (0 > m_Country_Name.indexOf(city.country_name))
             m_Country_Name.append(city.country_name);
@@ -445,7 +445,7 @@ bool FlightManager::GetAirPlaneChange()
 {
     QString date = QDate::currentDate().toString("yyyy-MM-dd");
     QString time = QTime::currentTime().toString("hh:mm:ss");
-    QString sql = QString("SELECT * FROM vi_plane_line_info where departuredate > '")
+    QString sql = QString("SELECT * FROM airline where departuredate > '")
             + date + QString("' OR (departuredate = '") + date
             + QString("' and departuretime > '") + time + QString("')");
     QSqlQuery* sqlquery = new QSqlQuery;
@@ -466,7 +466,7 @@ bool FlightManager::GetAirPlaneChange()
     while (sqlquery->next())
     {
         AirPlane plane;
-        plane.plane_no = sqlquery->value("airplaneno").toString().toInt();
+        //plane.plane_no = sqlquery->value("airplanetype").toString();
         plane.plane_type = sqlquery->value("airplanetype").toString();
         plane.line_no = sqlquery->value("airlineno").toString();
         plane.departure = sqlquery->value("departurecity").toString();
@@ -493,9 +493,10 @@ bool FlightManager::GetAirLineInfo()
 {
     QString date = QDate::currentDate().toString("yyyy-MM-dd");
     QString time = QTime::currentTime().toString("hh:mm:ss");
-    QString sql = QString("SELECT * FROM vi_airline_info WHERE departuredate > '")
+    QString sql = QString("SELECT * FROM airline WHERE departuredate > '")
             + date + QString("' OR (departuredate = '") + date
             + QString("' AND departuretime > '") + time + QString("')");
+    //qDebug()<< sql ;
     QSqlQuery* sqlquery = new QSqlQuery;
     try
     {
@@ -525,18 +526,18 @@ bool FlightManager::GetAirLineInfo()
         line.arrive_time = sqlquery->value("arrivetime").toString();
         line.econemy_price = sqlquery->value("economyclassprice").toString().toInt();
         line.econemy_num = sqlquery->value("economyclassnum").toString().toInt();
-        line.econemy_rest = line.econemy_num - m_Connect->CallPro(QString("CALL pro_count_ticket(") + QString::number(line.line_no) + ", 3)");
+        line.econemy_rest = line.econemy_num;//line.econemy_num - m_Connect->CallPro(QString("CALL pro_count_ticket(") + QString::number(line.line_no) + ", 3)");
         line.bussiness_price = sqlquery->value("businessclassprice").toString().toInt();
         line.bussiness_num = sqlquery->value("businessclassnum").toString().toInt();
-        line.bussiness_rest = line.bussiness_num - m_Connect->CallPro(QString("CALL pro_count_ticket(") + QString::number(line.line_no) + ", 2)");
+        line.bussiness_rest = line.bussiness_num;//line.bussiness_num - m_Connect->CallPro(QString("CALL pro_count_ticket(") + QString::number(line.line_no) + ", 2)");
         line.deluxe_price = sqlquery->value("deluxeclassprice").toString().toInt();
         line.deluxe_num = sqlquery->value("deluxeclassnum").toString().toInt();
-        line.deluxe_rest = line.deluxe_num - m_Connect->CallPro(QString("CALL pro_count_ticket(") + QString::number(line.line_no) + ", 2)");
+        line.deluxe_rest = line.deluxe_num;//line.deluxe_num - m_Connect->CallPro(QString("CALL pro_count_ticket(") + QString::number(line.line_no) + ", 2)");
         m_LineInfo.append(line);
     }
     delete sqlquery;
     sqlquery = NULL;
-
+    qDebug()<<"get airline info debuging";
     return true;
 }
 
@@ -1890,6 +1891,7 @@ void FlightManager::updateTicketPrice()
     }
     //因为这个数组是从0开始存的所以要在那个框的第一个数字那里减一,下标从0开始.
     int lineIndex = str.toInt()-1;
+    qDebug()<<"!!!!!!!!!!"<<lineIndex<<"  "<<m_LineInfo.size();
     QString discount = ui->bktktdiscot->text();
     double discot = (100 - ui->bktktdiscot->text().toInt()) * 0.01;
     qDebug() << discot<<discount.toInt()<<discount;
@@ -2048,6 +2050,16 @@ void FlightManager::on_pushButton_clicked()
     if (departure =="" and arrive == "")
     {
         chk_sql = "SELECT * FROM airline WHERE departuredate = '"+date+"'";
+        qDebug()<<chk_sql;
+    }
+    else if(arrive == "")
+    {
+        chk_sql = "SELECT * FROM airline WHERE departurecity = '"+departure+"'and departuredate = '"+date+"'";
+        qDebug()<<chk_sql;
+    }
+    else if(departure == "")
+    {
+        chk_sql = "SELECT * FROM airline WHERE  arrivecity = '"+arrive+"'and departuredate = '"+date+"'";
         qDebug()<<chk_sql;
     }
     //qDebug()<<"test"<<departure<<" "<<arrive;
