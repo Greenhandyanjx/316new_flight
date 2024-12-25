@@ -64,9 +64,13 @@ public:
     QWidget *searchpage;
     QToolBox *searchtoolbox;
     QWidget *searchairline;
-    QStackedWidget *searchairWG;
-    QWidget *page_5;
-    QWidget *layoutWidget;
+    QListWidget *searchairlineshow;
+    QWidget *searchWidget;
+    QPushButton *departure;
+    QPushButton *arrive;
+    QLabel *direct;
+    QPushButton *depatime;
+    QWidget *searchairWG;
     QHBoxLayout *horizontalLayout_3;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_4;
@@ -80,8 +84,6 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QCalendarWidget *calendarWidget;
-    QWidget *page_6;
-    QTableWidget *searchairlineshow;
     QWidget *searchcustomer;
     QTableWidget *searchcustomershow;
     QWidget *insertpage;
@@ -90,7 +92,7 @@ public:
     QTabWidget *inserttab;
     QWidget *newcustom;
     QPushButton *newokbutton;
-    QWidget *layoutWidget1;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_5;
     QHBoxLayout *horizontalLayout_4;
     QLabel *newnolabel;
@@ -111,7 +113,7 @@ public:
     QLabel *newphonelabel;
     QLineEdit *newphonedit;
     QWidget *booktickettab;
-    QWidget *layoutWidget2;
+    QWidget *layoutWidget1;
     QGridLayout *gridLayout;
     QLabel *bktktshipabl;
     QComboBox *bktktarrcot;
@@ -145,10 +147,10 @@ public:
     QLabel *bkttimeLabel;
     QLabel *bkttime;
     QWidget *updatepage;
-    QWidget *layoutWidget3;
+    QWidget *layoutWidget2;
     QGridLayout *updateLayout;
     QGroupBox *airplanechange;
-    QWidget *layoutWidget4;
+    QWidget *layoutWidget3;
     QGridLayout *chgplanelyo;
     QComboBox *chgplanelinecom;
     QLabel *chgplanelineabl;
@@ -164,7 +166,7 @@ public:
     QLabel *chgplanelinecpy;
     QPushButton *chgplaneokbtn;
     QGroupBox *typechange;
-    QWidget *layoutWidget5;
+    QWidget *layoutWidget4;
     QGridLayout *chgtyplyo;
     QLabel *chgtypselabl;
     QComboBox *chgtypselcom;
@@ -172,7 +174,7 @@ public:
     QLineEdit *chgtypinline;
     QPushButton *chgtypokbtn;
     QGroupBox *customerchange;
-    QWidget *layoutWidget6;
+    QWidget *layoutWidget5;
     QGridLayout *chgctmlyo;
     QCheckBox *chgctmtypchk;
     QComboBox *chgctmtypcom;
@@ -182,13 +184,13 @@ public:
     QCheckBox *chgctmnamechk;
     QCheckBox *chgctmsexchk;
     QLineEdit *chgctmpheline;
-    QWidget *layoutWidget7;
+    QWidget *layoutWidget6;
     QGridLayout *chgctmoklyo;
     QLabel *chgctmselabel;
     QComboBox *chgctmselcom;
     QPushButton *chgctmokbtn;
     QGroupBox *ticketchange;
-    QWidget *layoutWidget8;
+    QWidget *layoutWidget7;
     QGridLayout *chgtktlyo;
     QLabel *chgtktnoabl;
     QComboBox *chgtktnocom;
@@ -206,7 +208,7 @@ public:
     QComboBox *chgtktshipcom;
     QPushButton *chgtktokbtn;
     QGroupBox *airlinechange;
-    QWidget *layoutWidget9;
+    QWidget *layoutWidget8;
     QGridLayout *chglinelyo;
     QComboBox *chglinenocom;
     QCheckBox *chglinecmpcek;
@@ -228,10 +230,10 @@ public:
     QPushButton *chglineokbtn;
     QLabel *chglinenoabl;
     QWidget *deletepage;
-    QWidget *layoutWidget10;
+    QWidget *layoutWidget9;
     QGridLayout *deletelayout;
     QGroupBox *delticket;
-    QWidget *layoutWidget11;
+    QWidget *layoutWidget10;
     QGridLayout *delticketlyo;
     QLabel *delticketnoabl;
     QComboBox *delticketno;
@@ -470,7 +472,7 @@ public:
 "QLineEdit {\n"
 "    border: 1px solid gray;\n"
 "    border-radius: 4px;\n"
-"    padding: 0 8px;\n"
+"    padding: 0 2px;\n"
 "    background: rgb(234, 234, 234);\n"
 "    selection-background-color: darkgray;\n"
 "}\n"
@@ -511,7 +513,6 @@ public:
 "    border-radius: 4px;\n"
 "    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
-"    min-width: 80px;\n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
@@ -523,19 +524,12 @@ public:
 "    border: none; /* no border for a flat push button */\n"
 "}\n"
 "\n"
-"QCalendarWidget\n"
-"{\n"
-"	background-color: grey; \n"
-"	selection-background-color: rgb(64, 64, 64); \n"
-"	selection-color: rgb(0, 255, 0); \n"
-"}\n"
 "\n"
 "QPushButton:default {\n"
 "    border-color: navy; /* make the default button prominent */\n"
 "}\n"
 "\n"
-"QPushButton{"
-                        "\n"
+"QPushButton{\n"
 "\n"
 "color:rgb(0, 0, 0)\n"
 "}\n"
@@ -547,7 +541,8 @@ public:
 "}\n"
 "\n"
 "QMenu {\n"
-"    background-color: rgb(160, 242, 255); /* sets background of the menu */\n"
+"    background-color: rgb(160, 242, 255); /* sets backgrou"
+                        "nd of the menu */\n"
 "    border: 1px solid black;\n"
 "}\n"
 "\n"
@@ -570,35 +565,148 @@ public:
         searchairline = new QWidget();
         searchairline->setObjectName("searchairline");
         searchairline->setGeometry(QRect(0, 0, 661, 493));
-        searchairWG = new QStackedWidget(searchairline);
-        searchairWG->setObjectName("searchairWG");
-        searchairWG->setGeometry(QRect(0, 0, 661, 231));
-        searchairWG->setStyleSheet(QString::fromUtf8("#searchairWG{\n"
-"	font: 11pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
-"\n"
-"background:rgba(36, 36, 36,50);\n"
-"border-radius:8px;\n"
-"\n"
-"}"));
-        page_5 = new QWidget();
-        page_5->setObjectName("page_5");
-        layoutWidget = new QWidget(page_5);
-        layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(10, 0, 641, 218));
-        horizontalLayout_3 = new QHBoxLayout(layoutWidget);
-        horizontalLayout_3->setObjectName("horizontalLayout_3");
-        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        verticalLayout_4 = new QVBoxLayout();
-        verticalLayout_4->setObjectName("verticalLayout_4");
-        label_4 = new QLabel(layoutWidget);
-        label_4->setObjectName("label_4");
+        searchairlineshow = new QListWidget(searchairline);
+        searchairlineshow->setObjectName("searchairlineshow");
+        searchairlineshow->setGeometry(QRect(0, 60, 661, 451));
         QFont font2;
         font2.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
-        font2.setPointSize(14);
-        label_4->setFont(font2);
+        font2.setPointSize(11);
+        font2.setBold(false);
+        font2.setItalic(false);
+        searchairlineshow->setFont(font2);
+        searchairlineshow->setStyleSheet(QString::fromUtf8("#searchairlineshow{\n"
+"background:rgba(36, 36, 36,150);\n"
+"border-radius:8px;\n"
+"	font: 11pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
+"	color: rgb(255, 255, 255);\n"
+"}\n"
+"QListWidget {\n"
+"            background-color: #f0f0f0; /* \350\256\276\347\275\256\350\203\214\346\231\257\351\242\234\350\211\262 */\n"
+"            border: 1px solid #ccc; /* \350\276\271\346\241\206 */\n"
+"            padding: 5px;\n"
+"        }\n"
+"QListWidget::item {\n"
+"            background-color: #ffffff; /* \350\256\276\347\275\256\346\257\217\344\270\252item\347\232\204\350\203\214\346\231\257\351\242\234\350\211\262 */\n"
+"            border: none;\n"
+"			height: 60px;\n"
+"			border-radius:8px;	\n"
+"			font: 11pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
+"            margin-bottom: 2px; /* \346\257\217\344\270\252item\344\271\213\351\227\264\347\232\204\351\227\264\350\267\235 */\n"
+"        }\n"
+"        QListWidget::item:hover {\n"
+"            background-color: #e0e0e0; /* \351\274\240\346\240"
+                        "\207\346\202\254\345\201\234\346\227\266\347\232\204\350\203\214\346\231\257\351\242\234\350\211\262 */\n"
+"        }\n"
+"        QListWidget::item:focus {\n"
+"            background-color: #d0d0d0;\n"
+"			outline: none;  /* \351\200\211\344\270\255\346\227\266\347\232\204\350\203\214\346\231\257\351\242\234\350\211\262 */\n"
+"        }\n"
+"        QListWidget::item:selected {\n"
+"/* \351\200\211\344\270\255\351\241\271\347\232\204\350\203\214\346\231\257\351\242\234\350\211\262 */\n"
+"	background-color: rgb(224, 240, 255);\n"
+"        }\n"
+"QLabel{\n"
+"font: 11pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
+"}\n"
+"QPushButton\n"
+"{\n"
+"font: 11pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
+"min-width:60px;\n"
+"}\n"
+""));
+        searchWidget = new QWidget(searchairline);
+        searchWidget->setObjectName("searchWidget");
+        searchWidget->setGeometry(QRect(0, 0, 661, 51));
+        departure = new QPushButton(searchWidget);
+        departure->setObjectName("departure");
+        departure->setGeometry(QRect(163, 10, 111, 31));
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("KaiTi")});
+        departure->setFont(font3);
+        departure->setStyleSheet(QString::fromUtf8("QPushButton { \n"
+"       background-color: white; \n"
+"      border: none;\n"
+"       font-family: KaiTi;\n"
+"       font-size: 16px; \n"
+" } \n"
+"QPushButton:hover { \n"
+"        background-color: #f5f5f5;\n"
+"} \n"
+"QPushButton:pressed { \n"
+"        background-color: #e0e0e0;\n"
+"}"));
+        arrive = new QPushButton(searchWidget);
+        arrive->setObjectName("arrive");
+        arrive->setGeometry(QRect(310, 10, 111, 31));
+        arrive->setStyleSheet(QString::fromUtf8("QPushButton { \n"
+"       background-color: white; \n"
+"      border: none;\n"
+"       font-family: KaiTi;\n"
+"       font-size: 16px; \n"
+" } \n"
+"QPushButton:hover { \n"
+"        background-color: #f5f5f5;\n"
+"} \n"
+"QPushButton:pressed { \n"
+"        background-color: #e0e0e0;\n"
+"}"));
+        direct = new QLabel(searchWidget);
+        direct->setObjectName("direct");
+        direct->setGeometry(QRect(260, 9, 61, 31));
+        depatime = new QPushButton(searchWidget);
+        depatime->setObjectName("depatime");
+        depatime->setGeometry(QRect(430, 10, 221, 31));
+        depatime->setStyleSheet(QString::fromUtf8("QPushButton { \n"
+"       background-color: white; \n"
+"      border: none;\n"
+"       font-family: KaiTi;\n"
+"       font-size: 14px; \n"
+" } \n"
+"QPushButton:hover { \n"
+"        background-color: #f5f5f5;\n"
+"} \n"
+"QPushButton:pressed { \n"
+"        background-color: #e0e0e0;\n"
+"}"));
+        searchairWG = new QWidget(searchairline);
+        searchairWG->setObjectName("searchairWG");
+        searchairWG->setGeometry(QRect(0, 57, 661, 241));
+        searchairWG->setStyleSheet(QString::fromUtf8("QWidget {\n"
+"    background-color: rgb(255, 255, 255); /* \350\203\214\346\231\257\351\242\234\350\211\262 */\n"
+"    border: 1px solid rgba(0, 0, 0, 0.2); /* \350\276\271\346\241\206\351\242\234\350\211\262\357\274\214\350\256\276\347\275\256\344\270\272\346\265\205\350\211\262\345\215\212\351\200\217\346\230\216 */\n"
+"    border-radius: 10px; /* \345\234\206\350\247\222\345\215\212\345\276\204 */\n"
+"    padding: 4px; /* \345\206\205\350\276\271\350\267\235 */\n"
+"    /* \344\275\277\347\224\250\346\270\220\345\217\230\346\250\241\346\213\237\351\230\264\345\275\261 */\n"
+"    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* \351\230\264\345\275\261\346\225\210\346\236\234\357\274\232\344\273\205\351\200\202\347\224\250\344\272\216 Qt WebView\357\274\214QWidget QSS \344\270\215\346\224\257\346\214\201 */\n"
+"}\n"
+"\n"
+"/* \351\230\264\345\275\261\347\232\204\346\233\277\344\273\243\346\226\271\346\241\210\357\274\232\344\275\277\347\224\250\344\270\200\344\270\252\346\270\220\345\217\230\347\232\204\350\203"
+                        "\214\346\231\257\346\235\245\346\250\241\346\213\237\351\230\264\345\275\261 */\n"
+"QWidget::before {\n"
+"    content: \"\";\n"
+"    position: absolute;\n"
+"    left: -5px;\n"
+"    right: -5px;\n"
+"    top: -5px;\n"
+"    bottom: -5px;\n"
+"    background: qlineargradient(spread: pad, x1:0, y1:0, x2:1, y2:1, \n"
+"                                stop:0 rgba(0, 0, 0, 0.2), stop:1 rgba(255, 255, 255, 0));\n"
+"    border-radius: 15px;\n"
+"    z-index: -1;\n"
+"}"));
+        horizontalLayout_3 = new QHBoxLayout(searchairWG);
+        horizontalLayout_3->setObjectName("horizontalLayout_3");
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setObjectName("verticalLayout_4");
+        label_4 = new QLabel(searchairWG);
+        label_4->setObjectName("label_4");
+        QFont font4;
+        font4.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font4.setPointSize(14);
+        label_4->setFont(font4);
         label_4->setStyleSheet(QString::fromUtf8("#label_4 {\n"
 "\n"
-"color:rgb(255, 255, 255);\n"
+"color:rgb(0, 0, 255)\n"
 "\n"
 "}"));
 
@@ -606,24 +714,25 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName("horizontalLayout_2");
-        label_3 = new QLabel(layoutWidget);
+        label_3 = new QLabel(searchairWG);
         label_3->setObjectName("label_3");
         label_3->setMaximumSize(QSize(100, 16777215));
-        QFont font3;
-        font3.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
-        font3.setPointSize(11);
-        label_3->setFont(font3);
+        QFont font5;
+        font5.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font5.setPointSize(16);
+        label_3->setFont(font5);
         label_3->setStyleSheet(QString::fromUtf8("#label_3 {\n"
 "\n"
-"color:rgb(255, 255, 255);\n"
+"color:rgb(0, 0, 255)\n"
 "\n"
 "}"));
 
         horizontalLayout_2->addWidget(label_3);
 
-        lineEdit = new QLineEdit(layoutWidget);
+        lineEdit = new QLineEdit(searchairWG);
         lineEdit->setObjectName("lineEdit");
-        lineEdit->setMaximumSize(QSize(100, 16777215));
+        lineEdit->setMaximumSize(QSize(150, 40));
+        lineEdit->setFont(font4);
 
         horizontalLayout_2->addWidget(lineEdit);
 
@@ -632,30 +741,34 @@ public:
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
-        label_2 = new QLabel(layoutWidget);
+        label_2 = new QLabel(searchairWG);
         label_2->setObjectName("label_2");
         label_2->setMaximumSize(QSize(100, 16777215));
-        label_2->setFont(font3);
+        label_2->setFont(font5);
         label_2->setStyleSheet(QString::fromUtf8("#label_2 {\n"
 "\n"
-"color:rgb(255, 255, 255);\n"
+"color:rgb(0, 0, 255)\n"
 "\n"
 "}"));
 
         horizontalLayout->addWidget(label_2);
 
-        lineEdit_2 = new QLineEdit(layoutWidget);
+        lineEdit_2 = new QLineEdit(searchairWG);
         lineEdit_2->setObjectName("lineEdit_2");
-        lineEdit_2->setMaximumSize(QSize(100, 20));
+        lineEdit_2->setMaximumSize(QSize(150, 40));
+        lineEdit_2->setFont(font4);
 
         horizontalLayout->addWidget(lineEdit_2);
 
 
         verticalLayout_4->addLayout(horizontalLayout);
 
-        pushButton = new QPushButton(layoutWidget);
+        pushButton = new QPushButton(searchairWG);
         pushButton->setObjectName("pushButton");
-        pushButton->setFont(font3);
+        QFont font6;
+        font6.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font6.setPointSize(11);
+        pushButton->setFont(font6);
 
         verticalLayout_4->addWidget(pushButton);
 
@@ -666,51 +779,90 @@ public:
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, -1, -1, -1);
-        label = new QLabel(layoutWidget);
+        label = new QLabel(searchairWG);
         label->setObjectName("label");
-        label->setFont(font3);
+        label->setFont(font6);
         label->setStyleSheet(QString::fromUtf8("#label {\n"
 "\n"
-"color:rgb(255, 255, 255);\n"
+"color:rgb(0, 0, 255)\n"
 "\n"
 "}"));
 
         verticalLayout->addWidget(label);
 
-        calendarWidget = new QCalendarWidget(layoutWidget);
+        calendarWidget = new QCalendarWidget(searchairWG);
         calendarWidget->setObjectName("calendarWidget");
         calendarWidget->setStyleSheet(QString::fromUtf8("#calendarWidget {\n"
+"    background: rgb(30, 60, 100); /* \346\267\261\350\223\235\350\203\214\346\231\257 */\n"
+"    border: 1px solid rgb(50, 90, 140); /* \350\276\271\346\241\206\344\270\272\350\276\203\346\265\205\350\223\235\350\211\262 */\n"
+"    color: white; /* \351\273\230\350\256\244\346\226\207\345\255\227\351\242\234\350\211\262 */\n"
+"    font-family: \"Arial\", sans-serif; /* \350\256\276\347\275\256\345\255\227\344\275\223 */\n"
+"}\n"
 "\n"
-"background:rgb(42, 42, 42);\n"
+"/* \346\240\207\351\242\230\346\240\217\357\274\210\346\230\276\347\244\272\346\234\210\344\273\275\345\222\214\345\271\264\344\273\275\357\274\211 */\n"
+"#calendarWidget QWidget#qt_calendar_navigationbar {\n"
+"    background-color: rgb(50, 90, 150); /* \346\240\207\351\242\230\346\240\217\350\203\214\346\231\257\350\211\262 */\n"
+"    border-bottom: 1px solid rgb(70, 120, 180); /* \344\270\213\350\276\271\346\241\206\351\242\234\350\211\262 */\n"
+"}\n"
 "\n"
-"}"));
+"/* \345\267\246\345\217\263\347\256\255\345\244\264\346\214\211\351\222\256 */\n"
+"#calendarWidget Q"
+                        "ToolButton {\n"
+"    background-color: rgb(70, 120, 180); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
+"    color: white; /* \346\214\211\351\222\256\346\226\207\345\255\227\351\242\234\350\211\262 */\n"
+"    border: none;\n"
+"    border-radius: 3px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+"#calendarWidget QToolButton:hover {\n"
+"    background-color: rgb(100, 150, 200); /* \346\202\254\345\201\234\346\227\266\347\232\204\346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
+"}\n"
+"\n"
+"/* \346\227\245\346\234\237\345\214\272\345\237\237\350\203\214\346\231\257 */\n"
+"#calendarWidget QAbstractItemView {\n"
+"    background: rgb(40, 80, 140); /* \346\227\245\346\234\237\345\214\272\345\237\237\350\203\214\346\231\257 */\n"
+"	selection-background-color: rgb(170, 255, 127);\n"
+"    selection-color: white; /* \351\200\211\344\270\255\346\227\245\346\234\237\346\226\207\345\255\227\351\242\234\350\211\262 */\n"
+"    color: rgb(200, 200, 255); /* \351\273\230\350\256\244\346\227\245\346"
+                        "\234\237\351\242\234\350\211\262 */\n"
+"}\n"
+"\n"
+"/* \346\230\237\346\234\237\346\240\207\351\242\230\346\240\267\345\274\217\357\274\210\345\246\202\345\221\250\344\270\200\343\200\201\345\221\250\344\272\214\357\274\211 */\n"
+"#calendarWidget QTableView QHeaderView::section {\n"
+"    background-color: rgb(60, 100, 160); /* \346\230\237\346\234\237\346\240\207\351\242\230\350\203\214\346\231\257\350\211\262 */\n"
+"    color: white; /* \346\230\237\346\234\237\346\240\207\351\242\230\346\226\207\345\255\227\351\242\234\350\211\262 */\n"
+"    padding: 5px;\n"
+"    border: none;\n"
+"    font-size: 12px; /* \346\230\237\346\234\237\346\240\207\351\242\230\346\226\207\345\255\227\345\244\247\345\260\217 */\n"
+"    font-weight: bold; /* \345\212\240\347\262\227\346\230\237\346\234\237\346\240\207\351\242\230 */\n"
+"    text-align: center;\n"
+"}\n"
+"\n"
+"/* \351\200\211\344\270\255\347\232\204\346\227\245\346\234\237\346\240\267\345\274\217 */\n"
+"#calendarWidget QTableView QTableWidget::item:selected {\n"
+"     /*"
+                        " \351\200\211\344\270\255\346\227\245\346\234\237\350\203\214\346\231\257\350\211\262 */\n"
+"	background-color: rgb(170, 255, 127);\n"
+"    color: white; /* \351\200\211\344\270\255\346\227\245\346\234\237\346\226\207\345\255\227\351\242\234\350\211\262 */\n"
+"}\n"
+"\n"
+"/* \347\246\201\347\224\250\346\227\245\346\234\237\346\240\267\345\274\217 */\n"
+"#calendarWidget QAbstractItemView::item:disabled {\n"
+"    color: rgb(120, 120, 150); /* \347\246\201\347\224\250\346\227\245\346\234\237\346\226\207\345\255\227\351\242\234\350\211\262 */\n"
+"}\n"
+"\n"
+"/* \346\227\245\346\234\237\350\241\250\346\240\274\345\215\225\345\205\203\346\240\274\345\257\271\351\275\220\346\226\271\345\274\217 */\n"
+"#calendarWidget QTableView::item {\n"
+"    text-align: center; /* \346\227\245\346\234\237\345\261\205\344\270\255\346\230\276\347\244\272 */\n"
+"}\n"
+""));
 
         verticalLayout->addWidget(calendarWidget);
 
 
         horizontalLayout_3->addLayout(verticalLayout);
 
-        searchairWG->addWidget(page_5);
-        page_6 = new QWidget();
-        page_6->setObjectName("page_6");
-        searchairWG->addWidget(page_6);
-        searchairlineshow = new QTableWidget(searchairline);
-        searchairlineshow->setObjectName("searchairlineshow");
-        searchairlineshow->setGeometry(QRect(0, 230, 661, 281));
-        QFont font4;
-        font4.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
-        font4.setPointSize(11);
-        font4.setBold(false);
-        font4.setItalic(false);
-        searchairlineshow->setFont(font4);
-        searchairlineshow->setStyleSheet(QString::fromUtf8("#searchairlineshow{\n"
-"\n"
-"background:rgba(36, 36, 36,50);\n"
-"border-radius:8px;\n"
-"	font: 11pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
-"	\n"
-"	color: rgb(255, 255, 255);\n"
-"}"));
         searchtoolbox->addItem(searchairline, QString::fromUtf8("Page 1"));
         searchcustomer = new QWidget();
         searchcustomer->setObjectName("searchcustomer");
@@ -772,9 +924,9 @@ public:
         insertlayout->setContentsMargins(0, 0, 0, 0);
         inserttab = new QTabWidget(gridLayoutWidget_3);
         inserttab->setObjectName("inserttab");
-        QFont font5;
-        font5.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
-        inserttab->setFont(font5);
+        QFont font7;
+        font7.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        inserttab->setFont(font7);
         inserttab->setStyleSheet(QString::fromUtf8(""));
         newcustom = new QWidget();
         newcustom->setObjectName("newcustom");
@@ -785,31 +937,31 @@ public:
         newokbutton = new QPushButton(newcustom);
         newokbutton->setObjectName("newokbutton");
         newokbutton->setGeometry(QRect(420, 420, 101, 43));
-        QFont font6;
-        font6.setPointSize(14);
-        newokbutton->setFont(font6);
-        layoutWidget1 = new QWidget(newcustom);
-        layoutWidget1->setObjectName("layoutWidget1");
-        layoutWidget1->setGeometry(QRect(190, 110, 325, 311));
-        verticalLayout_5 = new QVBoxLayout(layoutWidget1);
+        QFont font8;
+        font8.setPointSize(14);
+        newokbutton->setFont(font8);
+        layoutWidget = new QWidget(newcustom);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(190, 110, 325, 311));
+        verticalLayout_5 = new QVBoxLayout(layoutWidget);
         verticalLayout_5->setObjectName("verticalLayout_5");
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName("horizontalLayout_4");
-        newnolabel = new QLabel(layoutWidget1);
+        newnolabel = new QLabel(layoutWidget);
         newnolabel->setObjectName("newnolabel");
-        QFont font7;
-        font7.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
-        font7.setPointSize(15);
-        font7.setBold(false);
-        font7.setItalic(false);
-        newnolabel->setFont(font7);
+        QFont font9;
+        font9.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font9.setPointSize(15);
+        font9.setBold(false);
+        font9.setItalic(false);
+        newnolabel->setFont(font9);
 
         horizontalLayout_4->addWidget(newnolabel);
 
-        newnoshow = new QLabel(layoutWidget1);
+        newnoshow = new QLabel(layoutWidget);
         newnoshow->setObjectName("newnoshow");
-        newnoshow->setFont(font7);
+        newnoshow->setFont(font9);
 
         horizontalLayout_4->addWidget(newnoshow);
 
@@ -818,17 +970,17 @@ public:
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName("horizontalLayout_5");
-        newnamelabel = new QLabel(layoutWidget1);
+        newnamelabel = new QLabel(layoutWidget);
         newnamelabel->setObjectName("newnamelabel");
-        newnamelabel->setFont(font7);
+        newnamelabel->setFont(font9);
 
         horizontalLayout_5->addWidget(newnamelabel);
 
-        newnamedit = new QLineEdit(layoutWidget1);
+        newnamedit = new QLineEdit(layoutWidget);
         newnamedit->setObjectName("newnamedit");
-        QFont font8;
-        font8.setPointSize(18);
-        newnamedit->setFont(font8);
+        QFont font10;
+        font10.setPointSize(18);
+        newnamedit->setFont(font10);
 
         horizontalLayout_5->addWidget(newnamedit);
 
@@ -837,13 +989,13 @@ public:
 
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setObjectName("horizontalLayout_6");
-        newtypelabel = new QLabel(layoutWidget1);
+        newtypelabel = new QLabel(layoutWidget);
         newtypelabel->setObjectName("newtypelabel");
-        newtypelabel->setFont(font7);
+        newtypelabel->setFont(font9);
 
         horizontalLayout_6->addWidget(newtypelabel);
 
-        newtypeselect = new QComboBox(layoutWidget1);
+        newtypeselect = new QComboBox(layoutWidget);
         newtypeselect->setObjectName("newtypeselect");
 
         horizontalLayout_6->addWidget(newtypeselect);
@@ -853,13 +1005,13 @@ public:
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setObjectName("horizontalLayout_7");
-        newidlabel = new QLabel(layoutWidget1);
+        newidlabel = new QLabel(layoutWidget);
         newidlabel->setObjectName("newidlabel");
-        newidlabel->setFont(font7);
+        newidlabel->setFont(font9);
 
         horizontalLayout_7->addWidget(newidlabel);
 
-        newidedit = new QLineEdit(layoutWidget1);
+        newidedit = new QLineEdit(layoutWidget);
         newidedit->setObjectName("newidedit");
 
         horizontalLayout_7->addWidget(newidedit);
@@ -869,13 +1021,13 @@ public:
 
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setObjectName("horizontalLayout_8");
-        newsexlabel = new QLabel(layoutWidget1);
+        newsexlabel = new QLabel(layoutWidget);
         newsexlabel->setObjectName("newsexlabel");
-        newsexlabel->setFont(font7);
+        newsexlabel->setFont(font9);
 
         horizontalLayout_8->addWidget(newsexlabel);
 
-        newsexshow = new QComboBox(layoutWidget1);
+        newsexshow = new QComboBox(layoutWidget);
         newsexshow->setObjectName("newsexshow");
 
         horizontalLayout_8->addWidget(newsexshow);
@@ -885,13 +1037,13 @@ public:
 
         horizontalLayout_9 = new QHBoxLayout();
         horizontalLayout_9->setObjectName("horizontalLayout_9");
-        newphonelabel = new QLabel(layoutWidget1);
+        newphonelabel = new QLabel(layoutWidget);
         newphonelabel->setObjectName("newphonelabel");
-        newphonelabel->setFont(font7);
+        newphonelabel->setFont(font9);
 
         horizontalLayout_9->addWidget(newphonelabel);
 
-        newphonedit = new QLineEdit(layoutWidget1);
+        newphonedit = new QLineEdit(layoutWidget);
         newphonedit->setObjectName("newphonedit");
 
         horizontalLayout_9->addWidget(newphonedit);
@@ -918,164 +1070,164 @@ public:
 " \n"
 "    background-color: #2E3648;\n"
 "}"));
-        layoutWidget2 = new QWidget(booktickettab);
-        layoutWidget2->setObjectName("layoutWidget2");
-        layoutWidget2->setGeometry(QRect(130, 0, 391, 553));
-        gridLayout = new QGridLayout(layoutWidget2);
+        layoutWidget1 = new QWidget(booktickettab);
+        layoutWidget1->setObjectName("layoutWidget1");
+        layoutWidget1->setGeometry(QRect(130, 0, 391, 553));
+        gridLayout = new QGridLayout(layoutWidget1);
         gridLayout->setObjectName("gridLayout");
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        bktktshipabl = new QLabel(layoutWidget2);
+        bktktshipabl = new QLabel(layoutWidget1);
         bktktshipabl->setObjectName("bktktshipabl");
 
         gridLayout->addWidget(bktktshipabl, 10, 0, 1, 1);
 
-        bktktarrcot = new QComboBox(layoutWidget2);
+        bktktarrcot = new QComboBox(layoutWidget1);
         bktktarrcot->setObjectName("bktktarrcot");
 
         gridLayout->addWidget(bktktarrcot, 7, 1, 1, 1);
 
-        bktktdepcyabl = new QLabel(layoutWidget2);
+        bktktdepcyabl = new QLabel(layoutWidget1);
         bktktdepcyabl->setObjectName("bktktdepcyabl");
 
         gridLayout->addWidget(bktktdepcyabl, 6, 0, 1, 1);
 
-        bktktarrcyabl = new QLabel(layoutWidget2);
+        bktktarrcyabl = new QLabel(layoutWidget1);
         bktktarrcyabl->setObjectName("bktktarrcyabl");
         bktktarrcyabl->setStyleSheet(QString::fromUtf8(""));
 
         gridLayout->addWidget(bktktarrcyabl, 8, 0, 1, 1);
 
-        bktktarrcy = new QComboBox(layoutWidget2);
+        bktktarrcy = new QComboBox(layoutWidget1);
         bktktarrcy->setObjectName("bktktarrcy");
 
         gridLayout->addWidget(bktktarrcy, 8, 1, 1, 1);
 
-        bktktlineabl = new QLabel(layoutWidget2);
+        bktktlineabl = new QLabel(layoutWidget1);
         bktktlineabl->setObjectName("bktktlineabl");
 
         gridLayout->addWidget(bktktlineabl, 9, 0, 1, 1);
 
-        bktktnoabl = new QLabel(layoutWidget2);
+        bktktnoabl = new QLabel(layoutWidget1);
         bktktnoabl->setObjectName("bktktnoabl");
 
         gridLayout->addWidget(bktktnoabl, 0, 0, 1, 1);
 
-        bktktctmtyp = new QLabel(layoutWidget2);
+        bktktctmtyp = new QLabel(layoutWidget1);
         bktktctmtyp->setObjectName("bktktctmtyp");
 
         gridLayout->addWidget(bktktctmtyp, 3, 1, 1, 1);
 
-        bktktdiscotabl = new QLabel(layoutWidget2);
+        bktktdiscotabl = new QLabel(layoutWidget1);
         bktktdiscotabl->setObjectName("bktktdiscotabl");
 
         gridLayout->addWidget(bktktdiscotabl, 4, 0, 1, 1);
 
-        bktktdepcot = new QComboBox(layoutWidget2);
+        bktktdepcot = new QComboBox(layoutWidget1);
         bktktdepcot->setObjectName("bktktdepcot");
 
         gridLayout->addWidget(bktktdepcot, 5, 1, 1, 1);
 
-        bktkttotal = new QLabel(layoutWidget2);
+        bktkttotal = new QLabel(layoutWidget1);
         bktkttotal->setObjectName("bktkttotal");
 
         gridLayout->addWidget(bktkttotal, 12, 1, 1, 1);
 
-        bktktctmno = new QComboBox(layoutWidget2);
+        bktktctmno = new QComboBox(layoutWidget1);
         bktktctmno->setObjectName("bktktctmno");
 
         gridLayout->addWidget(bktktctmno, 1, 1, 1, 1);
 
-        bktktctmnoabl = new QLabel(layoutWidget2);
+        bktktctmnoabl = new QLabel(layoutWidget1);
         bktktctmnoabl->setObjectName("bktktctmnoabl");
 
         gridLayout->addWidget(bktktctmnoabl, 1, 0, 1, 1);
 
-        bktkttotalabl = new QLabel(layoutWidget2);
+        bktkttotalabl = new QLabel(layoutWidget1);
         bktkttotalabl->setObjectName("bktkttotalabl");
 
         gridLayout->addWidget(bktkttotalabl, 12, 0, 1, 1);
 
-        bktktdepcotabl = new QLabel(layoutWidget2);
+        bktktdepcotabl = new QLabel(layoutWidget1);
         bktktdepcotabl->setObjectName("bktktdepcotabl");
 
         gridLayout->addWidget(bktktdepcotabl, 5, 0, 1, 1);
 
-        bktktno = new QLabel(layoutWidget2);
+        bktktno = new QLabel(layoutWidget1);
         bktktno->setObjectName("bktktno");
 
         gridLayout->addWidget(bktktno, 0, 1, 1, 1);
 
-        bktktctmname = new QLabel(layoutWidget2);
+        bktktctmname = new QLabel(layoutWidget1);
         bktktctmname->setObjectName("bktktctmname");
 
         gridLayout->addWidget(bktktctmname, 2, 1, 1, 1);
 
-        bktktnum = new QLabel(layoutWidget2);
+        bktktnum = new QLabel(layoutWidget1);
         bktktnum->setObjectName("bktktnum");
 
         gridLayout->addWidget(bktktnum, 14, 1, 1, 1);
 
-        bktktrest = new QLabel(layoutWidget2);
+        bktktrest = new QLabel(layoutWidget1);
         bktktrest->setObjectName("bktktrest");
 
         gridLayout->addWidget(bktktrest, 14, 0, 1, 1);
 
-        bktktarrcotabl = new QLabel(layoutWidget2);
+        bktktarrcotabl = new QLabel(layoutWidget1);
         bktktarrcotabl->setObjectName("bktktarrcotabl");
 
         gridLayout->addWidget(bktktarrcotabl, 7, 0, 1, 1);
 
-        bktktdepcy = new QComboBox(layoutWidget2);
+        bktktdepcy = new QComboBox(layoutWidget1);
         bktktdepcy->setObjectName("bktktdepcy");
 
         gridLayout->addWidget(bktktdepcy, 6, 1, 1, 1);
 
-        bktktdiscot = new QLabel(layoutWidget2);
+        bktktdiscot = new QLabel(layoutWidget1);
         bktktdiscot->setObjectName("bktktdiscot");
 
         gridLayout->addWidget(bktktdiscot, 4, 1, 1, 1);
 
-        bktktline = new QComboBox(layoutWidget2);
+        bktktline = new QComboBox(layoutWidget1);
         bktktline->setObjectName("bktktline");
 
         gridLayout->addWidget(bktktline, 9, 1, 1, 1);
 
-        bktktctmtypabl = new QLabel(layoutWidget2);
+        bktktctmtypabl = new QLabel(layoutWidget1);
         bktktctmtypabl->setObjectName("bktktctmtypabl");
 
         gridLayout->addWidget(bktktctmtypabl, 3, 0, 1, 1);
 
-        bktktpriceabl = new QLabel(layoutWidget2);
+        bktktpriceabl = new QLabel(layoutWidget1);
         bktktpriceabl->setObjectName("bktktpriceabl");
 
         gridLayout->addWidget(bktktpriceabl, 11, 0, 1, 1);
 
-        bktktship = new QComboBox(layoutWidget2);
+        bktktship = new QComboBox(layoutWidget1);
         bktktship->setObjectName("bktktship");
 
         gridLayout->addWidget(bktktship, 10, 1, 1, 1);
 
-        bktktprice = new QLabel(layoutWidget2);
+        bktktprice = new QLabel(layoutWidget1);
         bktktprice->setObjectName("bktktprice");
 
         gridLayout->addWidget(bktktprice, 11, 1, 1, 1);
 
-        bktktokbtn = new QPushButton(layoutWidget2);
+        bktktokbtn = new QPushButton(layoutWidget1);
         bktktokbtn->setObjectName("bktktokbtn");
 
         gridLayout->addWidget(bktktokbtn, 16, 1, 1, 1);
 
-        bktktctmnameabl = new QLabel(layoutWidget2);
+        bktktctmnameabl = new QLabel(layoutWidget1);
         bktktctmnameabl->setObjectName("bktktctmnameabl");
 
         gridLayout->addWidget(bktktctmnameabl, 2, 0, 1, 1);
 
-        bkttimeLabel = new QLabel(layoutWidget2);
+        bkttimeLabel = new QLabel(layoutWidget1);
         bkttimeLabel->setObjectName("bkttimeLabel");
 
         gridLayout->addWidget(bkttimeLabel, 15, 0, 1, 1);
 
-        bkttime = new QLabel(layoutWidget2);
+        bkttime = new QLabel(layoutWidget1);
         bkttime->setObjectName("bkttime");
         bkttime->setStyleSheet(QString::fromUtf8("QLabel{\n"
 "padding-left:10px;\n"
@@ -1090,82 +1242,82 @@ public:
         stackedWidget->addWidget(insertpage);
         updatepage = new QWidget();
         updatepage->setObjectName("updatepage");
-        layoutWidget3 = new QWidget(updatepage);
-        layoutWidget3->setObjectName("layoutWidget3");
-        layoutWidget3->setGeometry(QRect(0, 0, 671, 571));
-        updateLayout = new QGridLayout(layoutWidget3);
+        layoutWidget2 = new QWidget(updatepage);
+        layoutWidget2->setObjectName("layoutWidget2");
+        layoutWidget2->setGeometry(QRect(0, 0, 671, 571));
+        updateLayout = new QGridLayout(layoutWidget2);
         updateLayout->setObjectName("updateLayout");
         updateLayout->setContentsMargins(0, 0, 0, 0);
-        airplanechange = new QGroupBox(layoutWidget3);
+        airplanechange = new QGroupBox(layoutWidget2);
         airplanechange->setObjectName("airplanechange");
         airplanechange->setAutoFillBackground(false);
-        layoutWidget4 = new QWidget(airplanechange);
-        layoutWidget4->setObjectName("layoutWidget4");
-        layoutWidget4->setGeometry(QRect(2, 20, 311, 161));
-        chgplanelyo = new QGridLayout(layoutWidget4);
+        layoutWidget3 = new QWidget(airplanechange);
+        layoutWidget3->setObjectName("layoutWidget3");
+        layoutWidget3->setGeometry(QRect(2, 20, 311, 161));
+        chgplanelyo = new QGridLayout(layoutWidget3);
         chgplanelyo->setObjectName("chgplanelyo");
         chgplanelyo->setContentsMargins(0, 0, 0, 0);
-        chgplanelinecom = new QComboBox(layoutWidget4);
+        chgplanelinecom = new QComboBox(layoutWidget3);
         chgplanelinecom->setObjectName("chgplanelinecom");
 
         chgplanelyo->addWidget(chgplanelinecom, 2, 1, 1, 1);
 
-        chgplanelineabl = new QLabel(layoutWidget4);
+        chgplanelineabl = new QLabel(layoutWidget3);
         chgplanelineabl->setObjectName("chgplanelineabl");
 
         chgplanelyo->addWidget(chgplanelineabl, 2, 0, 1, 1);
 
-        chgplanetype = new QLabel(layoutWidget4);
+        chgplanetype = new QLabel(layoutWidget3);
         chgplanetype->setObjectName("chgplanetype");
 
         chgplanelyo->addWidget(chgplanetype, 0, 2, 1, 1);
 
-        chgplanelinedep = new QLabel(layoutWidget4);
+        chgplanelinedep = new QLabel(layoutWidget3);
         chgplanelinedep->setObjectName("chgplanelinedep");
 
         chgplanelyo->addWidget(chgplanelinedep, 3, 0, 1, 1);
 
-        chgplanearr = new QLabel(layoutWidget4);
+        chgplanearr = new QLabel(layoutWidget3);
         chgplanearr->setObjectName("chgplanearr");
 
         chgplanelyo->addWidget(chgplanearr, 1, 1, 1, 1);
 
-        chgplanenotime = new QLabel(layoutWidget4);
+        chgplanenotime = new QLabel(layoutWidget3);
         chgplanenotime->setObjectName("chgplanenotime");
 
         chgplanelyo->addWidget(chgplanenotime, 1, 2, 1, 1);
 
-        chgplaneselabl = new QLabel(layoutWidget4);
+        chgplaneselabl = new QLabel(layoutWidget3);
         chgplaneselabl->setObjectName("chgplaneselabl");
 
         chgplanelyo->addWidget(chgplaneselabl, 0, 0, 1, 1);
 
-        chgplaneselcom = new QComboBox(layoutWidget4);
+        chgplaneselcom = new QComboBox(layoutWidget3);
         chgplaneselcom->setObjectName("chgplaneselcom");
 
         chgplanelyo->addWidget(chgplaneselcom, 0, 1, 1, 1);
 
-        chgplanedep = new QLabel(layoutWidget4);
+        chgplanedep = new QLabel(layoutWidget3);
         chgplanedep->setObjectName("chgplanedep");
 
         chgplanelyo->addWidget(chgplanedep, 1, 0, 1, 1);
 
-        chgplanelinearr = new QLabel(layoutWidget4);
+        chgplanelinearr = new QLabel(layoutWidget3);
         chgplanelinearr->setObjectName("chgplanelinearr");
 
         chgplanelyo->addWidget(chgplanelinearr, 3, 1, 1, 1);
 
-        chgplanelinetime = new QLabel(layoutWidget4);
+        chgplanelinetime = new QLabel(layoutWidget3);
         chgplanelinetime->setObjectName("chgplanelinetime");
 
         chgplanelyo->addWidget(chgplanelinetime, 3, 2, 1, 1);
 
-        chgplanelinecpy = new QLabel(layoutWidget4);
+        chgplanelinecpy = new QLabel(layoutWidget3);
         chgplanelinecpy->setObjectName("chgplanelinecpy");
 
         chgplanelyo->addWidget(chgplanelinecpy, 2, 2, 1, 1);
 
-        chgplaneokbtn = new QPushButton(layoutWidget4);
+        chgplaneokbtn = new QPushButton(layoutWidget3);
         chgplaneokbtn->setObjectName("chgplaneokbtn");
 
         chgplanelyo->addWidget(chgplaneokbtn, 4, 2, 1, 1);
@@ -1173,35 +1325,35 @@ public:
 
         updateLayout->addWidget(airplanechange, 0, 1, 1, 1);
 
-        typechange = new QGroupBox(layoutWidget3);
+        typechange = new QGroupBox(layoutWidget2);
         typechange->setObjectName("typechange");
-        layoutWidget5 = new QWidget(typechange);
-        layoutWidget5->setObjectName("layoutWidget5");
-        layoutWidget5->setGeometry(QRect(0, 10, 321, 171));
-        chgtyplyo = new QGridLayout(layoutWidget5);
+        layoutWidget4 = new QWidget(typechange);
+        layoutWidget4->setObjectName("layoutWidget4");
+        layoutWidget4->setGeometry(QRect(0, 10, 321, 171));
+        chgtyplyo = new QGridLayout(layoutWidget4);
         chgtyplyo->setObjectName("chgtyplyo");
         chgtyplyo->setContentsMargins(0, 0, 0, 0);
-        chgtypselabl = new QLabel(layoutWidget5);
+        chgtypselabl = new QLabel(layoutWidget4);
         chgtypselabl->setObjectName("chgtypselabl");
 
         chgtyplyo->addWidget(chgtypselabl, 0, 0, 1, 1);
 
-        chgtypselcom = new QComboBox(layoutWidget5);
+        chgtypselcom = new QComboBox(layoutWidget4);
         chgtypselcom->setObjectName("chgtypselcom");
 
         chgtyplyo->addWidget(chgtypselcom, 0, 1, 1, 1);
 
-        chgtypinabl = new QLabel(layoutWidget5);
+        chgtypinabl = new QLabel(layoutWidget4);
         chgtypinabl->setObjectName("chgtypinabl");
 
         chgtyplyo->addWidget(chgtypinabl, 1, 0, 1, 1);
 
-        chgtypinline = new QLineEdit(layoutWidget5);
+        chgtypinline = new QLineEdit(layoutWidget4);
         chgtypinline->setObjectName("chgtypinline");
 
         chgtyplyo->addWidget(chgtypinline, 1, 1, 1, 1);
 
-        chgtypokbtn = new QPushButton(layoutWidget5);
+        chgtypokbtn = new QPushButton(layoutWidget4);
         chgtypokbtn->setObjectName("chgtypokbtn");
 
         chgtyplyo->addWidget(chgtypokbtn, 2, 1, 1, 1);
@@ -1209,62 +1361,62 @@ public:
 
         updateLayout->addWidget(typechange, 2, 1, 1, 1);
 
-        customerchange = new QGroupBox(layoutWidget3);
+        customerchange = new QGroupBox(layoutWidget2);
         customerchange->setObjectName("customerchange");
-        layoutWidget6 = new QWidget(customerchange);
-        layoutWidget6->setObjectName("layoutWidget6");
-        layoutWidget6->setGeometry(QRect(0, 50, 331, 141));
-        chgctmlyo = new QGridLayout(layoutWidget6);
+        layoutWidget5 = new QWidget(customerchange);
+        layoutWidget5->setObjectName("layoutWidget5");
+        layoutWidget5->setGeometry(QRect(0, 50, 331, 141));
+        chgctmlyo = new QGridLayout(layoutWidget5);
         chgctmlyo->setObjectName("chgctmlyo");
         chgctmlyo->setContentsMargins(0, 0, 0, 0);
-        chgctmtypchk = new QCheckBox(layoutWidget6);
+        chgctmtypchk = new QCheckBox(layoutWidget5);
         chgctmtypchk->setObjectName("chgctmtypchk");
 
         chgctmlyo->addWidget(chgctmtypchk, 2, 1, 1, 1);
 
-        chgctmtypcom = new QComboBox(layoutWidget6);
+        chgctmtypcom = new QComboBox(layoutWidget5);
         chgctmtypcom->setObjectName("chgctmtypcom");
 
         chgctmlyo->addWidget(chgctmtypcom, 3, 1, 1, 1);
 
-        chgctmphechk = new QCheckBox(layoutWidget6);
+        chgctmphechk = new QCheckBox(layoutWidget5);
         chgctmphechk->setObjectName("chgctmphechk");
 
         chgctmlyo->addWidget(chgctmphechk, 2, 0, 1, 1);
 
-        chgctmsexcom = new QComboBox(layoutWidget6);
+        chgctmsexcom = new QComboBox(layoutWidget5);
         chgctmsexcom->setObjectName("chgctmsexcom");
 
         chgctmlyo->addWidget(chgctmsexcom, 1, 1, 1, 1);
 
-        chgctmnameline = new QLineEdit(layoutWidget6);
+        chgctmnameline = new QLineEdit(layoutWidget5);
         chgctmnameline->setObjectName("chgctmnameline");
 
         chgctmlyo->addWidget(chgctmnameline, 1, 0, 1, 1);
 
-        chgctmnamechk = new QCheckBox(layoutWidget6);
+        chgctmnamechk = new QCheckBox(layoutWidget5);
         chgctmnamechk->setObjectName("chgctmnamechk");
 
         chgctmlyo->addWidget(chgctmnamechk, 0, 0, 1, 1);
 
-        chgctmsexchk = new QCheckBox(layoutWidget6);
+        chgctmsexchk = new QCheckBox(layoutWidget5);
         chgctmsexchk->setObjectName("chgctmsexchk");
         chgctmsexchk->setEnabled(true);
 
         chgctmlyo->addWidget(chgctmsexchk, 0, 1, 1, 1);
 
-        chgctmpheline = new QLineEdit(layoutWidget6);
+        chgctmpheline = new QLineEdit(layoutWidget5);
         chgctmpheline->setObjectName("chgctmpheline");
 
         chgctmlyo->addWidget(chgctmpheline, 3, 0, 1, 1);
 
-        layoutWidget7 = new QWidget(customerchange);
-        layoutWidget7->setObjectName("layoutWidget7");
-        layoutWidget7->setGeometry(QRect(0, 20, 331, 31));
-        chgctmoklyo = new QGridLayout(layoutWidget7);
+        layoutWidget6 = new QWidget(customerchange);
+        layoutWidget6->setObjectName("layoutWidget6");
+        layoutWidget6->setGeometry(QRect(0, 20, 331, 31));
+        chgctmoklyo = new QGridLayout(layoutWidget6);
         chgctmoklyo->setObjectName("chgctmoklyo");
         chgctmoklyo->setContentsMargins(0, 0, 0, 0);
-        chgctmselabel = new QLabel(layoutWidget7);
+        chgctmselabel = new QLabel(layoutWidget6);
         chgctmselabel->setObjectName("chgctmselabel");
         chgctmselabel->setToolTipDuration(-1);
         chgctmselabel->setTextFormat(Qt::TextFormat::MarkdownText);
@@ -1272,12 +1424,12 @@ public:
 
         chgctmoklyo->addWidget(chgctmselabel, 0, 0, 1, 1);
 
-        chgctmselcom = new QComboBox(layoutWidget7);
+        chgctmselcom = new QComboBox(layoutWidget6);
         chgctmselcom->setObjectName("chgctmselcom");
 
         chgctmoklyo->addWidget(chgctmselcom, 0, 1, 1, 1);
 
-        chgctmokbtn = new QPushButton(layoutWidget7);
+        chgctmokbtn = new QPushButton(layoutWidget6);
         chgctmokbtn->setObjectName("chgctmokbtn");
 
         chgctmoklyo->addWidget(chgctmokbtn, 0, 2, 1, 1);
@@ -1285,85 +1437,85 @@ public:
 
         updateLayout->addWidget(customerchange, 0, 0, 1, 1);
 
-        ticketchange = new QGroupBox(layoutWidget3);
+        ticketchange = new QGroupBox(layoutWidget2);
         ticketchange->setObjectName("ticketchange");
-        layoutWidget8 = new QWidget(ticketchange);
-        layoutWidget8->setObjectName("layoutWidget8");
-        layoutWidget8->setGeometry(QRect(0, 10, 321, 171));
-        chgtktlyo = new QGridLayout(layoutWidget8);
+        layoutWidget7 = new QWidget(ticketchange);
+        layoutWidget7->setObjectName("layoutWidget7");
+        layoutWidget7->setGeometry(QRect(0, 10, 321, 171));
+        chgtktlyo = new QGridLayout(layoutWidget7);
         chgtktlyo->setObjectName("chgtktlyo");
         chgtktlyo->setContentsMargins(0, 0, 0, 0);
-        chgtktnoabl = new QLabel(layoutWidget8);
+        chgtktnoabl = new QLabel(layoutWidget7);
         chgtktnoabl->setObjectName("chgtktnoabl");
 
         chgtktlyo->addWidget(chgtktnoabl, 0, 0, 1, 1);
 
-        chgtktnocom = new QComboBox(layoutWidget8);
+        chgtktnocom = new QComboBox(layoutWidget7);
         chgtktnocom->setObjectName("chgtktnocom");
 
         chgtktlyo->addWidget(chgtktnocom, 0, 1, 1, 1);
 
-        chgtktlineabl = new QLabel(layoutWidget8);
+        chgtktlineabl = new QLabel(layoutWidget7);
         chgtktlineabl->setObjectName("chgtktlineabl");
 
         chgtktlyo->addWidget(chgtktlineabl, 0, 2, 1, 1);
 
-        chgtktdepabl = new QLabel(layoutWidget8);
+        chgtktdepabl = new QLabel(layoutWidget7);
         chgtktdepabl->setObjectName("chgtktdepabl");
 
         chgtktlyo->addWidget(chgtktdepabl, 1, 0, 1, 1);
 
-        chgtktarrabl = new QLabel(layoutWidget8);
+        chgtktarrabl = new QLabel(layoutWidget7);
         chgtktarrabl->setObjectName("chgtktarrabl");
 
         chgtktlyo->addWidget(chgtktarrabl, 1, 1, 1, 1);
 
-        chgtkttimeabl = new QLabel(layoutWidget8);
+        chgtkttimeabl = new QLabel(layoutWidget7);
         chgtkttimeabl->setObjectName("chgtkttimeabl");
 
         chgtktlyo->addWidget(chgtkttimeabl, 1, 2, 1, 1);
 
-        chgtktlinechg = new QLabel(layoutWidget8);
+        chgtktlinechg = new QLabel(layoutWidget7);
         chgtktlinechg->setObjectName("chgtktlinechg");
 
         chgtktlyo->addWidget(chgtktlinechg, 2, 0, 1, 1);
 
-        chgtktlinecom = new QComboBox(layoutWidget8);
+        chgtktlinecom = new QComboBox(layoutWidget7);
         chgtktlinecom->setObjectName("chgtktlinecom");
 
         chgtktlyo->addWidget(chgtktlinecom, 2, 1, 1, 1);
 
-        chgtktshipabl = new QLabel(layoutWidget8);
+        chgtktshipabl = new QLabel(layoutWidget7);
         chgtktshipabl->setObjectName("chgtktshipabl");
 
         chgtktlyo->addWidget(chgtktshipabl, 2, 2, 1, 1);
 
-        chgtktdepature = new QLabel(layoutWidget8);
+        chgtktdepature = new QLabel(layoutWidget7);
         chgtktdepature->setObjectName("chgtktdepature");
 
         chgtktlyo->addWidget(chgtktdepature, 3, 0, 1, 1);
 
-        chgtktarrive = new QLabel(layoutWidget8);
+        chgtktarrive = new QLabel(layoutWidget7);
         chgtktarrive->setObjectName("chgtktarrive");
 
         chgtktlyo->addWidget(chgtktarrive, 3, 1, 1, 1);
 
-        chgtkttime = new QLabel(layoutWidget8);
+        chgtkttime = new QLabel(layoutWidget7);
         chgtkttime->setObjectName("chgtkttime");
 
         chgtktlyo->addWidget(chgtkttime, 3, 2, 1, 1);
 
-        chgtktshipchg = new QLabel(layoutWidget8);
+        chgtktshipchg = new QLabel(layoutWidget7);
         chgtktshipchg->setObjectName("chgtktshipchg");
 
         chgtktlyo->addWidget(chgtktshipchg, 4, 0, 1, 1);
 
-        chgtktshipcom = new QComboBox(layoutWidget8);
+        chgtktshipcom = new QComboBox(layoutWidget7);
         chgtktshipcom->setObjectName("chgtktshipcom");
 
         chgtktlyo->addWidget(chgtktshipcom, 4, 1, 1, 1);
 
-        chgtktokbtn = new QPushButton(layoutWidget8);
+        chgtktokbtn = new QPushButton(layoutWidget7);
         chgtktokbtn->setObjectName("chgtktokbtn");
 
         chgtktlyo->addWidget(chgtktokbtn, 4, 2, 1, 1);
@@ -1371,105 +1523,105 @@ public:
 
         updateLayout->addWidget(ticketchange, 1, 1, 1, 1);
 
-        airlinechange = new QGroupBox(layoutWidget3);
+        airlinechange = new QGroupBox(layoutWidget2);
         airlinechange->setObjectName("airlinechange");
-        layoutWidget9 = new QWidget(airlinechange);
-        layoutWidget9->setObjectName("layoutWidget9");
-        layoutWidget9->setGeometry(QRect(20, 30, 281, 332));
-        chglinelyo = new QGridLayout(layoutWidget9);
+        layoutWidget8 = new QWidget(airlinechange);
+        layoutWidget8->setObjectName("layoutWidget8");
+        layoutWidget8->setGeometry(QRect(20, 30, 281, 332));
+        chglinelyo = new QGridLayout(layoutWidget8);
         chglinelyo->setObjectName("chglinelyo");
         chglinelyo->setContentsMargins(0, 0, 0, 0);
-        chglinenocom = new QComboBox(layoutWidget9);
+        chglinenocom = new QComboBox(layoutWidget8);
         chglinenocom->setObjectName("chglinenocom");
 
         chglinelyo->addWidget(chglinenocom, 0, 1, 1, 1);
 
-        chglinecmpcek = new QCheckBox(layoutWidget9);
+        chglinecmpcek = new QCheckBox(layoutWidget8);
         chglinecmpcek->setObjectName("chglinecmpcek");
 
         chglinelyo->addWidget(chglinecmpcek, 1, 0, 1, 1);
 
-        chglinecmpcom = new QComboBox(layoutWidget9);
+        chglinecmpcom = new QComboBox(layoutWidget8);
         chglinecmpcom->setObjectName("chglinecmpcom");
 
         chglinelyo->addWidget(chglinecmpcom, 1, 1, 1, 1);
 
-        chglinedepcek = new QCheckBox(layoutWidget9);
+        chglinedepcek = new QCheckBox(layoutWidget8);
         chglinedepcek->setObjectName("chglinedepcek");
 
         chglinelyo->addWidget(chglinedepcek, 2, 0, 1, 1);
 
-        chglinedepcom = new QComboBox(layoutWidget9);
+        chglinedepcom = new QComboBox(layoutWidget8);
         chglinedepcom->setObjectName("chglinedepcom");
 
         chglinelyo->addWidget(chglinedepcom, 2, 1, 1, 1);
 
-        chglinearrcek = new QCheckBox(layoutWidget9);
+        chglinearrcek = new QCheckBox(layoutWidget8);
         chglinearrcek->setObjectName("chglinearrcek");
 
         chglinelyo->addWidget(chglinearrcek, 3, 0, 1, 1);
 
-        chglinearrcom = new QComboBox(layoutWidget9);
+        chglinearrcom = new QComboBox(layoutWidget8);
         chglinearrcom->setObjectName("chglinearrcom");
 
         chglinelyo->addWidget(chglinearrcom, 3, 1, 1, 1);
 
-        chglinedatecek = new QCheckBox(layoutWidget9);
+        chglinedatecek = new QCheckBox(layoutWidget8);
         chglinedatecek->setObjectName("chglinedatecek");
 
         chglinelyo->addWidget(chglinedatecek, 4, 0, 1, 1);
 
-        chglinedatedit = new QDateEdit(layoutWidget9);
+        chglinedatedit = new QDateEdit(layoutWidget8);
         chglinedatedit->setObjectName("chglinedatedit");
 
         chglinelyo->addWidget(chglinedatedit, 4, 1, 1, 1);
 
-        chglinetimecek = new QCheckBox(layoutWidget9);
+        chglinetimecek = new QCheckBox(layoutWidget8);
         chglinetimecek->setObjectName("chglinetimecek");
 
         chglinelyo->addWidget(chglinetimecek, 5, 0, 1, 1);
 
-        chglinetimedit = new QTimeEdit(layoutWidget9);
+        chglinetimedit = new QTimeEdit(layoutWidget8);
         chglinetimedit->setObjectName("chglinetimedit");
 
         chglinelyo->addWidget(chglinetimedit, 5, 1, 1, 1);
 
-        chglineecocek = new QCheckBox(layoutWidget9);
+        chglineecocek = new QCheckBox(layoutWidget8);
         chglineecocek->setObjectName("chglineecocek");
 
         chglinelyo->addWidget(chglineecocek, 6, 0, 1, 1);
 
-        chglineecoedit = new QLineEdit(layoutWidget9);
+        chglineecoedit = new QLineEdit(layoutWidget8);
         chglineecoedit->setObjectName("chglineecoedit");
 
         chglinelyo->addWidget(chglineecoedit, 6, 1, 1, 1);
 
-        chglinebuscek = new QCheckBox(layoutWidget9);
+        chglinebuscek = new QCheckBox(layoutWidget8);
         chglinebuscek->setObjectName("chglinebuscek");
 
         chglinelyo->addWidget(chglinebuscek, 7, 0, 1, 1);
 
-        chglinebusedit = new QLineEdit(layoutWidget9);
+        chglinebusedit = new QLineEdit(layoutWidget8);
         chglinebusedit->setObjectName("chglinebusedit");
 
         chglinelyo->addWidget(chglinebusedit, 7, 1, 1, 1);
 
-        chglinedelcek = new QCheckBox(layoutWidget9);
+        chglinedelcek = new QCheckBox(layoutWidget8);
         chglinedelcek->setObjectName("chglinedelcek");
 
         chglinelyo->addWidget(chglinedelcek, 8, 0, 1, 1);
 
-        chglinedeledit = new QLineEdit(layoutWidget9);
+        chglinedeledit = new QLineEdit(layoutWidget8);
         chglinedeledit->setObjectName("chglinedeledit");
 
         chglinelyo->addWidget(chglinedeledit, 8, 1, 1, 1);
 
-        chglineokbtn = new QPushButton(layoutWidget9);
+        chglineokbtn = new QPushButton(layoutWidget8);
         chglineokbtn->setObjectName("chglineokbtn");
 
         chglinelyo->addWidget(chglineokbtn, 9, 1, 1, 1);
 
-        chglinenoabl = new QLabel(layoutWidget9);
+        chglinenoabl = new QLabel(layoutWidget8);
         chglinenoabl->setObjectName("chglinenoabl");
 
         chglinelyo->addWidget(chglinenoabl, 0, 0, 1, 1);
@@ -1480,91 +1632,91 @@ public:
         stackedWidget->addWidget(updatepage);
         deletepage = new QWidget();
         deletepage->setObjectName("deletepage");
-        layoutWidget10 = new QWidget(deletepage);
-        layoutWidget10->setObjectName("layoutWidget10");
-        layoutWidget10->setGeometry(QRect(0, 0, 671, 571));
-        deletelayout = new QGridLayout(layoutWidget10);
+        layoutWidget9 = new QWidget(deletepage);
+        layoutWidget9->setObjectName("layoutWidget9");
+        layoutWidget9->setGeometry(QRect(0, 0, 671, 571));
+        deletelayout = new QGridLayout(layoutWidget9);
         deletelayout->setObjectName("deletelayout");
         deletelayout->setContentsMargins(0, 0, 0, 0);
-        delticket = new QGroupBox(layoutWidget10);
+        delticket = new QGroupBox(layoutWidget9);
         delticket->setObjectName("delticket");
-        layoutWidget11 = new QWidget(delticket);
-        layoutWidget11->setObjectName("layoutWidget11");
-        layoutWidget11->setGeometry(QRect(110, 50, 411, 471));
-        delticketlyo = new QGridLayout(layoutWidget11);
+        layoutWidget10 = new QWidget(delticket);
+        layoutWidget10->setObjectName("layoutWidget10");
+        layoutWidget10->setGeometry(QRect(110, 50, 411, 471));
+        delticketlyo = new QGridLayout(layoutWidget10);
         delticketlyo->setObjectName("delticketlyo");
         delticketlyo->setContentsMargins(0, 0, 0, 0);
-        delticketnoabl = new QLabel(layoutWidget11);
+        delticketnoabl = new QLabel(layoutWidget10);
         delticketnoabl->setObjectName("delticketnoabl");
 
         delticketlyo->addWidget(delticketnoabl, 0, 0, 1, 1);
 
-        delticketno = new QComboBox(layoutWidget11);
+        delticketno = new QComboBox(layoutWidget10);
         delticketno->setObjectName("delticketno");
 
         delticketlyo->addWidget(delticketno, 0, 1, 1, 1);
 
-        delticketnameabl = new QLabel(layoutWidget11);
+        delticketnameabl = new QLabel(layoutWidget10);
         delticketnameabl->setObjectName("delticketnameabl");
 
         delticketlyo->addWidget(delticketnameabl, 1, 0, 1, 1);
 
-        delticketname = new QLabel(layoutWidget11);
+        delticketname = new QLabel(layoutWidget10);
         delticketname->setObjectName("delticketname");
 
         delticketlyo->addWidget(delticketname, 1, 1, 1, 1);
 
-        delticketlinenoabl = new QLabel(layoutWidget11);
+        delticketlinenoabl = new QLabel(layoutWidget10);
         delticketlinenoabl->setObjectName("delticketlinenoabl");
 
         delticketlyo->addWidget(delticketlinenoabl, 2, 0, 1, 1);
 
-        delticketlineno = new QLabel(layoutWidget11);
+        delticketlineno = new QLabel(layoutWidget10);
         delticketlineno->setObjectName("delticketlineno");
 
         delticketlyo->addWidget(delticketlineno, 2, 1, 1, 1);
 
-        delticketdepabl = new QLabel(layoutWidget11);
+        delticketdepabl = new QLabel(layoutWidget10);
         delticketdepabl->setObjectName("delticketdepabl");
 
         delticketlyo->addWidget(delticketdepabl, 3, 0, 1, 1);
 
-        delticketdep = new QLabel(layoutWidget11);
+        delticketdep = new QLabel(layoutWidget10);
         delticketdep->setObjectName("delticketdep");
 
         delticketlyo->addWidget(delticketdep, 3, 1, 1, 1);
 
-        delticketarrabl = new QLabel(layoutWidget11);
+        delticketarrabl = new QLabel(layoutWidget10);
         delticketarrabl->setObjectName("delticketarrabl");
 
         delticketlyo->addWidget(delticketarrabl, 4, 0, 1, 1);
 
-        delticketarr = new QLabel(layoutWidget11);
+        delticketarr = new QLabel(layoutWidget10);
         delticketarr->setObjectName("delticketarr");
 
         delticketlyo->addWidget(delticketarr, 4, 1, 1, 1);
 
-        delticketdeptimeabl = new QLabel(layoutWidget11);
+        delticketdeptimeabl = new QLabel(layoutWidget10);
         delticketdeptimeabl->setObjectName("delticketdeptimeabl");
 
         delticketlyo->addWidget(delticketdeptimeabl, 5, 0, 1, 1);
 
-        delticketdeptime = new QLabel(layoutWidget11);
+        delticketdeptime = new QLabel(layoutWidget10);
         delticketdeptime->setObjectName("delticketdeptime");
 
         delticketlyo->addWidget(delticketdeptime, 5, 1, 1, 1);
 
-        delticketshipabl = new QLabel(layoutWidget11);
+        delticketshipabl = new QLabel(layoutWidget10);
         delticketshipabl->setObjectName("delticketshipabl");
 
         delticketlyo->addWidget(delticketshipabl, 6, 0, 1, 1);
 
-        delticketship = new QLabel(layoutWidget11);
+        delticketship = new QLabel(layoutWidget10);
         delticketship->setObjectName("delticketship");
 
         delticketlyo->addWidget(delticketship, 6, 1, 1, 1);
 
-        delticketokbtn = new QPushButton(layoutWidget11);
+        delticketokbtn = new QPushButton(layoutWidget10);
         delticketokbtn->setObjectName("delticketokbtn");
 
         delticketlyo->addWidget(delticketokbtn, 7, 1, 1, 1);
@@ -1647,9 +1799,9 @@ public:
         retranslateUi(FlightManager);
         QObject::connect(list, &QListWidget::currentRowChanged, stackedWidget, &QStackedWidget::setCurrentIndex);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(2);
         searchtoolbox->setCurrentIndex(0);
-        inserttab->setCurrentIndex(0);
+        inserttab->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(FlightManager);
@@ -1670,6 +1822,10 @@ public:
         introduction->setText(QCoreApplication::translate("FlightManager", "\347\224\250\346\210\267\344\277\241\346\201\257", nullptr));
         exitaction->setText(QCoreApplication::translate("FlightManager", "\351\200\200\345\207\272\347\231\273\345\275\225", nullptr));
         welcomelabel->setText(QCoreApplication::translate("FlightManager", "\346\254\242\350\277\216\344\275\277\347\224\250316\350\210\252\347\251\272\344\277\241\346\201\257\347\256\241\347\220\206\347\263\273\347\273\237\357\274\201", nullptr));
+        departure->setText(QCoreApplication::translate("FlightManager", "departure", nullptr));
+        arrive->setText(QCoreApplication::translate("FlightManager", "arrive", nullptr));
+        direct->setText(QString());
+        depatime->setText(QCoreApplication::translate("FlightManager", "arrive", nullptr));
         label_4->setText(QCoreApplication::translate("FlightManager", "316\350\210\252\347\251\272\345\205\254\345\217\270\344\270\272\346\202\250\346\234\215\345\212\241", nullptr));
         label_3->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\345\234\260", nullptr));
         label_2->setText(QCoreApplication::translate("FlightManager", "\347\233\256\347\232\204\345\234\260", nullptr));

@@ -13,15 +13,22 @@ enroll::enroll(QWidget *parent)
 
 enroll::~enroll()
 {
-    if (ui) {
+    if (ui)
+    {
         delete ui;
         ui = nullptr;
     }
-    cout << "delete enroll" << endl;}
+    cout << "delete enroll" << endl;
+}
 
 void enroll::on_newcustomer_clicked()
 {
     enrolldone();
+
+
+
+
+
     this->close();
 }
 
