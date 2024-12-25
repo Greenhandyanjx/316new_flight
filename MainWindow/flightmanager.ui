@@ -36,6 +36,10 @@
         <height>16777215</height>
        </size>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 rgb(225, 255, 255), stop:1 rgb(135, 206, 235));</string>
+      </property>
      </widget>
     </item>
     <item>
@@ -43,16 +47,19 @@
       <item row="0" column="0">
        <widget class="QStackedWidget" name="stackedWidget">
         <property name="styleSheet">
-         <string notr="true">#homepage{
+         <string notr="true">
 
-border-image:url(:/images/images/background1.jpg);
 
-}</string>
+
+</string>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="homepage">
+         <property name="styleSheet">
+          <string notr="true">QWidget#homepage{border-image:url(:/images/images/background1.jpg);}</string>
+         </property>
          <widget class="QLabel" name="welcomelabel">
           <property name="geometry">
            <rect>
@@ -257,7 +264,7 @@ QLable{
            </rect>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="searchairline">
            <property name="geometry">
@@ -265,7 +272,7 @@ QLable{
              <x>0</x>
              <y>0</y>
              <width>661</width>
-             <height>513</height>
+             <height>503</height>
             </rect>
            </property>
            <attribute name="label">
@@ -710,7 +717,7 @@ color:rgb(0, 0, 255)
              <x>0</x>
              <y>0</y>
              <width>661</width>
-             <height>513</height>
+             <height>503</height>
             </rect>
            </property>
            <attribute name="label">
@@ -788,6 +795,9 @@ border-image:url(:/images/images/dark.jpg);
               <font>
                <family>华文楷体</family>
               </font>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::RightToLeft</enum>
              </property>
              <property name="styleSheet">
               <string notr="true"/>
@@ -1109,6 +1119,9 @@ border-image:url(:/images/images/dark.jpg);
                 </item>
                 <item row="5" column="0">
                  <widget class="QLabel" name="bktktdepcyabl">
+                  <property name="layoutDirection">
+                   <enum>Qt::LayoutDirection::LeftToRight</enum>
+                  </property>
                   <property name="text">
                    <string>出发城市</string>
                   </property>
@@ -1220,11 +1233,17 @@ padding-left:10px;
          </widget>
         </widget>
         <widget class="QWidget" name="updatepage">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <layout class="QVBoxLayout" name="verticalLayout_10">
           <item>
            <layout class="QGridLayout" name="updateLayout">
             <item row="0" column="1">
              <widget class="QStackedWidget" name="stackedWidget_update">
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
               <property name="currentIndex">
                <number>2</number>
               </property>
@@ -1672,6 +1691,9 @@ padding-left:10px;
          </layout>
         </widget>
         <widget class="QWidget" name="deletepage">
+         <property name="styleSheet">
+          <string notr="true">QWidget#deletepage{border-image:url(:/images/images/background1.jpg);}</string>
+         </property>
          <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
@@ -1684,8 +1706,14 @@ padding-left:10px;
           <layout class="QGridLayout" name="deletelayout">
            <item row="0" column="0" rowspan="2">
             <widget class="QGroupBox" name="delticket">
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
              <property name="title">
               <string>退票</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
              <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
@@ -1810,15 +1838,16 @@ padding-left:10px;
           <string notr="true">QLabel{
 	font: 15pt &quot;华文楷体&quot;;
 	color:rgb(0, 0, 0);
-}</string>
+}
+QWidget#userinfopage{border-image:url(:/images/images/background1.jpg);}</string>
          </property>
          <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
-            <x>220</x>
-            <y>100</y>
-            <width>167</width>
-            <height>214</height>
+            <x>60</x>
+            <y>37</y>
+            <width>491</width>
+            <height>451</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1985,7 +2014,7 @@ padding-left:10px;
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>30</height>
+     <height>34</height>
     </rect>
    </property>
    <property name="styleSheet">
