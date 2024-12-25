@@ -317,8 +317,8 @@ QLable{
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>661</width>
-            <height>513</height>
+            <width>100</width>
+            <height>30</height>
            </rect>
           </property>
           <attribute name="label">
@@ -763,7 +763,7 @@ color:rgb(0, 0, 255)
             <x>0</x>
             <y>0</y>
             <width>661</width>
-            <height>513</height>
+            <height>503</height>
            </rect>
           </property>
           <attribute name="label">
@@ -1074,65 +1074,68 @@ border-image:url(:/images/images/dark.jpg);
               <property name="geometry">
                <rect>
                 <x>130</x>
-                <y>0</y>
+                <y>10</y>
                 <width>391</width>
-                <height>553</height>
+                <height>531</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout">
-               <item row="11" column="1">
-                <widget class="QLabel" name="bktktprice">
+               <item row="1" column="1">
+                <widget class="QLabel" name="bktktctmname">
                  <property name="text">
-                  <string>Price</string>
+                  <string>Name</string>
                  </property>
                 </widget>
                </item>
-               <item row="5" column="0">
-                <widget class="QLabel" name="bktktdepcotabl">
-                 <property name="text">
-                  <string>出发国家</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="10" column="1">
-                <widget class="QComboBox" name="bktktship"/>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="bktktctmnoabl">
-                 <property name="text">
-                  <string>客户编号</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="11" column="0">
+               <item row="10" column="0">
                 <widget class="QLabel" name="bktktpriceabl">
                  <property name="text">
                   <string>机票价钱</string>
                  </property>
                 </widget>
                </item>
-               <item row="12" column="1">
+               <item row="0" column="1">
+                <widget class="QComboBox" name="bktktctmno"/>
+               </item>
+               <item row="8" column="1">
+                <widget class="QComboBox" name="bktktline"/>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="bktktctmnameabl">
+                 <property name="text">
+                  <string>客户姓名</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="0">
+                <widget class="QLabel" name="bktktshipabl">
+                 <property name="text">
+                  <string>舱位等级</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="0">
+                <widget class="QLabel" name="bktktarrcotabl">
+                 <property name="text">
+                  <string>到达国家</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="11" column="1">
                 <widget class="QLabel" name="bktkttotal">
                  <property name="text">
                   <string>Total</string>
                  </property>
                 </widget>
                </item>
-               <item row="6" column="0">
-                <widget class="QLabel" name="bktktdepcyabl">
+               <item row="13" column="1">
+                <widget class="QLabel" name="bktktnum">
                  <property name="text">
-                  <string>出发城市</string>
+                  <string>tktnum</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="1">
-                <widget class="QLabel" name="bktktctmtyp">
-                 <property name="text">
-                  <string>Type</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="15" column="0">
+               <item row="14" column="0">
                 <widget class="QLabel" name="bkttimeLabel">
                  <property name="text">
                   <string>起飞时间
@@ -1140,75 +1143,109 @@ border-image:url(:/images/images/dark.jpg);
                  </property>
                 </widget>
                </item>
-               <item row="10" column="0">
-                <widget class="QLabel" name="bktktshipabl">
+               <item row="5" column="1">
+                <widget class="QComboBox" name="bktktdepcy"/>
+               </item>
+               <item row="15" column="1">
+                <widget class="QPushButton" name="bktktokbtn">
                  <property name="text">
-                  <string>舱位等级</string>
+                  <string>确定购票</string>
                  </property>
                 </widget>
                </item>
                <item row="4" column="0">
-                <widget class="QLabel" name="bktktdiscotabl">
+                <widget class="QLabel" name="bktktdepcotabl">
                  <property name="text">
-                  <string>折扣比例</string>
+                  <string>出发国家</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <widget class="QComboBox" name="bktktctmno"/>
-               </item>
-               <item row="14" column="1">
-                <widget class="QLabel" name="bktktnum">
+               <item row="5" column="0">
+                <widget class="QLabel" name="bktktdepcyabl">
                  <property name="text">
-                  <string>tktnum</string>
+                  <string>出发城市</string>
                  </property>
                 </widget>
                </item>
-               <item row="9" column="1">
-                <widget class="QComboBox" name="bktktline"/>
-               </item>
-               <item row="3" column="0">
-                <widget class="QLabel" name="bktktctmtypabl">
-                 <property name="text">
-                  <string>客户类型</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="12" column="0">
-                <widget class="QLabel" name="bktkttotalabl">
-                 <property name="text">
-                  <string>机票总价</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="8" column="1">
-                <widget class="QComboBox" name="bktktarrcy"/>
-               </item>
-               <item row="7" column="0">
-                <widget class="QLabel" name="bktktarrcotabl">
-                 <property name="text">
-                  <string>到达国家</string>
-                 </property>
-                </widget>
+               <item row="4" column="1">
+                <widget class="QComboBox" name="bktktdepcot"/>
                </item>
                <item row="6" column="1">
-                <widget class="QComboBox" name="bktktdepcy"/>
+                <widget class="QComboBox" name="bktktarrcot"/>
                </item>
-               <item row="14" column="0">
+               <item row="10" column="1">
+                <widget class="QLabel" name="bktktprice">
+                 <property name="text">
+                  <string>Price</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="13" column="0">
                 <widget class="QLabel" name="bktktrest">
                  <property name="text">
                   <string>剩余票数</string>
                  </property>
                 </widget>
                </item>
-               <item row="9" column="0">
+               <item row="7" column="1">
+                <widget class="QComboBox" name="bktktarrcy"/>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="bktktctmtyp">
+                 <property name="text">
+                  <string>Type</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="0">
                 <widget class="QLabel" name="bktktlineabl">
                  <property name="text">
                   <string>航线选择</string>
                  </property>
                 </widget>
                </item>
-               <item row="15" column="1">
+               <item row="9" column="1">
+                <widget class="QComboBox" name="bktktship"/>
+               </item>
+               <item row="7" column="0">
+                <widget class="QLabel" name="bktktarrcyabl">
+                 <property name="styleSheet">
+                  <string notr="true"/>
+                 </property>
+                 <property name="text">
+                  <string>到达城市</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="bktktdiscot">
+                 <property name="text">
+                  <string>Discount</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="bktktctmnoabl">
+                 <property name="text">
+                  <string>客户编号</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="11" column="0">
+                <widget class="QLabel" name="bktkttotalabl">
+                 <property name="text">
+                  <string>机票总价</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="bktktdiscotabl">
+                 <property name="text">
+                  <string>折扣比例</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="14" column="1">
                 <widget class="QLabel" name="bkttime">
                  <property name="styleSheet">
                   <string notr="true">QLabel{
@@ -1220,61 +1257,10 @@ padding-left:10px;
                  </property>
                 </widget>
                </item>
-               <item row="5" column="1">
-                <widget class="QComboBox" name="bktktdepcot"/>
-               </item>
-               <item row="7" column="1">
-                <widget class="QComboBox" name="bktktarrcot"/>
-               </item>
-               <item row="8" column="0">
-                <widget class="QLabel" name="bktktarrcyabl">
-                 <property name="styleSheet">
-                  <string notr="true"/>
-                 </property>
-                 <property name="text">
-                  <string>到达城市</string>
-                 </property>
-                </widget>
-               </item>
                <item row="2" column="0">
-                <widget class="QLabel" name="bktktctmnameabl">
+                <widget class="QLabel" name="bktktctmtypabl">
                  <property name="text">
-                  <string>客户姓名</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="1">
-                <widget class="QLabel" name="bktktdiscot">
-                 <property name="text">
-                  <string>Discount</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QLabel" name="bktktctmname">
-                 <property name="text">
-                  <string>Name</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="16" column="1">
-                <widget class="QPushButton" name="bktktokbtn">
-                 <property name="text">
-                  <string>确定购票</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="0">
-                <widget class="QLabel" name="bktktnoabl">
-                 <property name="text">
-                  <string>订单编号</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QLabel" name="bktktno">
-                 <property name="text">
-                  <string>No.</string>
+                  <string>客户类型</string>
                  </property>
                 </widget>
                </item>
@@ -1923,134 +1909,156 @@ padding-left:10px;
         <widget class="QWidget" name="">
          <property name="geometry">
           <rect>
-           <x>170</x>
-           <y>110</y>
-           <width>195</width>
-           <height>201</height>
+           <x>220</x>
+           <y>100</y>
+           <width>167</width>
+           <height>214</height>
           </rect>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_7">
+         <layout class="QVBoxLayout" name="verticalLayout_8">
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
+           <layout class="QHBoxLayout" name="horizontalLayout_16">
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_10">
-              <item>
-               <widget class="QLabel" name="useracclable">
-                <property name="text">
-                 <string>用户账号</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="useracc">
-                <property name="minimumSize">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>useracc</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <widget class="QLabel" name="usernlabel">
+              <property name="text">
+               <string>用户编号</string>
+              </property>
+             </widget>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_11">
-              <item>
-               <widget class="QLabel" name="usernamelabel">
-                <property name="text">
-                 <string>用户姓名</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="username">
-                <property name="text">
-                 <string>username</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <widget class="QLabel" name="userno">
+              <property name="text">
+               <string>userno</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_3">
+           <layout class="QVBoxLayout" name="verticalLayout_7">
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_12">
+             <layout class="QVBoxLayout" name="verticalLayout_2">
               <item>
-               <widget class="QLabel" name="usersexlabel">
-                <property name="text">
-                 <string>性别</string>
-                </property>
-               </widget>
+               <layout class="QHBoxLayout" name="horizontalLayout_10">
+                <item>
+                 <widget class="QLabel" name="useracclable">
+                  <property name="text">
+                   <string>用户账号</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="useracc">
+                  <property name="minimumSize">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>useracc</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item>
-               <widget class="QLabel" name="usersex">
-                <property name="text">
-                 <string>usersex</string>
-                </property>
-               </widget>
+               <layout class="QHBoxLayout" name="horizontalLayout_11">
+                <item>
+                 <widget class="QLabel" name="usernamelabel">
+                  <property name="text">
+                   <string>用户姓名</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="username">
+                  <property name="text">
+                   <string>username</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
              </layout>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_13">
+             <layout class="QVBoxLayout" name="verticalLayout_3">
               <item>
-               <widget class="QLabel" name="useridlabel">
-                <property name="text">
-                 <string>身份证</string>
-                </property>
-               </widget>
+               <layout class="QHBoxLayout" name="horizontalLayout_12">
+                <item>
+                 <widget class="QLabel" name="usersexlabel">
+                  <property name="text">
+                   <string>性别</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="usersex">
+                  <property name="text">
+                   <string>usersex</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item>
-               <widget class="QLabel" name="userid">
-                <property name="text">
-                 <string>userid</string>
-                </property>
-               </widget>
+               <layout class="QHBoxLayout" name="horizontalLayout_13">
+                <item>
+                 <widget class="QLabel" name="useridlabel">
+                  <property name="text">
+                   <string>身份证</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="userid">
+                  <property name="text">
+                   <string>userid</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
              </layout>
             </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_14">
+             <layout class="QVBoxLayout" name="verticalLayout_6">
               <item>
-               <widget class="QLabel" name="usertypelabel">
-                <property name="text">
-                 <string>用户类型</string>
-                </property>
-               </widget>
+               <layout class="QHBoxLayout" name="horizontalLayout_14">
+                <item>
+                 <widget class="QLabel" name="usertypelabel">
+                  <property name="text">
+                   <string>用户类型</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="usertype">
+                  <property name="text">
+                   <string>usertype</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item>
-               <widget class="QLabel" name="usertype">
-                <property name="text">
-                 <string>usertype</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_15">
-              <item>
-               <widget class="QLabel" name="userphonelabel">
-                <property name="text">
-                 <string>电话</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLabel" name="userphone">
-                <property name="text">
-                 <string>userphone</string>
-                </property>
-               </widget>
+               <layout class="QHBoxLayout" name="horizontalLayout_15">
+                <item>
+                 <widget class="QLabel" name="userphonelabel">
+                  <property name="text">
+                   <string>电话</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="userphone">
+                  <property name="text">
+                   <string>userphone</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
              </layout>
             </item>
@@ -2070,7 +2078,7 @@ padding-left:10px;
      <x>0</x>
      <y>0</y>
      <width>865</width>
-     <height>29</height>
+     <height>33</height>
     </rect>
    </property>
    <property name="styleSheet">

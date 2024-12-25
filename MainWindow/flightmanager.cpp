@@ -102,6 +102,7 @@ void FlightManager::getuser(){
         ui->userid->setText(qsql->value("id").toString());
         ui->usersex->setText(qsql->value("sex").toString());
         ui->userphone->setText(qsql->value("phone").toString());
+        ui->userno->setText(qsql->value("no").toString());
     }
 }
 void FlightManager::Init()
@@ -155,7 +156,7 @@ void FlightManager::Init()
     ui->inserttab->setTabText(0, "当前账号客户信息");
 
     //添加页面中的订票信息标签页
-    JudgeReturnValue(ui->bktktno, GetMaxNum("SELECT * FROM vi_ticket_max") );
+    // JudgeReturnValue(ui->bktktno, QDateTime::currentDateTime().toSecsSinceEpoch()%100000 );
     if (!m_CustomerInfo.size())
         GetCustomerInfo();
     SetCustomer(ui->bktktctmno, m_CustomerNo);
@@ -425,7 +426,7 @@ bool FlightManager::GetCustomerInfo()
         ctm.account=sqlquery->value("account").toString();
         m_CustomerInfo.append(ctm);
     }
-
+    std::sort(m_CustomerInfo.begin(),m_CustomerInfo.end(),[](Customer& c1,Customer &c2){return c1.no<c2.no;});
     delete sqlquery;
     sqlquery = NULL;
 
@@ -690,10 +691,7 @@ void FlightManager::SetCityOnBook(QComboBox* combobox, const QString &index)
         if (index.compare(m_City[i].country_name) == 0)
         {
             found = true;
-            if (m_City[i].province.isEmpty())
                 combobox->addItem(m_City[i].city);
-            else
-                combobox->addItem(m_City[i].province + "," + m_City[i].city);
         }
     }
 
@@ -763,11 +761,31 @@ void FlightManager::ShowAirLineOnSearch() {
 
         // 创建并填充自定义小部件
         FlightItemWidget *flightWidget = new FlightItemWidget;
+        flightWidget->setFlightData(data);
         connect(flightWidget->bookButton,&QPushButton::clicked,[=]{
             ui->stackedWidget->setCurrentIndex(2);
             ui->inserttab->setCurrentIndex(1);
+            ui->bktktctmno->addItem(ui->userno->text());
+            ui->bktktctmno->setCurrentText(ui->userno->text());
+            SetCustomerInfoOnBook(ui->userno->text().toInt()-1);
+            qDebug()<<ui->userno->text().toInt()<<"!!!";
+            QString dep=flightWidget->depdata;
+            // qDebug()<<dep;
+            QStringList depl=dep.split(" ",Qt::SkipEmptyParts);
+            QString arr=flightWidget->arrdata;
+            QStringList arrl=arr.split(" ",Qt::SkipEmptyParts);
+            ui->bktktdepcot->addItem(depl[0]);
+            ui->bktktdepcot->setCurrentText(depl[0]);
+            ui->bktktdepcy->addItem(depl[1]);
+            ui->bktktdepcy->setCurrentText(depl[1]);
+            ui->bktktarrcot->addItem(arrl[0]);
+            ui->bktktarrcot->setCurrentText(arrl[0]);
+            ui->bktktarrcy->addItem(arrl[1]);
+            ui->bktktarrcy->setCurrentText(arrl[1]);
+            ui->bktktline->addItem(flightWidget->flightdata);
+            ui->bktktline->setCurrentText(flightWidget->flightdata);
+            // qDebug()<<flightWidget->flightdata;
         });
-        flightWidget->setFlightData(data);
 
         item->setSizeHint(flightWidget->sizeHint()); // 调整项大小
         ui->searchairlineshow->addItem(item);
@@ -1938,7 +1956,7 @@ void FlightManager::on_bktktarrcy_currentTextChanged(const QString &arg1)
         dt[i] = str;
         ++i;
     }
-    QString departure = dt[1];
+    QString departure =dep;
     QStringList a = arg1.split(",", Qt::SkipEmptyParts);
     i = 0;
     for (QString str : a)
@@ -1946,7 +1964,7 @@ void FlightManager::on_bktktarrcy_currentTextChanged(const QString &arg1)
         dt[i] = str;
         ++i;
     }
-    QString arrive = dt[1];
+    QString arrive = arg1;
     GetAirLineInfo();
     ui->bktktline->clear();
     for (int k=0;k< m_LineInfo.size();k++)
@@ -1973,7 +1991,7 @@ void FlightManager::on_bktktdepcy_currentTextChanged(const QString &arg1)
         dt[i] = str;
         ++i;
     }
-    QString arrive = dt[1];
+    QString arrive = arr;
     QStringList a = arg1.split(",", Qt::SkipEmptyParts);
     i = 0;
     for (QString str : a)
@@ -1981,7 +1999,7 @@ void FlightManager::on_bktktdepcy_currentTextChanged(const QString &arg1)
         dt[i] = str;
         ++i;
     }
-    QString departure = dt[1];
+    QString departure =arg1;
     GetAirLineInfo();
     ui->bktktline->clear();
     for (int k=0;k< m_LineInfo.size();k++)
@@ -2103,7 +2121,30 @@ void FlightManager::on_pushButton_clicked()
         // 创建并填充自定义小部件
         FlightItemWidget *flightWidget = new FlightItemWidget;
         flightWidget->setFlightData(data);
-
+        connect(flightWidget->bookButton,&QPushButton::clicked,[=]{
+            ui->stackedWidget->setCurrentIndex(2);
+            ui->inserttab->setCurrentIndex(1);
+            ui->bktktctmno->addItem(ui->userno->text());
+            ui->bktktctmno->setCurrentText(ui->userno->text());
+            SetCustomerInfoOnBook(ui->userno->text().toInt()-1);
+            qDebug()<<ui->userno->text().toInt()<<"!!!";
+            QString dep=flightWidget->depdata;
+            // qDebug()<<dep;
+            QStringList depl=dep.split(" ",Qt::SkipEmptyParts);
+            QString arr=flightWidget->arrdata;
+            QStringList arrl=arr.split(" ",Qt::SkipEmptyParts);
+            ui->bktktdepcot->addItem(depl[0]);
+            ui->bktktdepcot->setCurrentText(depl[0]);
+            ui->bktktdepcy->addItem(depl[1]);
+            ui->bktktdepcy->setCurrentText(depl[1]);
+            ui->bktktarrcot->addItem(arrl[0]);
+            ui->bktktarrcot->setCurrentText(arrl[0]);
+            ui->bktktarrcy->addItem(arrl[1]);
+            ui->bktktarrcy->setCurrentText(arrl[1]);
+            ui->bktktline->addItem(flightWidget->flightdata);
+            ui->bktktline->setCurrentText(flightWidget->flightdata);
+            // qDebug()<<flightWidget->flightdata;
+        });
         item->setSizeHint(flightWidget->sizeHint()); // 调整项大小
         ui->searchairlineshow->addItem(item);
         ui->searchairlineshow->setItemWidget(item, flightWidget);

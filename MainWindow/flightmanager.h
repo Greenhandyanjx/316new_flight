@@ -14,6 +14,7 @@
 #include <QPushButton>
 #include "connectdatabase.h"
 #include<windows.h>
+#include<algorithm>
 
 namespace Ui
 {
@@ -34,6 +35,15 @@ class FlightItemWidget : public QWidget {
     Q_OBJECT
 public:
     QPushButton *bookButton;
+    QLabel *airlineLogo;   // 航空公司 logo
+    QLabel *flightInfo;    // 航班信息
+    QLabel *departureInfo; // 出发信息
+    QLabel *arriveInfo;    // 到达信息
+    QLabel *durationInfo;  // 飞行时长
+    QLabel *priceLabel;
+    QString flightdata;
+    QString depdata;
+    QString arrdata;
     explicit FlightItemWidget(QWidget *parent = nullptr) : QWidget(parent) {
         QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
@@ -109,11 +119,14 @@ public:
     // 设置航班数据
     void setFlightData(const FlightData &data) {
         flightInfo->setText(QString("航线编号:%2<br><span style='color:blue;'>%1 %3</span>").arg(data.airlineName, data.flightNo, data.airplaneType));
+        flightdata=data.flightNo+","+data.airlineName;
         departureInfo->setText(
             QString("<span style='font-size:24px;'>%1</span><br>%2")
                 .arg(data.departureTime)
                 .arg(data.departureAirport)
             );
+        depdata=data.departureAirport;
+        arrdata=data.arriveAirport;
         arriveInfo->setText(
             QString("<span style='font-size:24px;'>%1</span><br>%2")
                 .arg(data.arriveTime)
@@ -128,12 +141,7 @@ public:
     }
 
 private:
-    QLabel *airlineLogo;   // 航空公司 logo
-    QLabel *flightInfo;    // 航班信息
-    QLabel *departureInfo; // 出发信息
-    QLabel *arriveInfo;    // 到达信息
-    QLabel *durationInfo;  // 飞行时长
-    QLabel *priceLabel;    // 价格
+    // 价格
  // 订票按钮
 };
 class FlightManager : public QMainWindow
