@@ -29,10 +29,8 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStackedWidget>
-#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTimeEdit>
-#include <QtWidgets/QToolBox>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -62,7 +60,7 @@ public:
     QWidget *homepage;
     QLabel *welcomelabel;
     QWidget *searchpage;
-    QToolBox *searchtoolbox;
+    QStackedWidget *searchtoolbox;
     QWidget *searchairline;
     QListWidget *searchairlineshow;
     QWidget *searchWidget;
@@ -89,8 +87,8 @@ public:
     QWidget *insertpage;
     QWidget *gridLayoutWidget_3;
     QGridLayout *insertlayout;
-    QTabWidget *inserttab;
-    QWidget *newcustom;
+    QStackedWidget *inserttab;
+    QWidget *newcustpage;
     QPushButton *newokbutton;
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_5;
@@ -112,7 +110,7 @@ public:
     QHBoxLayout *horizontalLayout_9;
     QLabel *newphonelabel;
     QLineEdit *newphonedit;
-    QWidget *booktickettab;
+    QWidget *bktpage;
     QWidget *layoutWidget1;
     QGridLayout *gridLayout;
     QLabel *bktktctmname;
@@ -551,15 +549,14 @@ public:
 "	color:rgb(255, 255, 255);\n"
 "}\n"
 ""));
-        searchtoolbox = new QToolBox(searchpage);
+        searchtoolbox = new QStackedWidget(searchpage);
         searchtoolbox->setObjectName("searchtoolbox");
-        searchtoolbox->setGeometry(QRect(0, 0, 661, 561));
+        searchtoolbox->setGeometry(QRect(0, 0, 641, 601));
         searchairline = new QWidget();
         searchairline->setObjectName("searchairline");
-        searchairline->setGeometry(QRect(0, 0, 661, 503));
         searchairlineshow = new QListWidget(searchairline);
         searchairlineshow->setObjectName("searchairlineshow");
-        searchairlineshow->setGeometry(QRect(0, 60, 661, 451));
+        searchairlineshow->setGeometry(QRect(0, 60, 651, 541));
         QFont font1;
         font1.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
         font1.setPointSize(11);
@@ -647,7 +644,7 @@ public:
         direct->setGeometry(QRect(260, 9, 61, 31));
         depatime = new QPushButton(searchWidget);
         depatime->setObjectName("depatime");
-        depatime->setGeometry(QRect(430, 10, 221, 31));
+        depatime->setGeometry(QRect(430, 10, 201, 31));
         depatime->setStyleSheet(QString::fromUtf8("QPushButton { \n"
 "       background-color: white; \n"
 "      border: none;\n"
@@ -662,7 +659,7 @@ public:
 "}"));
         searchairWG = new QWidget(searchairline);
         searchairWG->setObjectName("searchairWG");
-        searchairWG->setGeometry(QRect(0, 57, 661, 241));
+        searchairWG->setGeometry(QRect(10, 57, 621, 241));
         searchairWG->setStyleSheet(QString::fromUtf8("QWidget {\n"
 "    background-color: rgb(255, 255, 255); /* \350\203\214\346\231\257\351\242\234\350\211\262 */\n"
 "    border: 1px solid rgba(0, 0, 0, 0.2); /* \350\276\271\346\241\206\351\242\234\350\211\262\357\274\214\350\256\276\347\275\256\344\270\272\346\265\205\350\211\262\345\215\212\351\200\217\346\230\216 */\n"
@@ -855,14 +852,13 @@ public:
 
         horizontalLayout_3->addLayout(verticalLayout);
 
-        searchtoolbox->addItem(searchairline, QString::fromUtf8("Page 1"));
+        searchtoolbox->addWidget(searchairline);
         searchcustomer = new QWidget();
         searchcustomer->setObjectName("searchcustomer");
-        searchcustomer->setGeometry(QRect(0, 0, 661, 503));
         searchcustomershow = new QTableWidget(searchcustomer);
         searchcustomershow->setObjectName("searchcustomershow");
-        searchcustomershow->setGeometry(QRect(0, 0, 661, 501));
-        searchtoolbox->addItem(searchcustomer, QString::fromUtf8("Page 2"));
+        searchcustomershow->setGeometry(QRect(0, 0, 641, 601));
+        searchtoolbox->addWidget(searchcustomer);
         stackedWidget->addWidget(searchpage);
         insertpage = new QWidget();
         insertpage->setObjectName("insertpage");
@@ -903,10 +899,31 @@ public:
                         "\351\242\234\350\211\262 */\n"
 "    color: #ffffff; /* \350\256\276\347\275\256\346\214\211\351\222\256\350\242\253\351\200\211\344\270\255\346\227\266\347\232\204\346\226\207\345\255\227\351\242\234\350\211\262 */\n"
 "}\n"
-"#booktickettab{\n"
+"#bktpage{\n"
 "\n"
 "border-image:url(:/images/images/dark.jpg);\n"
 "\n"
+"}\n"
+"#newcustpage{\n"
+"\n"
+"border-image:url(:/images/images/dark.jpg);\n"
+"\n"
+"}\n"
+"QLabel{\n"
+"	font: 12pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
+"	color: #BDC8E2;\n"
+"    font-style: normal;\n"
+"    font-weight: normal;\n"
+" \n"
+"    border-style: solid;\n"
+"    border-width: 1px;\n"
+"    border-color: aqua;\n"
+"    border-radius: 3px;\n"
+" \n"
+"    padding-left: 55px;\n"
+"    padding-top: 0px;\n"
+" \n"
+"    background-color: #2E3648;\n"
 "}"));
         gridLayoutWidget_3 = new QWidget(insertpage);
         gridLayoutWidget_3->setObjectName("gridLayoutWidget_3");
@@ -914,31 +931,30 @@ public:
         insertlayout = new QGridLayout(gridLayoutWidget_3);
         insertlayout->setObjectName("insertlayout");
         insertlayout->setContentsMargins(0, 0, 0, 0);
-        inserttab = new QTabWidget(gridLayoutWidget_3);
+        inserttab = new QStackedWidget(gridLayoutWidget_3);
         inserttab->setObjectName("inserttab");
         QFont font6;
         font6.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
         inserttab->setFont(font6);
         inserttab->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         inserttab->setStyleSheet(QString::fromUtf8(""));
-        inserttab->setTabsClosable(false);
-        inserttab->setMovable(true);
-        inserttab->setTabBarAutoHide(false);
-        newcustom = new QWidget();
-        newcustom->setObjectName("newcustom");
-        newcustom->setStyleSheet(QString::fromUtf8("QLabel{\n"
-"	font: 15pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
-"	color:rgb(0, 0, 0);\n"
+        newcustpage = new QWidget();
+        newcustpage->setObjectName("newcustpage");
+        newcustpage->setFont(font3);
+        newcustpage->setStyleSheet(QString::fromUtf8("QLabel{\n"
+"	\n"
+"	font: 16pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
+"	padding:10px,10px;\n"
 "}"));
-        newokbutton = new QPushButton(newcustom);
+        newokbutton = new QPushButton(newcustpage);
         newokbutton->setObjectName("newokbutton");
         newokbutton->setGeometry(QRect(420, 420, 101, 43));
         QFont font7;
         font7.setPointSize(14);
         newokbutton->setFont(font7);
-        layoutWidget = new QWidget(newcustom);
+        layoutWidget = new QWidget(newcustpage);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(190, 110, 325, 311));
+        layoutWidget->setGeometry(QRect(190, 110, 325, 314));
         verticalLayout_5 = new QVBoxLayout(layoutWidget);
         verticalLayout_5->setObjectName("verticalLayout_5");
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
@@ -948,7 +964,7 @@ public:
         newnolabel->setObjectName("newnolabel");
         QFont font8;
         font8.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
-        font8.setPointSize(15);
+        font8.setPointSize(16);
         font8.setBold(false);
         font8.setItalic(false);
         newnolabel->setFont(font8);
@@ -1047,26 +1063,10 @@ public:
 
         verticalLayout_5->addLayout(horizontalLayout_9);
 
-        inserttab->addTab(newcustom, QString());
-        booktickettab = new QWidget();
-        booktickettab->setObjectName("booktickettab");
-        booktickettab->setStyleSheet(QString::fromUtf8("QLabel{\n"
-"	font: 12pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
-"	color: #BDC8E2;\n"
-"    font-style: normal;\n"
-"    font-weight: normal;\n"
-" \n"
-"    border-style: solid;\n"
-"    border-width: 1px;\n"
-"    border-color: aqua;\n"
-"    border-radius: 3px;\n"
-" \n"
-"    padding-left: 55px;\n"
-"    padding-top: 0px;\n"
-" \n"
-"    background-color: #2E3648;\n"
-"}"));
-        layoutWidget1 = new QWidget(booktickettab);
+        inserttab->addWidget(newcustpage);
+        bktpage = new QWidget();
+        bktpage->setObjectName("bktpage");
+        layoutWidget1 = new QWidget(bktpage);
         layoutWidget1->setObjectName("layoutWidget1");
         layoutWidget1->setGeometry(QRect(130, 10, 391, 531));
         gridLayout = new QGridLayout(layoutWidget1);
@@ -1222,7 +1222,7 @@ public:
 
         gridLayout->addWidget(bktktctmtypabl, 2, 0, 1, 1);
 
-        inserttab->addTab(booktickettab, QString());
+        inserttab->addWidget(bktpage);
 
         insertlayout->addWidget(inserttab, 0, 0, 1, 1);
 
@@ -2039,8 +2039,6 @@ public:
         retranslateUi(FlightManager);
 
         stackedWidget->setCurrentIndex(1);
-        searchtoolbox->setCurrentIndex(1);
-        inserttab->setCurrentIndex(1);
         stackedWidget_update->setCurrentIndex(2);
 
 
@@ -2055,8 +2053,8 @@ public:
         ticketsearch->setText(QCoreApplication::translate("FlightManager", "Ticket", nullptr));
         searchaction->setText(QCoreApplication::translate("FlightManager", "\346\237\245\350\257\242\347\225\214\351\235\242", nullptr));
         insertaction->setText(QCoreApplication::translate("FlightManager", "\346\267\273\345\212\240\347\225\214\351\235\242", nullptr));
-        updateaction->setText(QCoreApplication::translate("FlightManager", "\346\233\264\346\226\260\347\225\214\351\235\242", nullptr));
-        deleteaction->setText(QCoreApplication::translate("FlightManager", "\345\210\240\351\231\244\347\225\214\351\235\242", nullptr));
+        updateaction->setText(QCoreApplication::translate("FlightManager", "\346\233\264\346\226\260(\344\273\205\347\256\241\347\220\206\345\221\230)", nullptr));
+        deleteaction->setText(QCoreApplication::translate("FlightManager", "\345\210\240\351\231\244(\344\273\205\347\256\241\347\220\206\345\221\230)", nullptr));
         quitacion->setText(QCoreApplication::translate("FlightManager", "Quit System", nullptr));
         quitaction->setText(QCoreApplication::translate("FlightManager", "\351\200\200\345\207\272\347\263\273\347\273\237", nullptr));
         exitaction->setText(QCoreApplication::translate("FlightManager", "\351\200\200\345\207\272\347\231\273\345\275\225", nullptr));
@@ -2073,8 +2071,6 @@ public:
         label_2->setText(QCoreApplication::translate("FlightManager", "\347\233\256\347\232\204\345\234\260", nullptr));
         pushButton->setText(QCoreApplication::translate("FlightManager", "\346\237\245\350\257\242", nullptr));
         label->setText(QCoreApplication::translate("FlightManager", "\346\227\245\346\234\237", nullptr));
-        searchtoolbox->setItemText(searchtoolbox->indexOf(searchairline), QCoreApplication::translate("FlightManager", "Page 1", nullptr));
-        searchtoolbox->setItemText(searchtoolbox->indexOf(searchcustomer), QCoreApplication::translate("FlightManager", "Page 2", nullptr));
         newokbutton->setText(QCoreApplication::translate("FlightManager", "\347\241\256\350\256\244", nullptr));
         newnolabel->setText(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\347\274\226\345\217\267", nullptr));
         newnoshow->setText(QCoreApplication::translate("FlightManager", "No.", nullptr));
@@ -2083,7 +2079,6 @@ public:
         newidlabel->setText(QCoreApplication::translate("FlightManager", "\350\272\253\344\273\275\350\257\201\345\217\267", nullptr));
         newsexlabel->setText(QCoreApplication::translate("FlightManager", "\346\200\247        \345\210\253", nullptr));
         newphonelabel->setText(QCoreApplication::translate("FlightManager", "\347\224\265\350\257\235\345\217\267\347\240\201", nullptr));
-        inserttab->setTabText(inserttab->indexOf(newcustom), QCoreApplication::translate("FlightManager", "Tab 1", nullptr));
         bktktctmname->setText(QCoreApplication::translate("FlightManager", "Name", nullptr));
         bktktpriceabl->setText(QCoreApplication::translate("FlightManager", "\346\234\272\347\245\250\344\273\267\351\222\261", nullptr));
         bktktctmnameabl->setText(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\345\247\223\345\220\215", nullptr));
@@ -2107,7 +2102,6 @@ public:
         bktktdiscotabl->setText(QCoreApplication::translate("FlightManager", "\346\212\230\346\211\243\346\257\224\344\276\213", nullptr));
         bkttime->setText(QCoreApplication::translate("FlightManager", "time", nullptr));
         bktktctmtypabl->setText(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\347\261\273\345\236\213", nullptr));
-        inserttab->setTabText(inserttab->indexOf(booktickettab), QCoreApplication::translate("FlightManager", "Tab 2", nullptr));
         customerchange->setTitle(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\344\277\241\346\201\257\346\233\264\346\226\260", nullptr));
         chgctmokbtn->setText(QCoreApplication::translate("FlightManager", "\347\241\256\345\256\232\346\233\264\346\226\260", nullptr));
         chgctmselabel->setText(QCoreApplication::translate("FlightManager", "\350\257\267\351\200\211\346\213\251\351\234\200\346\233\264\346\224\271\347\232\204\345\256\242\346\210\267", nullptr));

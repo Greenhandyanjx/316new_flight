@@ -108,6 +108,9 @@ void FlightManager::getuser(){
         ui->usersex->setText(qsql->value("sex").toString());
         ui->userphone->setText(qsql->value("phone").toString());
         ui->userno->setText(qsql->value("no").toString());
+        ui->inserttab->setCurrentIndex(1);
+        turn2welcome();
+        ui->searchtoolbox->setCurrentIndex(0);
     }
 }
 void FlightManager::Init()
@@ -119,8 +122,8 @@ void FlightManager::Init()
     // ui->list->insertItem(0, "欢迎");
     // ui->list->insertItem(1, "查询");
     // ui->list->insertItem(2, "添加");
-    // ui->list->insertItem(3, "更新");
-    // ui->list->insertItem(4, "删除");
+    // ui->list->insertItem(3, "更新(仅管理员)");
+    // ui->list->insertItem(4, "删除(仅管理员)");
     // ui->list->insertItem(5,"用户信息");
 
     // ui->list->setCurrentRow(0);
@@ -139,7 +142,7 @@ void FlightManager::Init()
     //                                                  << "头等舱座位" << "剩余头等舱票数");
     GetAirLineInfo();
     ShowAirLineOnSearch();
-    ui->searchtoolbox->setItemText(0, "查询航班信息");
+    // ui->searchtoolbox->setItemText(0, "查询航班信息");
 
     //查询页面中客户查询标签页
     ui->searchcustomershow->setColumnCount(8);
@@ -149,7 +152,7 @@ void FlightManager::Init()
                                                       << "身份证号码" << "性别" << "联系方式");
     GetCustomerInfo();
     ShowCustomerOnSearch();
-    ui->searchtoolbox->setItemText(1, "查询客户信息");
+    // ui->searchtoolbox->setItemText(1, "查询客户信息");
     ui->searchtoolbox->setCurrentIndex(0);
 
     //添加页面中的创建客户信息标签页
@@ -159,7 +162,7 @@ void FlightManager::Init()
         GetCustomerType();
     SetCustomer(ui->newtypeselect, m_CustomerType);
     SetCustomer(ui->newsexshow, m_Sex);
-    ui->inserttab->setTabText(0, "当前账号客户信息");
+    // ui->insertitem->setTabText(0, "当前账号客户信息");
 
     //添加页面中的订票信息标签页
     // JudgeReturnValue(ui->bktktno, QDateTime::currentDateTime().toSecsSinceEpoch()%100000 );
@@ -180,7 +183,7 @@ void FlightManager::Init()
     ui->bktktship->addItem("商务舱");
     ui->bktktship->addItem("头等舱");
 
-    ui->inserttab->setTabText(1, "订票");
+    // ui->inserttab->setTabText(1, "订票");
     ui->inserttab->setCurrentIndex(0);
 
     //更新页面中的客户信息更改
@@ -773,6 +776,7 @@ void FlightManager::ShowAirLineOnSearch() {
             ui->stackedWidget->setCurrentIndex(2);
             ui->inserttab->setCurrentIndex(1);
             ui->bktktctmno->addItem(ui->userno->text());
+            GetCustomerInfo();
             ui->bktktctmno->setCurrentText(ui->userno->text());
             SetCustomerInfoOnBook(ui->userno->text().toInt()-1);
             qDebug()<<ui->userno->text().toInt()<<"!!!";
@@ -892,7 +896,7 @@ void FlightManager::turn2search()
     ui->listWidget->clear();
     ui->listWidget->show();
     ui->listWidget->insertItem(0,"查询客机信息");
-    ui->listWidget->insertItem(1,"查询客户信息");
+    ui->listWidget->insertItem(1,"查询客户(仅管理员)");
     ui->stackedWidget->setCurrentIndex(1);
 }
 
@@ -900,8 +904,8 @@ void FlightManager::turn2insert()
 {
     ui->listWidget->clear();
     ui->listWidget->show();
-    ui->listWidget->insertItem(0,"当前账户客机信息");
-    ui->listWidget->insertItem(1,"订票");
+    ui->listWidget->insertItem(1,"增加客户(仅管理员)");
+    ui->listWidget->insertItem(0,"订票");
     ui->stackedWidget->setCurrentIndex(2);
 }
 
@@ -945,8 +949,13 @@ void FlightManager::on_ItemClicked(QListWidgetItem *item)
     {
         ui->stackedWidget_update->setCurrentWidget(ui->page_typechange);
     }
-    else if(item->text()=="当前账户客机信息")
+    else if(item->text()=="增加客户(仅管理员)")
     {
+        if(ReturnAccountType(customer_acc)==1){
+            QMessageBox::warning(this, "您不是管理员", "缺少管理权限！", QMessageBox::Ok);
+            ui->inserttab->setCurrentIndex(1);
+            return;
+        }
         ui->inserttab->setCurrentIndex(0);
     }
     else if(item->text()=="订票")
@@ -957,8 +966,13 @@ void FlightManager::on_ItemClicked(QListWidgetItem *item)
     {
         ui->searchtoolbox->setCurrentIndex(0);
     }
-    else if(item->text()=="查询客户信息")
+    else if(item->text()=="查询客户(仅管理员)")
     {
+        if(ReturnAccountType(customer_acc)==1){
+            QMessageBox::warning(this, "您不是管理员", "缺少管理权限！", QMessageBox::Ok);
+            ui->inserttab->setCurrentIndex(1);
+            return;
+        }
         ui->searchtoolbox->setCurrentIndex(1);
     }
     else if(item->text()=="用户信息")
