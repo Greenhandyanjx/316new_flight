@@ -128,6 +128,7 @@ public:
         tkno=data.tkno;
         tklabel->setText(tkno);
         flightInfo->setText(QString("航线编号:%2<br><span style='color:blue;'>%1 %3</span>").arg(data.airlineName, data.flightNo, data.airplaneType));
+        flightInfo->setWordWrap(true);
         flightdata=data.flightNo+","+data.airlineName;
         departureInfo->setText(
             QString("<span style='font-size:24px;'>%1</span><br>%2")

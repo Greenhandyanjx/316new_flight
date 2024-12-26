@@ -49,11 +49,6 @@ int Login::CheckWriting()
         QMessageBox(QMessageBox::Warning, "密码错误", "密码为空，请输入密码", QMessageBox::Ok).exec();
         return PasswordBlank;
     }
-    if (ui->accounttext->text() == ui->passwordtext->text())
-    {
-        QMessageBox(QMessageBox::Warning, "重复错误", "账号密码不得相同", QMessageBox::Ok).exec();
-        return RepeatError;
-    }
     return Success;
 }
 //判断选择用户（1）or管理（0）

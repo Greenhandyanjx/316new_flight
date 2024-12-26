@@ -250,37 +250,23 @@ QLable{
 }
 </string>
          </property>
-         <widget class="QToolBox" name="searchtoolbox">
+         <widget class="QStackedWidget" name="searchtoolbox">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>661</width>
-            <height>561</height>
+            <width>641</width>
+            <height>601</height>
            </rect>
           </property>
-          <property name="currentIndex">
-           <number>1</number>
-          </property>
-          <widget class="QWidget" name="searchairline">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>661</width>
-             <height>503</height>
-            </rect>
-           </property>
-           <attribute name="label">
-            <string>Page 1</string>
-           </attribute>
+          <widget class="QWidget" name="searchairline" native="true">
            <widget class="QListWidget" name="searchairlineshow">
             <property name="geometry">
              <rect>
               <x>0</x>
               <y>60</y>
-              <width>661</width>
-              <height>451</height>
+              <width>651</width>
+              <height>541</height>
              </rect>
             </property>
             <property name="font">
@@ -420,7 +406,7 @@ QPushButton:pressed {
               <rect>
                <x>430</x>
                <y>10</y>
-               <width>221</width>
+               <width>201</width>
                <height>31</height>
               </rect>
              </property>
@@ -446,9 +432,9 @@ QPushButton:pressed {
            <widget class="QWidget" name="searchairWG" native="true">
             <property name="geometry">
              <rect>
-              <x>0</x>
+              <x>10</x>
               <y>57</y>
-              <width>661</width>
+              <width>621</width>
               <height>241</height>
              </rect>
             </property>
@@ -707,25 +693,14 @@ color:rgb(0, 0, 255)
             </layout>
            </widget>
           </widget>
-          <widget class="QWidget" name="searchcustomer">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>661</width>
-             <height>503</height>
-            </rect>
-           </property>
-           <attribute name="label">
-            <string>Page 2</string>
-           </attribute>
+          <widget class="QWidget" name="searchcustomer" native="true">
            <widget class="QTableWidget" name="searchcustomershow">
             <property name="geometry">
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>661</width>
-              <height>501</height>
+              <width>641</width>
+              <height>601</height>
              </rect>
             </property>
            </widget>
@@ -769,10 +744,31 @@ QPushButton:pressed:checked {
     background-color: rgb(44,133,240); /* 设置按钮被选中时的背景颜色 */
     color: #ffffff; /* 设置按钮被选中时的文字颜色 */
 }
-#booktickettab{
+#bktpage{
 
 border-image:url(:/images/images/dark.jpg);
 
+}
+#newcustpage{
+
+border-image:url(:/images/images/dark.jpg);
+
+}
+QLabel{
+	font: 12pt &quot;华文楷体&quot;;
+	color: #BDC8E2;
+    font-style: normal;
+    font-weight: normal;
+ 
+    border-style: solid;
+    border-width: 1px;
+    border-color: aqua;
+    border-radius: 3px;
+ 
+    padding-left: 55px;
+    padding-top: 0px;
+ 
+    background-color: #2E3648;
 }</string>
          </property>
          <widget class="QWidget" name="gridLayoutWidget_3">
@@ -786,7 +782,7 @@ border-image:url(:/images/images/dark.jpg);
           </property>
           <layout class="QGridLayout" name="insertlayout">
            <item row="0" column="0">
-            <widget class="QTabWidget" name="inserttab">
+            <widget class="QStackedWidget" name="inserttab">
              <property name="font">
               <font>
                <family>华文楷体</family>
@@ -798,28 +794,20 @@ border-image:url(:/images/images/dark.jpg);
              <property name="styleSheet">
               <string notr="true"/>
              </property>
-             <property name="currentIndex">
-              <number>1</number>
-             </property>
-             <property name="tabsClosable">
-              <bool>false</bool>
-             </property>
-             <property name="movable">
-              <bool>true</bool>
-             </property>
-             <property name="tabBarAutoHide">
-              <bool>false</bool>
-             </property>
-             <widget class="QWidget" name="newcustom">
+             <widget class="QWidget" name="newcustpage" native="true">
+              <property name="font">
+               <font>
+                <family>华文楷体</family>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
               <property name="styleSheet">
                <string notr="true">QLabel{
-	font: 15pt &quot;华文楷体&quot;;
-	color:rgb(0, 0, 0);
+	
+	font: 16pt &quot;华文楷体&quot;;
+	padding:10px,10px;
 }</string>
               </property>
-              <attribute name="title">
-               <string>Tab 1</string>
-              </attribute>
               <widget class="QPushButton" name="newokbutton">
                <property name="geometry">
                 <rect>
@@ -844,7 +832,7 @@ border-image:url(:/images/images/dark.jpg);
                  <x>190</x>
                  <y>110</y>
                  <width>325</width>
-                 <height>311</height>
+                 <height>314</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -855,7 +843,7 @@ border-image:url(:/images/images/dark.jpg);
                     <property name="font">
                      <font>
                       <family>华文楷体</family>
-                      <pointsize>15</pointsize>
+                      <pointsize>16</pointsize>
                       <italic>false</italic>
                       <bold>false</bold>
                      </font>
@@ -870,7 +858,7 @@ border-image:url(:/images/images/dark.jpg);
                     <property name="font">
                      <font>
                       <family>华文楷体</family>
-                      <pointsize>15</pointsize>
+                      <pointsize>16</pointsize>
                       <italic>false</italic>
                       <bold>false</bold>
                      </font>
@@ -889,7 +877,7 @@ border-image:url(:/images/images/dark.jpg);
                     <property name="font">
                      <font>
                       <family>华文楷体</family>
-                      <pointsize>15</pointsize>
+                      <pointsize>16</pointsize>
                       <italic>false</italic>
                       <bold>false</bold>
                      </font>
@@ -917,7 +905,7 @@ border-image:url(:/images/images/dark.jpg);
                     <property name="font">
                      <font>
                       <family>华文楷体</family>
-                      <pointsize>15</pointsize>
+                      <pointsize>16</pointsize>
                       <italic>false</italic>
                       <bold>false</bold>
                      </font>
@@ -939,7 +927,7 @@ border-image:url(:/images/images/dark.jpg);
                     <property name="font">
                      <font>
                       <family>华文楷体</family>
-                      <pointsize>15</pointsize>
+                      <pointsize>16</pointsize>
                       <italic>false</italic>
                       <bold>false</bold>
                      </font>
@@ -961,7 +949,7 @@ border-image:url(:/images/images/dark.jpg);
                     <property name="font">
                      <font>
                       <family>华文楷体</family>
-                      <pointsize>15</pointsize>
+                      <pointsize>16</pointsize>
                       <italic>false</italic>
                       <bold>false</bold>
                      </font>
@@ -983,7 +971,7 @@ border-image:url(:/images/images/dark.jpg);
                     <property name="font">
                      <font>
                       <family>华文楷体</family>
-                      <pointsize>15</pointsize>
+                      <pointsize>16</pointsize>
                       <italic>false</italic>
                       <bold>false</bold>
                      </font>
@@ -1001,28 +989,7 @@ border-image:url(:/images/images/dark.jpg);
                </layout>
               </widget>
              </widget>
-             <widget class="QWidget" name="booktickettab">
-              <property name="styleSheet">
-               <string notr="true">QLabel{
-	font: 12pt &quot;华文楷体&quot;;
-	color: #BDC8E2;
-    font-style: normal;
-    font-weight: normal;
- 
-    border-style: solid;
-    border-width: 1px;
-    border-color: aqua;
-    border-radius: 3px;
- 
-    padding-left: 55px;
-    padding-top: 0px;
- 
-    background-color: #2E3648;
-}</string>
-              </property>
-              <attribute name="title">
-               <string>Tab 2</string>
-              </attribute>
+             <widget class="QWidget" name="bktpage" native="true">
               <widget class="QWidget" name="layoutWidget">
                <property name="geometry">
                 <rect>
@@ -2271,7 +2238,7 @@ QMenu {
     <iconset theme="QIcon::ThemeIcon::SyncSynchronizing"/>
    </property>
    <property name="text">
-    <string>更新界面</string>
+    <string>更新(仅管理员)</string>
    </property>
   </action>
   <action name="deleteaction">
@@ -2279,7 +2246,7 @@ QMenu {
     <iconset theme="QIcon::ThemeIcon::ListRemove"/>
    </property>
    <property name="text">
-    <string>删除界面</string>
+    <string>删除(仅管理员)</string>
    </property>
   </action>
   <action name="quitacion">

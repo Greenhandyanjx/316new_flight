@@ -2,7 +2,7 @@
 #include "ui_enroll.h"
 #include <iostream>
 #include "login.h"
-using std::cout;
+using namespace std;
 using std::endl;
 enroll::enroll(QWidget *parent)
     : QWidget(parent)
@@ -61,6 +61,21 @@ void enroll::on_newcustomer_clicked()
     if(name.size()==0){QMessageBox(QMessageBox::Warning,"警告","用户姓名不能为空!",QMessageBox::Ok).exec();return;}
     if(id.size()==0){QMessageBox(QMessageBox::Warning,"警告","用户身份证号码不能为空!",QMessageBox::Ok).exec();return;}
     if(phone.size()==0){QMessageBox(QMessageBox::Warning,"警告","用户手机号码不能为空!",QMessageBox::Ok).exec();return;}
+    for(int i=0;i<name.size();i++){
+        if(name[i].isDigit()){
+            QMessageBox(QMessageBox::Warning,"警告","用户姓名不能含数字!",QMessageBox::Ok).exec();return;
+        }
+    }
+    for(int i=0;i<id.size();i++){
+        if(!id[i].isDigit()){
+            QMessageBox(QMessageBox::Warning,"警告","用户身份证号码应该全为数字!",QMessageBox::Ok).exec();return;
+        }
+    }
+    for(int i=0;i<phone.size();i++){
+        if(!phone[i].isDigit()){
+            QMessageBox(QMessageBox::Warning,"警告","用户手机号码应该全为数字!",QMessageBox::Ok).exec();return;
+        }
+    }
     insertstr.append(FlightManager::customer_acc);
     QString sql = "INSERT INTO customer VALUES (?, ?, ?, ?, ?, ?, ?)";
     QString rtn = m_Connect->InsertValue(sql, 7, insertstr);
