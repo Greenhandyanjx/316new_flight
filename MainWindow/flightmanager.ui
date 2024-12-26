@@ -50,7 +50,7 @@
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>3</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="homepage">
          <property name="styleSheet">
@@ -2063,11 +2063,6 @@ border-radius: 10px;
                </item>
                <item row="7" column="0">
                 <widget class="QLabel" name="label_5">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
                  <property name="text">
                   <string>航空公司</string>
                  </property>
@@ -2087,11 +2082,6 @@ border-radius: 10px;
                </item>
                <item row="8" column="1">
                 <widget class="QPushButton" name="delticketokbtn">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
                  <property name="text">
                   <string>确认删除</string>
                  </property>
@@ -2099,11 +2089,6 @@ border-radius: 10px;
                </item>
                <item row="2" column="1">
                 <widget class="QLabel" name="delticketlineno">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
                  <property name="text">
                   <string>No.</string>
                  </property>
@@ -2111,11 +2096,6 @@ border-radius: 10px;
                </item>
                <item row="0" column="0">
                 <widget class="QLabel" name="delticketnoabl">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
                  <property name="text">
                   <string>订单编号</string>
                  </property>
@@ -2123,11 +2103,6 @@ border-radius: 10px;
                </item>
                <item row="4" column="1">
                 <widget class="QLabel" name="delticketarr">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
                  <property name="text">
                   <string>arrive</string>
                  </property>
@@ -2135,11 +2110,6 @@ border-radius: 10px;
                </item>
                <item row="3" column="1">
                 <widget class="QLabel" name="delticketdep">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
                  <property name="text">
                   <string>departure</string>
                  </property>
@@ -2147,11 +2117,6 @@ border-radius: 10px;
                </item>
                <item row="3" column="0">
                 <widget class="QLabel" name="delticketdepabl">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
                  <property name="text">
                   <string>出发地点</string>
                  </property>
@@ -2159,11 +2124,6 @@ border-radius: 10px;
                </item>
                <item row="5" column="1">
                 <widget class="QLabel" name="delticketdeptime">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
                  <property name="text">
                   <string>time</string>
                  </property>
@@ -2171,11 +2131,6 @@ border-radius: 10px;
                </item>
                <item row="7" column="1">
                 <widget class="QLabel" name="delticketship">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
                  <property name="text">
                   <string>TextLabel</string>
                  </property>
@@ -2183,11 +2138,6 @@ border-radius: 10px;
                </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="delticketnameabl">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
                  <property name="text">
                   <string>客户姓名</string>
                  </property>
@@ -2216,11 +2166,6 @@ border-radius: 10px;
                </item>
                <item row="2" column="0">
                 <widget class="QLabel" name="delticketlinenoabl">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
                  <property name="text">
                   <string>航线编号</string>
                  </property>
@@ -2228,11 +2173,6 @@ border-radius: 10px;
                </item>
                <item row="5" column="0">
                 <widget class="QLabel" name="delticketdeptimeabl">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
                  <property name="text">
                   <string>出发时间</string>
                  </property>
@@ -2240,11 +2180,6 @@ border-radius: 10px;
                </item>
                <item row="6" column="1">
                 <widget class="QLabel" name="deltkgrade">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
                  <property name="text">
                   <string>ship</string>
                  </property>
