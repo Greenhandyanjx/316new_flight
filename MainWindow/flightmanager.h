@@ -33,6 +33,7 @@ struct FlightData {
     QString duration;           // 飞行时长
     double price;               // 价格
     QString tkno;
+
 };
 class FlightItemWidget : public QWidget {
     Q_OBJECT
@@ -49,6 +50,8 @@ public:
     QString depdata;
     QString arrdata;
     QString tkno;
+    int tktype;
+    int airno;
     explicit FlightItemWidget(QWidget *parent = nullptr) : QWidget(parent) {
         QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
@@ -125,6 +128,7 @@ public:
 
     // 设置航班数据
     void setFlightData(const FlightData &data) {
+        airno=data.flightNo.toInt();
         tkno=data.tkno;
         tklabel->setText(tkno);
         flightInfo->setText(QString("航线编号:%2<br><span style='color:blue;'>%1 %3</span>").arg(data.airlineName, data.flightNo, data.airplaneType));
@@ -337,7 +341,7 @@ private:
         QString arrive;
         QString date;
         QString time;
-        int ship_no;
+        QString ship_no;
         QString ship_name;
     };
 

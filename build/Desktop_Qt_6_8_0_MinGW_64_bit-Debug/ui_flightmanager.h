@@ -235,21 +235,23 @@ public:
     QGroupBox *delticket;
     QWidget *layoutWidget3;
     QGridLayout *delticketlyo;
-    QLabel *delticketnoabl;
-    QComboBox *delticketno;
-    QLabel *delticketnameabl;
     QLabel *delticketname;
-    QLabel *delticketlinenoabl;
-    QLabel *delticketlineno;
-    QLabel *delticketdepabl;
-    QLabel *delticketdep;
-    QLabel *delticketarrabl;
-    QLabel *delticketarr;
-    QLabel *delticketdeptimeabl;
-    QLabel *delticketdeptime;
+    QLabel *label_5;
     QLabel *delticketshipabl;
-    QLabel *delticketship;
     QPushButton *delticketokbtn;
+    QLabel *delticketlineno;
+    QLabel *delticketnoabl;
+    QLabel *delticketarr;
+    QLabel *delticketdep;
+    QLabel *delticketdepabl;
+    QLabel *delticketdeptime;
+    QLabel *delticketship;
+    QLabel *delticketnameabl;
+    QComboBox *delticketno;
+    QLabel *delticketarrabl;
+    QLabel *delticketlinenoabl;
+    QLabel *delticketdeptimeabl;
+    QLabel *deltkgrade;
     QWidget *userinfopage;
     QWidget *layoutWidget4;
     QVBoxLayout *verticalLayout_8;
@@ -1643,80 +1645,90 @@ public:
         delticketlyo = new QGridLayout(layoutWidget3);
         delticketlyo->setObjectName("delticketlyo");
         delticketlyo->setContentsMargins(0, 0, 0, 0);
-        delticketnoabl = new QLabel(layoutWidget3);
-        delticketnoabl->setObjectName("delticketnoabl");
-
-        delticketlyo->addWidget(delticketnoabl, 0, 0, 1, 1);
-
-        delticketno = new QComboBox(layoutWidget3);
-        delticketno->setObjectName("delticketno");
-
-        delticketlyo->addWidget(delticketno, 0, 1, 1, 1);
-
-        delticketnameabl = new QLabel(layoutWidget3);
-        delticketnameabl->setObjectName("delticketnameabl");
-
-        delticketlyo->addWidget(delticketnameabl, 1, 0, 1, 1);
-
         delticketname = new QLabel(layoutWidget3);
         delticketname->setObjectName("delticketname");
 
         delticketlyo->addWidget(delticketname, 1, 1, 1, 1);
 
-        delticketlinenoabl = new QLabel(layoutWidget3);
-        delticketlinenoabl->setObjectName("delticketlinenoabl");
+        label_5 = new QLabel(layoutWidget3);
+        label_5->setObjectName("label_5");
 
-        delticketlyo->addWidget(delticketlinenoabl, 2, 0, 1, 1);
-
-        delticketlineno = new QLabel(layoutWidget3);
-        delticketlineno->setObjectName("delticketlineno");
-
-        delticketlyo->addWidget(delticketlineno, 2, 1, 1, 1);
-
-        delticketdepabl = new QLabel(layoutWidget3);
-        delticketdepabl->setObjectName("delticketdepabl");
-
-        delticketlyo->addWidget(delticketdepabl, 3, 0, 1, 1);
-
-        delticketdep = new QLabel(layoutWidget3);
-        delticketdep->setObjectName("delticketdep");
-
-        delticketlyo->addWidget(delticketdep, 3, 1, 1, 1);
-
-        delticketarrabl = new QLabel(layoutWidget3);
-        delticketarrabl->setObjectName("delticketarrabl");
-
-        delticketlyo->addWidget(delticketarrabl, 4, 0, 1, 1);
-
-        delticketarr = new QLabel(layoutWidget3);
-        delticketarr->setObjectName("delticketarr");
-
-        delticketlyo->addWidget(delticketarr, 4, 1, 1, 1);
-
-        delticketdeptimeabl = new QLabel(layoutWidget3);
-        delticketdeptimeabl->setObjectName("delticketdeptimeabl");
-
-        delticketlyo->addWidget(delticketdeptimeabl, 5, 0, 1, 1);
-
-        delticketdeptime = new QLabel(layoutWidget3);
-        delticketdeptime->setObjectName("delticketdeptime");
-
-        delticketlyo->addWidget(delticketdeptime, 5, 1, 1, 1);
+        delticketlyo->addWidget(label_5, 7, 0, 1, 1);
 
         delticketshipabl = new QLabel(layoutWidget3);
         delticketshipabl->setObjectName("delticketshipabl");
 
         delticketlyo->addWidget(delticketshipabl, 6, 0, 1, 1);
 
-        delticketship = new QLabel(layoutWidget3);
-        delticketship->setObjectName("delticketship");
-
-        delticketlyo->addWidget(delticketship, 6, 1, 1, 1);
-
         delticketokbtn = new QPushButton(layoutWidget3);
         delticketokbtn->setObjectName("delticketokbtn");
 
-        delticketlyo->addWidget(delticketokbtn, 7, 1, 1, 1);
+        delticketlyo->addWidget(delticketokbtn, 8, 1, 1, 1);
+
+        delticketlineno = new QLabel(layoutWidget3);
+        delticketlineno->setObjectName("delticketlineno");
+
+        delticketlyo->addWidget(delticketlineno, 2, 1, 1, 1);
+
+        delticketnoabl = new QLabel(layoutWidget3);
+        delticketnoabl->setObjectName("delticketnoabl");
+
+        delticketlyo->addWidget(delticketnoabl, 0, 0, 1, 1);
+
+        delticketarr = new QLabel(layoutWidget3);
+        delticketarr->setObjectName("delticketarr");
+
+        delticketlyo->addWidget(delticketarr, 4, 1, 1, 1);
+
+        delticketdep = new QLabel(layoutWidget3);
+        delticketdep->setObjectName("delticketdep");
+
+        delticketlyo->addWidget(delticketdep, 3, 1, 1, 1);
+
+        delticketdepabl = new QLabel(layoutWidget3);
+        delticketdepabl->setObjectName("delticketdepabl");
+
+        delticketlyo->addWidget(delticketdepabl, 3, 0, 1, 1);
+
+        delticketdeptime = new QLabel(layoutWidget3);
+        delticketdeptime->setObjectName("delticketdeptime");
+
+        delticketlyo->addWidget(delticketdeptime, 5, 1, 1, 1);
+
+        delticketship = new QLabel(layoutWidget3);
+        delticketship->setObjectName("delticketship");
+
+        delticketlyo->addWidget(delticketship, 7, 1, 1, 1);
+
+        delticketnameabl = new QLabel(layoutWidget3);
+        delticketnameabl->setObjectName("delticketnameabl");
+
+        delticketlyo->addWidget(delticketnameabl, 1, 0, 1, 1);
+
+        delticketno = new QComboBox(layoutWidget3);
+        delticketno->setObjectName("delticketno");
+
+        delticketlyo->addWidget(delticketno, 0, 1, 1, 1);
+
+        delticketarrabl = new QLabel(layoutWidget3);
+        delticketarrabl->setObjectName("delticketarrabl");
+
+        delticketlyo->addWidget(delticketarrabl, 4, 0, 1, 1);
+
+        delticketlinenoabl = new QLabel(layoutWidget3);
+        delticketlinenoabl->setObjectName("delticketlinenoabl");
+
+        delticketlyo->addWidget(delticketlinenoabl, 2, 0, 1, 1);
+
+        delticketdeptimeabl = new QLabel(layoutWidget3);
+        delticketdeptimeabl->setObjectName("delticketdeptimeabl");
+
+        delticketlyo->addWidget(delticketdeptimeabl, 5, 0, 1, 1);
+
+        deltkgrade = new QLabel(layoutWidget3);
+        deltkgrade->setObjectName("deltkgrade");
+
+        delticketlyo->addWidget(deltkgrade, 6, 1, 1, 1);
 
 
         deletelayout->addWidget(delticket, 0, 0, 2, 1);
@@ -2038,7 +2050,7 @@ public:
 
         retranslateUi(FlightManager);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(4);
         stackedWidget_update->setCurrentIndex(2);
 
 
@@ -2150,20 +2162,22 @@ public:
         chglinedelcek->setText(QCoreApplication::translate("FlightManager", "\345\244\264\347\255\211\350\210\261\344\273\267\346\240\274", nullptr));
         chglineokbtn->setText(QCoreApplication::translate("FlightManager", "\347\241\256\345\256\232\346\233\264\346\226\260", nullptr));
         delticket->setTitle(QCoreApplication::translate("FlightManager", "\351\200\200\347\245\250", nullptr));
-        delticketnoabl->setText(QCoreApplication::translate("FlightManager", "\350\256\242\345\215\225\347\274\226\345\217\267", nullptr));
-        delticketnameabl->setText(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\345\247\223\345\220\215", nullptr));
         delticketname->setText(QCoreApplication::translate("FlightManager", "name", nullptr));
-        delticketlinenoabl->setText(QCoreApplication::translate("FlightManager", "\350\210\252\347\272\277\347\274\226\345\217\267", nullptr));
-        delticketlineno->setText(QCoreApplication::translate("FlightManager", "No.", nullptr));
-        delticketdepabl->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\345\234\260\347\202\271", nullptr));
-        delticketdep->setText(QCoreApplication::translate("FlightManager", "departure", nullptr));
-        delticketarrabl->setText(QCoreApplication::translate("FlightManager", "\345\210\260\350\276\276\345\234\260\347\202\271", nullptr));
-        delticketarr->setText(QCoreApplication::translate("FlightManager", "arrive", nullptr));
-        delticketdeptimeabl->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\346\227\266\351\227\264", nullptr));
-        delticketdeptime->setText(QCoreApplication::translate("FlightManager", "time", nullptr));
+        label_5->setText(QCoreApplication::translate("FlightManager", "\350\210\252\347\251\272\345\205\254\345\217\270", nullptr));
         delticketshipabl->setText(QCoreApplication::translate("FlightManager", "\350\210\261\344\275\215\347\255\211\347\272\247", nullptr));
-        delticketship->setText(QCoreApplication::translate("FlightManager", "ship", nullptr));
         delticketokbtn->setText(QCoreApplication::translate("FlightManager", "\347\241\256\350\256\244\345\210\240\351\231\244", nullptr));
+        delticketlineno->setText(QCoreApplication::translate("FlightManager", "No.", nullptr));
+        delticketnoabl->setText(QCoreApplication::translate("FlightManager", "\350\256\242\345\215\225\347\274\226\345\217\267", nullptr));
+        delticketarr->setText(QCoreApplication::translate("FlightManager", "arrive", nullptr));
+        delticketdep->setText(QCoreApplication::translate("FlightManager", "departure", nullptr));
+        delticketdepabl->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\345\234\260\347\202\271", nullptr));
+        delticketdeptime->setText(QCoreApplication::translate("FlightManager", "time", nullptr));
+        delticketship->setText(QCoreApplication::translate("FlightManager", "TextLabel", nullptr));
+        delticketnameabl->setText(QCoreApplication::translate("FlightManager", "\345\256\242\346\210\267\345\247\223\345\220\215", nullptr));
+        delticketarrabl->setText(QCoreApplication::translate("FlightManager", "\345\210\260\350\276\276\345\234\260\347\202\271", nullptr));
+        delticketlinenoabl->setText(QCoreApplication::translate("FlightManager", "\350\210\252\347\272\277\347\274\226\345\217\267", nullptr));
+        delticketdeptimeabl->setText(QCoreApplication::translate("FlightManager", "\345\207\272\345\217\221\346\227\266\351\227\264", nullptr));
+        deltkgrade->setText(QCoreApplication::translate("FlightManager", "ship", nullptr));
         usernlabel->setText(QCoreApplication::translate("FlightManager", "\347\224\250\346\210\267\347\274\226\345\217\267", nullptr));
         userno->setText(QCoreApplication::translate("FlightManager", "userno", nullptr));
         useracclable->setText(QCoreApplication::translate("FlightManager", "\347\224\250\346\210\267\350\264\246\345\217\267", nullptr));
@@ -2181,8 +2195,8 @@ public:
         usertk->setText(QCoreApplication::translate("FlightManager", "\346\237\245\347\234\213\350\256\242\345\215\225", nullptr));
         searchmenu->setTitle(QCoreApplication::translate("FlightManager", "\346\237\245\350\257\242", nullptr));
         insertmeun->setTitle(QCoreApplication::translate("FlightManager", "\346\267\273\345\212\240", nullptr));
-        updatemenu->setTitle(QCoreApplication::translate("FlightManager", "\346\233\264\346\226\260", nullptr));
-        deletemenu->setTitle(QCoreApplication::translate("FlightManager", "\345\210\240\351\231\244", nullptr));
+        updatemenu->setTitle(QCoreApplication::translate("FlightManager", "\346\233\264\346\226\260(\344\273\205\347\256\241\347\220\206\345\221\230)", nullptr));
+        deletemenu->setTitle(QCoreApplication::translate("FlightManager", "\345\210\240\351\231\244(\344\273\205\347\256\241\347\220\206\345\221\230)", nullptr));
         quitmenu->setTitle(QCoreApplication::translate("FlightManager", "\351\200\200\345\207\272\347\263\273\347\273\237", nullptr));
         usermenu->setTitle(QCoreApplication::translate("FlightManager", "usermenu", nullptr));
         menu->setTitle(QCoreApplication::translate("FlightManager", "\346\254\242\350\277\216", nullptr));

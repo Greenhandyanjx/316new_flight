@@ -50,7 +50,7 @@
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>4</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="homepage">
          <property name="styleSheet">
@@ -1196,17 +1196,12 @@ padding-left:10px;
          </widget>
         </widget>
         <widget class="QWidget" name="updatepage">
-         <property name="font">
-          <font>
-           <pointsize>12</pointsize>
-          </font>
-         </property>
          <property name="styleSheet">
-          <string notr="true">#page_airlinechange{border-image:url(:/images/images/background1.jpg);}
-#page_airplanechange{border-image:url(:/images/images/background1.jpg);}
-#page_chgtklyo{border-image:url(:/images/images/background1.jpg);}
-#page_customerchange{border-image:url(:/images/images/background1.jpg);}
-#page_typechange{border-image:url(:/images/images/background1.jpg);}
+          <string notr="true">QLabel {
+    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
+
+border-radius: 10px;   
+}
 </string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -1214,11 +1209,6 @@ padding-left:10px;
            <layout class="QGridLayout" name="updateLayout">
             <item row="0" column="1">
              <widget class="QStackedWidget" name="stackedWidget_update">
-              <property name="font">
-               <font>
-                <pointsize>12</pointsize>
-               </font>
-              </property>
               <property name="styleSheet">
                <string notr="true"/>
               </property>
@@ -1226,6 +1216,9 @@ padding-left:10px;
                <number>1</number>
               </property>
               <widget class="QWidget" name="page_customerchange">
+               <property name="styleSheet">
+                <string notr="true">QWidget#page_customerchange{border-image:url(:/images/images/background1.jpg);}</string>
+               </property>
                <layout class="QVBoxLayout" name="verticalLayout_15">
                 <item>
                  <widget class="QGroupBox" name="customerchange">
@@ -1254,14 +1247,6 @@ padding-left:10px;
                      </property>
                      <property name="toolTipDuration">
                       <number>-1</number>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
                      </property>
                      <property name="text">
                       <string>请选择需更改的客户</string>
@@ -1376,6 +1361,9 @@ border-radius: 10px;
                </layout>
               </widget>
               <widget class="QWidget" name="page_chgtklyo">
+               <property name="styleSheet">
+                <string notr="true">QWidget#page_chgtklyo{border-image:url(:/images/images/background1.jpg);}</string>
+               </property>
                <layout class="QVBoxLayout" name="verticalLayout_9">
                 <item>
                  <widget class="QGroupBox" name="ticketchange">
@@ -1390,14 +1378,6 @@ border-radius: 10px;
                        <pointsize>12</pointsize>
                       </font>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                     </property>
                      <property name="text">
                       <string>航线号</string>
                      </property>
@@ -1409,14 +1389,6 @@ border-radius: 10px;
                       <font>
                        <pointsize>12</pointsize>
                       </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
                      </property>
                      <property name="text">
                       <string>订单编号</string>
@@ -1439,14 +1411,6 @@ border-radius: 10px;
                        <pointsize>12</pointsize>
                       </font>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                     </property>
                      <property name="text">
                       <string>时间</string>
                      </property>
@@ -1458,14 +1422,6 @@ border-radius: 10px;
                       <font>
                        <pointsize>12</pointsize>
                       </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
                      </property>
                      <property name="text">
                       <string>起点</string>
@@ -1479,14 +1435,6 @@ border-radius: 10px;
                        <pointsize>12</pointsize>
                       </font>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                     </property>
                      <property name="text">
                       <string>终点</string>
                      </property>
@@ -1499,14 +1447,6 @@ border-radius: 10px;
                        <pointsize>12</pointsize>
                       </font>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                     </property>
                      <property name="text">
                       <string>更改航线号</string>
                      </property>
@@ -1518,14 +1458,6 @@ border-radius: 10px;
                       <font>
                        <pointsize>12</pointsize>
                       </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
                      </property>
                      <property name="text">
                       <string>舱位等级</string>
@@ -1548,14 +1480,6 @@ border-radius: 10px;
                        <pointsize>12</pointsize>
                       </font>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                     </property>
                      <property name="text">
                       <string>时间</string>
                      </property>
@@ -1568,14 +1492,6 @@ border-radius: 10px;
                        <pointsize>12</pointsize>
                       </font>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                     </property>
                      <property name="text">
                       <string>终点</string>
                      </property>
@@ -1587,14 +1503,6 @@ border-radius: 10px;
                       <font>
                        <pointsize>12</pointsize>
                       </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
                      </property>
                      <property name="text">
                       <string>起点</string>
@@ -1616,14 +1524,6 @@ border-radius: 10px;
                       <font>
                        <pointsize>12</pointsize>
                       </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
                      </property>
                      <property name="text">
                       <string>更改舱位等级</string>
@@ -1648,6 +1548,9 @@ border-radius: 10px;
                </layout>
               </widget>
               <widget class="QWidget" name="page_typechange">
+               <property name="styleSheet">
+                <string notr="true">QWidget#page_typechange{border-image:url(:/images/images/background1.jpg);}</string>
+               </property>
                <layout class="QVBoxLayout" name="verticalLayout_13">
                 <item>
                  <widget class="QGroupBox" name="typechange">
@@ -1671,14 +1574,6 @@ border-radius: 10px;
                        <pointsize>12</pointsize>
                       </font>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                     </property>
                      <property name="text">
                       <string>请选择需更新的优惠类型</string>
                      </property>
@@ -1699,14 +1594,6 @@ border-radius: 10px;
                       <font>
                        <pointsize>12</pointsize>
                       </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
                      </property>
                      <property name="text">
                       <string>请输入更改的数值（0-90）</string>
@@ -1731,14 +1618,12 @@ border-radius: 10px;
                </layout>
               </widget>
               <widget class="QWidget" name="page_airplanechange">
+               <property name="styleSheet">
+                <string notr="true">QWidget#page_airplanechange{border-image:url(:/images/images/background1.jpg);}</string>
+               </property>
                <layout class="QVBoxLayout" name="verticalLayout_11">
                 <item>
                  <widget class="QGroupBox" name="airplanechange">
-                  <property name="font">
-                   <font>
-                    <pointsize>9</pointsize>
-                   </font>
-                  </property>
                   <property name="autoFillBackground">
                    <bool>false</bool>
                   </property>
@@ -1762,13 +1647,6 @@ border-radius: 10px;
                        <pointsize>12</pointsize>
                       </font>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-border-radius: 10px;   
-}
-</string>
-                     </property>
                      <property name="text">
                       <string>客机类型</string>
                      </property>
@@ -1781,13 +1659,6 @@ border-radius: 10px;
                        <pointsize>12</pointsize>
                       </font>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-border-radius: 10px;   
-}
-</string>
-                     </property>
                      <property name="text">
                       <string>选择客机</string>
                      </property>
@@ -1795,23 +1666,10 @@ border-radius: 10px;
                    </item>
                    <item>
                     <widget class="QLabel" name="chgplanearr">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
                      <property name="font">
                       <font>
                        <pointsize>12</pointsize>
                       </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-border-radius: 10px;   
-}
-</string>
                      </property>
                      <property name="text">
                       <string>终点</string>
@@ -1825,13 +1683,6 @@ border-radius: 10px;
                        <pointsize>12</pointsize>
                       </font>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-border-radius: 10px;   
-}
-</string>
-                     </property>
                      <property name="text">
                       <string>起点</string>
                      </property>
@@ -1843,13 +1694,6 @@ border-radius: 10px;
                       <font>
                        <pointsize>12</pointsize>
                       </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-border-radius: 10px;   
-}
-</string>
                      </property>
                      <property name="text">
                       <string>时间</string>
@@ -1872,13 +1716,6 @@ border-radius: 10px;
                        <pointsize>12</pointsize>
                       </font>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-border-radius: 10px;   
-}
-</string>
-                     </property>
                      <property name="text">
                       <string>航空公司</string>
                      </property>
@@ -1886,23 +1723,10 @@ border-radius: 10px;
                    </item>
                    <item>
                     <widget class="QLabel" name="chgplanelineabl">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
                      <property name="font">
                       <font>
                        <pointsize>12</pointsize>
                       </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-border-radius: 10px;   
-}
-</string>
                      </property>
                      <property name="text">
                       <string>选择更改的航线</string>
@@ -1916,13 +1740,6 @@ border-radius: 10px;
                        <pointsize>12</pointsize>
                       </font>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-border-radius: 10px;   
-}
-</string>
-                     </property>
                      <property name="text">
                       <string>终点</string>
                      </property>
@@ -1935,13 +1752,6 @@ border-radius: 10px;
                        <pointsize>12</pointsize>
                       </font>
                      </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-border-radius: 10px;   
-}
-</string>
-                     </property>
                      <property name="text">
                       <string>时间</string>
                      </property>
@@ -1953,13 +1763,6 @@ border-radius: 10px;
                       <font>
                        <pointsize>12</pointsize>
                       </font>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-border-radius: 10px;   
-}
-</string>
                      </property>
                      <property name="text">
                       <string>起点</string>
@@ -1984,49 +1787,22 @@ border-radius: 10px;
                </layout>
               </widget>
               <widget class="QWidget" name="page_airlinechange">
-               <property name="font">
-                <font>
-                 <pointsize>12</pointsize>
-                </font>
-               </property>
                <property name="styleSheet">
-                <string notr="true"/>
+                <string notr="true">QWidget#page_airlinechange{border-image:url(:/images/images/background1.jpg);}</string>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_14">
                 <item>
                  <widget class="QGroupBox" name="airlinechange">
-                  <property name="font">
-                   <font>
-                    <pointsize>9</pointsize>
-                   </font>
-                  </property>
                   <property name="title">
                    <string>航线更新</string>
                   </property>
                   <layout class="QVBoxLayout" name="verticalLayout_17">
                    <item>
                     <widget class="QLabel" name="chglinenoabl">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
                      <property name="font">
                       <font>
                        <pointsize>12</pointsize>
                       </font>
-                     </property>
-                     <property name="autoFillBackground">
-                      <bool>false</bool>
-                     </property>
-                     <property name="styleSheet">
-                      <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
                      </property>
                      <property name="text">
                       <string>     航线编号</string>
@@ -2236,8 +2012,11 @@ border-radius: 10px;
         <widget class="QWidget" name="deletepage">
          <property name="styleSheet">
           <string notr="true">QWidget#deletepage{border-image:url(:/images/images/background1.jpg);}
+QLabel {
+    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
 
-</string>
+border-radius: 10px;   
+}</string>
          </property>
          <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
@@ -2253,9 +2032,6 @@ border-radius: 10px;
             <widget class="QGroupBox" name="delticket">
              <property name="layoutDirection">
               <enum>Qt::LayoutDirection::LeftToRight</enum>
-             </property>
-             <property name="styleSheet">
-              <string notr="true"/>
              </property>
              <property name="title">
               <string>退票</string>
@@ -2273,49 +2049,6 @@ border-radius: 10px;
                </rect>
               </property>
               <layout class="QGridLayout" name="delticketlyo">
-               <item row="0" column="0">
-                <widget class="QLabel" name="delticketnoabl">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                 </property>
-                 <property name="text">
-                  <string>订单编号</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QComboBox" name="delticketno"/>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="delticketnameabl">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                 </property>
-                 <property name="text">
-                  <string>客户姓名</string>
-                 </property>
-                </widget>
-               </item>
                <item row="1" column="1">
                 <widget class="QLabel" name="delticketname">
                  <property name="font">
@@ -2323,176 +2056,20 @@ border-radius: 10px;
                    <pointsize>12</pointsize>
                   </font>
                  </property>
-                 <property name="styleSheet">
-                  <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                 </property>
                  <property name="text">
                   <string>name</string>
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="delticketlinenoabl">
+               <item row="7" column="0">
+                <widget class="QLabel" name="label_5">
                  <property name="font">
                   <font>
                    <pointsize>12</pointsize>
                   </font>
                  </property>
-                 <property name="styleSheet">
-                  <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                 </property>
                  <property name="text">
-                  <string>航线编号</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QLabel" name="delticketlineno">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                 </property>
-                 <property name="text">
-                  <string>No.</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <widget class="QLabel" name="delticketdepabl">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                 </property>
-                 <property name="text">
-                  <string>出发地点</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="1">
-                <widget class="QLabel" name="delticketdep">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                 </property>
-                 <property name="text">
-                  <string>departure</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="0">
-                <widget class="QLabel" name="delticketarrabl">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                 </property>
-                 <property name="text">
-                  <string>到达地点</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="1">
-                <widget class="QLabel" name="delticketarr">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                 </property>
-                 <property name="text">
-                  <string>arrive</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="5" column="0">
-                <widget class="QLabel" name="delticketdeptimeabl">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                 </property>
-                 <property name="text">
-                  <string>出发时间</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="5" column="1">
-                <widget class="QLabel" name="delticketdeptime">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                 </property>
-                 <property name="text">
-                  <string>time</string>
+                  <string>航空公司</string>
                  </property>
                 </widget>
                </item>
@@ -2503,40 +2080,12 @@ border-radius: 10px;
                    <pointsize>12</pointsize>
                   </font>
                  </property>
-                 <property name="styleSheet">
-                  <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                 </property>
                  <property name="text">
                   <string>舱位等级</string>
                  </property>
                 </widget>
                </item>
-               <item row="6" column="1">
-                <widget class="QLabel" name="delticketship">
-                 <property name="font">
-                  <font>
-                   <pointsize>12</pointsize>
-                  </font>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                 </property>
-                 <property name="text">
-                  <string>ship</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="7" column="1">
+               <item row="8" column="1">
                 <widget class="QPushButton" name="delticketokbtn">
                  <property name="font">
                   <font>
@@ -2545,6 +2094,159 @@ border-radius: 10px;
                  </property>
                  <property name="text">
                   <string>确认删除</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="delticketlineno">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>No.</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="delticketnoabl">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>订单编号</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QLabel" name="delticketarr">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>arrive</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="delticketdep">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>departure</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="delticketdepabl">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>出发地点</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QLabel" name="delticketdeptime">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>time</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="1">
+                <widget class="QLabel" name="delticketship">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>TextLabel</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="delticketnameabl">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>客户姓名</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="delticketno">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="delticketarrabl">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>到达地点</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="delticketlinenoabl">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>航线编号</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="delticketdeptimeabl">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>出发时间</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <widget class="QLabel" name="deltkgrade">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>ship</string>
                  </property>
                 </widget>
                </item>
@@ -2561,7 +2263,12 @@ border-radius: 10px;
 	font: 15pt &quot;华文楷体&quot;;
 	color:rgb(0, 0, 0);
 }
-QWidget#userinfopage{border-image:url(:/images/images/background1.jpg);}</string>
+QWidget#userinfopage{border-image:url(:/images/images/background1.jpg);}
+QLabel {
+    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
+
+border-radius: 10px;   
+}</string>
          </property>
          <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
@@ -2577,14 +2284,6 @@ QWidget#userinfopage{border-image:url(:/images/images/background1.jpg);}</string
             <layout class="QHBoxLayout" name="horizontalLayout_16">
              <item>
               <widget class="QLabel" name="usernlabel">
-               <property name="styleSheet">
-                <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-               </property>
                <property name="text">
                 <string>用户编号</string>
                </property>
@@ -2592,14 +2291,6 @@ border-radius: 10px;
              </item>
              <item>
               <widget class="QLabel" name="userno">
-               <property name="styleSheet">
-                <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-               </property>
                <property name="text">
                 <string>userno</string>
                </property>
@@ -2615,14 +2306,6 @@ border-radius: 10px;
                 <layout class="QHBoxLayout" name="horizontalLayout_10">
                  <item>
                   <widget class="QLabel" name="useracclable">
-                   <property name="styleSheet">
-                    <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                   </property>
                    <property name="text">
                     <string>用户账号</string>
                    </property>
@@ -2636,14 +2319,6 @@ border-radius: 10px;
                      <height>20</height>
                     </size>
                    </property>
-                   <property name="styleSheet">
-                    <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                   </property>
                    <property name="text">
                     <string>useracc</string>
                    </property>
@@ -2655,14 +2330,6 @@ border-radius: 10px;
                 <layout class="QHBoxLayout" name="horizontalLayout_11">
                  <item>
                   <widget class="QLabel" name="usernamelabel">
-                   <property name="styleSheet">
-                    <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                   </property>
                    <property name="text">
                     <string>用户姓名</string>
                    </property>
@@ -2670,14 +2337,6 @@ border-radius: 10px;
                  </item>
                  <item>
                   <widget class="QLabel" name="username">
-                   <property name="styleSheet">
-                    <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                   </property>
                    <property name="text">
                     <string>username</string>
                    </property>
@@ -2693,14 +2352,6 @@ border-radius: 10px;
                 <layout class="QHBoxLayout" name="horizontalLayout_12">
                  <item>
                   <widget class="QLabel" name="usersexlabel">
-                   <property name="styleSheet">
-                    <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                   </property>
                    <property name="text">
                     <string>性别</string>
                    </property>
@@ -2708,14 +2359,6 @@ border-radius: 10px;
                  </item>
                  <item>
                   <widget class="QLabel" name="usersex">
-                   <property name="styleSheet">
-                    <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                   </property>
                    <property name="text">
                     <string>usersex</string>
                    </property>
@@ -2727,14 +2370,6 @@ border-radius: 10px;
                 <layout class="QHBoxLayout" name="horizontalLayout_13">
                  <item>
                   <widget class="QLabel" name="useridlabel">
-                   <property name="styleSheet">
-                    <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                   </property>
                    <property name="text">
                     <string>身份证</string>
                    </property>
@@ -2742,14 +2377,6 @@ border-radius: 10px;
                  </item>
                  <item>
                   <widget class="QLabel" name="userid">
-                   <property name="styleSheet">
-                    <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                   </property>
                    <property name="text">
                     <string>userid</string>
                    </property>
@@ -2765,14 +2392,6 @@ border-radius: 10px;
                 <layout class="QHBoxLayout" name="horizontalLayout_14">
                  <item>
                   <widget class="QLabel" name="usertypelabel">
-                   <property name="styleSheet">
-                    <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                   </property>
                    <property name="text">
                     <string>用户类型</string>
                    </property>
@@ -2780,14 +2399,6 @@ border-radius: 10px;
                  </item>
                  <item>
                   <widget class="QLabel" name="usertype">
-                   <property name="styleSheet">
-                    <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                   </property>
                    <property name="text">
                     <string>usertype</string>
                    </property>
@@ -2799,14 +2410,6 @@ border-radius: 10px;
                 <layout class="QHBoxLayout" name="horizontalLayout_15">
                  <item>
                   <widget class="QLabel" name="userphonelabel">
-                   <property name="styleSheet">
-                    <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                   </property>
                    <property name="text">
                     <string>电话</string>
                    </property>
@@ -2814,14 +2417,6 @@ border-radius: 10px;
                  </item>
                  <item>
                   <widget class="QLabel" name="userphone">
-                   <property name="styleSheet">
-                    <string notr="true">QLabel {
-    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
-
-border-radius: 10px;   
-}
-</string>
-                   </property>
                    <property name="text">
                     <string>userphone</string>
                    </property>
@@ -3020,13 +2615,13 @@ QMenu {
    </widget>
    <widget class="QMenu" name="updatemenu">
     <property name="title">
-     <string>更新</string>
+     <string>更新(仅管理员)</string>
     </property>
     <addaction name="updateaction"/>
    </widget>
    <widget class="QMenu" name="deletemenu">
     <property name="title">
-     <string>删除</string>
+     <string>删除(仅管理员)</string>
     </property>
     <property name="separatorsCollapsible">
      <bool>true</bool>

@@ -590,7 +590,7 @@ bool FlightManager::GetTicket()
         ticket.arrive = sqlquery->value("arrivecity").toString();
         ticket.date = sqlquery->value("departuredate").toString();
         ticket.time = sqlquery->value("departuretime").toString();
-        ticket.ship_no = sqlquery->value("shipno").toString().toInt();
+        ticket.ship_no = sqlquery->value("shipno").toString();
         ticket.ship_name = sqlquery->value("shipname").toString();
         m_TicketInfo.append(ticket);
     }
@@ -675,6 +675,7 @@ void FlightManager::TicketValueChangeOnDelete(const int& index)
     ui->delticketarr->setText(m_TicketInfo[index].arrive);
     ui->delticketdeptime->setText(m_TicketInfo[index].date + "\n" + m_TicketInfo[index].time);
     ui->delticketship->setText(m_TicketInfo[index].ship_name);
+    ui->deltkgrade->setText(m_TicketInfo[index].ship_no);
 }
 
 void FlightManager::SetCustomerInfoOnBook(const int& index)
@@ -1771,6 +1772,45 @@ void FlightManager::on_delticketokbtn_clicked()
         QMessageBox(QMessageBox::Information, "成功", "删除成功", QMessageBox::Ok).exec();
     else
         QMessageBox(QMessageBox::Critical, "删除错误", rtn, QMessageBox::Ok).exec();
+    QSqlQuery *qq;
+    QString updateSql;
+    int grade;
+    if(ui->deltkgrade->text()=="经济舱")grade=1;
+    else if(ui->deltkgrade->text()=="商务舱")grade=2;
+    else grade=3;
+    switch(grade){
+    case 1:
+    {
+        updateSql = QString(
+                        "UPDATE airline "
+                        "SET economyclassnum = economyclassnum + 1 "
+                        "WHERE airlineno = %1"
+                        ).arg(ui->delticketlineno->text().toInt());
+        qDebug()<<updateSql;
+        break;
+    }
+    case 2:
+    {
+        updateSql = QString(
+                        "UPDATE airline "
+                        "SET businessclassnum = businessclassnum + 1 "
+                        "WHERE airlineno = %1"
+                        ).arg(ui->delticketlineno->text().toInt());
+        break;
+    }
+    case 3:
+    {
+        updateSql = QString(
+                        "UPDATE airline "
+                        "SET deluxeclassnum = deluxeclassnum + 1 "
+                        "WHERE airlineno = %1"
+                        ).arg(ui->delticketlineno->text().toInt());
+        break;
+    }
+    }
+    QVector<QString> sqlupt;
+    sqlupt.append(updateSql);
+    QString rtn1 = m_Connect->UpdateValue(sqlupt);
 }
 
 void FlightManager::on_bktktctmno_activated(int index)
@@ -2346,6 +2386,15 @@ void FlightManager::Showtk(){
         data.price =(int)( i.price);
         // 创建并填充自定义小部件
         FlightItemWidget *flightWidget = new FlightItemWidget;
+        if(i.ship_no=="经济舱"){
+            flightWidget->tktype=1;
+        }
+        else if(i.ship_no=="商务舱"){
+            flightWidget->tktype=2;
+        }
+        else{
+            flightWidget->tktype=3;
+        }
         flightWidget->setFlightData(data);
         flightWidget->bookButton->setText("退票");
         flightWidget->priceLabel->setText(
@@ -2362,6 +2411,45 @@ void FlightManager::Showtk(){
                 QMessageBox(QMessageBox::Information, "成功", "删除成功", QMessageBox::Ok).exec();
             else
                 QMessageBox(QMessageBox::Critical, "删除错误", rtn, QMessageBox::Ok).exec();
+            QSqlQuery *qq;
+            QString updateSql;
+            switch(flightWidget->tktype){
+            case 1:
+            {
+                updateSql = QString(
+                                        "UPDATE airline "
+                                        "SET economyclassnum = economyclassnum + 1 "
+                                        "WHERE airlineno = %1"
+                                        ).arg(flightWidget->airno);
+                qDebug()<<updateSql;
+                break;
+            }
+            case 2:
+            {
+                updateSql = QString(
+                                        "UPDATE airline "
+                                        "SET businessclassnum = businessclassnum + 1 "
+                                        "WHERE airlineno = %1"
+                                        ).arg(flightWidget->airno);
+                break;
+            }
+            case 3:
+            {
+                updateSql = QString(
+                                        "UPDATE airline "
+                                        "SET deluxeclassnum = deluxeclassnum + 1 "
+                                        "WHERE airlineno = %1"
+                                        ).arg(flightWidget->airno);
+                break;
+            }
+            }
+            QVector<QString> sqlupt;
+            sqlupt.append(updateSql);
+            QString rtn1 = m_Connect->UpdateValue(sqlupt);
+            // if (rtn1 == "Success")
+            //     QMessageBox(QMessageBox::Information, "成功", "", QMessageBox::Ok).exec();
+            // else
+            //     QMessageBox(QMessageBox::Critical, "更新错误", rtn, QMessageBox::Ok).exec();
         });
         item->setSizeHint(flightWidget->sizeHint()); // 调整项大小
         ui->usertkshow->addItem(item);
