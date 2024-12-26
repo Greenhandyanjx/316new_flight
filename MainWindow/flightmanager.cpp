@@ -961,6 +961,14 @@ void FlightManager::on_ItemClicked(QListWidgetItem *item)
     {
         ui->searchtoolbox->setCurrentIndex(1);
     }
+    else if(item->text()=="用户信息")
+    {
+        ui->stackedWidget->setCurrentIndex(5);
+    }
+    else if(item->text()=="查看订单")
+    {
+        ui->stackedWidget->setCurrentIndex(6);
+    }
 }
 
 void FlightManager::turn2delete()
@@ -972,7 +980,8 @@ void FlightManager::turn2delete()
         return;
     }
     ui->listWidget->clear();
-    ui->listWidget->close();
+    ui->listWidget->show();
+
     ui->stackedWidget->setCurrentIndex(4);
 }
 void FlightManager::turn2welcome()
@@ -988,9 +997,17 @@ void FlightManager::turn2quit()
 }
 void FlightManager::turn2usertk(){
     Showtk();
+    ui->listWidget->clear();
+    ui->listWidget->show();
+    ui->listWidget->insertItem(0,"用户信息");
+    ui->listWidget->insertItem(1,"查看订单");
     ui->stackedWidget->setCurrentIndex(6);
 }
 void FlightManager::turn2userinfo(){
+    ui->listWidget->clear();
+    ui->listWidget->show();
+    ui->listWidget->insertItem(0,"用户信息");
+    ui->listWidget->insertItem(1,"查看订单");
     ui->stackedWidget->setCurrentIndex(5);
 }
 void FlightManager::on_inserttab_tabBarClicked(int index)
