@@ -32,6 +32,7 @@ struct FlightData {
     QString arriveAirport;
     QString duration;           // 飞行时长
     double price;               // 价格
+    QString tkno;
 };
 class FlightItemWidget : public QWidget {
     Q_OBJECT
@@ -43,9 +44,11 @@ public:
     QLabel *arriveInfo;    // 到达信息
     QLabel *durationInfo;  // 飞行时长
     QLabel *priceLabel;
+    QLabel *tklabel;
     QString flightdata;
     QString depdata;
     QString arrdata;
+    QString tkno;
     explicit FlightItemWidget(QWidget *parent = nullptr) : QWidget(parent) {
         QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
@@ -55,6 +58,8 @@ public:
         airlineLogo->setPixmap(QPixmap(":/SVG/SVG/mplane.svg").scaled(15, 15)); // 默认 logo
         flightInfo = new QLabel;
         flightInfo->setFixedWidth(120);
+        tklabel=new QLabel;
+        airlineLayout->addWidget(tklabel);
         airlineLayout->addWidget(airlineLogo);
         airlineLayout->addWidget(flightInfo);
         // airlineLayout->addStretch();
@@ -120,6 +125,8 @@ public:
 
     // 设置航班数据
     void setFlightData(const FlightData &data) {
+        tkno=data.tkno;
+        tklabel->setText(tkno);
         flightInfo->setText(QString("航线编号:%2<br><span style='color:blue;'>%1 %3</span>").arg(data.airlineName, data.flightNo, data.airplaneType));
         flightdata=data.flightNo+","+data.airlineName;
         departureInfo->setText(
@@ -185,6 +192,7 @@ protected:
     void SetCustomerInfoOnBook(const int& index);//在订票页面中显示选择的客户信息
     void SetCityOnBook(QComboBox* combobox, const QString& index);//在订票页面中显示城市
     void ShowAirLineOnSearch();//在查询机票页面中显示航班信息
+    void Showtk();
     void ShowCustomerOnSearch();//在查询客户信息页面中显示客户信息
     int ReturnAccountType(const QString &customerName);//一个账号对应一个客户，用于返回此客户是管理者还是普通用户
 
@@ -196,7 +204,7 @@ private slots:
     void turn2quit();//退出菜单动作
     void turn2welcome();
     void turn2userinfo();
-
+    void turn2usertk();
     void on_ItemClicked(QListWidgetItem *item);
     void on_inserttab_tabBarClicked(int index);//点击插入面板上的标签触发的动作
     void on_newokbutton_clicked();//点击新建用户的确定按钮
@@ -338,6 +346,20 @@ private:
         QString country_name;
         QString province;
         QString city;
+    };
+
+    struct tk{
+        QString order_id;
+        QString customer_name;
+        int airline_no;
+        QString departure;
+        QString arrive;
+        QString date;
+        QString deptime;
+        QString ship_no;
+        QString ship_name;
+        QString arrtime;
+        double price;
     };
 
     Ui::FlightManager *ui;

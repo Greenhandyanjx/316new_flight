@@ -51,9 +51,16 @@ public:
     {
         if (enroll->objectName().isEmpty())
             enroll->setObjectName("enroll");
-        enroll->resize(557, 434);
+        enroll->resize(500, 434);
         QIcon icon(QIcon::fromTheme(QIcon::ThemeIcon::AddressBookNew));
         enroll->setWindowIcon(icon);
+        enroll->setAutoFillBackground(false);
+        enroll->setStyleSheet(QString::fromUtf8("QWidget#enroll {\n"
+"    background-image: url(:/images/images/background1.jpg);\n"
+"    background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"}\n"
+""));
         newcustomer = new QPushButton(enroll);
         newcustomer->setObjectName("newcustomer");
         newcustomer->setGeometry(QRect(350, 380, 91, 43));
@@ -95,7 +102,7 @@ public:
 "}"));
         layoutWidget = new QWidget(enroll);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(120, 60, 325, 311));
+        layoutWidget->setGeometry(QRect(30, 60, 440, 311));
         verticalLayout_5 = new QVBoxLayout(layoutWidget);
         verticalLayout_5->setObjectName("verticalLayout_5");
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);

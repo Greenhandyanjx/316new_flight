@@ -42,27 +42,37 @@ public:
     {
         if (Login->objectName().isEmpty())
             Login->setObjectName("Login");
-        Login->resize(433, 342);
+        Login->resize(550, 400);
         QFont font;
         font.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
         Login->setFont(font);
+        Login->setCursor(QCursor(Qt::CursorShape::UpArrowCursor));
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/images/images/airplane.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         Login->setWindowIcon(icon);
+        Login->setAutoFillBackground(false);
+        Login->setStyleSheet(QString::fromUtf8("QDialog {\n"
+"    background-image:url(:/images/images/background1.jpg);\n"
+"  background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"}\n"
+""));
+        Login->setSizeGripEnabled(false);
+        Login->setModal(false);
         accountlabel = new QLabel(Login);
         accountlabel->setObjectName("accountlabel");
-        accountlabel->setGeometry(QRect(80, 120, 61, 31));
+        accountlabel->setGeometry(QRect(140, 120, 61, 31));
         QFont font1;
-        font1.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font1.setFamilies({QString::fromUtf8("\346\245\267\344\275\223")});
         font1.setPointSize(17);
         accountlabel->setFont(font1);
         passwordlabel = new QLabel(Login);
         passwordlabel->setObjectName("passwordlabel");
-        passwordlabel->setGeometry(QRect(80, 170, 51, 41));
+        passwordlabel->setGeometry(QRect(140, 170, 51, 41));
         passwordlabel->setFont(font1);
         accounttext = new QLineEdit(Login);
         accounttext->setObjectName("accounttext");
-        accounttext->setGeometry(QRect(150, 120, 151, 24));
+        accounttext->setGeometry(QRect(210, 130, 151, 24));
         QFont font2;
         font2.setFamilies({QString::fromUtf8("Microsoft YaHei UI")});
         font2.setPointSize(12);
@@ -72,30 +82,33 @@ public:
         accounttext->setStyleSheet(QString::fromUtf8(""));
         passwordtext = new QLineEdit(Login);
         passwordtext->setObjectName("passwordtext");
-        passwordtext->setGeometry(QRect(150, 180, 151, 24));
+        passwordtext->setGeometry(QRect(210, 180, 151, 24));
         loginbutton = new QPushButton(Login);
         loginbutton->setObjectName("loginbutton");
-        loginbutton->setGeometry(QRect(220, 260, 91, 41));
-        loginbutton->setFont(font1);
-        quitbutton = new QPushButton(Login);
-        quitbutton->setObjectName("quitbutton");
-        quitbutton->setGeometry(QRect(330, 260, 91, 41));
-        quitbutton->setFont(font1);
-        titlelabel = new QLabel(Login);
-        titlelabel->setObjectName("titlelabel");
-        titlelabel->setGeometry(QRect(90, 10, 281, 81));
+        loginbutton->setGeometry(QRect(230, 290, 91, 41));
         QFont font3;
         font3.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
-        font3.setPointSize(25);
-        titlelabel->setFont(font3);
+        font3.setPointSize(17);
+        loginbutton->setFont(font3);
+        quitbutton = new QPushButton(Login);
+        quitbutton->setObjectName("quitbutton");
+        quitbutton->setGeometry(QRect(350, 290, 91, 41));
+        quitbutton->setFont(font3);
+        titlelabel = new QLabel(Login);
+        titlelabel->setObjectName("titlelabel");
+        titlelabel->setGeometry(QRect(140, 20, 281, 81));
+        QFont font4;
+        font4.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font4.setPointSize(25);
+        titlelabel->setFont(font4);
         titlelabel->setTextFormat(Qt::TextFormat::RichText);
         enrollbut = new QPushButton(Login);
         enrollbut->setObjectName("enrollbut");
-        enrollbut->setGeometry(QRect(110, 260, 91, 41));
-        enrollbut->setFont(font1);
+        enrollbut->setGeometry(QRect(110, 290, 91, 41));
+        enrollbut->setFont(font3);
         layoutWidget = new QWidget(Login);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(150, 226, 151, 28));
+        layoutWidget->setGeometry(QRect(200, 230, 171, 30));
         horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
@@ -103,16 +116,16 @@ public:
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
         ckbuser = new QCheckBox(layoutWidget);
         ckbuser->setObjectName("ckbuser");
-        QFont font4;
-        font4.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
-        font4.setPointSize(15);
-        ckbuser->setFont(font4);
+        QFont font5;
+        font5.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font5.setPointSize(15);
+        ckbuser->setFont(font5);
 
         horizontalLayout->addWidget(ckbuser);
 
         ckbmanager = new QCheckBox(layoutWidget);
         ckbmanager->setObjectName("ckbmanager");
-        ckbmanager->setFont(font4);
+        ckbmanager->setFont(font5);
 
         horizontalLayout->addWidget(ckbmanager);
 
