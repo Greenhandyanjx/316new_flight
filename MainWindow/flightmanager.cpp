@@ -8,10 +8,11 @@
 using std::cout;
 using std::endl;
 QString FlightManager::customer_acc="";
-FlightManager::FlightManager(QWidget *parent) :
+FlightManager::FlightManager(QWidget *parent) :   
     QMainWindow(parent),
     ui(new Ui::FlightManager)
 {
+    this->setFixedSize(865, 625);
     ui->setupUi(this);
     if (m_LineInfo.isEmpty()) {
         qDebug() << "Warning: Line info is empty during initialization!";

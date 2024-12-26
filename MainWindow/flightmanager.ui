@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>865</width>
-    <height>652</height>
+    <width>895</width>
+    <height>705</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1213,7 +1213,7 @@ border-radius: 10px;
                <string notr="true"/>
               </property>
               <property name="currentIndex">
-               <number>1</number>
+               <number>4</number>
               </property>
               <widget class="QWidget" name="page_customerchange">
                <property name="styleSheet">
@@ -2500,7 +2500,7 @@ min-width:60px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>865</width>
+     <width>895</width>
      <height>34</height>
     </rect>
    </property>
