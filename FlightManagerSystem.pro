@@ -12,6 +12,7 @@ INCLUDEPATH +=  . \
                 ./MainWindow
 
 SOURCES +=  main.cpp \
+            Login/buytk.cpp \
             Login/enroll.cpp \
             Login/login.cpp \
             Connect/connectdatabase.cpp \
@@ -19,10 +20,12 @@ SOURCES +=  main.cpp \
 
 HEADERS +=  Login/login.h \
             Connect/connectdatabase.h \
+            Login/buytk.h \
             Login/enroll.h \
             MainWindow/flightmanager.h
 
 FORMS    += $$PWD/Login/login.ui \
+    Login/buytk.ui \
     Login/enroll.ui \
     MainWindow/flightmanager.ui
 

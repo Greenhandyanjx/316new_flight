@@ -1,6 +1,7 @@
 #include "flightmanager.h"
 #include "ui_flightmanager.h"
-
+#include "buytk.h"
+#include "ui_buytk.h"
 #include <cstdlib>
 
 #include <iostream>
@@ -1882,9 +1883,9 @@ void FlightManager::on_bktktokbtn_clicked()
     updateTicketNum();
     GetTicket();
     Getdelno();
-    QMessageBox::information(this, "成功", "购票成功！");
-
-
+    Dialog *dialog = new Dialog;
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->show();
 }
 void FlightManager::on_newnoshow_linkActivated(const QString &link)
 {
@@ -2316,6 +2317,11 @@ void FlightManager::Showtk(){
         FlightItemWidget *flightWidget = new FlightItemWidget;
         flightWidget->setFlightData(data);
         flightWidget->bookButton->setText("退票");
+        flightWidget->priceLabel->setText(
+            QString("<span style='font-size:18px; color: orange;'>¥%1</span>")
+                .arg(data.price)
+            );
+        flightWidget->tklabel->setText(QString("订单编号:<br><span style='color:blue;'>%1</span>").arg(flightWidget->tkno));
         connect(flightWidget->bookButton,&QPushButton::clicked,[=]{
             // QSqlQuery qq;
             QString dels="DELETE FROM ticket WHERE order_id = '"+flightWidget->tkno+"'";

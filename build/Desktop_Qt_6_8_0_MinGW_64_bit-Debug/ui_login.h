@@ -52,9 +52,10 @@ public:
         Login->setWindowIcon(icon);
         Login->setAutoFillBackground(false);
         Login->setStyleSheet(QString::fromUtf8("QDialog {\n"
-"    background-image:url(:/images/images/background1.jpg);\n"
-"  background-repeat: no-repeat;\n"
-"    background-position: center;\n"
+"    background-image: url(:/images/images/login.jpg);\n"
+"    background-repeat: no-repeat;\n"
+"    background-position: cover;\n"
+"    background-size: contain;\n"
 "}\n"
 ""));
         Login->setSizeGripEnabled(false);

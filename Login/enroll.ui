@@ -21,7 +21,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget#enroll {
-    background-image: url(:/images/images/background1.jpg);
+    background-image: url(:/images/images/login.jpg);
     background-repeat: no-repeat;
     background-position: center;
 }

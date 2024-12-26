@@ -30,9 +30,10 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog {
-    background-image:url(:/images/images/background1.jpg);
-  background-repeat: no-repeat;
-    background-position: center;
+    background-image: url(:/images/images/login.jpg);
+    background-repeat: no-repeat;
+    background-position: cover;
+    background-size: contain;
 }
 </string>
   </property>

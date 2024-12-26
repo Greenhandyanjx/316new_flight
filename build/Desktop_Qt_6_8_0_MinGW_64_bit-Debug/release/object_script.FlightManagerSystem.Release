@@ -1,0 +1,11 @@
+release/main.o
+release/buytk.o
+release/enroll.o
+release/login.o
+release/connectdatabase.o
+release/flightmanager.o
+release/qrc_resourse.o
+release/moc_login.o
+release/moc_buytk.o
+release/moc_enroll.o
+release/moc_flightmanager.o

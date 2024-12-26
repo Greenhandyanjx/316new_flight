@@ -1,0 +1,11 @@
+debug/main.o
+debug/buytk.o
+debug/enroll.o
+debug/login.o
+debug/connectdatabase.o
+debug/flightmanager.o
+debug/qrc_resourse.o
+debug/moc_login.o
+debug/moc_buytk.o
+debug/moc_enroll.o
+debug/moc_flightmanager.o

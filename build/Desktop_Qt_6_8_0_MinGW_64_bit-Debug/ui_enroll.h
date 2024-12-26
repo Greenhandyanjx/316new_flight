@@ -56,7 +56,7 @@ public:
         enroll->setWindowIcon(icon);
         enroll->setAutoFillBackground(false);
         enroll->setStyleSheet(QString::fromUtf8("QWidget#enroll {\n"
-"    background-image: url(:/images/images/background1.jpg);\n"
+"    background-image: url(:/images/images/login.jpg);\n"
 "    background-repeat: no-repeat;\n"
 "    background-position: center;\n"
 "}\n"
