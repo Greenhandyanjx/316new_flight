@@ -50,7 +50,7 @@
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="homepage">
          <property name="styleSheet">
@@ -1688,23 +1688,6 @@ padding-left:10px;
                </rect>
               </property>
               <layout class="QGridLayout" name="delticketlyo">
-               <item row="0" column="0">
-                <widget class="QLabel" name="delticketnoabl">
-                 <property name="text">
-                  <string>订单编号</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QComboBox" name="delticketno"/>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="delticketnameabl">
-                 <property name="text">
-                  <string>客户姓名</string>
-                 </property>
-                </widget>
-               </item>
                <item row="1" column="1">
                 <widget class="QLabel" name="delticketname">
                  <property name="text">
@@ -1712,59 +1695,10 @@ padding-left:10px;
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="delticketlinenoabl">
+               <item row="7" column="0">
+                <widget class="QLabel" name="label_5">
                  <property name="text">
-                  <string>航线编号</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QLabel" name="delticketlineno">
-                 <property name="text">
-                  <string>No.</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <widget class="QLabel" name="delticketdepabl">
-                 <property name="text">
-                  <string>出发地点</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="1">
-                <widget class="QLabel" name="delticketdep">
-                 <property name="text">
-                  <string>departure</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="0">
-                <widget class="QLabel" name="delticketarrabl">
-                 <property name="text">
-                  <string>到达地点</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="1">
-                <widget class="QLabel" name="delticketarr">
-                 <property name="text">
-                  <string>arrive</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="5" column="0">
-                <widget class="QLabel" name="delticketdeptimeabl">
-                 <property name="text">
-                  <string>出发时间</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="5" column="1">
-                <widget class="QLabel" name="delticketdeptime">
-                 <property name="text">
-                  <string>time</string>
+                  <string>航空公司</string>
                  </property>
                 </widget>
                </item>
@@ -1775,17 +1709,97 @@ padding-left:10px;
                  </property>
                 </widget>
                </item>
-               <item row="6" column="1">
-                <widget class="QLabel" name="delticketship">
+               <item row="8" column="1">
+                <widget class="QPushButton" name="delticketokbtn">
                  <property name="text">
-                  <string>ship</string>
+                  <string>确认删除</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="delticketlineno">
+                 <property name="text">
+                  <string>No.</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="delticketnoabl">
+                 <property name="text">
+                  <string>订单编号</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QLabel" name="delticketarr">
+                 <property name="text">
+                  <string>arrive</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="delticketdep">
+                 <property name="text">
+                  <string>departure</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="delticketdepabl">
+                 <property name="text">
+                  <string>出发地点</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QLabel" name="delticketdeptime">
+                 <property name="text">
+                  <string>time</string>
                  </property>
                 </widget>
                </item>
                <item row="7" column="1">
-                <widget class="QPushButton" name="delticketokbtn">
+                <widget class="QLabel" name="delticketship">
                  <property name="text">
-                  <string>确认删除</string>
+                  <string>TextLabel</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="delticketnameabl">
+                 <property name="text">
+                  <string>客户姓名</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="delticketno"/>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="delticketarrabl">
+                 <property name="text">
+                  <string>到达地点</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="delticketlinenoabl">
+                 <property name="text">
+                  <string>航线编号</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="delticketdeptimeabl">
+                 <property name="text">
+                  <string>出发时间</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <widget class="QLabel" name="deltkgrade">
+                 <property name="text">
+                  <string>ship</string>
                  </property>
                 </widget>
                </item>
@@ -2149,13 +2163,13 @@ QMenu {
    </widget>
    <widget class="QMenu" name="updatemenu">
     <property name="title">
-     <string>更新</string>
+     <string>更新(仅管理员)</string>
     </property>
     <addaction name="updateaction"/>
    </widget>
    <widget class="QMenu" name="deletemenu">
     <property name="title">
-     <string>删除</string>
+     <string>删除(仅管理员)</string>
     </property>
     <property name="separatorsCollapsible">
      <bool>true</bool>
