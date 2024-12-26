@@ -162,7 +162,7 @@ public:
     ~FlightManager();
     void getuser();
     static QString customer_acc;
-
+    Ui::FlightManager *ui;
 public slots:
     void receive();
 
@@ -362,7 +362,7 @@ private:
         double price;
     };
 
-    Ui::FlightManager *ui;
+
     ConnectDataBase* m_Connect;
     QMap<QString, int> m_TypeDiscount;//存放客户类型优惠
 

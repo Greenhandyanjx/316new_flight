@@ -18,8 +18,8 @@ Login::Login(QWidget *parent) :
     ui->passwordtext->setEchoMode(QLineEdit::Password);
     m_Connect = ConnectDataBase::GetInstance();
     //当自定义信号发出时，关闭此对话框并销毁该对话框的内存
-    connect(this, SIGNAL(send()), this, SLOT(close()) );
-    connect(this, SIGNAL(send()), this, SLOT(deleteLater()) );
+    connect(this, SIGNAL(send()), this, SLOT(hide()) );
+    // connect(this, SIGNAL(send()), this, SLOT(deleteLater()) );
     QObject::connect(e, &enroll::closed, [=]() {
         enrollClosed = true; // 窗口被关闭
     });

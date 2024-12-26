@@ -1,5 +1,6 @@
 #include "login.h"
 #include "flightmanager.h"
+#include"ui_flightmanager.h"
 #include "enroll.h"
 #include <QApplication>
 #include <iostream>
@@ -22,9 +23,9 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
     qDebug() << "Database connected successfully.";
-    Login* l = new Login;
+    Login* l=new Login;
     int result = 0;
-    FlightManager* f = new FlightManager;
+    FlightManager* f =new FlightManager;
     if (!f)
     {
         QMessageBox(QMessageBox::Critical, "错误", "无法初始化主界面", QMessageBox::Ok).exec();
@@ -32,7 +33,6 @@ int main(int argc, char *argv[])
     }
     l->show();
     QObject::connect(l, &Login::openenroll, [=]() {
-        // 打开注册界面,销毁旧登录界面
         l->e->show();
         l->hide();
     });
@@ -46,15 +46,19 @@ int main(int argc, char *argv[])
         l->setAcc();
         l->e->hide();
     });
+    QObject::connect(l, &Login::send, [=]() {
+        f->show();
+        f->getuser();
+        // l->e->hide();
+        // l->hide();
+    });
+    QObject::connect(f->ui->exitaction,&QAction::triggered,[=]{
+        f->hide();
+        l->show();
+    });
     QApplication::processEvents();
     // f->show();
     // QApplication::processEvents();
-    QObject::connect(l, &Login::send, [=]() {
-        f->show();   // 显示主界面
-        f->getuser();
-        l->e->deleteLater();
-        l->deleteLater(); // 销毁登录窗口
-    });
     /*
      * 将登录类与主界面的类通过信号绑定，当login类检查到登陆成功时则会发信号到flightmanager
      * flightmanger接收到信号则会打开主界面，而登陆界面则会销毁
@@ -73,7 +77,8 @@ int main(int argc, char *argv[])
     }
 
     delete f;
+    delete l;
+    l=NULL;
     f = NULL;
-
     return result;
 }
