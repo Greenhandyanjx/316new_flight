@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>557</width>
+    <width>500</width>
     <height>434</height>
    </rect>
   </property>
@@ -15,6 +15,17 @@
   </property>
   <property name="windowIcon">
    <iconset theme="QIcon::ThemeIcon::AddressBookNew"/>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#enroll {
+    background-image: url(:/images/images/background1.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+</string>
   </property>
   <widget class="QPushButton" name="newcustomer">
    <property name="geometry">
@@ -72,9 +83,9 @@ QPushButton:pressed:checked {
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>120</x>
+     <x>30</x>
      <y>60</y>
-     <width>325</width>
+     <width>440</width>
      <height>311</height>
     </rect>
    </property>

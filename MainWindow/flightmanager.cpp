@@ -37,6 +37,7 @@ FlightManager::FlightManager(QWidget *parent) :
     connect(ui->insertaction, SIGNAL(triggered(bool)), this, SLOT(turn2insert()) );
     connect(ui->updateaction, SIGNAL(triggered(bool)), this, SLOT(turn2update()) );
     connect(ui->deleteaction, SIGNAL(triggered(bool)), this, SLOT(turn2delete()) );
+    connect(ui->welcomeaction,SIGNAL(triggered(bool)),this,SLOT(turn2welcome()));
     connect(ui->introduction,&QAction::triggered,this,&FlightManager::turn2userinfo);
     connect(ui->quitaction, &QAction::triggered, this, &FlightManager::turn2quit);
     connect(ui->departure,&QPushButton::clicked,[=](){
@@ -48,6 +49,7 @@ FlightManager::FlightManager(QWidget *parent) :
     connect(ui->depatime,&QPushButton::clicked,[=](){
         ui->searchairWG->setVisible(true);
     });
+    connect(ui->listWidget,SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(on_ItemClicked(QListWidgetItem*)));
 }
 
 FlightManager::~FlightManager()
@@ -110,17 +112,18 @@ void FlightManager::Init()
     m_Sex.append("男");
     m_Sex.append("女");
     ui->usermenu->setTitle(customer_acc);
-    ui->list->setFont(QFont("华文楷体", 15));
-    ui->list->insertItem(0, "欢迎");
-    ui->list->insertItem(1, "查询");
-    ui->list->insertItem(2, "添加");
-    ui->list->insertItem(3, "更新");
-    ui->list->insertItem(4, "删除");
-    ui->list->insertItem(5,"用户信息");
+    ui->listWidget->setFont(QFont("华文楷体", 15));
+    // ui->list->insertItem(0, "欢迎");
+    // ui->list->insertItem(1, "查询");
+    // ui->list->insertItem(2, "添加");
+    // ui->list->insertItem(3, "更新");
+    // ui->list->insertItem(4, "删除");
+    // ui->list->insertItem(5,"用户信息");
 
-    ui->list->setCurrentRow(0);
+    // ui->list->setCurrentRow(0);
     ui->stackedWidget->setCurrentIndex(0);
-
+    ui->listWidget->clear();
+    ui->listWidget->close();
     //查询页面中的航班查询标签页
     // ui->searchairlineshow->setColumnCount(19);
     // ui->searchairlineshow->verticalHeader()->setVisible(false);
@@ -883,13 +886,19 @@ int FlightManager::ReturnAccountType(const QString &customeracc) {
 //菜单栏动作
 void FlightManager::turn2search()
 {
-    ui->list->setCurrentRow(1);
+    ui->listWidget->clear();
+    ui->listWidget->show();
+    ui->listWidget->insertItem(0,"查询客机信息");
+    ui->listWidget->insertItem(1,"查询客户信息");
     ui->stackedWidget->setCurrentIndex(1);
 }
 
 void FlightManager::turn2insert()
 {
-    ui->list->setCurrentRow(2);
+    ui->listWidget->clear();
+    ui->listWidget->show();
+    ui->listWidget->insertItem(0,"当前账户客机信息");
+    ui->listWidget->insertItem(1,"订票");
     ui->stackedWidget->setCurrentIndex(2);
 }
 
@@ -902,8 +911,53 @@ void FlightManager::turn2update()
         QMessageBox::warning(this, "您不是管理员", "只有管理可以更新！", QMessageBox::Ok);
         return;
     }
-    ui->list->setCurrentRow(3);
+    ui->listWidget->clear();
+    ui->listWidget->show();
+    ui->listWidget->insertItem(0,"客户信息更新");
+    ui->listWidget->insertItem(1,"订票更改");
+    ui->listWidget->insertItem(2,"客机更新");
+    ui->listWidget->insertItem(3,"航线更新");
+    ui->listWidget->insertItem(4,"客户优惠类型更新");
     ui->stackedWidget->setCurrentIndex(3);
+}
+void FlightManager::on_ItemClicked(QListWidgetItem *item)
+{
+    if(item->text()=="客户信息更新")
+    {
+        ui->stackedWidget_update->setCurrentWidget(ui->page_customerchange);
+    }
+    else if(item->text()=="订票更改")
+    {
+        ui->stackedWidget_update->setCurrentWidget(ui->page_chgtklyo);
+    }
+    else if(item->text()=="客机更新")
+    {
+        ui->stackedWidget_update->setCurrentWidget(ui->page_airplanechange);
+    }
+    else if(item->text()=="航线更新")
+    {
+        ui->stackedWidget_update->setCurrentWidget(ui->page_airlinechange);
+    }
+    else if(item->text()=="客户优惠类型更新")
+    {
+        ui->stackedWidget_update->setCurrentWidget(ui->page_typechange);
+    }
+    else if(item->text()=="当前账户客机信息")
+    {
+        ui->inserttab->setCurrentIndex(0);
+    }
+    else if(item->text()=="订票")
+    {
+        ui->inserttab->setCurrentIndex(1);
+    }
+    else if(item->text()=="查询客机信息")
+    {
+        ui->searchtoolbox->setCurrentIndex(0);
+    }
+    else if(item->text()=="查询客户信息")
+    {
+        ui->searchtoolbox->setCurrentIndex(1);
+    }
 }
 
 void FlightManager::turn2delete()
@@ -914,10 +968,16 @@ void FlightManager::turn2delete()
         QMessageBox::warning(this, "您不是管理员", "只有管理可以删除", QMessageBox::Ok);
         return;
     }
-    ui->list->setCurrentRow(4);
+    ui->listWidget->clear();
+    ui->listWidget->close();
     ui->stackedWidget->setCurrentIndex(4);
 }
-
+void FlightManager::turn2welcome()
+{
+    ui->listWidget->clear();
+    ui->listWidget->close();
+    ui->stackedWidget->setCurrentIndex(0);
+}
 void FlightManager::turn2quit()
 {
     qDebug() << "Exiting application...";

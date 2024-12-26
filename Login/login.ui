@@ -6,14 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>433</width>
-    <height>342</height>
+    <width>550</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="font">
    <font>
     <family>华文楷体</family>
    </font>
+  </property>
+  <property name="cursor">
+   <cursorShape>UpArrowCursor</cursorShape>
   </property>
   <property name="windowTitle">
    <string>316航空登陆界面</string>
@@ -22,10 +25,27 @@
    <iconset resource="../resourse.qrc">
     <normaloff>:/images/images/airplane.png</normaloff>:/images/images/airplane.png</iconset>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+    background-image:url(:/images/images/background1.jpg);
+  background-repeat: no-repeat;
+    background-position: center;
+}
+</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="modal">
+   <bool>false</bool>
+  </property>
   <widget class="QLabel" name="accountlabel">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>140</x>
      <y>120</y>
      <width>61</width>
      <height>31</height>
@@ -33,7 +53,7 @@
    </property>
    <property name="font">
     <font>
-     <family>华文楷体</family>
+     <family>楷体</family>
      <pointsize>17</pointsize>
     </font>
    </property>
@@ -44,7 +64,7 @@
   <widget class="QLabel" name="passwordlabel">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>140</x>
      <y>170</y>
      <width>51</width>
      <height>41</height>
@@ -52,7 +72,7 @@
    </property>
    <property name="font">
     <font>
-     <family>华文楷体</family>
+     <family>楷体</family>
      <pointsize>17</pointsize>
     </font>
    </property>
@@ -63,8 +83,8 @@
   <widget class="QLineEdit" name="accounttext">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>120</y>
+     <x>210</x>
+     <y>130</y>
      <width>151</width>
      <height>24</height>
     </rect>
@@ -84,7 +104,7 @@
   <widget class="QLineEdit" name="passwordtext">
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>210</x>
      <y>180</y>
      <width>151</width>
      <height>24</height>
@@ -94,8 +114,8 @@
   <widget class="QPushButton" name="loginbutton">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>260</y>
+     <x>230</x>
+     <y>290</y>
      <width>91</width>
      <height>41</height>
     </rect>
@@ -113,8 +133,8 @@
   <widget class="QPushButton" name="quitbutton">
    <property name="geometry">
     <rect>
-     <x>330</x>
-     <y>260</y>
+     <x>350</x>
+     <y>290</y>
      <width>91</width>
      <height>41</height>
     </rect>
@@ -132,8 +152,8 @@
   <widget class="QLabel" name="titlelabel">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>10</y>
+     <x>140</x>
+     <y>20</y>
      <width>281</width>
      <height>81</height>
     </rect>
@@ -155,7 +175,7 @@
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>260</y>
+     <y>290</y>
      <width>91</width>
      <height>41</height>
     </rect>
@@ -173,10 +193,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>226</y>
-     <width>151</width>
-     <height>28</height>
+     <x>200</x>
+     <y>230</y>
+     <width>171</width>
+     <height>30</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">

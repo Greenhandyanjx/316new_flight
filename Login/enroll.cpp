@@ -8,6 +8,7 @@ enroll::enroll(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::enroll)
 {
+    this->setAttribute(Qt::WA_StyledBackground);
     ui->setupUi(this);
     m_Connect=ConnectDataBase::GetInstance();
     ui->newsexshow->addItem("男");
