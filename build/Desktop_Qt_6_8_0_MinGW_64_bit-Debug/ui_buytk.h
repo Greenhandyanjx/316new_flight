@@ -10,6 +10,7 @@
 #define UI_BUYTK_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
@@ -30,6 +31,13 @@ public:
         if (Dialog->objectName().isEmpty())
             Dialog->setObjectName("Dialog");
         Dialog->resize(400, 300);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/images/images/airplane.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        Dialog->setWindowIcon(icon);
+        Dialog->setStyleSheet(QString::fromUtf8("QDialog{\n"
+"	border-image:url(:/images/images/plane.png);\n"
+"}\n"
+""));
         label_16 = new QLabel(Dialog);
         label_16->setObjectName("label_16");
         label_16->setGeometry(QRect(10, 140, 311, 121));
@@ -47,7 +55,7 @@ public:
         label->setFont(font1);
         label_2 = new QLabel(Dialog);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(20, 100, 301, 51));
+        label_2->setGeometry(QRect(20, 100, 311, 51));
         label_2->setFont(font1);
         pushButton = new QPushButton(Dialog);
         pushButton->setObjectName("pushButton");
@@ -105,7 +113,7 @@ public:
         label_16->setText(QCoreApplication::translate("Dialog", "Thank you for choosing us. \n"
 "Happy Travels!", nullptr));
         label->setText(QCoreApplication::translate("Dialog", "\346\210\220\345\212\237\351\242\204\350\256\242", nullptr));
-        label_2->setText(QCoreApplication::translate("Dialog", "\346\204\237\350\260\242\346\202\250\347\232\204\351\200\211\346\213\251,\347\245\235\346\202\250\346\227\205\350\241\214\345\277\253\344\271\220", nullptr));
+        label_2->setText(QCoreApplication::translate("Dialog", "\346\204\237\350\260\242\346\202\250\347\232\204\351\200\211\346\213\251,\347\245\235\346\202\250\346\227\205\350\241\214\346\204\211\345\277\253", nullptr));
         pushButton->setText(QCoreApplication::translate("Dialog", "\347\241\256\345\256\232", nullptr));
     } // retranslateUi
 

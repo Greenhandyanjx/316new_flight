@@ -2038,8 +2038,8 @@ public:
 
         retranslateUi(FlightManager);
 
-        stackedWidget->setCurrentIndex(2);
-        searchtoolbox->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
+        searchtoolbox->setCurrentIndex(1);
         inserttab->setCurrentIndex(1);
         stackedWidget_update->setCurrentIndex(2);
 
