@@ -3,7 +3,6 @@
 #include "buytk.h"
 #include "ui_buytk.h"
 #include <cstdlib>
-
 #include <iostream>
 using std::cout;
 using std::endl;

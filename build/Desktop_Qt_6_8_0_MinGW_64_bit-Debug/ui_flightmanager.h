@@ -28,6 +28,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTimeEdit>
@@ -153,6 +154,7 @@ public:
     QPushButton *chgctmokbtn;
     QLabel *chgctmselabel;
     QComboBox *chgctmselcom;
+    QSpacerItem *verticalSpacer;
     QCheckBox *chgctmnamechk;
     QCheckBox *chgctmsexchk;
     QLineEdit *chgctmnameline;
@@ -186,6 +188,7 @@ public:
     QVBoxLayout *verticalLayout_19;
     QComboBox *chgtypselcom;
     QLabel *chgtypselabl;
+    QSpacerItem *verticalSpacer_2;
     QLineEdit *chgtypinline;
     QLabel *chgtypinabl;
     QPushButton *chgtypokbtn;
@@ -296,7 +299,7 @@ public:
     {
         if (FlightManager->objectName().isEmpty())
             FlightManager->setObjectName("FlightManager");
-        FlightManager->resize(865, 652);
+        FlightManager->resize(865, 708);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/images/images/airplane.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         FlightManager->setWindowIcon(icon);
@@ -956,7 +959,7 @@ public:
         newokbutton->setFont(font7);
         layoutWidget = new QWidget(newcustpage);
         layoutWidget->setObjectName("layoutWidget");
-        layoutWidget->setGeometry(QRect(190, 110, 325, 314));
+        layoutWidget->setGeometry(QRect(190, 110, 325, 326));
         verticalLayout_5 = new QVBoxLayout(layoutWidget);
         verticalLayout_5->setObjectName("verticalLayout_5");
         verticalLayout_5->setContentsMargins(0, 0, 0, 0);
@@ -1231,7 +1234,12 @@ public:
         stackedWidget->addWidget(insertpage);
         updatepage = new QWidget();
         updatepage->setObjectName("updatepage");
-        updatepage->setStyleSheet(QString::fromUtf8(""));
+        updatepage->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    border: 2px solid skyblue;       /* 2px \345\244\251\350\223\235\350\211\262\350\276\271\346\241\206 */\n"
+"\n"
+"border-radius: 10px;   \n"
+"}\n"
+""));
         verticalLayout_10 = new QVBoxLayout(updatepage);
         verticalLayout_10->setObjectName("verticalLayout_10");
         updateLayout = new QGridLayout();
@@ -1241,6 +1249,7 @@ public:
         stackedWidget_update->setStyleSheet(QString::fromUtf8(""));
         page_customerchange = new QWidget();
         page_customerchange->setObjectName("page_customerchange");
+        page_customerchange->setStyleSheet(QString::fromUtf8("QWidget#page_customerchange{border-image:url(:/images/images/background1.jpg);}"));
         verticalLayout_15 = new QVBoxLayout(page_customerchange);
         verticalLayout_15->setObjectName("verticalLayout_15");
         customerchange = new QGroupBox(page_customerchange);
@@ -1249,11 +1258,15 @@ public:
         verticalLayout_18->setObjectName("verticalLayout_18");
         chgctmokbtn = new QPushButton(customerchange);
         chgctmokbtn->setObjectName("chgctmokbtn");
+        QFont font10;
+        font10.setPointSize(12);
+        chgctmokbtn->setFont(font10);
 
         verticalLayout_18->addWidget(chgctmokbtn);
 
         chgctmselabel = new QLabel(customerchange);
         chgctmselabel->setObjectName("chgctmselabel");
+        chgctmselabel->setFont(font10);
         chgctmselabel->setToolTipDuration(-1);
         chgctmselabel->setTextFormat(Qt::TextFormat::MarkdownText);
         chgctmselabel->setIndent(0);
@@ -1262,47 +1275,60 @@ public:
 
         chgctmselcom = new QComboBox(customerchange);
         chgctmselcom->setObjectName("chgctmselcom");
+        chgctmselcom->setFont(font10);
 
         verticalLayout_18->addWidget(chgctmselcom);
 
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        verticalLayout_18->addItem(verticalSpacer);
+
         chgctmnamechk = new QCheckBox(customerchange);
         chgctmnamechk->setObjectName("chgctmnamechk");
+        chgctmnamechk->setFont(font10);
 
         verticalLayout_18->addWidget(chgctmnamechk);
 
         chgctmsexchk = new QCheckBox(customerchange);
         chgctmsexchk->setObjectName("chgctmsexchk");
         chgctmsexchk->setEnabled(true);
+        chgctmsexchk->setFont(font10);
 
         verticalLayout_18->addWidget(chgctmsexchk);
 
         chgctmnameline = new QLineEdit(customerchange);
         chgctmnameline->setObjectName("chgctmnameline");
+        chgctmnameline->setFont(font10);
 
         verticalLayout_18->addWidget(chgctmnameline);
 
         chgctmsexcom = new QComboBox(customerchange);
         chgctmsexcom->setObjectName("chgctmsexcom");
+        chgctmsexcom->setFont(font10);
 
         verticalLayout_18->addWidget(chgctmsexcom);
 
         chgctmtypchk = new QCheckBox(customerchange);
         chgctmtypchk->setObjectName("chgctmtypchk");
+        chgctmtypchk->setFont(font10);
 
         verticalLayout_18->addWidget(chgctmtypchk);
 
         chgctmphechk = new QCheckBox(customerchange);
         chgctmphechk->setObjectName("chgctmphechk");
+        chgctmphechk->setFont(font10);
 
         verticalLayout_18->addWidget(chgctmphechk);
 
         chgctmtypcom = new QComboBox(customerchange);
         chgctmtypcom->setObjectName("chgctmtypcom");
+        chgctmtypcom->setFont(font10);
 
         verticalLayout_18->addWidget(chgctmtypcom);
 
         chgctmpheline = new QLineEdit(customerchange);
         chgctmpheline->setObjectName("chgctmpheline");
+        chgctmpheline->setFont(font10);
 
         verticalLayout_18->addWidget(chgctmpheline);
 
@@ -1312,6 +1338,7 @@ public:
         stackedWidget_update->addWidget(page_customerchange);
         page_chgtklyo = new QWidget();
         page_chgtklyo->setObjectName("page_chgtklyo");
+        page_chgtklyo->setStyleSheet(QString::fromUtf8("QWidget#page_chgtklyo{border-image:url(:/images/images/background1.jpg);}"));
         verticalLayout_9 = new QVBoxLayout(page_chgtklyo);
         verticalLayout_9->setObjectName("verticalLayout_9");
         ticketchange = new QGroupBox(page_chgtklyo);
@@ -1320,76 +1347,91 @@ public:
         verticalLayout_12->setObjectName("verticalLayout_12");
         chgtktlineabl = new QLabel(ticketchange);
         chgtktlineabl->setObjectName("chgtktlineabl");
+        chgtktlineabl->setFont(font10);
 
         verticalLayout_12->addWidget(chgtktlineabl);
 
         chgtktnoabl = new QLabel(ticketchange);
         chgtktnoabl->setObjectName("chgtktnoabl");
+        chgtktnoabl->setFont(font10);
 
         verticalLayout_12->addWidget(chgtktnoabl);
 
         chgtktnocom = new QComboBox(ticketchange);
         chgtktnocom->setObjectName("chgtktnocom");
+        chgtktnocom->setFont(font10);
 
         verticalLayout_12->addWidget(chgtktnocom);
 
         chgtkttimeabl = new QLabel(ticketchange);
         chgtkttimeabl->setObjectName("chgtkttimeabl");
+        chgtkttimeabl->setFont(font10);
 
         verticalLayout_12->addWidget(chgtkttimeabl);
 
         chgtktdepabl = new QLabel(ticketchange);
         chgtktdepabl->setObjectName("chgtktdepabl");
+        chgtktdepabl->setFont(font10);
 
         verticalLayout_12->addWidget(chgtktdepabl);
 
         chgtktarrabl = new QLabel(ticketchange);
         chgtktarrabl->setObjectName("chgtktarrabl");
+        chgtktarrabl->setFont(font10);
 
         verticalLayout_12->addWidget(chgtktarrabl);
 
         chgtktlinechg = new QLabel(ticketchange);
         chgtktlinechg->setObjectName("chgtktlinechg");
+        chgtktlinechg->setFont(font10);
 
         verticalLayout_12->addWidget(chgtktlinechg);
 
         chgtktshipabl = new QLabel(ticketchange);
         chgtktshipabl->setObjectName("chgtktshipabl");
+        chgtktshipabl->setFont(font10);
 
         verticalLayout_12->addWidget(chgtktshipabl);
 
         chgtktlinecom = new QComboBox(ticketchange);
         chgtktlinecom->setObjectName("chgtktlinecom");
+        chgtktlinecom->setFont(font10);
 
         verticalLayout_12->addWidget(chgtktlinecom);
 
         chgtkttime = new QLabel(ticketchange);
         chgtkttime->setObjectName("chgtkttime");
+        chgtkttime->setFont(font10);
 
         verticalLayout_12->addWidget(chgtkttime);
 
         chgtktarrive = new QLabel(ticketchange);
         chgtktarrive->setObjectName("chgtktarrive");
+        chgtktarrive->setFont(font10);
 
         verticalLayout_12->addWidget(chgtktarrive);
 
         chgtktdepature = new QLabel(ticketchange);
         chgtktdepature->setObjectName("chgtktdepature");
+        chgtktdepature->setFont(font10);
 
         verticalLayout_12->addWidget(chgtktdepature);
 
         chgtktshipcom = new QComboBox(ticketchange);
         chgtktshipcom->setObjectName("chgtktshipcom");
+        chgtktshipcom->setFont(font10);
 
         verticalLayout_12->addWidget(chgtktshipcom);
 
         chgtktshipchg = new QLabel(ticketchange);
         chgtktshipchg->setObjectName("chgtktshipchg");
+        chgtktshipchg->setFont(font10);
 
         verticalLayout_12->addWidget(chgtktshipchg);
 
         chgtktokbtn = new QPushButton(ticketchange);
         chgtktokbtn->setObjectName("chgtktokbtn");
+        chgtktokbtn->setFont(font10);
 
         verticalLayout_12->addWidget(chgtktokbtn);
 
@@ -1399,6 +1441,7 @@ public:
         stackedWidget_update->addWidget(page_chgtklyo);
         page_typechange = new QWidget();
         page_typechange->setObjectName("page_typechange");
+        page_typechange->setStyleSheet(QString::fromUtf8("QWidget#page_typechange{border-image:url(:/images/images/background1.jpg);}"));
         verticalLayout_13 = new QVBoxLayout(page_typechange);
         verticalLayout_13->setObjectName("verticalLayout_13");
         typechange = new QGroupBox(page_typechange);
@@ -1407,26 +1450,35 @@ public:
         verticalLayout_19->setObjectName("verticalLayout_19");
         chgtypselcom = new QComboBox(typechange);
         chgtypselcom->setObjectName("chgtypselcom");
+        chgtypselcom->setFont(font10);
 
         verticalLayout_19->addWidget(chgtypselcom);
 
         chgtypselabl = new QLabel(typechange);
         chgtypselabl->setObjectName("chgtypselabl");
+        chgtypselabl->setFont(font10);
 
         verticalLayout_19->addWidget(chgtypselabl);
 
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        verticalLayout_19->addItem(verticalSpacer_2);
+
         chgtypinline = new QLineEdit(typechange);
         chgtypinline->setObjectName("chgtypinline");
+        chgtypinline->setFont(font10);
 
         verticalLayout_19->addWidget(chgtypinline);
 
         chgtypinabl = new QLabel(typechange);
         chgtypinabl->setObjectName("chgtypinabl");
+        chgtypinabl->setFont(font10);
 
         verticalLayout_19->addWidget(chgtypinabl);
 
         chgtypokbtn = new QPushButton(typechange);
         chgtypokbtn->setObjectName("chgtypokbtn");
+        chgtypokbtn->setFont(font10);
 
         verticalLayout_19->addWidget(chgtypokbtn);
 
@@ -1436,6 +1488,7 @@ public:
         stackedWidget_update->addWidget(page_typechange);
         page_airplanechange = new QWidget();
         page_airplanechange->setObjectName("page_airplanechange");
+        page_airplanechange->setStyleSheet(QString::fromUtf8("QWidget#page_airplanechange{border-image:url(:/images/images/background1.jpg);}"));
         verticalLayout_11 = new QVBoxLayout(page_airplanechange);
         verticalLayout_11->setObjectName("verticalLayout_11");
         airplanechange = new QGroupBox(page_airplanechange);
@@ -1445,66 +1498,79 @@ public:
         verticalLayout_16->setObjectName("verticalLayout_16");
         chgplaneselcom = new QComboBox(airplanechange);
         chgplaneselcom->setObjectName("chgplaneselcom");
+        chgplaneselcom->setFont(font10);
 
         verticalLayout_16->addWidget(chgplaneselcom);
 
         chgplanetype = new QLabel(airplanechange);
         chgplanetype->setObjectName("chgplanetype");
+        chgplanetype->setFont(font10);
 
         verticalLayout_16->addWidget(chgplanetype);
 
         chgplaneselabl = new QLabel(airplanechange);
         chgplaneselabl->setObjectName("chgplaneselabl");
+        chgplaneselabl->setFont(font10);
 
         verticalLayout_16->addWidget(chgplaneselabl);
 
         chgplanearr = new QLabel(airplanechange);
         chgplanearr->setObjectName("chgplanearr");
+        chgplanearr->setFont(font10);
 
         verticalLayout_16->addWidget(chgplanearr);
 
         chgplanedep = new QLabel(airplanechange);
         chgplanedep->setObjectName("chgplanedep");
+        chgplanedep->setFont(font10);
 
         verticalLayout_16->addWidget(chgplanedep);
 
         chgplanenotime = new QLabel(airplanechange);
         chgplanenotime->setObjectName("chgplanenotime");
+        chgplanenotime->setFont(font10);
 
         verticalLayout_16->addWidget(chgplanenotime);
 
         chgplanelinecom = new QComboBox(airplanechange);
         chgplanelinecom->setObjectName("chgplanelinecom");
+        chgplanelinecom->setFont(font10);
 
         verticalLayout_16->addWidget(chgplanelinecom);
 
         chgplanelinecpy = new QLabel(airplanechange);
         chgplanelinecpy->setObjectName("chgplanelinecpy");
+        chgplanelinecpy->setFont(font10);
 
         verticalLayout_16->addWidget(chgplanelinecpy);
 
         chgplanelineabl = new QLabel(airplanechange);
         chgplanelineabl->setObjectName("chgplanelineabl");
+        chgplanelineabl->setFont(font10);
 
         verticalLayout_16->addWidget(chgplanelineabl);
 
         chgplanelinearr = new QLabel(airplanechange);
         chgplanelinearr->setObjectName("chgplanelinearr");
+        chgplanelinearr->setFont(font10);
 
         verticalLayout_16->addWidget(chgplanelinearr);
 
         chgplanelinetime = new QLabel(airplanechange);
         chgplanelinetime->setObjectName("chgplanelinetime");
+        chgplanelinetime->setFont(font10);
 
         verticalLayout_16->addWidget(chgplanelinetime);
 
         chgplanelinedep = new QLabel(airplanechange);
         chgplanelinedep->setObjectName("chgplanelinedep");
+        chgplanelinedep->setFont(font10);
 
         verticalLayout_16->addWidget(chgplanelinedep);
 
         chgplaneokbtn = new QPushButton(airplanechange);
         chgplaneokbtn->setObjectName("chgplaneokbtn");
+        chgplaneokbtn->setFont(font10);
 
         verticalLayout_16->addWidget(chgplaneokbtn);
 
@@ -1514,6 +1580,7 @@ public:
         stackedWidget_update->addWidget(page_airplanechange);
         page_airlinechange = new QWidget();
         page_airlinechange->setObjectName("page_airlinechange");
+        page_airlinechange->setStyleSheet(QString::fromUtf8("QWidget#page_airlinechange{border-image:url(:/images/images/background1.jpg);}"));
         verticalLayout_14 = new QVBoxLayout(page_airlinechange);
         verticalLayout_14->setObjectName("verticalLayout_14");
         airlinechange = new QGroupBox(page_airlinechange);
@@ -1522,96 +1589,115 @@ public:
         verticalLayout_17->setObjectName("verticalLayout_17");
         chglinenoabl = new QLabel(airlinechange);
         chglinenoabl->setObjectName("chglinenoabl");
+        chglinenoabl->setFont(font10);
 
         verticalLayout_17->addWidget(chglinenoabl);
 
         chglinenocom = new QComboBox(airlinechange);
         chglinenocom->setObjectName("chglinenocom");
+        chglinenocom->setFont(font10);
 
         verticalLayout_17->addWidget(chglinenocom);
 
         chglinecmpcom = new QComboBox(airlinechange);
         chglinecmpcom->setObjectName("chglinecmpcom");
+        chglinecmpcom->setFont(font10);
 
         verticalLayout_17->addWidget(chglinecmpcom);
 
         chglinecmpcek = new QCheckBox(airlinechange);
         chglinecmpcek->setObjectName("chglinecmpcek");
+        chglinecmpcek->setFont(font10);
 
         verticalLayout_17->addWidget(chglinecmpcek);
 
         chglinedepcom = new QComboBox(airlinechange);
         chglinedepcom->setObjectName("chglinedepcom");
+        chglinedepcom->setFont(font10);
 
         verticalLayout_17->addWidget(chglinedepcom);
 
         chglinedepcek = new QCheckBox(airlinechange);
         chglinedepcek->setObjectName("chglinedepcek");
+        chglinedepcek->setFont(font10);
 
         verticalLayout_17->addWidget(chglinedepcek);
 
         chglinearrcom = new QComboBox(airlinechange);
         chglinearrcom->setObjectName("chglinearrcom");
+        chglinearrcom->setFont(font10);
 
         verticalLayout_17->addWidget(chglinearrcom);
 
         chglinearrcek = new QCheckBox(airlinechange);
         chglinearrcek->setObjectName("chglinearrcek");
+        chglinearrcek->setFont(font10);
 
         verticalLayout_17->addWidget(chglinearrcek);
 
         chglinedatedit = new QDateEdit(airlinechange);
         chglinedatedit->setObjectName("chglinedatedit");
+        chglinedatedit->setFont(font10);
 
         verticalLayout_17->addWidget(chglinedatedit);
 
         chglinedatecek = new QCheckBox(airlinechange);
         chglinedatecek->setObjectName("chglinedatecek");
+        chglinedatecek->setFont(font10);
 
         verticalLayout_17->addWidget(chglinedatecek);
 
         chglinetimecek = new QCheckBox(airlinechange);
         chglinetimecek->setObjectName("chglinetimecek");
+        chglinetimecek->setFont(font10);
 
         verticalLayout_17->addWidget(chglinetimecek);
 
         chglinetimedit = new QTimeEdit(airlinechange);
         chglinetimedit->setObjectName("chglinetimedit");
+        chglinetimedit->setFont(font10);
 
         verticalLayout_17->addWidget(chglinetimedit);
 
         chglineecoedit = new QLineEdit(airlinechange);
         chglineecoedit->setObjectName("chglineecoedit");
+        chglineecoedit->setFont(font10);
 
         verticalLayout_17->addWidget(chglineecoedit);
 
         chglineecocek = new QCheckBox(airlinechange);
         chglineecocek->setObjectName("chglineecocek");
+        chglineecocek->setFont(font10);
 
         verticalLayout_17->addWidget(chglineecocek);
 
         chglinebusedit = new QLineEdit(airlinechange);
         chglinebusedit->setObjectName("chglinebusedit");
+        chglinebusedit->setFont(font10);
 
         verticalLayout_17->addWidget(chglinebusedit);
 
         chglinebuscek = new QCheckBox(airlinechange);
         chglinebuscek->setObjectName("chglinebuscek");
+        chglinebuscek->setFont(font10);
 
         verticalLayout_17->addWidget(chglinebuscek);
 
         chglinedeledit = new QLineEdit(airlinechange);
         chglinedeledit->setObjectName("chglinedeledit");
+        chglinedeledit->setFont(font10);
 
         verticalLayout_17->addWidget(chglinedeledit);
 
         chglinedelcek = new QCheckBox(airlinechange);
         chglinedelcek->setObjectName("chglinedelcek");
+        chglinedelcek->setFont(font10);
 
         verticalLayout_17->addWidget(chglinedelcek);
 
         chglineokbtn = new QPushButton(airlinechange);
         chglineokbtn->setObjectName("chglineokbtn");
+        chglineokbtn->setFont(font10);
 
         verticalLayout_17->addWidget(chglineokbtn);
 
@@ -1628,7 +1714,12 @@ public:
         stackedWidget->addWidget(updatepage);
         deletepage = new QWidget();
         deletepage->setObjectName("deletepage");
-        deletepage->setStyleSheet(QString::fromUtf8("QWidget#deletepage{border-image:url(:/images/images/background1.jpg);}"));
+        deletepage->setStyleSheet(QString::fromUtf8("QWidget#deletepage{border-image:url(:/images/images/background1.jpg);}\n"
+"QLabel {\n"
+"    border: 2px solid skyblue;       /* 2px \345\244\251\350\223\235\350\211\262\350\276\271\346\241\206 */\n"
+"\n"
+"border-radius: 10px;   \n"
+"}"));
         layoutWidget2 = new QWidget(deletepage);
         layoutWidget2->setObjectName("layoutWidget2");
         layoutWidget2->setGeometry(QRect(0, 0, 671, 571));
@@ -1638,6 +1729,10 @@ public:
         delticket = new QGroupBox(layoutWidget2);
         delticket->setObjectName("delticket");
         delticket->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
+        delticket->setStyleSheet(QString::fromUtf8("QLabel{\n"
+"	\n"
+"	font: 14pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
+"}"));
         delticket->setAlignment(Qt::AlignmentFlag::AlignCenter);
         layoutWidget3 = new QWidget(delticket);
         layoutWidget3->setObjectName("layoutWidget3");
@@ -1647,6 +1742,12 @@ public:
         delticketlyo->setContentsMargins(0, 0, 0, 0);
         delticketname = new QLabel(layoutWidget3);
         delticketname->setObjectName("delticketname");
+        QFont font11;
+        font11.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font11.setPointSize(14);
+        font11.setBold(false);
+        font11.setItalic(false);
+        delticketname->setFont(font11);
 
         delticketlyo->addWidget(delticketname, 1, 1, 1, 1);
 
@@ -1657,6 +1758,7 @@ public:
 
         delticketshipabl = new QLabel(layoutWidget3);
         delticketshipabl->setObjectName("delticketshipabl");
+        delticketshipabl->setFont(font11);
 
         delticketlyo->addWidget(delticketshipabl, 6, 0, 1, 1);
 
@@ -1707,11 +1809,13 @@ public:
 
         delticketno = new QComboBox(layoutWidget3);
         delticketno->setObjectName("delticketno");
+        delticketno->setFont(font10);
 
         delticketlyo->addWidget(delticketno, 0, 1, 1, 1);
 
         delticketarrabl = new QLabel(layoutWidget3);
         delticketarrabl->setObjectName("delticketarrabl");
+        delticketarrabl->setFont(font11);
 
         delticketlyo->addWidget(delticketarrabl, 4, 0, 1, 1);
 
@@ -1740,7 +1844,12 @@ public:
 "	font: 15pt \"\345\215\216\346\226\207\346\245\267\344\275\223\";\n"
 "	color:rgb(0, 0, 0);\n"
 "}\n"
-"QWidget#userinfopage{border-image:url(:/images/images/background1.jpg);}"));
+"QWidget#userinfopage{border-image:url(:/images/images/background1.jpg);}\n"
+"QLabel {\n"
+"    border: 2px solid skyblue;       /* 2px \345\244\251\350\223\235\350\211\262\350\276\271\346\241\206 */\n"
+"\n"
+"border-radius: 10px;   \n"
+"}"));
         layoutWidget4 = new QWidget(userinfopage);
         layoutWidget4->setObjectName("layoutWidget4");
         layoutWidget4->setGeometry(QRect(60, 37, 491, 451));
@@ -1875,13 +1984,13 @@ public:
 
         usertk = new QPushButton(userinfopage);
         usertk->setObjectName("usertk");
-        usertk->setGeometry(QRect(70, 520, 81, 61));
-        QFont font10;
-        font10.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
-        font10.setPointSize(13);
-        usertk->setFont(font10);
+        usertk->setGeometry(QRect(460, 500, 81, 61));
+        QFont font12;
+        font12.setFamilies({QString::fromUtf8("\345\215\216\346\226\207\346\245\267\344\275\223")});
+        font12.setPointSize(13);
+        usertk->setFont(font12);
         usertk->setStyleSheet(QString::fromUtf8("QPushButton {\n"
-"    background-color: rgb(220,220,220);/* \350\256\276\347\275\256\350\203\214\346\231\257\351\242\234\350\211\262 */\n"
+"    background-color: rgb(255,255,255);/* \350\256\276\347\275\256\350\203\214\346\231\257\351\242\234\350\211\262 */\n"
 "    border: 1px solid rgb(200,200,200); /* \350\256\276\347\275\256\350\276\271\346\241\206 */\n"
 "    border-radius: 10px;\n"
 "    min-height: 25px;\n"
@@ -2050,7 +2159,7 @@ public:
 
         retranslateUi(FlightManager);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(5);
         stackedWidget_update->setCurrentIndex(2);
 
 

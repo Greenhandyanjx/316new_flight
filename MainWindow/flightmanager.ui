@@ -6,9 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>865</width>
-    <height>652</height>
+    <width>873</width>
+    <height>708</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>9</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>316航空公司</string>
@@ -33,7 +38,7 @@
       <property name="maximumSize">
        <size>
         <width>200</width>
-        <height>16777215</height>
+        <height>1000</height>
        </size>
       </property>
       <property name="styleSheet">
@@ -50,7 +55,7 @@
          <string notr="true"/>
         </property>
         <property name="currentIndex">
-         <number>4</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="homepage">
          <property name="styleSheet">
@@ -266,7 +271,7 @@ QLable{
               <x>0</x>
               <y>60</y>
               <width>651</width>
-              <height>541</height>
+              <height>591</height>
              </rect>
             </property>
             <property name="font">
@@ -1213,7 +1218,7 @@ border-radius: 10px;
                <string notr="true"/>
               </property>
               <property name="currentIndex">
-               <number>1</number>
+               <number>2</number>
               </property>
               <widget class="QWidget" name="page_customerchange">
                <property name="styleSheet">
@@ -1267,6 +1272,19 @@ border-radius: 10px;
                       </font>
                      </property>
                     </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
                    </item>
                    <item>
                     <widget class="QCheckBox" name="chgctmnamechk">
@@ -1578,6 +1596,19 @@ border-radius: 10px;
                       <string>请选择需更新的优惠类型</string>
                      </property>
                     </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_2">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
                    </item>
                    <item>
                     <widget class="QLineEdit" name="chgtypinline">
@@ -2033,6 +2064,12 @@ border-radius: 10px;
              <property name="layoutDirection">
               <enum>Qt::LayoutDirection::LeftToRight</enum>
              </property>
+             <property name="styleSheet">
+              <string notr="true">QLabel{
+	
+	font: 14pt &quot;华文楷体&quot;;
+}</string>
+             </property>
              <property name="title">
               <string>退票</string>
              </property>
@@ -2053,7 +2090,10 @@ border-radius: 10px;
                 <widget class="QLabel" name="delticketname">
                  <property name="font">
                   <font>
-                   <pointsize>12</pointsize>
+                   <family>华文楷体</family>
+                   <pointsize>14</pointsize>
+                   <italic>false</italic>
+                   <bold>false</bold>
                   </font>
                  </property>
                  <property name="text">
@@ -2072,7 +2112,10 @@ border-radius: 10px;
                 <widget class="QLabel" name="delticketshipabl">
                  <property name="font">
                   <font>
-                   <pointsize>12</pointsize>
+                   <family>华文楷体</family>
+                   <pointsize>14</pointsize>
+                   <italic>false</italic>
+                   <bold>false</bold>
                   </font>
                  </property>
                  <property name="text">
@@ -2156,7 +2199,10 @@ border-radius: 10px;
                 <widget class="QLabel" name="delticketarrabl">
                  <property name="font">
                   <font>
-                   <pointsize>12</pointsize>
+                   <family>华文楷体</family>
+                   <pointsize>14</pointsize>
+                   <italic>false</italic>
+                   <bold>false</bold>
                   </font>
                  </property>
                  <property name="text">
@@ -2368,8 +2414,8 @@ border-radius: 10px;
          <widget class="QPushButton" name="usertk">
           <property name="geometry">
            <rect>
-            <x>70</x>
-            <y>520</y>
+            <x>460</x>
+            <y>500</y>
             <width>81</width>
             <height>61</height>
            </rect>
@@ -2382,7 +2428,7 @@ border-radius: 10px;
           </property>
           <property name="styleSheet">
            <string notr="true">QPushButton {
-    background-color: rgb(220,220,220);/* 设置背景颜色 */
+    background-color: rgb(255,255,255);/* 设置背景颜色 */
     border: 1px solid rgb(200,200,200); /* 设置边框 */
     border-radius: 10px;
     min-height: 25px;
@@ -2500,8 +2546,8 @@ min-width:60px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>865</width>
-     <height>34</height>
+     <width>873</width>
+     <height>33</height>
     </rect>
    </property>
    <property name="styleSheet">

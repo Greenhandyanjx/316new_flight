@@ -39,11 +39,11 @@ class FlightItemWidget : public QWidget {
     Q_OBJECT
 public:
     QPushButton *bookButton;
-    QLabel *airlineLogo;   // 航空公司 logo
-    QLabel *flightInfo;    // 航班信息
-    QLabel *departureInfo; // 出发信息
-    QLabel *arriveInfo;    // 到达信息
-    QLabel *durationInfo;  // 飞行时长
+    QLabel *airlineLogo;
+    QLabel *flightInfo;
+    QLabel *departureInfo;
+    QLabel *arriveInfo;
+    QLabel *durationInfo;
     QLabel *priceLabel;
     QLabel *tklabel;
     QString flightdata;
@@ -54,8 +54,6 @@ public:
     int airno;
     explicit FlightItemWidget(QWidget *parent = nullptr) : QWidget(parent) {
         QVBoxLayout *mainLayout = new QVBoxLayout(this);
-
-        // 航空公司和航班号
         QHBoxLayout *airlineLayout = new QHBoxLayout;
         airlineLogo = new QLabel;
         airlineLogo->setPixmap(QPixmap(":/SVG/SVG/mplane.svg").scaled(15, 15)); // 默认 logo
@@ -66,8 +64,6 @@ public:
         airlineLayout->addWidget(airlineLogo);
         airlineLayout->addWidget(flightInfo);
         // airlineLayout->addStretch();
-
-        // 出发和到达时间、机场
         departureInfo = new QLabel;
         arriveInfo = new QLabel;
         durationInfo = new QLabel;
@@ -75,20 +71,15 @@ public:
          departureInfo->setFixedWidth(100);
         departureInfo->setAlignment(Qt::AlignRight);
         arriveInfo->setFixedWidth(100);
-        // 设置对齐
         airlineLayout->addWidget(departureInfo);
         QLabel *arrowIcon = new QLabel;
         arrowIcon->setPixmap(QPixmap(":/SVG/SVG/dire.svg").scaled(30, 30, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         airlineLayout->addWidget(arrowIcon);
         airlineLayout->addWidget(arriveInfo);
         airlineLayout->addWidget(durationInfo);
-
-        // 设置对齐方式
         airlineLayout->setAlignment(departureInfo, Qt::AlignVCenter); // 垂直居中对齐
         airlineLayout->setAlignment(arriveInfo, Qt::AlignVCenter);
         airlineLayout->setAlignment(durationInfo, Qt::AlignVCenter);
-
-        // 价格和按钮
         QWidget *priceAndButtonWidget = new QWidget;
         QHBoxLayout *priceAndButtonLayout = new QHBoxLayout(priceAndButtonWidget);
         priceLabel = new QLabel;
@@ -151,12 +142,10 @@ public:
             QString("<span style='font-size:18px; color: orange;'>¥%1</span>起")
                 .arg(data.price)
             );
-        // priceLabel->setText(QString("¥%1").arg(data.price)); // 保留两位小数
+        // priceLabel->setText(QString("¥%1").arg(data.price));
     }
 
 private:
-    // 价格
- // 订票按钮
 };
 class FlightManager : public QMainWindow
 {

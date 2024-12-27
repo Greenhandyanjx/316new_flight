@@ -1,0 +1,2750 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FlightManager</class>
+ <widget class="QMainWindow" name="FlightManager">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>873</width>
+    <height>708</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>9</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>316航空公司</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../resourse.qrc">
+    <normaloff>:/images/images/airplane.png</normaloff>:/images/images/airplane.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_17">
+    <item>
+     <widget class="QListWidget" name="listWidget">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>1000</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 rgb(225, 255, 255), stop:1 rgb(135, 206, 235));</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="showlayout">
+      <item row="0" column="0">
+       <widget class="QStackedWidget" name="stackedWidget">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="currentIndex">
+         <number>3</number>
+        </property>
+        <widget class="QWidget" name="homepage">
+         <property name="styleSheet">
+          <string notr="true">QWidget#homepage{border-image:url(:/images/images/background1.jpg);}</string>
+         </property>
+         <widget class="QLabel" name="welcomelabel">
+          <property name="geometry">
+           <rect>
+            <x>150</x>
+            <y>110</y>
+            <width>381</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>华文楷体</family>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>欢迎使用316航空信息管理系统！</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="searchpage">
+         <property name="styleSheet">
+          <string notr="true">#searchairline{
+
+border-image:url(:/images/images/background1.jpg);
+
+}
+QComboBox {
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 1px 18px 1px 3px;
+    min-width: 6em;
+}
+
+QComboBox:editable {
+    background: white;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable {
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+                                 stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+}
+
+/* QComboBox gets the &quot;on&quot; state when the popup is open */
+QComboBox:!editable:on, QComboBox::drop-down:editable:on {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #D3D3D3, stop: 0.4 #D8D8D8,
+                                stop: 0.5 #DDDDDD, stop: 1.0 #E1E1E1);
+}
+
+QComboBox:on { /* shift the text when the popup opens */
+    padding-top: 3px;
+    padding-left: 4px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+}
+
+/*QComboBox::down-arrow {
+    image: url(:/images/SVG/chevron-down.svg);
+}*/
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    top: 1px;
+    left: 1px;
+}
+
+QComboBox QAbstractItemView {
+    border: 2px solid darkgray;
+    selection-background-color: lightgray;
+}
+
+QHeaderView::section {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 #616161, stop: 0.5 #505050,
+                                      stop: 0.6 #434343, stop:1 #656565);
+    color: white;
+    padding-left: 4px;
+    border: 1px solid #6c6c6c;
+}
+
+QHeaderView::section:checked
+{
+    background-color: rgb(0, 132, 255);
+}
+
+/* style the sort indicator */
+/*QHeaderView::down-arrow {
+    image: url(down_arrow.png);
+}
+
+QHeaderView::up-arrow {
+    image: url(up_arrow.png);
+}*/
+
+QLineEdit {
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 0 2px;
+    background: rgb(234, 234, 234);
+    selection-background-color: darkgray;
+}
+
+QLineEdit[echoMode=&quot;2&quot;] {
+    lineedit-password-character: 42;
+}
+
+
+
+
+
+
+
+QMenuBar {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 rgb(84, 209, 255), stop:1 rgb(0, 170, 255));
+    spacing: 3px; /* spacing between menu bar items */
+}
+
+QMenuBar::item {
+    padding: 1px 4px;
+    background: transparent;
+    border-radius: 3px;
+}
+
+QMenuBar::item:selected { /* when selected using mouse or keyboard */
+    background: rgb(2, 242, 255);
+}
+
+QMenuBar::item:pressed {
+    background: rgb(255, 255, 255);
+}
+
+QPushButton {
+    border: 2px solid #8f8f91;
+    border-radius: 4px;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #dadbde, stop: 1 #f6f7fa);
+}
+
+QPushButton:flat {
+    border: none; /* no border for a flat push button */
+}
+
+
+QPushButton:default {
+    border-color: navy; /* make the default button prominent */
+}
+
+QPushButton{
+
+color:rgb(0, 0, 0)
+}
+
+QInputDialog{
+
+color:rgb(0, 0, 0);
+
+}
+
+QMenu {
+    background-color: rgb(160, 242, 255); /* sets background of the menu */
+    border: 1px solid black;
+}
+
+QMenu::item {
+    /* sets background of menu item. set this to something non-transparent
+        if you want menu color and menu item color to be different */
+    background-color: transparent;
+}
+
+QMenu::item:selected { /* when user selects item using mouse or keyboard */
+    background-color: rgb(28, 176, 255);
+}
+QLable{
+	color:rgb(255, 255, 255);
+}
+</string>
+         </property>
+         <widget class="QStackedWidget" name="searchtoolbox">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>641</width>
+            <height>601</height>
+           </rect>
+          </property>
+          <widget class="QWidget" name="searchairline">
+           <widget class="QListWidget" name="searchairlineshow">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>60</y>
+              <width>651</width>
+              <height>591</height>
+             </rect>
+            </property>
+            <property name="font">
+             <font>
+              <family>华文楷体</family>
+              <pointsize>11</pointsize>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#searchairlineshow{
+background:rgba(36, 36, 36,150);
+border-radius:8px;
+	font: 11pt &quot;华文楷体&quot;;
+	color: rgb(255, 255, 255);
+}
+QListWidget {
+            background-color: #f0f0f0; /* 设置背景颜色 */
+            border: 1px solid #ccc; /* 边框 */
+            padding: 5px;
+        }
+QListWidget::item {
+            background-color: #ffffff; /* 设置每个item的背景颜色 */
+            border: none;
+			height: 60px;
+			border-radius:8px;	
+			font: 11pt &quot;华文楷体&quot;;
+            margin-bottom: 2px; /* 每个item之间的间距 */
+        }
+        QListWidget::item:hover {
+            background-color: #e0e0e0; /* 鼠标悬停时的背景颜色 */
+        }
+        QListWidget::item:focus {
+            background-color: #d0d0d0;
+			outline: none;  /* 选中时的背景颜色 */
+        }
+        QListWidget::item:selected {
+/* 选中项的背景颜色 */
+	background-color: rgb(224, 240, 255);
+        }
+QLabel{
+font: 11pt &quot;华文楷体&quot;;
+}
+QPushButton
+{
+font: 11pt &quot;华文楷体&quot;;
+min-width:60px;
+}
+</string>
+            </property>
+           </widget>
+           <widget class="QWidget" name="searchWidget" native="true">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>661</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <widget class="QPushButton" name="departure">
+             <property name="geometry">
+              <rect>
+               <x>163</x>
+               <y>10</y>
+               <width>111</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="font">
+              <font>
+               <family>KaiTi</family>
+               <pointsize>-1</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton { 
+       background-color: white; 
+      border: none;
+       font-family: KaiTi;
+       font-size: 16px; 
+ } 
+QPushButton:hover { 
+        background-color: #f5f5f5;
+} 
+QPushButton:pressed { 
+        background-color: #e0e0e0;
+}</string>
+             </property>
+             <property name="text">
+              <string>departure</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="arrive">
+             <property name="geometry">
+              <rect>
+               <x>310</x>
+               <y>10</y>
+               <width>111</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton { 
+       background-color: white; 
+      border: none;
+       font-family: KaiTi;
+       font-size: 16px; 
+ } 
+QPushButton:hover { 
+        background-color: #f5f5f5;
+} 
+QPushButton:pressed { 
+        background-color: #e0e0e0;
+}</string>
+             </property>
+             <property name="text">
+              <string>arrive</string>
+             </property>
+            </widget>
+            <widget class="QLabel" name="direct">
+             <property name="geometry">
+              <rect>
+               <x>260</x>
+               <y>9</y>
+               <width>61</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="depatime">
+             <property name="geometry">
+              <rect>
+               <x>430</x>
+               <y>10</y>
+               <width>201</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton { 
+       background-color: white; 
+      border: none;
+       font-family: KaiTi;
+       font-size: 14px; 
+ } 
+QPushButton:hover { 
+        background-color: #f5f5f5;
+} 
+QPushButton:pressed { 
+        background-color: #e0e0e0;
+}</string>
+             </property>
+             <property name="text">
+              <string>arrive</string>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QWidget" name="searchairWG" native="true">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>57</y>
+              <width>621</width>
+              <height>241</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QWidget {
+    background-color: rgb(255, 255, 255); /* 背景颜色 */
+    border: 1px solid rgba(0, 0, 0, 0.2); /* 边框颜色，设置为浅色半透明 */
+    border-radius: 10px; /* 圆角半径 */
+    padding: 4px; /* 内边距 */
+    /* 使用渐变模拟阴影 */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* 阴影效果：仅适用于 Qt WebView，QWidget QSS 不支持 */
+}
+
+/* 阴影的替代方案：使用一个渐变的背景来模拟阴影 */
+QWidget::before {
+    content: &quot;&quot;;
+    position: absolute;
+    left: -5px;
+    right: -5px;
+    top: -5px;
+    bottom: -5px;
+    background: qlineargradient(spread: pad, x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(0, 0, 0, 0.2), stop:1 rgba(255, 255, 255, 0));
+    border-radius: 15px;
+    z-index: -1;
+}</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_4">
+               <item>
+                <widget class="QLabel" name="label_4">
+                 <property name="font">
+                  <font>
+                   <family>华文楷体</family>
+                   <pointsize>14</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">#label_4 {
+
+color:rgb(0, 0, 255)
+
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>316航空公司为您服务</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_2">
+                 <item>
+                  <widget class="QLabel" name="label_3">
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>华文楷体</family>
+                     <pointsize>16</pointsize>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">#label_3 {
+
+color:rgb(0, 0, 255)
+
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>出发地</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit">
+                   <property name="maximumSize">
+                    <size>
+                     <width>150</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>华文楷体</family>
+                     <pointsize>14</pointsize>
+                    </font>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout">
+                 <item>
+                  <widget class="QLabel" name="label_2">
+                   <property name="maximumSize">
+                    <size>
+                     <width>100</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>华文楷体</family>
+                     <pointsize>16</pointsize>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">#label_2 {
+
+color:rgb(0, 0, 255)
+
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>目的地</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_2">
+                   <property name="maximumSize">
+                    <size>
+                     <width>150</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>华文楷体</family>
+                     <pointsize>14</pointsize>
+                    </font>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton">
+                 <property name="font">
+                  <font>
+                   <family>华文楷体</family>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>查询</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout">
+               <property name="spacing">
+                <number>6</number>
+               </property>
+               <property name="leftMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="label">
+                 <property name="font">
+                  <font>
+                   <family>华文楷体</family>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">#label {
+
+color:rgb(0, 0, 255)
+
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>日期</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCalendarWidget" name="calendarWidget">
+                 <property name="styleSheet">
+                  <string notr="true">#calendarWidget {
+    background: rgb(30, 60, 100); /* 深蓝背景 */
+    border: 1px solid rgb(50, 90, 140); /* 边框为较浅蓝色 */
+    color: white; /* 默认文字颜色 */
+    font-family: &quot;Arial&quot;, sans-serif; /* 设置字体 */
+}
+
+/* 标题栏（显示月份和年份） */
+#calendarWidget QWidget#qt_calendar_navigationbar {
+    background-color: rgb(50, 90, 150); /* 标题栏背景色 */
+    border-bottom: 1px solid rgb(70, 120, 180); /* 下边框颜色 */
+}
+
+/* 左右箭头按钮 */
+#calendarWidget QToolButton {
+    background-color: rgb(70, 120, 180); /* 按钮背景色 */
+    color: white; /* 按钮文字颜色 */
+    border: none;
+    border-radius: 3px;
+    padding: 4px;
+}
+
+#calendarWidget QToolButton:hover {
+    background-color: rgb(100, 150, 200); /* 悬停时的按钮背景色 */
+}
+
+/* 日期区域背景 */
+#calendarWidget QAbstractItemView {
+    background: rgb(40, 80, 140); /* 日期区域背景 */
+	selection-background-color: rgb(170, 255, 127);
+    selection-color: white; /* 选中日期文字颜色 */
+    color: rgb(200, 200, 255); /* 默认日期颜色 */
+}
+
+/* 星期标题样式（如周一、周二） */
+#calendarWidget QTableView QHeaderView::section {
+    background-color: rgb(60, 100, 160); /* 星期标题背景色 */
+    color: white; /* 星期标题文字颜色 */
+    padding: 5px;
+    border: none;
+    font-size: 12px; /* 星期标题文字大小 */
+    font-weight: bold; /* 加粗星期标题 */
+    text-align: center;
+}
+
+/* 选中的日期样式 */
+#calendarWidget QTableView QTableWidget::item:selected {
+     /* 选中日期背景色 */
+	background-color: rgb(170, 255, 127);
+    color: white; /* 选中日期文字颜色 */
+}
+
+/* 禁用日期样式 */
+#calendarWidget QAbstractItemView::item:disabled {
+    color: rgb(120, 120, 150); /* 禁用日期文字颜色 */
+}
+
+/* 日期表格单元格对齐方式 */
+#calendarWidget QTableView::item {
+    text-align: center; /* 日期居中显示 */
+}
+</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="searchcustomer">
+           <widget class="QTableWidget" name="searchcustomershow">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>641</width>
+              <height>601</height>
+             </rect>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="insertpage">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background-color: rgb(220,220,220);/* 设置背景颜色 */
+    border-style: solid;
+    border-width: 1px;
+    border-color: aqua;
+	border-radius: 10px;
+    min-height: 25px;
+    color: #000000; /* 设置文字颜色 */
+    padding:4px 20px;
+    margin:4px 4px;
+}
+
+/* 鼠标悬停状态 */
+QPushButton:hover {
+    background-color: rgb(55,144,250); /* 设置悬停时的背景颜色 */
+    color: #ffffff; /* 设置悬停时的文字颜色 */
+}
+
+/* 按下状态 */
+QPushButton:pressed {
+    background-color: rgb(44,133,240); /* 设置按下时的背景颜色 */
+    color: #ffffff; /* 设置按下时的文字颜色 */
+}
+
+/* 复选框选中状态 */
+QPushButton:checked {
+    background-color: rgb(55,144,250);  /* 设置选中时的背景颜色 */
+    color: #ffffff; /* 设置选中时的文字颜色 */
+}
+
+/* 按钮被选中状态 */
+QPushButton:pressed:checked {
+    background-color: rgb(44,133,240); /* 设置按钮被选中时的背景颜色 */
+    color: #ffffff; /* 设置按钮被选中时的文字颜色 */
+}
+#bktpage{
+
+border-image:url(:/images/images/dark.jpg);
+
+}
+#newcustpage{
+
+border-image:url(:/images/images/dark.jpg);
+
+}
+QLabel{
+	font: 12pt &quot;华文楷体&quot;;
+	color: #BDC8E2;
+    font-style: normal;
+    font-weight: normal;
+ 
+    border-style: solid;
+    border-width: 1px;
+    border-color: aqua;
+    border-radius: 3px;
+ 
+    padding-left: 55px;
+    padding-top: 0px;
+ 
+    background-color: #2E3648;
+}</string>
+         </property>
+         <widget class="QWidget" name="gridLayoutWidget_3">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>671</width>
+            <height>571</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="insertlayout">
+           <item row="0" column="0">
+            <widget class="QStackedWidget" name="inserttab">
+             <property name="font">
+              <font>
+               <family>华文楷体</family>
+              </font>
+             </property>
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <widget class="QWidget" name="newcustpage">
+              <property name="font">
+               <font>
+                <family>华文楷体</family>
+                <pointsize>14</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel{
+	
+	font: 16pt &quot;华文楷体&quot;;
+	padding:10px,10px;
+}</string>
+              </property>
+              <widget class="QPushButton" name="newokbutton">
+               <property name="geometry">
+                <rect>
+                 <x>420</x>
+                 <y>420</y>
+                 <width>101</width>
+                 <height>43</height>
+                </rect>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>确认</string>
+               </property>
+              </widget>
+              <widget class="QWidget" name="layoutWidget">
+               <property name="geometry">
+                <rect>
+                 <x>190</x>
+                 <y>110</y>
+                 <width>325</width>
+                 <height>326</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_5">
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_4">
+                  <item>
+                   <widget class="QLabel" name="newnolabel">
+                    <property name="font">
+                     <font>
+                      <family>华文楷体</family>
+                      <pointsize>16</pointsize>
+                      <italic>false</italic>
+                      <bold>false</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>客户编号</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="newnoshow">
+                    <property name="font">
+                     <font>
+                      <family>华文楷体</family>
+                      <pointsize>16</pointsize>
+                      <italic>false</italic>
+                      <bold>false</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>No.</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_5">
+                  <item>
+                   <widget class="QLabel" name="newnamelabel">
+                    <property name="font">
+                     <font>
+                      <family>华文楷体</family>
+                      <pointsize>16</pointsize>
+                      <italic>false</italic>
+                      <bold>false</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>客户姓名</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="newnamedit">
+                    <property name="font">
+                     <font>
+                      <pointsize>18</pointsize>
+                     </font>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_6">
+                  <item>
+                   <widget class="QLabel" name="newtypelabel">
+                    <property name="font">
+                     <font>
+                      <family>华文楷体</family>
+                      <pointsize>16</pointsize>
+                      <italic>false</italic>
+                      <bold>false</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>客户类型</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QComboBox" name="newtypeselect"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_7">
+                  <item>
+                   <widget class="QLabel" name="newidlabel">
+                    <property name="font">
+                     <font>
+                      <family>华文楷体</family>
+                      <pointsize>16</pointsize>
+                      <italic>false</italic>
+                      <bold>false</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>身份证号</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="newidedit"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_8">
+                  <item>
+                   <widget class="QLabel" name="newsexlabel">
+                    <property name="font">
+                     <font>
+                      <family>华文楷体</family>
+                      <pointsize>16</pointsize>
+                      <italic>false</italic>
+                      <bold>false</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>性        别</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QComboBox" name="newsexshow"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_9">
+                  <item>
+                   <widget class="QLabel" name="newphonelabel">
+                    <property name="font">
+                     <font>
+                      <family>华文楷体</family>
+                      <pointsize>16</pointsize>
+                      <italic>false</italic>
+                      <bold>false</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>电话号码</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="newphonedit"/>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+             <widget class="QWidget" name="bktpage">
+              <widget class="QWidget" name="layoutWidget">
+               <property name="geometry">
+                <rect>
+                 <x>130</x>
+                 <y>10</y>
+                 <width>391</width>
+                 <height>531</height>
+                </rect>
+               </property>
+               <layout class="QGridLayout" name="gridLayout">
+                <item row="1" column="1">
+                 <widget class="QLabel" name="bktktctmname">
+                  <property name="text">
+                   <string>Name</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="10" column="0">
+                 <widget class="QLabel" name="bktktpriceabl">
+                  <property name="text">
+                   <string>机票价钱</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QComboBox" name="bktktctmno"/>
+                </item>
+                <item row="8" column="1">
+                 <widget class="QComboBox" name="bktktline"/>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="bktktctmnameabl">
+                  <property name="text">
+                   <string>客户姓名</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="9" column="0">
+                 <widget class="QLabel" name="bktktshipabl">
+                  <property name="text">
+                   <string>舱位等级</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="6" column="0">
+                 <widget class="QLabel" name="bktktarrcotabl">
+                  <property name="text">
+                   <string>到达国家</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="11" column="1">
+                 <widget class="QLabel" name="bktkttotal">
+                  <property name="text">
+                   <string>Total</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="13" column="1">
+                 <widget class="QLabel" name="bktktnum">
+                  <property name="text">
+                   <string>tktnum</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="14" column="0">
+                 <widget class="QLabel" name="bkttimeLabel">
+                  <property name="text">
+                   <string>起飞时间
+落地时间</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="1">
+                 <widget class="QComboBox" name="bktktdepcy"/>
+                </item>
+                <item row="15" column="1">
+                 <widget class="QPushButton" name="bktktokbtn">
+                  <property name="text">
+                   <string>确定购票</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="bktktdepcotabl">
+                  <property name="text">
+                   <string>出发国家</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="0">
+                 <widget class="QLabel" name="bktktdepcyabl">
+                  <property name="layoutDirection">
+                   <enum>Qt::LayoutDirection::LeftToRight</enum>
+                  </property>
+                  <property name="text">
+                   <string>出发城市</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="1">
+                 <widget class="QComboBox" name="bktktdepcot"/>
+                </item>
+                <item row="6" column="1">
+                 <widget class="QComboBox" name="bktktarrcot"/>
+                </item>
+                <item row="10" column="1">
+                 <widget class="QLabel" name="bktktprice">
+                  <property name="text">
+                   <string>Price</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="13" column="0">
+                 <widget class="QLabel" name="bktktrest">
+                  <property name="text">
+                   <string>剩余票数</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="1">
+                 <widget class="QComboBox" name="bktktarrcy"/>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLabel" name="bktktctmtyp">
+                  <property name="text">
+                   <string>Type</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="8" column="0">
+                 <widget class="QLabel" name="bktktlineabl">
+                  <property name="text">
+                   <string>航线选择</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="9" column="1">
+                 <widget class="QComboBox" name="bktktship"/>
+                </item>
+                <item row="7" column="0">
+                 <widget class="QLabel" name="bktktarrcyabl">
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string>到达城市</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QLabel" name="bktktdiscot">
+                  <property name="text">
+                   <string>Discount</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="bktktctmnoabl">
+                  <property name="text">
+                   <string>客户编号</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="11" column="0">
+                 <widget class="QLabel" name="bktkttotalabl">
+                  <property name="text">
+                   <string>机票总价</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QLabel" name="bktktdiscotabl">
+                  <property name="text">
+                   <string>折扣比例</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="14" column="1">
+                 <widget class="QLabel" name="bkttime">
+                  <property name="styleSheet">
+                   <string notr="true">QLabel{
+padding-left:10px;
+}</string>
+                  </property>
+                  <property name="text">
+                   <string>time</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="bktktctmtypabl">
+                  <property name="text">
+                   <string>客户类型</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="updatepage">
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
+
+border-radius: 10px;   
+}
+</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_10">
+          <item>
+           <layout class="QGridLayout" name="updateLayout">
+            <item row="0" column="1">
+             <widget class="QStackedWidget" name="stackedWidget_update">
+              <property name="styleSheet">
+               <string notr="true"/>
+              </property>
+              <property name="currentIndex">
+               <number>2</number>
+              </property>
+              <widget class="QWidget" name="page_customerchange">
+               <property name="styleSheet">
+                <string notr="true">QWidget#page_customerchange{border-image:url(:/images/images/background1.jpg);}</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_15">
+                <item>
+                 <widget class="QGroupBox" name="customerchange">
+                  <property name="title">
+                   <string>客户信息更新</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_18">
+                   <item>
+                    <widget class="QPushButton" name="chgctmokbtn">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>确定更新</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgctmselabel">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="toolTipDuration">
+                      <number>-1</number>
+                     </property>
+                     <property name="text">
+                      <string>请选择需更改的客户</string>
+                     </property>
+                     <property name="textFormat">
+                      <enum>Qt::TextFormat::MarkdownText</enum>
+                     </property>
+                     <property name="indent">
+                      <number>0</number>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="chgctmselcom">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="chgctmnamechk">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>姓名</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="chgctmsexchk">
+                     <property name="enabled">
+                      <bool>true</bool>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>性别</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="chgctmnameline">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="chgctmsexcom">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="chgctmtypchk">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>类型</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="chgctmphechk">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>手机</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="chgctmtypcom">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="chgctmpheline">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="page_chgtklyo">
+               <property name="styleSheet">
+                <string notr="true">QWidget#page_chgtklyo{border-image:url(:/images/images/background1.jpg);}</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_9">
+                <item>
+                 <widget class="QGroupBox" name="ticketchange">
+                  <property name="title">
+                   <string>订票更改</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_12">
+                   <item>
+                    <widget class="QLabel" name="chgtktlineabl">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>航线号</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgtktnoabl">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>订单编号</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="chgtktnocom">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgtkttimeabl">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>时间</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgtktdepabl">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>起点</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgtktarrabl">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>终点</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgtktlinechg">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>更改航线号</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgtktshipabl">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>舱位等级</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="chgtktlinecom">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgtkttime">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>时间</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgtktarrive">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>终点</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgtktdepature">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>起点</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="chgtktshipcom">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgtktshipchg">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>更改舱位等级</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="chgtktokbtn">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>确定更新</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="page_typechange">
+               <property name="styleSheet">
+                <string notr="true">QWidget#page_typechange{border-image:url(:/images/images/background1.jpg);}</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_13">
+                <item>
+                 <widget class="QGroupBox" name="typechange">
+                  <property name="title">
+                   <string>客户类型优惠更新</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_19">
+                   <item>
+                    <widget class="QComboBox" name="chgtypselcom">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgtypselabl">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>请选择需更新的优惠类型</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_2">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>40</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="chgtypinline">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgtypinabl">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>请输入更改的数值（0-90）</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="chgtypokbtn">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>确定更新</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="page_airplanechange">
+               <property name="styleSheet">
+                <string notr="true">QWidget#page_airplanechange{border-image:url(:/images/images/background1.jpg);}</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_11">
+                <item>
+                 <widget class="QGroupBox" name="airplanechange">
+                  <property name="autoFillBackground">
+                   <bool>false</bool>
+                  </property>
+                  <property name="title">
+                   <string>客机更新</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_16">
+                   <item>
+                    <widget class="QComboBox" name="chgplaneselcom">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgplanetype">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>客机类型</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgplaneselabl">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>选择客机</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgplanearr">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>终点</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgplanedep">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>起点</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgplanenotime">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>时间</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="chgplanelinecom">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgplanelinecpy">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>航空公司</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgplanelineabl">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>选择更改的航线</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgplanelinearr">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>终点</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgplanelinetime">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>时间</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="chgplanelinedep">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>起点</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="chgplaneokbtn">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>确定更新</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+              <widget class="QWidget" name="page_airlinechange">
+               <property name="styleSheet">
+                <string notr="true">QWidget#page_airlinechange{border-image:url(:/images/images/background1.jpg);}</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_14">
+                <item>
+                 <widget class="QGroupBox" name="airlinechange">
+                  <property name="title">
+                   <string>航线更新</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_17">
+                   <item>
+                    <widget class="QLabel" name="chglinenoabl">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>     航线编号</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="chglinenocom">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="chglinecmpcom">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="chglinecmpcek">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>航空公司</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="chglinedepcom">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="chglinedepcek">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>出发城市</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="chglinearrcom">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="chglinearrcek">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>到达城市</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QDateEdit" name="chglinedatedit">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="chglinedatecek">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>出发日期</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="chglinetimecek">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>出发时间</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QTimeEdit" name="chglinetimedit">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="chglineecoedit">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="chglineecocek">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>经济舱价格</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="chglinebusedit">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="chglinebuscek">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>商务舱价格</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="chglinedeledit">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="chglinedelcek">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>头等舱价格</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="chglineokbtn">
+                     <property name="font">
+                      <font>
+                       <pointsize>12</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>确定更新</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="deletepage">
+         <property name="styleSheet">
+          <string notr="true">QWidget#deletepage{border-image:url(:/images/images/background1.jpg);}
+QLabel {
+    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
+
+border-radius: 10px;   
+}</string>
+         </property>
+         <widget class="QWidget" name="layoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>671</width>
+            <height>571</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="deletelayout">
+           <item row="0" column="0" rowspan="2">
+            <widget class="QGroupBox" name="delticket">
+             <property name="layoutDirection">
+              <enum>Qt::LayoutDirection::LeftToRight</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLabel{
+	
+	font: 14pt &quot;华文楷体&quot;;
+}</string>
+             </property>
+             <property name="title">
+              <string>退票</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
+             </property>
+             <widget class="QWidget" name="layoutWidget">
+              <property name="geometry">
+               <rect>
+                <x>110</x>
+                <y>50</y>
+                <width>411</width>
+                <height>471</height>
+               </rect>
+              </property>
+              <layout class="QGridLayout" name="delticketlyo">
+               <item row="1" column="1">
+                <widget class="QLabel" name="delticketname">
+                 <property name="font">
+                  <font>
+                   <family>华文楷体</family>
+                   <pointsize>14</pointsize>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>name</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="0">
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>航空公司</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="0">
+                <widget class="QLabel" name="delticketshipabl">
+                 <property name="font">
+                  <font>
+                   <family>华文楷体</family>
+                   <pointsize>14</pointsize>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>舱位等级</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="1">
+                <widget class="QPushButton" name="delticketokbtn">
+                 <property name="text">
+                  <string>确认删除</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="delticketlineno">
+                 <property name="text">
+                  <string>No.</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="delticketnoabl">
+                 <property name="text">
+                  <string>订单编号</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QLabel" name="delticketarr">
+                 <property name="text">
+                  <string>arrive</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="delticketdep">
+                 <property name="text">
+                  <string>departure</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="delticketdepabl">
+                 <property name="text">
+                  <string>出发地点</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QLabel" name="delticketdeptime">
+                 <property name="text">
+                  <string>time</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="1">
+                <widget class="QLabel" name="delticketship">
+                 <property name="text">
+                  <string>TextLabel</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="delticketnameabl">
+                 <property name="text">
+                  <string>客户姓名</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="delticketno">
+                 <property name="font">
+                  <font>
+                   <pointsize>12</pointsize>
+                  </font>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="delticketarrabl">
+                 <property name="font">
+                  <font>
+                   <family>华文楷体</family>
+                   <pointsize>14</pointsize>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>到达地点</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="delticketlinenoabl">
+                 <property name="text">
+                  <string>航线编号</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="delticketdeptimeabl">
+                 <property name="text">
+                  <string>出发时间</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <widget class="QLabel" name="deltkgrade">
+                 <property name="text">
+                  <string>ship</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="userinfopage">
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	font: 15pt &quot;华文楷体&quot;;
+	color:rgb(0, 0, 0);
+}
+QWidget#userinfopage{border-image:url(:/images/images/background1.jpg);}
+QLabel {
+    border: 2px solid skyblue;       /* 2px 天蓝色边框 */
+
+border-radius: 10px;   
+}</string>
+         </property>
+         <widget class="QWidget" name="layoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>37</y>
+            <width>491</width>
+            <height>451</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_16">
+             <item>
+              <widget class="QLabel" name="usernlabel">
+               <property name="text">
+                <string>用户编号</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="userno">
+               <property name="text">
+                <string>userno</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_7">
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_2">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_10">
+                 <item>
+                  <widget class="QLabel" name="useracclable">
+                   <property name="text">
+                    <string>用户账号</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="useracc">
+                   <property name="minimumSize">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>useracc</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_11">
+                 <item>
+                  <widget class="QLabel" name="usernamelabel">
+                   <property name="text">
+                    <string>用户姓名</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="username">
+                   <property name="text">
+                    <string>username</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_3">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_12">
+                 <item>
+                  <widget class="QLabel" name="usersexlabel">
+                   <property name="text">
+                    <string>性别</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="usersex">
+                   <property name="text">
+                    <string>usersex</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_13">
+                 <item>
+                  <widget class="QLabel" name="useridlabel">
+                   <property name="text">
+                    <string>身份证</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="userid">
+                   <property name="text">
+                    <string>userid</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_6">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_14">
+                 <item>
+                  <widget class="QLabel" name="usertypelabel">
+                   <property name="text">
+                    <string>用户类型</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="usertype">
+                   <property name="text">
+                    <string>usertype</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_15">
+                 <item>
+                  <widget class="QLabel" name="userphonelabel">
+                   <property name="text">
+                    <string>电话</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="userphone">
+                   <property name="text">
+                    <string>userphone</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QPushButton" name="usertk">
+          <property name="geometry">
+           <rect>
+            <x>460</x>
+            <y>500</y>
+            <width>81</width>
+            <height>61</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>华文楷体</family>
+            <pointsize>13</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: rgb(255,255,255);/* 设置背景颜色 */
+    border: 1px solid rgb(200,200,200); /* 设置边框 */
+    border-radius: 10px;
+    min-height: 25px;
+    color: #000000; /* 设置文字颜色 */
+    padding:4px 2px;
+    margin:4px 4px;
+}
+
+/* 鼠标悬停状态 */
+QPushButton:hover {
+    background-color: rgb(55,144,250); /* 设置悬停时的背景颜色 */
+    color: #ffffff; /* 设置悬停时的文字颜色 */
+}
+
+/* 按下状态 */
+QPushButton:pressed {
+    background-color: rgb(44,133,240); /* 设置按下时的背景颜色 */
+    color: #ffffff; /* 设置按下时的文字颜色 */
+}
+
+/* 复选框选中状态 */
+QPushButton:checked {
+    background-color: rgb(55,144,250);  /* 设置选中时的背景颜色 */
+    color: #ffffff; /* 设置选中时的文字颜色 */
+}
+
+/* 按钮被选中状态 */
+QPushButton:pressed:checked {
+    background-color: rgb(44,133,240); /* 设置按钮被选中时的背景颜色 */
+    color: #ffffff; /* 设置按钮被选中时的文字颜色 */
+}
+
+</string>
+          </property>
+          <property name="text">
+           <string>查看订单</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="tkpage">
+         <property name="styleSheet">
+          <string notr="true">#tkpage{
+
+border-image:url(:/images/images/background1.jpg);
+
+}</string>
+         </property>
+         <widget class="QListWidget" name="usertkshow">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>641</width>
+            <height>601</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>华文楷体</family>
+            <pointsize>11</pointsize>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#usertkshow{
+background:rgba(36, 36, 36,150);
+border-radius:8px;
+	font: 11pt &quot;华文楷体&quot;;
+	color: rgb(255, 255, 255);
+}
+QListWidget {
+            background-color: #f0f0f0; /* 设置背景颜色 */
+            border: 1px solid #ccc; /* 边框 */
+            padding: 5px;
+        }
+QListWidget::item {
+            background-color: #ffffff; /* 设置每个item的背景颜色 */
+            border: none;
+			height: 60px;
+			border-radius:8px;	
+			font: 11pt &quot;华文楷体&quot;;
+            margin-bottom: 2px; /* 每个item之间的间距 */
+        }
+        QListWidget::item:hover {
+            background-color: #e0e0e0; /* 鼠标悬停时的背景颜色 */
+        }
+        QListWidget::item:focus {
+            background-color: #d0d0d0;
+			outline: none;  /* 选中时的背景颜色 */
+        }
+        QListWidget::item:selected {
+/* 选中项的背景颜色 */
+	background-color: rgb(224, 240, 255);
+        }
+QLabel{
+font: 11pt &quot;华文楷体&quot;;
+}
+QPushButton
+{
+font: 11pt &quot;华文楷体&quot;;
+min-width:60px;
+}</string>
+          </property>
+         </widget>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>873</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QMenuBar {
+	
+	font: 12pt &quot;华文楷体&quot;;
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 rgb(84, 209, 255), stop:1 rgb(0, 170, 255));
+    spacing: 3px; /* spacing between menu bar items */
+}
+QMenuBar::item {
+
+    padding: 7px 20px;
+    background: transparent;
+    border-radius: 5px;
+}
+QMenuBar::item:selected { /* when selected using mouse or keyboard */
+    background: rgb(2, 242, 255);
+}
+
+QMenuBar::item:pressed {
+    background: rgb(2, 242, 255);
+}
+QMenu::item {
+        padding: 4px 6px; /* 图标和文本之间的间*/
+    }
+QMenu::icon {
+        padding-left: 6px; /* 图标内边距 */
+    }
+QMenu {
+        icon-size: 16px,16px; /* 图标大小 */	
+		font: 12pt &quot;华文楷体&quot;;
+}</string>
+   </property>
+   <widget class="QMenu" name="searchmenu">
+    <property name="title">
+     <string>查询</string>
+    </property>
+    <addaction name="searchaction"/>
+   </widget>
+   <widget class="QMenu" name="insertmeun">
+    <property name="title">
+     <string>添加</string>
+    </property>
+    <addaction name="insertaction"/>
+   </widget>
+   <widget class="QMenu" name="updatemenu">
+    <property name="title">
+     <string>更新(仅管理员)</string>
+    </property>
+    <addaction name="updateaction"/>
+   </widget>
+   <widget class="QMenu" name="deletemenu">
+    <property name="title">
+     <string>删除(仅管理员)</string>
+    </property>
+    <property name="separatorsCollapsible">
+     <bool>true</bool>
+    </property>
+    <property name="toolTipsVisible">
+     <bool>true</bool>
+    </property>
+    <addaction name="deleteaction"/>
+   </widget>
+   <widget class="QMenu" name="quitmenu">
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="title">
+     <string>退出系统</string>
+    </property>
+    <addaction name="quitaction"/>
+   </widget>
+   <widget class="QMenu" name="usermenu">
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="tearOffEnabled">
+     <bool>false</bool>
+    </property>
+    <property name="title">
+     <string>usermenu</string>
+    </property>
+    <addaction name="introduction"/>
+    <addaction name="tkaction"/>
+    <addaction name="exitaction"/>
+   </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>欢迎</string>
+    </property>
+    <addaction name="welcomeaction"/>
+   </widget>
+   <addaction name="searchmenu"/>
+   <addaction name="insertmeun"/>
+   <addaction name="updatemenu"/>
+   <addaction name="deletemenu"/>
+   <addaction name="quitmenu"/>
+   <addaction name="usermenu"/>
+   <addaction name="menu"/>
+  </widget>
+  <action name="personsearch">
+   <property name="text">
+    <string>Person</string>
+   </property>
+  </action>
+  <action name="bookticketinsert">
+   <property name="text">
+    <string>Book Ticket</string>
+   </property>
+  </action>
+  <action name="ticketsearch">
+   <property name="text">
+    <string>Ticket</string>
+   </property>
+  </action>
+  <action name="searchaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::EditFind"/>
+   </property>
+   <property name="text">
+    <string>查询界面</string>
+   </property>
+  </action>
+  <action name="insertaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::FolderNew"/>
+   </property>
+   <property name="text">
+    <string>添加界面</string>
+   </property>
+  </action>
+  <action name="updateaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::SyncSynchronizing"/>
+   </property>
+   <property name="text">
+    <string>更新(仅管理员)</string>
+   </property>
+  </action>
+  <action name="deleteaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::ListRemove"/>
+   </property>
+   <property name="text">
+    <string>删除(仅管理员)</string>
+   </property>
+  </action>
+  <action name="quitacion">
+   <property name="text">
+    <string>Quit System</string>
+   </property>
+  </action>
+  <action name="quitaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::EditClear"/>
+   </property>
+   <property name="text">
+    <string>退出系统</string>
+   </property>
+  </action>
+  <action name="exitaction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::GoHome"/>
+   </property>
+   <property name="text">
+    <string>退出登录</string>
+   </property>
+  </action>
+  <action name="introduction">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::AddressBookNew"/>
+   </property>
+   <property name="text">
+    <string>用户信息</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::MenuRole::ApplicationSpecificRole</enum>
+   </property>
+  </action>
+  <action name="welcomeaction">
+   <property name="text">
+    <string>Welcome System</string>
+   </property>
+  </action>
+  <action name="tkaction">
+   <property name="icon">
+    <iconset resource="../resourse.qrc">
+     <normaloff>:/SVG/SVG/ticket.svg</normaloff>:/SVG/SVG/ticket.svg</iconset>
+   </property>
+   <property name="text">
+    <string>查看订单</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../resourse.qrc"/>
+ </resources>
+ <connections/>
+</ui>
