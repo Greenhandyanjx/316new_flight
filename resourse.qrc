@@ -215,5 +215,6 @@
         <file>images/server.png</file>
         <file>images/dark.jpg</file>
         <file>images/login.jpg</file>
+        <file>images/head.jpg</file>
     </qresource>
 </RCC>

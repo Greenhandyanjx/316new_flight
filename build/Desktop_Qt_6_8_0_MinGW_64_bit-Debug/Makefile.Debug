@@ -134,6 +134,7 @@ debug/qrc_resourse.cpp: ../../resourse.qrc \
 		../../images/login.jpg \
 		../../images/server.png \
 		../../images/plane.png \
+		../../images/head.jpg \
 		../../images/airplane.png \
 		../../SVG/disc.svg \
 		../../SVG/gear.svg \
@@ -2138,8 +2139,40 @@ debug/main.o: ../../main.cpp ../../Login/login.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QListWidget \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlistwidget.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QListWidgetItem \
+		ui_flightmanager.h \
+		D:/QT/6.8.0/mingw_64/include/QtGui/QAction \
+		D:/QT/6.8.0/mingw_64/include/QtGui/QIcon \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QApplication \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qapplication.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QCalendarWidget \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qcalendarwidget.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QCheckBox \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qcheckbox.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QComboBox \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QDateEdit \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qdatetimeedit.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QGridLayout \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QGroupBox \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qgroupbox.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QHeaderView \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qheaderview.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QLineEdit \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlineedit.h \
+		D:/QT/6.8.0/mingw_64/include/QtGui/qtextcursor.h \
+		D:/QT/6.8.0/mingw_64/include/QtGui/qtextformat.h \
+		D:/QT/6.8.0/mingw_64/include/QtGui/qpen.h \
+		D:/QT/6.8.0/mingw_64/include/QtGui/qtextoption.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QMenu \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qmenu.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QMenuBar \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qmenubar.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QSpacerItem \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QStackedWidget \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qstackedwidget.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QTableWidget \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qtablewidget.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qtableview.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QTimeEdit \
 		D:/QT/6.8.0/mingw_64/include/QtCore/QFile
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\..\main.cpp
 
@@ -2334,7 +2367,19 @@ debug/buytk.o: ../../Login/buytk.cpp ../../Login/buytk.h \
 		D:/QT/6.8.0/mingw_64/include/QtGui/qinputmethod.h \
 		D:/QT/6.8.0/mingw_64/include/QtCore/qlocale.h \
 		D:/QT/6.8.0/mingw_64/include/QtGui/qguiapplication_platform.h \
-		ui_buytk.h
+		ui_buytk.h \
+		D:/QT/6.8.0/mingw_64/include/QtCore/QVariant \
+		D:/QT/6.8.0/mingw_64/include/QtGui/QIcon \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QApplication \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qapplication.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QLabel \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qlabel.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qframe.h \
+		D:/QT/6.8.0/mingw_64/include/QtGui/qpicture.h \
+		D:/QT/6.8.0/mingw_64/include/QtGui/qtextdocument.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QPushButton \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qpushbutton.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/qabstractbutton.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\buytk.o ..\..\Login\buytk.cpp
 
 debug/enroll.o: ../../Login/enroll.cpp ../../Login/enroll.h \
@@ -3914,15 +3959,13 @@ debug/flightmanager.o: ../../MainWindow/flightmanager.cpp ../../MainWindow/fligh
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qmenu.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QMenuBar \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qmenubar.h \
+		D:/QT/6.8.0/mingw_64/include/QtWidgets/QSpacerItem \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QStackedWidget \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qstackedwidget.h \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/QTabWidget \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QTableWidget \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qtablewidget.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/qtableview.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QTimeEdit \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/QToolBox \
-		D:/QT/6.8.0/mingw_64/include/QtWidgets/qtoolbox.h \
 		../../Login/buytk.h \
 		D:/QT/6.8.0/mingw_64/include/QtWidgets/QDialog \
 		ui_buytk.h

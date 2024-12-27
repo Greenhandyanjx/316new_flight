@@ -33,6 +33,7 @@ struct FlightData {
     QString duration;           // 飞行时长
     double price;               // 价格
     QString tkno;
+    QString date;
 
 };
 class FlightItemWidget : public QWidget {
@@ -52,13 +53,14 @@ public:
     QString tkno;
     int tktype;
     int airno;
+    QString date;
     explicit FlightItemWidget(QWidget *parent = nullptr) : QWidget(parent) {
-        QVBoxLayout *mainLayout = new QVBoxLayout(this);
-        QHBoxLayout *airlineLayout = new QHBoxLayout;
+        // QVBoxLayout *mainLayout = new QVBoxLayout(this);
+        QHBoxLayout *airlineLayout = new QHBoxLayout(this);
         airlineLogo = new QLabel;
         airlineLogo->setPixmap(QPixmap(":/SVG/SVG/mplane.svg").scaled(15, 15)); // 默认 logo
         flightInfo = new QLabel;
-        flightInfo->setFixedWidth(120);
+        flightInfo->setFixedWidth(100);
         tklabel=new QLabel;
         airlineLayout->addWidget(tklabel);
         airlineLayout->addWidget(airlineLogo);
@@ -68,9 +70,9 @@ public:
         arriveInfo = new QLabel;
         durationInfo = new QLabel;
         durationInfo->setStyleSheet("color: rgb(85, 170, 255);");
-         departureInfo->setFixedWidth(100);
+         departureInfo->setFixedWidth(90);
         departureInfo->setAlignment(Qt::AlignRight);
-        arriveInfo->setFixedWidth(100);
+        arriveInfo->setFixedWidth(90);
         airlineLayout->addWidget(departureInfo);
         QLabel *arrowIcon = new QLabel;
         arrowIcon->setPixmap(QPixmap(":/SVG/SVG/dire.svg").scaled(30, 30, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -107,18 +109,19 @@ public:
         airlineLayout->addStretch();
         priceAndButtonLayout->addWidget(priceLabel);
         priceAndButtonLayout->addWidget(bookButton);
-        priceAndButtonLayout->setSpacing(10);
-        priceAndButtonLayout->setContentsMargins(0, 0, 0, 0);
+        priceAndButtonLayout->setSpacing(5);
+        priceAndButtonLayout->setContentsMargins(10, 10, 0, 0);
         priceAndButtonLayout->setAlignment(bookButton, Qt::AlignVCenter | Qt::AlignRight);
         priceAndButtonLayout->addStretch();
         airlineLayout->addWidget(priceAndButtonWidget);
 
-        mainLayout->addLayout(airlineLayout);
-        this->setLayout(mainLayout);
+        // mainLayout->addLayout(airlineLayout);
+        this->setLayout(airlineLayout);
     }
 
     // 设置航班数据
     void setFlightData(const FlightData &data) {
+        date=data.date;
         airno=data.flightNo.toInt();
         tkno=data.tkno;
         tklabel->setText(tkno);

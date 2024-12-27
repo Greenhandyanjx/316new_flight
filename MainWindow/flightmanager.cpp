@@ -7,10 +7,11 @@
 using std::cout;
 using std::endl;
 QString FlightManager::customer_acc="";
-FlightManager::FlightManager(QWidget *parent) :
+FlightManager::FlightManager(QWidget *parent) :   
     QMainWindow(parent),
     ui(new Ui::FlightManager)
 {
+    this->setFixedSize(865, 625);
     ui->setupUi(this);
     if (m_LineInfo.isEmpty()) {
         qDebug() << "Warning: Line info is empty during initialization!";
@@ -206,7 +207,7 @@ void FlightManager::Init()
     //更新页面中的客机信息更改
     GetAirPlaneChange();
     for (int i = 0; i < m_PlaneInfo.size(); ++i)
-        ui->chgplaneselcom->addItem(QString::number(m_PlaneInfo[i].plane_no) );
+        ui->chgplaneselcom->addItem(QString::number(m_PlaneInfo[i].line_no.toInt()) );
     PlaneValueChange(0);
     //更新页面中客机航线信息的更改
 
@@ -423,7 +424,6 @@ bool FlightManager::GetCustomerInfo()
     {
         Customer ctm;
         ctm.no = sqlquery->value("customerno").toString().toInt();
-        m_CustomerNo.append(QString::number(ctm.no));
         ctm.name = sqlquery->value("customername").toString();
         ctm.type_no = sqlquery->value("customertypeno").toString().toInt();
         ctm.type_name = sqlquery->value("customertypename").toString();
@@ -435,6 +435,8 @@ bool FlightManager::GetCustomerInfo()
         m_CustomerInfo.append(ctm);
     }
     std::sort(m_CustomerInfo.begin(),m_CustomerInfo.end(),[](Customer& c1,Customer &c2){return c1.no<c2.no;});
+    for(auto& ctm:m_CustomerInfo)
+    m_CustomerNo.append(QString::number(ctm.no));
     delete sqlquery;
     sqlquery = NULL;
 
@@ -795,6 +797,8 @@ void FlightManager::ShowAirLineOnSearch() {
             ui->bktktarrcy->setCurrentText(arrl[1]);
             ui->bktktline->addItem(flightWidget->flightdata);
             ui->bktktline->setCurrentText(flightWidget->flightdata);
+            updateTicketNum();
+            updateTicketPrice();
             // qDebug()<<flightWidget->flightdata;
         });
 
@@ -964,6 +968,7 @@ void FlightManager::on_ItemClicked(QListWidgetItem *item)
     }
     else if(item->text()=="查询客机信息")
     {
+        ui->stackedWidget->setCurrentIndex(1);
         ui->searchtoolbox->setCurrentIndex(0);
     }
     else if(item->text()=="查询客户(仅管理员)")
@@ -973,6 +978,7 @@ void FlightManager::on_ItemClicked(QListWidgetItem *item)
             ui->inserttab->setCurrentIndex(1);
             return;
         }
+        ui->stackedWidget->setCurrentIndex(1);
         ui->searchtoolbox->setCurrentIndex(1);
     }
     else if(item->text()=="用户信息")
@@ -1239,6 +1245,8 @@ void FlightManager::on_chgctmokbtn_clicked()//更新用户信息
         update.append(update_discountpercent);
         update.append(update_total_price);
         QString rtn = m_Connect->UpdateValue(update);
+        Showtk();
+        getuser();
         // if (rtn == "Success")
         //     QMessageBox(QMessageBox::Information, "成功", "更新成功", QMessageBox::Ok).exec();
         // else
@@ -1305,6 +1313,8 @@ void FlightManager::on_chgplaneokbtn_clicked()
     QVector<QString> plane_sql;
     plane_sql.append(sql);
     QString rtn = m_Connect->UpdateValue(plane_sql);
+    ShowAirLineOnSearch();
+    Showtk();
     if (rtn == "Success")
         QMessageBox(QMessageBox::Information, "成功", "更新成功", QMessageBox::Ok).exec();
     else
@@ -1402,8 +1412,18 @@ void FlightManager::on_chgtktokbtn_clicked()
         return;
     }
     sqlq->next();
+    QString shipname;
+    if(sqlq->value("shipno").toString()=="经济舱"){
+        shipname="经济舱";
+    }
+    else if(sqlq->value("shipno").toString()=="商务舱"){
+        shipname="商务舱";
+    }
+    else {
+        shipname="头等舱";
+    }
     bool chg_line = (line != sqlq->value("airlineno").toInt()) ? true : false;
-    bool chg_ship = ((ship+567) != (sqlq->value("shipno").toInt())) ? true :false;
+    bool chg_ship = (shipname != (sqlq->value("shipno").toString())) ? true :false;
     // qDebug()<<"line "<<line<< "line in database "<<sqlq->value("airlineno").toInt();
     // qDebug()<<"ship"<<ship+567<<"ship in database "<<sqlq->value("shipno").toInt();
     // //qDebug()<<"test current :"<<book_num<<" "<<line<<" "<<ship<<" "<<"in database"<<sqlq->value("airlineno").toInt()<<" "<<sqlq->value("shipno").toInt();
@@ -1437,12 +1457,7 @@ void FlightManager::on_chgtktokbtn_clicked()
 
         sqlquery->next();
         //int departure_country = sqlquery->value("departurecountry").toString().toInt();
-        QString departure_country = sqlquery->value("departure_country").toString();
-        QString departure_city = sqlquery->value("departure_city").toString();
-        //int arrive_country = sqlquery->value("arrivecountry").toString().toInt();
-        QString arrive_country = sqlquery->value("arrival_country").toString();
-        QString arrive_city = sqlquery->value("arrival_city").toString();
-        qDebug()<<"citys:d/a"<<departure_city<<" "<<arrive_city;
+
 
         int price = sqlquery->value("total_price").toInt();
 
@@ -1466,20 +1481,26 @@ void FlightManager::on_chgtktokbtn_clicked()
         case 1: price = Psql->value("businessclassprice").toString().toInt(); break;
         case 2: price = Psql->value("economyclassprice").toString().toInt(); break;
         }
-
+        QString departure_country = Psql->value("departurecountry").toString();
+        QString departure_city = Psql->value("departurecity").toString();
+        //int arrive_country = sqlquery->value("arrivecountry").toString().toInt();
+        QString arrive_country = Psql->value("arrivecountry").toString();
+        QString arrive_city = Psql->value("arrivecity").toString();
+        qDebug()<<"citys:d/a"<<departure_city<<" "<<arrive_city;
 
 
 
         QVector<QString> vec_sql;
         if (!chg_line && chg_ship)
         {
-            QString ship_sql = "UPDATE ticket SET grade = " + QString::number(567+ship)
+
+            QString ship_sql = "UPDATE ticket SET grade = " +shipname
                     + ", ticket_price = " + QString::number(price)
                                + ", total_price = " + QString::number(price*(double)(100-discountrate)/100.0)
                     + " WHERE order_id = "
                     + QString::number(book_num);
             vec_sql.append(ship_sql);
-            qDebug()<<"ship sql:"<<ship_sql;
+            qDebug()<<"????????ship sql:"<<ship_sql;
         }
         else
         {
@@ -1500,9 +1521,10 @@ void FlightManager::on_chgtktokbtn_clicked()
                     //+ ", ticketprice = " + QString::number(price)
                     + " WHERE order_id = " + QString::number(book_num);
             vec_sql.append(line_sql);
-            qDebug()<<"sql:"<<line_sql;
+            qDebug()<<"?????????sql:"<<line_sql;
         }
-
+        ShowAirLineOnSearch();
+        Showtk();
         QString rtn = m_Connect->UpdateValue(vec_sql);
         if (rtn == "Success")
             QMessageBox(QMessageBox::Information, "成功", "更新成功", QMessageBox::Ok).exec();
@@ -1738,14 +1760,16 @@ void FlightManager::on_chglineokbtn_clicked()
         QString arrcupt = QString("UPDATE ticket SET arrival_city = '") + arr + "' WHERE order_id = '" + order_id + "'";
         QString depcounupt = QString("UPDATE ticket SET departure_country = '") + depcoun + "' WHERE order_id = '" + order_id + "'";
         QString arrcounupt = QString("UPDATE ticket SET arrival_country = '") + arrcoun + "' WHERE order_id = '" + order_id + "'";
-        QString priupt = QString("UPDATE ticket SET ticket_price = ") + QString::number(price);
-        QString totpriupt = QString("UPDATE ticket SET total_price = ") + QString::number(price*(double)(100-disrate)/100.0);
+        QString priupt = QString("UPDATE ticket SET ticket_price = ") + QString::number(price)+ " WHERE order_id = '" + order_id + "'";
+        QString totpriupt = QString("UPDATE ticket SET total_price = ") + QString::number(price*(double)(100-disrate)/100.0)+ " WHERE order_id = '" + order_id + "'";
         sqlupt.append(depcupt);
         sqlupt.append(arrcupt);
         sqlupt.append(depcounupt);
         sqlupt.append(arrcounupt);
         sqlupt.append(priupt);
         sqlupt.append(totpriupt);
+        ShowAirLineOnSearch();
+        Showtk();
         QString rtn = m_Connect->UpdateValue(sqlupt);
         if (rtn == "Success");
         else
@@ -1900,7 +1924,7 @@ void FlightManager::on_bktktokbtn_clicked()
         }
     }
     // 收集购票信息
-    QString orderId = QString::number(QDateTime::currentDateTime().toSecsSinceEpoch()%100000); // 生成订单编号
+    QString orderId = QString::number(QDateTime::currentDateTime().toSecsSinceEpoch()%1000000); // 生成订单编号
     QString customerId = ui->bktktctmno->currentText(); // 客户编号
     QString customerName = ui->bktktctmname->text(); // 客户姓名
     QString ctmType = ui->bktktctmtyp->text(); // kehu的类型
@@ -2291,6 +2315,8 @@ void FlightManager::on_pushButton_clicked()
             ui->bktktarrcy->setCurrentText(arrl[1]);
             ui->bktktline->addItem(flightWidget->flightdata);
             ui->bktktline->setCurrentText(flightWidget->flightdata);
+            updateTicketNum();
+            updateTicketPrice();
             // qDebug()<<flightWidget->flightdata;
         });
         item->setSizeHint(flightWidget->sizeHint()); // 调整项大小
@@ -2361,7 +2387,7 @@ void FlightManager::Showtk(){
         QListWidgetItem *item = new QListWidgetItem(ui->usertkshow);
         // 创建航班数据结构
         FlightData data;
-        data.airlineName = i.ship_name;
+        data.airlineName = i.ship_no;
         data.flightNo = QString::number(i.airline_no);
         data.airplaneType = i.ship_name;
         data.departureTime =i.deptime;
@@ -2369,6 +2395,7 @@ void FlightManager::Showtk(){
         data.arriveTime = i.arrtime;
         data.arriveAirport =i.arrive;
         data.tkno=i.order_id;
+        data.date=i.date;
         QStringList ql1,ql2;
         ql1=i.deptime.split(':',Qt::SkipEmptyParts);
         ql2=i.arrtime.split(':',Qt::SkipEmptyParts);
@@ -2400,7 +2427,9 @@ void FlightManager::Showtk(){
             QString("<span style='font-size:18px; color: orange;'>¥%1</span>")
                 .arg(data.price)
             );
-        flightWidget->tklabel->setText(QString("订单编号:<br><span style='color:blue;'>%1</span>").arg(flightWidget->tkno));
+        flightWidget->durationInfo->setFixedWidth(40);
+        flightWidget->durationInfo->setWordWrap(true);
+        flightWidget->tklabel->setText(QString("订单编号:<br><span style='color:blue;'>%1<br>%2</span>").arg(flightWidget->tkno,flightWidget->date));
         connect(flightWidget->bookButton,&QPushButton::clicked,[=]{
             // QSqlQuery qq;
             QString dels="DELETE FROM ticket WHERE order_id = '"+flightWidget->tkno+"'";
