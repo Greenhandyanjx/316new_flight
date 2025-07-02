@@ -113,6 +113,46 @@ void FlightManager::getuser(){
         ui->searchtoolbox->setCurrentIndex(0);
     }
 }
+void FlightManager::chkchk()
+{
+	QString flightId = ui->edt_flightId->text();
+	QString departureStr = ui->edt_departure->text();
+	QString arrivalStr = ui->edt_arrival->text();
+	QString priceStr = ui->edt_price->text();
+	QString seatStr = ui->edt_seat->text();
+
+	// 航班号校验（字母+数字）
+	QRegularExpression re("^[A-Za-z]{2,}\\d{2,}$");
+	if (!re.match(flightId).hasMatch()) {
+   	 QMessageBox::warning(this, "输入错误", "航班号应为字母+数字组合，如 CA1234");
+    	return;
+	}
+
+	// 时间格式与先后校验
+	QDateTime departure = ui->edt_departure->dateTime();
+	QDateTime arrival = ui->edt_arrival->dateTime();
+	if (!departure.isValid() || !arrival.isValid()) {
+    		QMessageBox::warning(this, "输入错误", "时间格式不合法");
+    		return;
+	}
+	if (departure >= arrival) {
+    		QMessageBox::warning(this, "输入错误", "出发时间应早于到达时间");
+    	return;
+	}
+
+	// 座位与价格校验
+	bool ok1, ok2;
+	int seatCount = seatStr.toInt(&ok1);
+	double price = priceStr.toDouble(&ok2);
+	if (!ok1 || seatCount < 0) {
+    	QMessageBox::warning(this, "输入错误", "座位数应为非负整数");
+    	return;
+	}
+	if (!ok2 || price < 0) {
+    	QMessageBox::warning(this, "输入错误", "价格应为非负数字");
+    	return;
+	}
+}
 void FlightManager::Init()
 {
     m_Sex.append("男");
