@@ -2363,7 +2363,7 @@ void FlightManager::Showtk(){
         QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
         return;
     }
-    QVector<tk> tks;
+    QVector<tk> qtks;
     while(qsql->next())
     {
         tk t;
@@ -2381,9 +2381,9 @@ void FlightManager::Showtk(){
         t.date=qsql->value("departuredate").toString();
         t.price=qsql->value("price").toDouble();
         t.order_id=qsql->value("order_id").toString();
-        tks.append(t);
+        qtks.append(t);
     }
-    for (const auto &i : tks) {
+    for (const auto &i : qtks) {
         QListWidgetItem *item = new QListWidgetItem(ui->usertkshow);
         // 创建航班数据结构
         FlightData data;
