@@ -166,7 +166,7 @@ public slots:
 protected:
 //    void resizeEvent(QResizeEvent*);
     void closeEvent(QCloseEvent*);
-
+    void showtk();
     void Init();//初始化
     int GetMaxNum(const QString& sql);//从数据库中获取数量
     void JudgeReturnValue(QLabel* label, const int& value);//判断从数据库返回客户人数量是否正确，不正确即表明数据库连接出错，则弹出错误

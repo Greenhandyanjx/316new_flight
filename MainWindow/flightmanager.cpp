@@ -2403,7 +2403,7 @@ void FlightManager::Showtk(){
         QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
         return;
     }
-    QVector<tk> tks;
+    QVector<tk> qtks;
     while(qsql->next())
     {
         tk t;
@@ -2421,9 +2421,9 @@ void FlightManager::Showtk(){
         t.date=qsql->value("departuredate").toString();
         t.price=qsql->value("price").toDouble();
         t.order_id=qsql->value("order_id").toString();
-        tks.append(t);
+        qtks.append(t);
     }
-    for (const auto &i : tks) {
+    for (const auto &i : qtks) {
         QListWidgetItem *item = new QListWidgetItem(ui->usertkshow);
         // 创建航班数据结构
         FlightData data;
@@ -2508,6 +2508,150 @@ void FlightManager::Showtk(){
                                         "SET deluxeclassnum = deluxeclassnum + 1 "
                                         "WHERE airlineno = %1"
                                         ).arg(flightWidget->airno);
+                break;
+            }
+            }
+            QVector<QString> sqlupt;
+            sqlupt.append(updateSql);
+            QString rtn1 = m_Connect->UpdateValue(sqlupt);
+            // if (rtn1 == "Success")
+            //     QMessageBox(QMessageBox::Information, "成功", "", QMessageBox::Ok).exec();
+            // else
+            //     QMessageBox(QMessageBox::Critical, "更新错误", rtn, QMessageBox::Ok).exec();
+        });
+        item->setSizeHint(flightWidget->sizeHint()); // 调整项大小
+        ui->usertkshow->addItem(item);
+        ui->usertkshow->setItemWidget(item, flightWidget);
+    }
+    QListWidgetItem *emptyItem = new QListWidgetItem(ui->usertkshow);
+    QLabel *label = new QLabel("您已没有更多订单信息");
+    label->setStyleSheet("background:transparent;color: blue; font-family: 'KaiTi'; font-size: 30px;");
+    label->setAlignment(Qt::AlignCenter);
+    emptyItem->setSizeHint(label->sizeHint());
+    ui->usertkshow->addItem(emptyItem);
+    ui->usertkshow->setItemWidget(emptyItem, label);
+}
+void FlightManager::showtk()
+{
+    ui->usertkshow->clear();
+    QSqlQuery *qsql = new QSqlQuery;
+    QString s = "SELECT * FROM vi_ticket_change WHERE customer_name = '"+ui->username->text()+"'";
+    qDebug()<<s;
+    try
+    {
+        if (!m_Connect->SelectResult(qsql, s))
+            throw false;
+    }
+    catch (bool&)
+    {
+        QMessageBox(QMessageBox::Warning, "查询失败", "数据库无法打卡, 请检查网络配置！", QMessageBox::Ok).exec();
+        return;
+    }
+    QVector<tk> qtks;
+    while(qsql->next())
+    {
+        tk t;
+        t.airline_no=qsql->value("airlineno").toInt();
+        t.departure=qsql->value("departurecountry").toString()+" "+qsql->value("departurecity").toString();
+        t.arrive=qsql->value("arrivecountry").toString()+" "+qsql->value("arrivecity").toString();
+        t.ship_no=qsql->value("shipno").toString();
+        t.ship_name=qsql->value("shipname").toString();
+        QStringList ql;
+        ql=qsql->value("departuretime").toString().split(':',Qt::SkipEmptyParts);
+        t.deptime=ql[0]+":"+ql[1];
+        ql=qsql->value("arrivetime").toString().split(':',Qt::SkipEmptyParts);
+        t.arrtime=ql[0]+":"+ql[1];
+        qDebug()<<t.arrtime;
+        t.date=qsql->value("departuredate").toString();
+        t.price=qsql->value("price").toDouble();
+        t.order_id=qsql->value("order_id").toString();
+        qtks.append(t);
+    }
+    for (const auto &i : qtks) {
+        QListWidgetItem *item = new QListWidgetItem(ui->usertkshow);
+        // 创建航班数据结构
+        FlightData data;
+        data.airlineName = i.ship_no;
+        data.flightNo = QString::number(i.airline_no);
+        data.airplaneType = i.ship_name;
+        data.departureTime =i.deptime;
+        data.departureAirport = i.departure;
+        data.arriveTime = i.arrtime;
+        data.arriveAirport =i.arrive;
+        data.tkno=i.order_id;
+        data.date=i.date;
+        QStringList ql1,ql2;
+        ql1=i.deptime.split(':',Qt::SkipEmptyParts);
+        ql2=i.arrtime.split(':',Qt::SkipEmptyParts);
+        int a1=ql1[0].toInt(),a2=ql2[0].toInt();
+        if(a2<a1)a2+=24;
+        int b1=ql1[1].toInt(),b2=ql2[1].toInt();
+        if(b2<b1){
+            a2-=1;
+            b2+=60;
+        }
+        if(b2!=b1)
+            data.duration = QString::number(a2-a1)+"小时"+QString::number(b2-b1)+"分"; // 可以根据起飞和到达时间计算
+        else data.duration = QString::number(a2-a1)+"小时";
+        data.price =(int)( i.price);
+        // 创建并填充自定义小部件
+        FlightItemWidget *flightWidget = new FlightItemWidget;
+        if(i.ship_no=="经济舱"){
+            flightWidget->tktype=1;
+        }
+        else if(i.ship_no=="商务舱"){
+            flightWidget->tktype=2;
+        }
+        else{
+            flightWidget->tktype=3;
+        }
+        flightWidget->setFlightData(data);
+        flightWidget->bookButton->setText("退票");
+        flightWidget->priceLabel->setText(
+            QString("<span style='font-size:18px; color: orange;'>¥%1</span>")
+                .arg(data.price)
+            );
+        flightWidget->durationInfo->setFixedWidth(40);
+        flightWidget->durationInfo->setWordWrap(true);
+        flightWidget->tklabel->setText(QString("订单编号:<br><span style='color:blue;'>%1<br>%2</span>").arg(flightWidget->tkno,flightWidget->date));
+        connect(flightWidget->bookButton,&QPushButton::clicked,[=]{
+            // QSqlQuery qq;
+            QString dels="DELETE FROM ticket WHERE order_id = '"+flightWidget->tkno+"'";
+            QString rtn = m_Connect->DeletValue(dels);
+            Showtk();
+            if (rtn == "Success")
+                QMessageBox(QMessageBox::Information, "成功", "删除成功", QMessageBox::Ok).exec();
+            else
+                QMessageBox(QMessageBox::Critical, "删除错误", rtn, QMessageBox::Ok).exec();
+            QSqlQuery *qq;
+            QString updateSql;
+            switch(flightWidget->tktype){
+            case 1:
+            {
+                updateSql = QString(
+                                "UPDATE airline "
+                                "SET economyclassnum = economyclassnum + 1 "
+                                "WHERE airlineno = %1"
+                                ).arg(flightWidget->airno);
+                qDebug()<<updateSql;
+                break;
+            }
+            case 2:
+            {
+                updateSql = QString(
+                                "UPDATE airline "
+                                "SET businessclassnum = businessclassnum + 1 "
+                                "WHERE airlineno = %1"
+                                ).arg(flightWidget->airno);
+                break;
+            }
+            case 3:
+            {
+                updateSql = QString(
+                                "UPDATE airline "
+                                "SET deluxeclassnum = deluxeclassnum + 1 "
+                                "WHERE airlineno = %1"
+                                ).arg(flightWidget->airno);
                 break;
             }
             }
